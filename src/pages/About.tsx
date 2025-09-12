@@ -12,13 +12,13 @@ const About = () => {
                 ABOUT
               </h1>
               <p className="text-primary text-lg">
-                vanshu.agarwal@videoworks.com
+                sanjayvansu1973@gmail.com
               </p>
             </div>
 
             <div className="space-y-6 text-muted-foreground leading-relaxed">
               <p className="text-lg">
-                Video Editor with over 10 years of experience specializing in post-production workflows for 
+                Video Editor with over 5 years of experience specializing in post-production workflows for 
                 commercial and creative projects.
               </p>
               
@@ -40,7 +40,7 @@ const About = () => {
             {/* Location */}
             <div className="flex items-center space-x-3 text-muted-foreground">
               <MapPin size={20} className="text-primary" />
-              <span>Florida, Orlando</span>
+              <span>Agra,UttarPradesh</span>
             </div>
 
             <div className="flex items-center space-x-3 text-muted-foreground">
