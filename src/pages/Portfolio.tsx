@@ -72,6 +72,17 @@ const Portfolio = () => {
       thumbnail: '/placeholder-video-6.jpg',
       duration: '8:30',
       views: '73.1K'
+    },
+    {
+      id: 7,
+      title: 'Raat Ka Banda',
+      category: 'music',
+      year: '2025',
+      client: 'Nextup Studio',
+      description: 'A Nextup Studio Original – Raat Ka Banda captures late-night vibes with lo-fi beats, raw lyrics, and the grind of every sleepless soul.',
+      thumbnail: 'https://img.youtube.com/vi/xftcj39h-QY/hqdefault.jpg',
+      duration: '3:28',
+      views: ''
     }
   ];
 
@@ -97,7 +108,7 @@ const Portfolio = () => {
             PORTFOLIO
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            A showcase of my video editing work spanning commercials, documentaries, social media content, and creative projects.
+            A showcase of my music, gaming, and editing projects from Nextup Studio.
           </p>
         </div>
 
@@ -140,9 +151,11 @@ const Portfolio = () => {
                 
                 {/* Overlay on hover */}
                 <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <Button size="sm" className="bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm">
-                    <ExternalLink size={16} className="mr-2" />
-                    View Project
+                  <Button size="sm" className="bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm" asChild>
+                    <a href="https://youtu.be/xftcj39h-QY" target="_blank" rel="noopener noreferrer">
+                      <ExternalLink size={16} className="mr-2" />
+                      View Project
+                    </a>
                   </Button>
                 </div>
 
