@@ -46,7 +46,7 @@ const Navigation = () => {
           {/* Contact Info */}
           <div className="hidden md:flex items-center space-x-4 text-sm text-muted-foreground">
             <Phone size={16} />
-            <span>79-456-3021</span>
+            <span>9412104618</span>
           </div>
 
           {/* Mobile menu button */}
