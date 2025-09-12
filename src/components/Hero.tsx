@@ -33,7 +33,7 @@ const Hero = () => {
               <span className="text-primary glow-effect">AGARWAL</span>
             </h1>
             <p className="text-xl sm:text-2xl text-muted-foreground font-light tracking-wide">
-              Video Editor & Motion Designer
+              Video Editor & Creative Mind
             </p>
           </div>
 
