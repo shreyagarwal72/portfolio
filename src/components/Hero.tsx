@@ -49,6 +49,7 @@ const Hero = () => {
               variant="outline" 
               size="lg"
               className="border-white/20 bg-white/10 hover:bg-white/20 text-white px-8 py-3 text-lg backdrop-blur-sm transition-smooth"
+              onClick={() => window.location.href = '/portfolio'}
             >
               View Portfolio
             </Button>
