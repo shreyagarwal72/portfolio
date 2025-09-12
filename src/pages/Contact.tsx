@@ -99,9 +99,9 @@ const Contact = () => {
                 <p>• Commercial Video Production</p>
                 <p>• Corporate Content Creation</p>
                 <p>• Social Media Video Editing</p>
-                <p>• Motion Graphics & Animation</p>
+                <p>• Provide Free content to Minecraft players</p>
                 <p>• Color Grading & Post-Production</p>
-                <p>• Documentary Editing</p>
+                <p>• Youtuber </p>
               </div>
             </div>
           </div>
