@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Play, ExternalLink, Calendar, Eye } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 
 const Portfolio = () => {
@@ -192,8 +193,8 @@ const Portfolio = () => {
             <p className="text-muted-foreground mb-6">
               Let's collaborate to bring your vision to life through compelling video content.
             </p>
-            <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground glow-effect" onClick={() => window.location.href = '/contact'}>
-              Get In Touch
+            <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground glow-effect" asChild>
+              <Link to="/contact">Get In Touch</Link>
             </Button>
           </div>
         </div>

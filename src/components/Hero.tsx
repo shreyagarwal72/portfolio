@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Download, Github, Linkedin, Instagram, Twitter, Facebook } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import heroWorkspace from '@/assets/hero-workspace.jpg';
 
 const Hero = () => {
@@ -49,9 +50,9 @@ const Hero = () => {
               variant="outline" 
               size="lg"
               className="border-white/20 bg-white/10 hover:bg-white/20 text-white px-8 py-3 text-lg backdrop-blur-sm transition-smooth"
-              onClick={() => window.location.href = '/portfolio'}
+              asChild
             >
-              View Portfolio
+              <Link to="/portfolio">View Portfolio</Link>
             </Button>
           </div>
         </div>
