@@ -27,9 +27,9 @@ const Hero = () => {
           {/* Main Title */}
           <div className="space-y-4">
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white tracking-tight">
-              ALEX
+              VANSHU
               <br />
-              <span className="text-primary glow-effect">MARTIN</span>
+              <span className="text-primary glow-effect">AGARWAL</span>
             </h1>
             <p className="text-xl sm:text-2xl text-muted-foreground font-light tracking-wide">
               Video Editor & Motion Designer

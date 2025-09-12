@@ -12,7 +12,7 @@ const About = () => {
                 ABOUT
               </h1>
               <p className="text-primary text-lg">
-                amartin@videoworks.com
+                vanshu.agarwal@videoworks.com
               </p>
             </div>
 
@@ -53,10 +53,10 @@ const About = () => {
             <div className="card-gradient rounded-2xl p-8 transition-smooth hover:scale-105">
               <div className="aspect-[3/4] bg-muted rounded-xl overflow-hidden">
                 <div className="w-full h-full bg-gradient-to-br from-muted to-muted-foreground/20 flex items-center justify-center">
-                  <div className="text-center space-y-4 text-muted-foreground">
-                    <div className="w-24 h-24 bg-primary/20 rounded-full mx-auto flex items-center justify-center">
-                      <span className="text-3xl font-bold text-primary">AM</span>
-                    </div>
+                    <div className="text-center space-y-4 text-muted-foreground">
+                      <div className="w-24 h-24 bg-primary/20 rounded-full mx-auto flex items-center justify-center">
+                        <span className="text-3xl font-bold text-primary">VA</span>
+                      </div>
                     <p className="text-sm">Profile Photo</p>
                   </div>
                 </div>
