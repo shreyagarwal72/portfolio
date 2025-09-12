@@ -44,7 +44,7 @@ const About = () => {
             </div>
 
             <div className="flex items-center space-x-3 text-muted-foreground">
-              <span className="text-sm">5429 State Road 535</span>
+              <span className="text-sm">106/1 Balkeshwar Roas</span>
             </div>
           </div>
 
