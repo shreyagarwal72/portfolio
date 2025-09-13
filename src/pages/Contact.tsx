@@ -1,9 +1,12 @@
+"use client";
+
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import emailjs from "emailjs-com";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -17,20 +20,31 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Simulate form submission
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for your message. I'll get back to you soon.",
-    });
 
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
-    });
+    emailjs
+      .send(
+        "service_0tz9fru", // ✅ Service ID
+        "template_16ds9rx", // ✅ Template ID
+        formData,
+        "KRsxH4cZ_5RJ2EMJB" // ✅ Public Key
+      )
+      .then(
+        () => {
+          toast({
+            title: "✅ Message Sent!",
+            description: "Thank you for your message. I'll get back to you soon.",
+          });
+          setFormData({ name: '', email: '', subject: '', message: '' });
+        },
+        (error) => {
+          toast({
+            title: "❌ Failed to send message",
+            description: "Please try again later.",
+            variant: "destructive",
+          });
+          console.error(error.text);
+        }
+      );
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -57,7 +71,7 @@ const Contact = () => {
           <div className="space-y-8">
             <div className="card-gradient rounded-2xl p-8">
               <h2 className="text-2xl font-bold text-white mb-6">Contact Information</h2>
-              
+
               <div className="space-y-6">
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
@@ -86,7 +100,7 @@ const Contact = () => {
                   <div>
                     <p className="text-muted-foreground text-sm">Location</p>
                     <p className="text-white">Agra, India</p>
-                    <p className="text-muted-foreground text-sm"> 106/1 Balkeshwar Road Agra</p>
+                    <p className="text-muted-foreground text-sm">106/1 Balkeshwar Road Agra</p>
                   </div>
                 </div>
               </div>
@@ -101,7 +115,7 @@ const Contact = () => {
                 <p>• Social Media Video Editing</p>
                 <p>• Provide Free content to Minecraft players</p>
                 <p>• Color Grading & Post-Production</p>
-                <p>• Youtuber </p>
+                <p>• Youtuber</p>
               </div>
             </div>
           </div>
@@ -109,7 +123,7 @@ const Contact = () => {
           {/* Contact Form */}
           <div className="card-gradient rounded-2xl p-8">
             <h2 className="text-2xl font-bold text-white mb-6">Send a Message</h2>
-            
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
@@ -173,8 +187,8 @@ const Contact = () => {
                 />
               </div>
 
-              <Button 
-                type="submit" 
+              <Button
+                type="submit"
                 size="lg"
                 className="w-full bg-primary hover:bg-primary/90 text-primary-foreground glow-effect transition-smooth"
               >
