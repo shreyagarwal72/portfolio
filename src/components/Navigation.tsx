@@ -79,7 +79,7 @@ const Navigation = () => {
               ))}
               <div className="flex items-center space-x-2 text-sm text-muted-foreground pt-4 border-t border-border">
                 <Phone size={16} />
-                <span>79-456-3021</span>
+                <span>9412104618</span>
               </div>
             </div>
           </div>
