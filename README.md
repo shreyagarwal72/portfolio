@@ -12,7 +12,7 @@ Showcasing skills, projects, and contact details in a sleek UI.
 ---
 
 ## 🌐 Live Demo  
-👉 [Click Here to View Portfolio](https://lovable.dev/projects/065788ba-cfd4-490f-a698-32d9504ade74)  
+👉 [Click Here to View Portfolio](https://vanshubhai.vercel.app/)  
 
 ---
 
