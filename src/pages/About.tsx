@@ -1,4 +1,3 @@
-import profilePhoto from '../assets/profile-photo.jpg';
 import { MapPin, Mail } from 'lucide-react';
 
 const About = () => {
@@ -70,7 +69,7 @@ const About = () => {
               <div className="relative card-gradient rounded-2xl p-8 transition-smooth hover:scale-105 hover:shadow-2xl">
                 <div className="aspect-[3/4] bg-muted rounded-xl overflow-hidden shadow-inner">
                   <img 
-                    src={profilePhoto} 
+                    src="https://i.postimg.cc/d3xjhmn2/IMG-20250316-WA0005.jpg" 
                     alt="Vanshu Agarwal - Video Editor, Gamer & Musician"
                     className="w-full h-full object-cover hover:scale-110 transition-smooth"
                     loading="lazy"
