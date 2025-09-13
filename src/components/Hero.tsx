@@ -46,7 +46,7 @@ const Hero = () => {
             >
               <Link to="/cv">
                 <Download className="mr-2" size={20} />
-                Download CV
+                Open CV
               </Link>
             </Button>
             <Button 
