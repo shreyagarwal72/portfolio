@@ -31,29 +31,28 @@ const Skills = () => {
   ];
 
   const languages = [
-    { name: 'English', level: 100 },
-    { name: 'Spanish', level: 75 },
-    { name: 'French', level: 60 },
+    { name: 'Hindi', level: 100 },
+    { name: 'English', level: 90 },
   ];
 
   const experiences = [
     {
-      company: 'CREATIVE VISION STUDIOS',
-      role: 'Senior Video Editor',
-      period: '2020 - Present',
-      description: 'Lead editor for commercial and branded content projects'
-    },
-    {
-      company: 'DIGITAL MEDIA WORKS',
-      role: 'Motion Graphics Artist',
-      period: '2018 - 2020',
-      description: 'Created animated graphics and visual effects for various clients'
-    },
-    {
-      company: 'FREELANCE EDITOR',
+      company: 'CONTENT CREATOR',
       role: 'Video Editor',
-      period: '2015 - 2018',
-      description: 'Independent contractor for documentaries and corporate videos'
+      period: '2020 - Present',
+      description: 'Creating engaging video content and tutorials'
+    },
+    {
+      company: 'GAMING ENTHUSIAST',
+      role: 'Gamer',
+      period: '2018 - Present',
+      description: 'Passionate about gaming content and community building'
+    },
+    {
+      company: 'CREATIVE ARTIST',
+      role: 'Musician',
+      period: '2019 - Present',
+      description: 'Music production and composition for various projects'
     },
   ];
 
@@ -166,9 +165,9 @@ const Skills = () => {
                 <div className="flex items-start space-x-3">
                   <GraduationCap className="text-primary mt-1" size={20} />
                   <div>
-                    <h4 className="text-white font-medium">Bachelor in Media Arts</h4>
-                    <p className="text-muted-foreground text-sm">University of Central Florida</p>
-                    <p className="text-muted-foreground text-sm">2011 - 2015</p>
+                    <h4 className="text-white font-medium">Class 11 Student</h4>
+                    <p className="text-muted-foreground text-sm">Stream PCM Science</p>
+                    <p className="text-muted-foreground text-sm">2024 - Present</p>
                   </div>
                 </div>
               </div>
