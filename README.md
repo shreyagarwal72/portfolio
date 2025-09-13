@@ -73,7 +73,7 @@ GitHub Pages
 
 
 
-🌍 Custom Domain
+# 🌍 Custom Domain
 
 Connect your custom domain via Vercel settings or follow the Custom Domain Setup Guide.
 
