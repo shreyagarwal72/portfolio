@@ -14,8 +14,6 @@ Showcasing skills, projects, and contact details in a sleek UI.
 ## 🌐 Live Demo  
 👉 [Click Here to View Portfolio](https://lovable.dev/projects/065788ba-cfd4-490f-a698-32d9504ade74)  
 
-## 🌐 Live Website
-👉 [Click Here to View Portfolio](vanshubhai.vercel.app)
 ---
 
 ## 🛠️ Tech Stack  
@@ -43,3 +41,79 @@ npm install
 
 # Step 4: Run the development server
 npm run dev
+
+Now open http://localhost:5173/ in your browser.
+
+
+---
+
+🚀 Deployment
+
+You can deploy this project easily using platforms like:
+
+Vercel (Recommended)
+
+Netlify
+
+GitHub Pages
+
+
+🔧 Deploy on Vercel
+
+1. Go to Vercel
+
+
+2. Import your GitHub repo
+
+
+3. Vercel will auto-detect Vite + React project
+
+
+4. Click Deploy 🚀
+
+
+
+🌍 Custom Domain
+
+Connect your custom domain via Vercel settings or follow the Custom Domain Setup Guide.
+
+
+---
+
+📌 Projects
+
+Some highlights of my work showcased in the portfolio:
+
+🎶 Raat Ka Banda (Music Video) – Lo-fi, raw, late-night vibes with emotions & hustle.
+
+🔥 Fire Within (Anthem) – A track of resilience & comeback energy.
+
+🎮 Nextup Gaming Projects – Minecraft, Squid Game concepts, and fun shorts.
+
+🎥 Video Editing Showreel – Commercial, social media, and corporate content.
+
+🕹️ Interactive Web Games – Mini browser games integrated into the site.
+
+
+
+---
+
+📧 Contact
+
+📩 Email: sanjayvansu1973@gmail.com
+
+📱 Phone: +91 9412104618
+
+📍 Location: Agra, India
+
+🔗 YouTube: @nextupstudioyt
+
+🔗 Instagram: @vanshu_ag_72
+
+🔗 GitHub: @shreyagarwal72
+
+
+
+---
+
+✨ Designed & Developed with passion by Vanshu (Shrey Agarwal).
