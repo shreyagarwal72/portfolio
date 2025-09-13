@@ -4,7 +4,7 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { ExternalLink } from "lucide-react"
 
-const categories = ["all", "commercial", "documentary", "social", "music"]
+const categories = ["all", "commercial", "gaming", "social", "music"]
 
 const projects = [
   {
@@ -22,15 +22,16 @@ const projects = [
   },
   {
     id: 2,
-    title: "Documentary: Urban Stories",
-    category: "documentary",
-    year: "2023",
-    client: "Independent Film",
+    title: "Minecraft",
+    category: "gaming",
+    year: "2024",
+    client: "Gaming Content",
     description:
-      "Feature-length documentary exploring urban culture through personal narratives and cinematic storytelling.",
-    thumbnail: "/placeholder-video-2.jpg",
-    duration: "45:12",
-    views: "108K",
+      "Epic Minecraft gameplay featuring creative builds, adventures, and entertainment for the gaming community.",
+    thumbnail: "https://img.youtube.com/vi/bHdg2IIQYK0/hqdefault.jpg",
+    duration: "12:30",
+    views: "25K",
+    link: "https://youtu.be/bHdg2IIQYK0",
   },
   {
     id: 3,
@@ -104,10 +105,10 @@ export default function Portfolio() {
       : projects.filter((project) => project.category === selectedCategory)
 
   return (
-    <section className="py-20 bg-black text-white min-h-screen">
+    <section className="py-20 bg-background text-foreground min-h-screen">
       <div className="container mx-auto px-4">
         <motion.h2
-          className="text-4xl font-bold mb-12 text-center"
+          className="text-4xl font-bold mb-12 text-center hero-gradient bg-clip-text text-transparent"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -116,14 +117,14 @@ export default function Portfolio() {
         </motion.h2>
 
         {/* Categories */}
-        <div className="flex justify-center mb-12 space-x-4">
+        <div className="flex flex-wrap justify-center mb-12 gap-4">
           {categories.map((category) => (
             <button
               key={category}
-              className={`px-6 py-2 rounded-full transition-colors ${
+              className={`px-6 py-2 rounded-full transition-smooth ${
                 selectedCategory === category
-                  ? "bg-teal-500 text-black"
-                  : "bg-gray-800 hover:bg-gray-700"
+                  ? "bg-primary text-primary-foreground shadow-glow"
+                  : "bg-card hover:bg-accent border border-border"
               }`}
               onClick={() => setSelectedCategory(category)}
             >
@@ -146,37 +147,42 @@ export default function Portfolio() {
           {filteredProjects.map((project) => (
             <motion.div
               key={project.id}
-              className="bg-gray-900 rounded-xl overflow-hidden shadow-lg group"
+              className="bg-card rounded-xl overflow-hidden shadow-elegant group hover-scale card-gradient border border-border"
               whileHover={{ y: -10 }}
               transition={{ type: "spring", stiffness: 300 }}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 },
+              }}
             >
-              <div className="relative">
+              <div className="relative overflow-hidden">
                 <img
                   src={project.thumbnail}
                   alt={project.title}
-                  className="w-full h-48 object-cover"
+                  className="w-full h-48 object-cover transition-smooth group-hover:scale-110"
                 />
-                <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-xs px-2 py-1 rounded">
+                <div className="absolute top-2 right-2 bg-background/80 backdrop-blur-sm text-xs px-2 py-1 rounded border border-border">
                   {project.duration}
                 </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent opacity-0 group-hover:opacity-100 transition-smooth" />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                <p className="text-gray-400 text-sm mb-4">
+                <h3 className="text-xl font-bold mb-2 text-foreground group-hover:text-primary transition-smooth">{project.title}</h3>
+                <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
                   {project.description}
                 </p>
-                <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                  <span>{project.year}</span>
-                  <span>{project.client}</span>
+                <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
+                  <span className="px-2 py-1 bg-accent rounded text-xs">{project.year}</span>
+                  <span className="text-xs">{project.client}</span>
                 </div>
                 {project.link && (
                   <a
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center text-teal-400 hover:text-teal-300 transition-colors"
+                    className="inline-flex items-center text-primary hover:text-primary/80 transition-smooth font-medium group/link"
                   >
-                    <ExternalLink size={16} className="mr-2" />
+                    <ExternalLink size={16} className="mr-2 transition-smooth group-hover/link:translate-x-1" />
                     View Project
                   </a>
                 )}
