@@ -105,33 +105,56 @@ export default function Portfolio() {
       : projects.filter((project) => project.category === selectedCategory)
 
   return (
-    <section className="py-20 bg-background text-foreground min-h-screen">
-      <div className="container mx-auto px-4">
-        <motion.h2
-          className="text-4xl font-bold mb-12 text-center hero-gradient bg-clip-text text-transparent"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          Portfolio
-        </motion.h2>
+    <div className="min-h-screen pt-20 pb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Hero Section */}
+        <div className="text-center mb-20">
+          <motion.h1
+            className="text-5xl lg:text-7xl font-bold text-white mb-6 animate-fade-in"
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            MY <span className="hero-gradient bg-clip-text text-transparent glow-effect">PORTFOLIO</span>
+          </motion.h1>
+          <motion.p
+            className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-fade-in delay-200"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            Explore my creative journey through video editing, music production, and gaming content. 
+            Each project represents passion, creativity, and dedication to storytelling.
+          </motion.p>
+        </div>
 
         {/* Categories */}
-        <div className="flex flex-wrap justify-center mb-12 gap-4">
-          {categories.map((category) => (
-            <button
+        <motion.div 
+          className="flex flex-wrap justify-center mb-16 gap-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          {categories.map((category, index) => (
+            <motion.button
               key={category}
-              className={`px-6 py-2 rounded-full transition-smooth ${
+              className={`px-8 py-3 rounded-full font-medium transition-smooth ${
                 selectedCategory === category
-                  ? "bg-primary text-primary-foreground shadow-glow"
-                  : "bg-card hover:bg-accent border border-border"
+                  ? "card-gradient text-white shadow-glow border border-primary/30"
+                  : "bg-card/50 backdrop-blur-sm text-muted-foreground hover:text-white hover:bg-card border border-border hover:border-primary/30"
               }`}
               onClick={() => setSelectedCategory(category)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.1 * index }}
             >
               {category.charAt(0).toUpperCase() + category.slice(1)}
-            </button>
+            </motion.button>
           ))}
-        </div>
+        </motion.div>
 
         {/* Projects Grid */}
         <motion.div
@@ -140,57 +163,99 @@ export default function Portfolio() {
           animate="visible"
           variants={{
             visible: {
-              transition: { staggerChildren: 0.15 },
+              transition: { staggerChildren: 0.1 },
             },
           }}
         >
-          {filteredProjects.map((project) => (
+          {filteredProjects.map((project, index) => (
             <motion.div
               key={project.id}
-              className="bg-card rounded-xl overflow-hidden shadow-elegant group hover-scale card-gradient border border-border"
-              whileHover={{ y: -10 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              className="group relative overflow-hidden rounded-2xl animate-slide-up"
+              style={{ animationDelay: `${index * 0.1}s` }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
               variants={{
-                hidden: { opacity: 0, y: 20 },
+                hidden: { opacity: 0, y: 30 },
                 visible: { opacity: 1, y: 0 },
               }}
             >
-              <div className="relative overflow-hidden">
-                <img
-                  src={project.thumbnail}
-                  alt={project.title}
-                  className="w-full h-48 object-cover transition-smooth group-hover:scale-110"
-                />
-                <div className="absolute top-2 right-2 bg-background/80 backdrop-blur-sm text-xs px-2 py-1 rounded border border-border">
-                  {project.duration}
+              {/* Glow Effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl blur-xl scale-105 opacity-0 group-hover:opacity-100 transition-smooth" />
+              
+              {/* Main Card */}
+              <div className="relative card-gradient rounded-2xl border border-border/50 backdrop-blur-sm overflow-hidden transition-smooth group-hover:border-primary/30 group-hover:shadow-2xl">
+                
+                {/* Thumbnail */}
+                <div className="relative overflow-hidden aspect-video">
+                  <img
+                    src={project.thumbnail}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-smooth group-hover:scale-110"
+                    loading="lazy"
+                  />
+                  
+                  {/* Duration Badge */}
+                  <div className="absolute top-3 right-3 bg-black/80 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full border border-white/20">
+                    {project.duration}
+                  </div>
+                  
+                  {/* Views Badge */}
+                  {project.views && (
+                    <div className="absolute top-3 left-3 bg-primary/90 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full">
+                      {project.views} views
+                    </div>
+                  )}
+                  
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-smooth" />
+                  
+                  {/* Play Button */}
+                  {project.link && (
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-smooth">
+                      <div className="w-16 h-16 bg-primary/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-2xl">
+                        <ExternalLink size={24} className="text-white ml-1" />
+                      </div>
+                    </div>
+                  )}
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent opacity-0 group-hover:opacity-100 transition-smooth" />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2 text-foreground group-hover:text-primary transition-smooth">{project.title}</h3>
-                <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
-                  {project.description}
-                </p>
-                <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
-                  <span className="px-2 py-1 bg-accent rounded text-xs">{project.year}</span>
-                  <span className="text-xs">{project.client}</span>
+
+                {/* Content */}
+                <div className="p-6 space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="px-3 py-1 bg-primary/20 text-primary text-xs font-medium rounded-full border border-primary/30">
+                      {project.category.charAt(0).toUpperCase() + project.category.slice(1)}
+                    </span>
+                    <span className="text-muted-foreground text-xs">{project.year}</span>
+                  </div>
+                  
+                  <h3 className="text-xl font-bold text-white group-hover:text-primary transition-smooth">
+                    {project.title}
+                  </h3>
+                  
+                  <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">
+                    {project.description}
+                  </p>
+                  
+                  <div className="flex items-center justify-between pt-2">
+                    <span className="text-primary text-xs font-medium">{project.client}</span>
+                    {project.link && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center text-primary hover:text-white transition-smooth font-medium text-sm group/link"
+                      >
+                        View Project
+                        <ExternalLink size={14} className="ml-1 transition-smooth group-hover/link:translate-x-1" />
+                      </a>
+                    )}
+                  </div>
                 </div>
-                {project.link && (
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center text-primary hover:text-primary/80 transition-smooth font-medium group/link"
-                  >
-                    <ExternalLink size={16} className="mr-2 transition-smooth group-hover/link:translate-x-1" />
-                    View Project
-                  </a>
-                )}
               </div>
             </motion.div>
           ))}
         </motion.div>
       </div>
-    </section>
+    </div>
   )
 }
