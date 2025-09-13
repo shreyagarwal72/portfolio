@@ -116,7 +116,7 @@ export default function Portfolio() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            MY <span className="hero-gradient bg-clip-text text-transparent glow-effect">PORTFOLIO</span>
+            MY <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent glow-effect">PORTFOLIO</span>
           </motion.h1>
           <motion.p
             className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-fade-in delay-200"
