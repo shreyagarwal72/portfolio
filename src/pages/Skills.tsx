@@ -22,12 +22,12 @@ const Skills = () => {
   }, []);
 
   const softwareSkills = [
-    { name: 'Premiere Pro', level: 95 },
+    { name: 'Filmora', level: 95 },
     { name: 'After Effects', level: 90 },
-    { name: 'DaVinci Resolve', level: 85 },
-    { name: 'Photoshop', level: 88 },
-    { name: 'Illustrator', level: 75 },
-    { name: 'Cinema 4D', level: 70 },
+    { name: 'AI Image Generation', level: 85 },
+    { name: 'Shotcut', level: 88 },
+    { name: 'Lightroom', level: 75 },
+    { name: 'ChatGPT', level: 70 },
   ];
 
   const languages = [
