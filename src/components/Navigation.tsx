@@ -13,6 +13,7 @@ const Navigation = () => {
     { label: 'About', path: '/about' },
     { label: 'Portfolio', path: '/portfolio' },
     { label: 'Skills', path: '/skills' },
+    { label: 'My YouTube Videos', path: '/youtube' },
     { label: 'Contact', path: '/contact' },
   ];
 
