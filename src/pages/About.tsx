@@ -8,26 +8,22 @@ const About = () => {
   }, []);
 
   return (
-    <main className="min-h-screen pt-20 pb-16 bg-gradient-to-br from-background to-background/50" role="main">
+    <main className="min-h-screen pt-20 pb-16" role="main">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Hero Header */}
+        <div className="text-center mb-16">
+          <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6 animate-fade-in">
+            ABOUT <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent glow-effect">ME</span>
+          </h1>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-fade-in delay-200">
+            Video Editor, Gamer, and Musician passionate about storytelling through visual media and creative content.
+          </p>
+        </div>
+
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Content Section */}
           <article className="space-y-8 animate-fade-in">
-            <header className="space-y-6">
-              <div className="inline-block">
-                <h1 className="text-4xl lg:text-6xl font-bold text-white mb-2">
-                  ABOUT <span className="text-primary glow-effect">ME</span>
-                </h1>
-                <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/50 rounded-full" aria-hidden="true"></div>
-              </div>
-              <div className="card-gradient rounded-xl p-4 backdrop-blur-sm">
-                <p className="text-primary text-lg font-medium flex items-center">
-                  <Mail className="mr-2" size={18} aria-hidden="true" />
-                  <a href="mailto:sanjayvansu1973@gmail.com" className="hover:underline">sanjayvansu1973@gmail.com</a>
-                </p>
-              </div>
-            </header>
-
             <section className="space-y-6">
               <div className="card-gradient rounded-xl p-6 backdrop-blur-sm hover:scale-[1.02] transition-smooth">
                 <h2 className="text-xl font-semibold text-white mb-4">My Journey</h2>
@@ -50,6 +46,14 @@ const About = () => {
                 </div>
               </div>
             </section>
+
+            {/* Contact Info */}
+            <div className="card-gradient rounded-xl p-4 backdrop-blur-sm">
+              <p className="text-primary text-lg font-medium flex items-center">
+                <Mail className="mr-2" size={18} aria-hidden="true" />
+                <a href="mailto:sanjayvansu1973@gmail.com" className="hover:underline">sanjayvansu1973@gmail.com</a>
+              </p>
+            </div>
 
             {/* Location */}
             <address className="card-gradient rounded-xl p-4 backdrop-blur-sm not-italic">

@@ -58,10 +58,10 @@ const Contact = () => {
     <div className="min-h-screen pt-20 pb-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4">
-            GET IN TOUCH
+          <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6 animate-fade-in">
+            GET IN <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent glow-effect">TOUCH</span>
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-fade-in delay-200">
             Ready to bring your video project to life? Let's discuss your vision and create something amazing together.
           </p>
         </div>

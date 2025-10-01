@@ -34,13 +34,17 @@ const YouTube = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background pt-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Header */}
-        <div className="flex items-center justify-between gap-4 mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground">
-            YouTube Highlights
+    <div className="min-h-screen pt-20 pb-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Hero Header */}
+        <div className="text-center mb-16">
+          <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6 animate-fade-in">
+            YOUTUBE <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent glow-effect">HIGHLIGHTS</span>
           </h1>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-fade-in delay-200">
+            Explore top YouTube content featuring original rap songs, creative edits, and engaging videos from Nextup Studio.
+          </p>
         </div>
 
         {/* Channel Stats */}
