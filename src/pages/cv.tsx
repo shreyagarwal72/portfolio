@@ -9,7 +9,7 @@ const CV = () => {
         {/* Hero Header */}
         <div className="text-center mb-20">
           <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6 animate-fade-in">
-            CURRICULUM <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent glow-effect">VITAE</span>
+            CURRICULUM <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">VITAE</span>
           </h1>
           <p className="text-2xl text-muted-foreground max-w-4xl mx-auto animate-fade-in delay-200 leading-relaxed">
             Creative Content Creator • Video Editor • Music Artist • Gamer

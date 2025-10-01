@@ -77,7 +77,7 @@ const Skills = () => {
         {/* Hero Header */}
         <div className="text-center mb-16">
           <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6 animate-fade-in">
-            MY <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent glow-effect">SKILLS</span>
+            MY <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">SKILLS</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-fade-in delay-200">
             A comprehensive overview of my technical expertise, creative abilities, and professional experience in content creation and digital media.

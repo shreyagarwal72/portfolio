@@ -40,7 +40,7 @@ const YouTube = () => {
         {/* Hero Header */}
         <div className="text-center mb-16">
           <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6 animate-fade-in">
-            YOUTUBE <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent glow-effect">HIGHLIGHTS</span>
+            YOUTUBE <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">HIGHLIGHTS</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-fade-in delay-200">
             Explore top YouTube content featuring original rap songs, creative edits, and engaging videos from Nextup Studio.

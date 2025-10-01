@@ -14,7 +14,7 @@ const About = () => {
         {/* Hero Header */}
         <div className="text-center mb-16">
           <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6 animate-fade-in">
-            ABOUT <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent glow-effect">ME</span>
+            ABOUT <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">ME</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-fade-in delay-200">
             Video Editor, Gamer, and Musician passionate about storytelling through visual media and creative content.
