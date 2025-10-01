@@ -4,99 +4,79 @@ import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { ExternalLink } from "lucide-react"
 
-const categories = ["all", "commercial", "gaming", "social", "music"]
+import previewMinecraft from "@/assets/preview-minecraft.jpg"
+import previewYoutube from "@/assets/preview-youtube.jpg"
+import previewWebtools from "@/assets/preview-webtools.jpg"
+import previewTools from "@/assets/preview-tools.jpg"
+import previewOG from "@/assets/preview-og.jpg"
+
+const categories = ["all", "web development", "tools", "portfolio"]
 
 const projects = [
   {
     id: 1,
-    title: "Fire Within (Full Song)",
-    category: "music",
-    year: "2025",
-    client: "Nextup Studio",
-    description:
-      "Fire Within isn't just music — it's a storm of strength and resilience. From quiet struggles to powerful comebacks, this anthem is for everyone who has ever risen stronger from the ashes. 💥",
-    thumbnail: "https://img.youtube.com/vi/_W0IXb5jjZs/hqdefault.jpg",
-    duration: "3:50",
-    views: "",
-    link: "https://youtu.be/_W0IXb5jjZs",
-  },
-  {
-    id: 2,
-    title: "Minecraft",
-    category: "gaming",
-    year: "2024",
-    client: "Gaming Content",
-    description:
-      "Epic Minecraft gameplay featuring creative builds, adventures, and entertainment for the gaming community.",
-    thumbnail: "https://img.youtube.com/vi/bHdg2IIQYK0/hqdefault.jpg",
-    duration: "12:30",
-    views: "25K",
-    link: "https://youtu.be/bHdg2IIQYK0",
-  },
-  {
-    id: 3,
-    title: "Nextup Studio Official Trailer",
-    category: "social",
-    year: "2025",
-    client: "Nextup Studio",
-    description:
-      "Official trailer showcasing the creative vision and brand identity of Nextup Studio with dynamic editing and cinematography.",
-    thumbnail: "https://img.youtube.com/vi/b63MnxqG9-c/hqdefault.jpg",
-    duration: "2:15",
-    views: "",
-    link: "https://youtu.be/b63MnxqG9-c",
-  },
-  {
-    id: 4,
-    title: "Checkmate",
-    category: "gaming",
-    year: "2024",
-    client: "Gaming Content",
-    description:
-      "Strategic Minecraft gameplay featuring tactical builds, competitive gaming, and entertaining content for the gaming community.",
-    thumbnail: "https://img.youtube.com/vi/P7GCs6P3Y40/hqdefault.jpg",
-    duration: "8:15",
-    views: "",
-    link: "https://youtu.be/P7GCs6P3Y40",
-  },
-  {
-    id: 5,
-    title: "Focus Kar Sapna Tera hai",
-    category: "music",
-    year: "2025",
-    client: "Nextup Studio",
-    description:
-      "An inspiring music video about staying focused on your dreams with powerful visuals and motivational storytelling.",
-    thumbnail: "https://img.youtube.com/vi/BHCMat9xvc0/hqdefault.jpg",
-    duration: "3:42",
-    views: "",
-    link: "https://youtu.be/BHCMat9xvc0",
-  },
-  {
-    id: 6,
-    title: "My Minecraft World Project",
-    category: "gaming",
+    title: "My Minecraft Site",
+    category: "web development",
     year: "2024",
     client: "Personal Project",
     description:
-      "A comprehensive Minecraft world showcase featuring creative builds, detailed landscapes, and immersive gameplay experiences.",
-    thumbnail: "https://i.postimg.cc/bvG3Sr21/2.jpg",
+      "A comprehensive Minecraft-themed website showcasing creative builds, gaming content, and immersive experiences with interactive elements.",
+    thumbnail: previewMinecraft,
     duration: "Interactive",
     views: "",
-    link: "https://shreyagarwal72.github.io/Nextup-Studio/myworld.html",
+    link: "https://shreyagarwal72.github.io/Nextup-Studio/",
   },
   {
-    id: 7,
-    title: "Raat Ka Banda",
-    category: "music",
+    id: 2,
+    title: "My YouTube Site",
+    category: "web development",
     year: "2025",
     client: "Nextup Studio",
     description:
-      "A Nextup Studio Original – Raat Ka Banda captures late-night vibes with lo-fi beats, raw lyrics, and the grind of every sleepless soul.",
-    thumbnail: "https://img.youtube.com/vi/xftcj39h-QY/hqdefault.jpg",
-    duration: "3:28",
+      "A modern YouTube-style platform featuring video content, channel statistics, and seamless integration with YouTube API for real-time data.",
+    thumbnail: previewYoutube,
+    duration: "Live",
     views: "",
-    link: "https://youtu.be/xftcj39h-QY",
+    link: "https://myyoutube-cyan.vercel.app/",
+  },
+  {
+    id: 3,
+    title: "My Webtools Suite",
+    category: "tools",
+    year: "2025",
+    client: "Personal Project",
+    description:
+      "A comprehensive suite of web utilities and tools designed to enhance productivity and streamline digital workflows with modern UI.",
+    thumbnail: previewWebtools,
+    duration: "Interactive",
+    views: "",
+    link: "https://nextuptool2.vercel.app/",
+  },
+  {
+    id: 4,
+    title: "My Tools Site",
+    category: "tools",
+    year: "2024",
+    client: "Personal Project",
+    description:
+      "A collection of useful developer tools and utilities featuring clean design, intuitive interface, and powerful functionality for everyday tasks.",
+    thumbnail: previewTools,
+    duration: "Interactive",
+    views: "",
+    link: "https://nextuptool.vercel.app/",
+  },
+  {
+    id: 5,
+    title: "My OG Website",
+    category: "portfolio",
+    year: "2024",
+    client: "Personal Brand",
+    description:
+      "The original portfolio website showcasing my creative journey, projects, and skills with elegant design and smooth user experience.",
+    thumbnail: previewOG,
+    duration: "Live",
+    views: "",
+    link: "https://shreyagarwal72.github.io/home.html",
   },
 ]
 
@@ -210,17 +190,10 @@ export default function Portfolio() {
                       height="225"
                     />
                     
-                    {/* Duration Badge */}
+                     {/* Duration Badge */}
                     <div className="absolute top-3 right-3 bg-black/80 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full border border-white/20">
                       {project.duration}
                     </div>
-                    
-                    {/* Views Badge */}
-                    {project.views && (
-                      <div className="absolute top-3 left-3 bg-primary/90 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full">
-                        {project.views} views
-                      </div>
-                    )}
                     
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-smooth" aria-hidden="true" />
