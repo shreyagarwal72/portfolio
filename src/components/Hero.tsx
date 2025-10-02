@@ -29,8 +29,8 @@ const Hero = () => {
             {/* Main Title */}
             <header className="space-y-4">
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight">
-                <span className="block">VANSHU</span>
-                <span className="block text-primary glow-effect">AGARWAL</span>
+                <span className="block bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">VANSHU</span>
+                <span className="block text-white">AGARWAL</span>
               </h1>
               <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-light tracking-wide" role="doc-subtitle">
                 Video Editor & Creative Mind
