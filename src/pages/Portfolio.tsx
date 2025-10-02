@@ -183,8 +183,7 @@ export default function Portfolio() {
             {filteredProjects.map((project, index) => (
               <motion.article
                 key={project.id}
-                className="group relative overflow-hidden rounded-2xl animate-slide-up"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="group relative overflow-hidden rounded-2xl"
                 whileHover={{ y: -8, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 variants={{
@@ -217,14 +216,14 @@ export default function Portfolio() {
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-smooth" aria-hidden="true" />
                     
-                    {/* Play Button */}
-                    {project.link && (
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-smooth">
-                        <div className="w-16 h-16 bg-primary/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-2xl" aria-hidden="true">
-                          <ExternalLink size={24} className="text-white ml-1" />
-                        </div>
-                      </div>
-                    )}
+                     {/* Play Button */}
+                     {project.link && (
+                       <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-smooth">
+                         <div className="w-16 h-16 bg-primary/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-2xl" aria-hidden="true">
+                           <ExternalLink size={24} className="text-white" />
+                         </div>
+                       </div>
+                     )}
                   </div>
 
                   {/* Content */}

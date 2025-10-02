@@ -1,6 +1,7 @@
-import { Calendar, Mail, Phone, Github, Instagram, Youtube, Download, Printer } from "lucide-react";
+import { Calendar, Mail, Phone, Github, Instagram, Youtube, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
+import html2pdf from "html2pdf.js";
 
 const CV = () => {
   useEffect(() => {
@@ -33,12 +34,21 @@ const CV = () => {
   }, []);
 
   const handleDownloadCV = () => {
-    window.print();
+    const element = document.getElementById('cv-content');
+    const opt = {
+      margin: 10,
+      filename: 'Vanshu_Agarwal_CV.pdf',
+      image: { type: 'jpeg' as const, quality: 0.98 },
+      html2canvas: { scale: 2, useCORS: true },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const }
+    };
+    
+    html2pdf().set(opt).from(element).save();
   };
 
   return (
     <div className="min-h-screen pt-20 pb-16">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" id="cv-content">
         
         {/* Hero Header */}
         <div className="text-center mb-20">
