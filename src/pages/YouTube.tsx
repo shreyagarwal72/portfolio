@@ -7,6 +7,30 @@ const YouTube = () => {
   const [totalViews, setTotalViews] = useState('Loading...');
 
   useEffect(() => {
+    // Set page title for SEO
+    document.title = 'YouTube Highlights - Vanshu Agarwal | Music Videos & Creative Content';
+    
+    // Add structured data
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "VideoGallery",
+      "name": "Vanshu Agarwal YouTube Highlights",
+      "description": "Featured YouTube videos including original rap songs, creative edits, and gaming content",
+      "creator": {
+        "@type": "Person",
+        "name": "Vanshu Agarwal"
+      }
+    });
+    document.head.appendChild(script);
+    
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
+
+  useEffect(() => {
     // Fetch YouTube Channel Stats
     const fetchChannelStats = async () => {
       try {

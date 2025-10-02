@@ -86,6 +86,25 @@ export default function Portfolio() {
   useEffect(() => {
     // Set page title for SEO
     document.title = 'Creative Portfolio - Vanshu Agarwal | Video Editing & Music Projects';
+    
+    // Add structured data for portfolio
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "Vanshu Agarwal Portfolio",
+      "description": "Collection of creative projects including music production, video editing, and gaming content",
+      "creator": {
+        "@type": "Person",
+        "name": "Vanshu Agarwal"
+      },
+      "about": ["Video Editing", "Music Production", "Gaming Content", "Minecraft Projects"]
+    });
+    document.head.appendChild(script);
+    return () => {
+      document.head.removeChild(script);
+    };
   }, []);
 
   const filteredProjects =

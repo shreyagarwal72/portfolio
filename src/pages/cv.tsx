@@ -1,7 +1,37 @@
 import { Calendar, Mail, Phone, Github, Instagram, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useEffect } from "react";
 
 const CV = () => {
+  useEffect(() => {
+    // Set page title for SEO
+    document.title = 'CV - Vanshu Agarwal | Professional Video Editor & Content Creator Resume';
+    
+    // Add structured data
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Vanshu Agarwal",
+      "jobTitle": "Video Editor, Content Creator, Musician",
+      "description": "Professional resume showcasing experience in video editing, music production, and creative content creation",
+      "email": "sanjayvansu1973@gmail.com",
+      "telephone": "+91-9412104618",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Agra",
+        "addressRegion": "Uttar Pradesh",
+        "addressCountry": "IN"
+      }
+    });
+    document.head.appendChild(script);
+    
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
+
   return (
     <div className="min-h-screen pt-20 pb-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

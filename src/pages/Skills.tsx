@@ -17,8 +17,42 @@ const Skills = () => {
   const [animationStarted, setAnimationStarted] = useState(false);
 
   useEffect(() => {
+    // Set page title for SEO
+    document.title = 'Skills & Expertise - Vanshu Agarwal | Video Editing & Creative Services';
+    
+    // Add structured data
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Vanshu Agarwal Skills",
+      "description": "Technical expertise and creative abilities in video editing and content creation",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Video Editing"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Music Production"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Content Creation"
+        }
+      ]
+    });
+    document.head.appendChild(script);
+    
     const timer = setTimeout(() => setAnimationStarted(true), 500);
-    return () => clearTimeout(timer);
+    return () => {
+      document.head.removeChild(script);
+      clearTimeout(timer);
+    };
   }, []);
 
   const softwareSkills = [

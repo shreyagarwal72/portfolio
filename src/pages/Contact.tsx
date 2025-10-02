@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -17,6 +17,26 @@ const Contact = () => {
   });
 
   const { toast } = useToast();
+
+  useEffect(() => {
+    // Set page title and meta for SEO
+    document.title = 'Contact Vanshu Agarwal - Get in Touch for Video Editing & Creative Projects';
+    
+    // Add structured data
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Contact Vanshu Agarwal",
+      "description": "Get in touch for video editing and creative projects"
+    });
+    document.head.appendChild(script);
+    
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
