@@ -1,4 +1,4 @@
-import { Calendar, Mail, Phone, Github, Instagram, Youtube } from "lucide-react";
+import { Calendar, Mail, Phone, Github, Instagram, Youtube, Download, Printer } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
 
@@ -32,6 +32,10 @@ const CV = () => {
     };
   }, []);
 
+  const handleDownloadCV = () => {
+    window.print();
+  };
+
   return (
     <div className="min-h-screen pt-20 pb-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,6 +50,18 @@ const CV = () => {
           </p>
           <div className="mt-8 animate-fade-in delay-300">
             <div className="h-1 w-32 bg-gradient-to-r from-primary via-primary/50 to-transparent rounded-full mx-auto"></div>
+          </div>
+          
+          {/* Download Button */}
+          <div className="mt-8 animate-fade-in delay-400">
+            <Button 
+              size="lg"
+              onClick={handleDownloadCV}
+              className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg font-medium shadow-glow transition-smooth"
+            >
+              <Download className="mr-2" size={20} />
+              Download CV
+            </Button>
           </div>
         </div>
 
