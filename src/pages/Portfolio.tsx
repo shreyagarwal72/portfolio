@@ -10,6 +10,43 @@ import previewWebtools from "@/assets/preview-webtools.jpg"
 import previewTools from "@/assets/preview-tools.jpg"
 import previewOG from "@/assets/preview-og.jpg"
 
+// SEO Hook
+const useSEO = () => {
+  useEffect(() => {
+    // Set page title for SEO
+    document.title = 'Portfolio - Vanshu Agarwal | Video Editing Projects & Creative Work';
+    
+    // Add meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Explore Vanshu Agarwal\'s creative portfolio featuring web development projects, video editing work, and innovative digital content. View Minecraft sites, YouTube platforms, and custom web tools.');
+    }
+    
+    // Add structured data
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Vanshu Agarwal Portfolio",
+      "description": "Creative portfolio showcasing web development, video editing, and digital content projects",
+      "creator": {
+        "@type": "Person",
+        "name": "Vanshu Agarwal",
+        "jobTitle": "Video Editor, Content Creator, Web Developer"
+      }
+    });
+    document.head.appendChild(script);
+    
+    return () => {
+      const existingScript = document.querySelector('script[type="application/ld+json"]');
+      if (existingScript) {
+        document.head.removeChild(existingScript);
+      }
+    };
+  }, []);
+};
+
 const categories = ["all", "web development", "tools", "portfolio"]
 
 const projects = [
@@ -81,6 +118,7 @@ const projects = [
 ]
 
 export default function Portfolio() {
+  useSEO(); // Add SEO metadata
   const [selectedCategory, setSelectedCategory] = useState("all")
 
   useEffect(() => {

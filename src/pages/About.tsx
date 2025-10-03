@@ -3,8 +3,43 @@ import { useEffect } from 'react';
 
 const About = () => {
   useEffect(() => {
-    // Set page title for SEO
+    // Set page title and meta tags for SEO
     document.title = 'About Vanshu Agarwal - Video Editor, Gamer & Musician | Creative Journey';
+    
+    // Add meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Learn about Vanshu Agarwal, a creative video editor, passionate gamer, and musician. Discover the journey of a Class 11 student balancing academics with creative content creation.');
+    }
+    
+    // Add structured data
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "name": "About Vanshu Agarwal",
+      "description": "Learn about Vanshu Agarwal's creative journey as a video editor, gamer, and musician",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Vanshu Agarwal",
+        "jobTitle": "Video Editor, Content Creator, Musician",
+        "description": "Creative video editor specializing in gaming content and music production",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Agra",
+          "addressRegion": "Uttar Pradesh",
+          "addressCountry": "IN"
+        },
+        "email": "sanjayvansu1973@gmail.com",
+        "telephone": "+91-9412104618"
+      }
+    });
+    document.head.appendChild(script);
+    
+    return () => {
+      document.head.removeChild(script);
+    };
   }, []);
 
   return (

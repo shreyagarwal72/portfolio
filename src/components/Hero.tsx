@@ -6,8 +6,44 @@ import { useEffect } from 'react';
 
 const Hero = () => {
   useEffect(() => {
-    // Set page title for SEO
+    // Set page title and meta tags for SEO
     document.title = 'Vanshu Agarwal - Video Editor, Gamer & Musician | Creative Portfolio';
+    
+    // Add meta description for homepage
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Professional video editor and creative content creator specializing in gaming content, music production, and digital storytelling. View portfolio of original tracks, Minecraft projects, and creative videos.');
+    }
+    
+    // Add structured data for homepage
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "name": "Vanshu Agarwal - Creative Portfolio",
+      "description": "Professional video editor, content creator, musician, and gamer",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Vanshu Agarwal",
+        "jobTitle": "Video Editor, Content Creator, Musician",
+        "url": "https://vanshubhai.vercel.app",
+        "sameAs": [
+          "https://github.com/shreyagarwal72",
+          "https://instagram.com/vanshu_ag_72",
+          "https://youtube.com/@nextupstudioyt"
+        ],
+        "knowsAbout": ["Video Editing", "Content Creation", "Music Production", "Gaming", "Web Development"]
+      }
+    });
+    document.head.appendChild(script);
+    
+    return () => {
+      const existingScript = document.querySelector('script[type="application/ld+json"]');
+      if (existingScript) {
+        document.head.removeChild(existingScript);
+      }
+    };
   }, []);
 
   return (

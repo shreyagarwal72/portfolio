@@ -5,7 +5,17 @@ const NotFound = () => {
   const location = useLocation();
 
   useEffect(() => {
+    // Set page title for SEO
+    document.title = '404 - Page Not Found | Vanshu Agarwal';
+    
+    // Log error for debugging
     console.error("404 Error: User attempted to access non-existent route:", location.pathname);
+    
+    // Add meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Page not found. Return to Vanshu Agarwal\'s portfolio homepage to explore video editing projects, creative content, and more.');
+    }
   }, [location.pathname]);
 
   return (
