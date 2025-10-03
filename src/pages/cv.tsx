@@ -1,7 +1,6 @@
 import { Calendar, Mail, Phone, Github, Instagram, Youtube, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
-import html2pdf from "html2pdf.js";
 
 const CV = () => {
   useEffect(() => {
@@ -34,122 +33,17 @@ const CV = () => {
   }, []);
 
   const handleDownloadCV = () => {
-    const element = document.getElementById('cv-print-content');
-    const opt = {
-      margin: 15,
-      filename: 'Vanshu_Agarwal_CV.pdf',
-      image: { type: 'jpeg' as const, quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const }
-    };
-    
-    html2pdf().set(opt).from(element).save();
+    const link = document.createElement('a');
+    link.href = 'https://kklz19o6an7qwti4.public.blob.vercel-storage.com/Vanshu_Agarwal.pdf';
+    link.download = 'Vanshu_Agarwal_CV.pdf';
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
-    <>
-      {/* Hidden clean CV for PDF download */}
-      <div id="cv-print-content" className="fixed -left-[9999px] top-0 w-[210mm] bg-white p-8 text-black">
-        <div className="space-y-6">
-          {/* Header */}
-          <div className="text-center border-b-2 border-black pb-4">
-            <h1 className="text-4xl font-bold mb-2">VANSHU AGARWAL</h1>
-            <p className="text-lg mb-3">Creative Content Creator • Video Editor • Music Artist • Gamer</p>
-            <div className="flex justify-center gap-6 text-sm">
-              <span>📧 sanjayvansu1973@gmail.com</span>
-              <span>📱 +91-9412104618</span>
-              <span>🎓 Class 11 • Science (PCM)</span>
-            </div>
-          </div>
-
-          {/* Objective */}
-          <div>
-            <h2 className="text-2xl font-bold mb-3 border-b border-gray-300 pb-1">OBJECTIVE</h2>
-            <p className="text-sm leading-relaxed">
-              Creative and passionate content creator building unique projects in music, gaming, and video editing. 
-              Dedicated to blending storytelling with visuals and sounds to engage audiences online and create 
-              meaningful connections through digital media.
-            </p>
-          </div>
-
-          {/* Skills */}
-          <div>
-            <h2 className="text-2xl font-bold mb-3 border-b border-gray-300 pb-1">SKILLS & EXPERTISE</h2>
-            <div className="grid grid-cols-2 gap-4 text-sm">
-              <div>
-                <h3 className="font-bold mb-1">🎬 Video Editing</h3>
-                <p className="text-gray-700">Shorts, Music Videos, Gaming Highlights</p>
-              </div>
-              <div>
-                <h3 className="font-bold mb-1">🌐 Languages</h3>
-                <p className="text-gray-700">English, Hindi (Fluent)</p>
-              </div>
-              <div>
-                <h3 className="font-bold mb-1">🎵 Music Production</h3>
-                <p className="text-gray-700">Rap Writing & Audio Production</p>
-              </div>
-              <div>
-                <h3 className="font-bold mb-1">🛠️ Tools & Software</h3>
-                <p className="text-gray-700">CapCut, Premiere Pro, Canva</p>
-              </div>
-              <div>
-                <h3 className="font-bold mb-1">🎭 Creative Direction</h3>
-                <p className="text-gray-700">Storytelling & Content Strategy</p>
-              </div>
-              <div>
-                <h3 className="font-bold mb-1">🎮 Gaming</h3>
-                <p className="text-gray-700">Content Creation & Streaming</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Projects */}
-          <div>
-            <h2 className="text-2xl font-bold mb-3 border-b border-gray-300 pb-1">FEATURED PROJECTS</h2>
-            <div className="space-y-3 text-sm">
-              <div>
-                <h3 className="font-bold text-base">Raat Ka Banda (2025)</h3>
-                <p className="text-gray-700 italic">Original Song • Nextup Studio</p>
-                <p className="text-gray-700">A soulful original composition capturing late-night vibes with contemporary beats and meaningful lyrics.</p>
-              </div>
-              <div>
-                <h3 className="font-bold text-base">Minecraft All-in-One Shorts</h3>
-                <p className="text-gray-700 italic">Gaming Content • YouTube</p>
-                <p className="text-gray-700">Engaging gaming content featuring creative builds, tutorials, and entertainment for the gaming community.</p>
-              </div>
-              <div>
-                <h3 className="font-bold text-base">Squid Game Inspired Videos</h3>
-                <p className="text-gray-700 italic">Creative Content • Social Media</p>
-                <p className="text-gray-700">Creative adaptations and parodies inspired by popular culture, showcasing storytelling skills.</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Education */}
-          <div>
-            <h2 className="text-2xl font-bold mb-3 border-b border-gray-300 pb-1">EDUCATION</h2>
-            <div className="text-sm">
-              <h3 className="font-bold text-base mb-1">Higher Secondary Education (Current)</h3>
-              <p className="text-gray-700"><span className="font-semibold">Class:</span> 11th Grade (2025)</p>
-              <p className="text-gray-700"><span className="font-semibold">Stream:</span> Science - Physics, Chemistry, Mathematics (PCM)</p>
-              <p className="text-gray-700"><span className="font-semibold">Focus:</span> Balancing academics with creative pursuits in content creation</p>
-            </div>
-          </div>
-
-          {/* Social Links */}
-          <div>
-            <h2 className="text-2xl font-bold mb-3 border-b border-gray-300 pb-1">CONNECT WITH ME</h2>
-            <div className="text-sm space-y-1">
-              <p><span className="font-semibold">GitHub:</span> github.com/shreyagarwal72</p>
-              <p><span className="font-semibold">Instagram:</span> instagram.com/vanshu_ag_72</p>
-              <p><span className="font-semibold">YouTube:</span> youtube.com/@nextupstudioyt</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Main visible CV page */}
-      <div className="min-h-screen pt-20 pb-16">
+    <div className="min-h-screen pt-20 pb-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Hero Header */}
@@ -456,7 +350,6 @@ const CV = () => {
 
         </div>
       </div>
-    </>
   );
 };
 
