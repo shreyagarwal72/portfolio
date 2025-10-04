@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Bot, Send, Loader2 } from 'lucide-react';
+import { Bot, Send, Loader2, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -15,7 +15,7 @@ const VanshuBot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content: 'Hi! I\'m Vanshu Bot. How can I help you today?',
+      content: 'Hi! I\'m Vanshu Bot, your AI assistant. I can help you learn about Vanshu Aggarwal\'s work, skills, and projects. What would you like to know?',
     },
   ]);
   const [input, setInput] = useState('');
@@ -24,8 +24,54 @@ const VanshuBot = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Set page title and meta tags for SEO
+    document.title = 'Vanshu Bot - AI Assistant | Ask About Vanshu Aggarwal';
+    
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Chat with Vanshu Bot, an AI assistant with complete knowledge about Vanshu Aggarwal\'s video editing services, portfolio projects, skills, and experience. Get instant answers to your questions.');
+    }
+    
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Vanshu Bot",
+      "description": "AI chatbot assistant with comprehensive knowledge about Vanshu Aggarwal's work",
+      "applicationCategory": "ChatApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "creator": {
+        "@type": "Person",
+        "name": "Vanshu Aggarwal"
+      }
+    });
+    document.head.appendChild(script);
+    
+    return () => {
+      const existingScript = document.querySelector('script[type="application/ld+json"]');
+      if (existingScript) {
+        document.head.removeChild(existingScript);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
+
+  const suggestedQuestions = [
+    "What services does Vanshu offer?",
+    "Tell me about Vanshu's portfolio projects",
+    "What are Vanshu's video editing skills?",
+    "How can I contact Vanshu?",
+    "What software does Vanshu use?",
+    "Tell me about Vanshu's experience"
+  ];
 
   const streamChat = async (userMessage: Message) => {
     const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat`;
@@ -68,7 +114,6 @@ const VanshuBot = () => {
       let streamDone = false;
       let assistantContent = '';
 
-      // Add empty assistant message that we'll update
       setMessages(prev => [...prev, { role: 'assistant', content: '' }]);
 
       while (!streamDone) {
@@ -113,7 +158,6 @@ const VanshuBot = () => {
         }
       }
 
-      // Final flush
       if (textBuffer.trim()) {
         for (let raw of textBuffer.split('\n')) {
           if (!raw || raw.startsWith(':') || raw.trim() === '') continue;
@@ -144,7 +188,6 @@ const VanshuBot = () => {
         description: 'Failed to get response. Please try again.',
         variant: 'destructive',
       });
-      // Remove the empty assistant message
       setMessages(prev => prev.slice(0, -1));
     }
   };
@@ -162,26 +205,50 @@ const VanshuBot = () => {
     setIsLoading(false);
   };
 
+  const handleSuggestionClick = (question: string) => {
+    setInput(question);
+  };
+
   return (
-    <div className="min-h-screen pt-16 bg-background">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen pt-16 bg-background pb-32">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4 animate-pulse">
             <Bot className="w-8 h-8 text-primary" />
           </div>
           <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-primary via-primary-glow to-primary bg-clip-text text-transparent">
             Vanshu Bot
           </h1>
           <p className="text-muted-foreground">
-            Your AI assistant powered by advanced language models
+            Your AI assistant with complete knowledge about Vanshu Aggarwal's work
           </p>
         </div>
 
-        {/* Chat Container */}
-        <div className="card-gradient rounded-xl border border-border overflow-hidden">
-          {/* Messages */}
-          <ScrollArea className="h-[500px] p-6" ref={scrollRef}>
+        {/* Suggested Questions */}
+        {messages.length === 1 && (
+          <div className="mb-6 animate-fade-in">
+            <div className="flex items-center gap-2 mb-3">
+              <Sparkles className="w-4 h-4 text-primary" />
+              <h2 className="text-sm font-medium text-muted-foreground">Suggested Questions</h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {suggestedQuestions.map((question, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleSuggestionClick(question)}
+                  className="text-left p-3 rounded-lg bg-card border border-border hover:border-primary/50 hover:bg-card-hover transition-smooth text-sm text-muted-foreground hover:text-foreground"
+                >
+                  {question}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Chat Messages */}
+        <div className="card-gradient rounded-xl border border-border overflow-hidden mb-4">
+          <ScrollArea className="h-[calc(100vh-400px)] min-h-[400px] p-6" ref={scrollRef}>
             <div className="space-y-4">
               {messages.map((message, index) => (
                 <div
@@ -191,7 +258,7 @@ const VanshuBot = () => {
                   }`}
                 >
                   <div
-                    className={`max-w-[80%] rounded-2xl px-4 py-3 ${
+                    className={`max-w-[85%] rounded-2xl px-4 py-3 ${
                       message.role === 'user'
                         ? 'bg-primary text-primary-foreground'
                         : 'bg-muted text-foreground'
@@ -206,38 +273,38 @@ const VanshuBot = () => {
               <div ref={messagesEndRef} />
             </div>
           </ScrollArea>
-
-          {/* Input */}
-          <div className="border-t border-border p-4">
-            <form onSubmit={handleSubmit} className="flex gap-2">
-              <Input
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder="Type your message..."
-                disabled={isLoading}
-                className="flex-1 bg-background"
-              />
-              <Button 
-                type="submit" 
-                disabled={isLoading || !input.trim()}
-                size="icon"
-                className="shrink-0"
-              >
-                {isLoading ? (
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                ) : (
-                  <Send className="w-4 h-4" />
-                )}
-              </Button>
-            </form>
-          </div>
         </div>
 
         {/* Info */}
-        <div className="mt-4 text-center text-sm text-muted-foreground">
-          <p>
-            Powered by Lovable AI • Free Gemini models during Beta
-          </p>
+        <div className="text-center text-xs text-muted-foreground mb-2">
+          <p>Powered by Lovable AI • Free Gemini models</p>
+        </div>
+      </div>
+
+      {/* Fixed Chat Input Bar */}
+      <div className="fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur-md border-t border-border z-50">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <form onSubmit={handleSubmit} className="flex gap-2">
+            <Input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Ask me anything about Vanshu's work..."
+              disabled={isLoading}
+              className="flex-1 bg-background"
+            />
+            <Button 
+              type="submit" 
+              disabled={isLoading || !input.trim()}
+              size="icon"
+              className="shrink-0"
+            >
+              {isLoading ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <Send className="w-4 h-4" />
+              )}
+            </Button>
+          </form>
         </div>
       </div>
     </div>

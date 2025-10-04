@@ -1,6 +1,6 @@
 # Vanshu Agarwal - Creative Portfolio
 
-A modern, responsive portfolio website showcasing the creative work of Vanshu Agarwal - Video Editor, Gamer & Musician.
+A modern, responsive portfolio website showcasing the creative work of Vanshu Aggarwal - Video Editor, Gamer & Musician.
 
 ## 🌟 Live Website
 🔗 **[vanshubhai.vercel.app](https://vanshubhai.vercel.app)**
@@ -15,6 +15,14 @@ Vanshu Agarwal is a passionate creative professional specializing in:
 - **Digital Storytelling** - Combining visual and audio elements for engaging narratives
 
 Currently a Class 11 PCM Science student balancing academics with creative pursuits.
+
+## 🤖 Vanshu Bot - AI Assistant
+**NEW!** Interactive AI chatbot powered by Lovable AI with comprehensive knowledge about:
+- Vanshu's portfolio, skills, and experience
+- Services offered and project details
+- Contact information and availability
+- FAQs and quick answers
+- Real-time streaming responses using Gemini models
 
 ## 🎯 Featured Work
 - **Fire Within** - Original rap track with powerful visuals
@@ -31,6 +39,8 @@ Currently a Class 11 PCM Science student balancing academics with creative pursu
 - **Forms**: EmailJS integration
 - **Routing**: React Router DOM
 - **State Management**: TanStack Query
+- **Backend**: Lovable Cloud (Supabase)
+- **AI Integration**: Lovable AI Gateway (Gemini 2.5 Flash)
 
 ## 🎨 Design Features
 - **Dark-first Design** - Professional video editor aesthetic
@@ -38,13 +48,15 @@ Currently a Class 11 PCM Science student balancing academics with creative pursu
 - **Smooth Animations** - Framer Motion powered transitions
 - **Custom Design System** - HSL-based color tokens
 - **Accessibility** - WCAG compliant components
+- **TV Browser Compatible** - ES2015 build target for maximum compatibility
 
 ## 📱 Pages & Features
 - **Homepage** - Clean introduction with call-to-actions
 - **About** - Personal journey and background
-- **Portfolio** - Categorized project showcase
-- **Skills** - Technical and creative abilities
+- **Portfolio** - Categorized project showcase (Web Dev, Tools, Portfolio)
+- **Skills** - Technical and creative abilities with progress bars
 - **YouTube Videos** - Latest content highlights
+- **Vanshu Bot** - AI chatbot with website knowledge
 - **Contact** - Direct messaging via EmailJS
 - **CV/Resume** - Professional experience
 
@@ -73,11 +85,13 @@ npm run build
 - **Structured Data** - JSON-LD for better search visibility
 - **Image Optimization** - Lazy loading and proper alt attributes
 - **Performance** - Optimized bundle size and loading times
+- **Sitemap** - Complete XML sitemap for search engines
+- **Robots.txt** - Proper crawling instructions
 
 ## 📧 Contact
 - **Email**: sanjayvansu1973@gmail.com
 - **Phone**: +91 9412104618
-- **Location**: Agra, Uttar Pradesh, India
+- **Location**: 106/1 Balkeshwar Road, Agra, UP, India
 - **YouTube**: [@nextupstudioyt](https://www.youtube.com/@nextupstudioyt)
 
 ## 🏗️ Project Structure
@@ -88,10 +102,21 @@ src/
 │   ├── Hero.tsx        # Homepage hero section
 │   └── Navigation.tsx  # Site navigation
 ├── pages/              # Route components
+│   ├── Index.tsx       # Homepage
+│   ├── About.tsx       # About page
+│   ├── Portfolio.tsx   # Portfolio gallery
+│   ├── Skills.tsx      # Skills showcase
+│   ├── VanshuBot.tsx   # AI chatbot page
+│   ├── YouTube.tsx     # YouTube videos
+│   ├── Contact.tsx     # Contact form
+│   └── cv.tsx          # Resume/CV
 ├── assets/             # Images and static files
 ├── hooks/              # Custom React hooks
 ├── lib/                # Utility functions
 └── index.css           # Global styles & design system
+supabase/
+└── functions/
+    └── chat/           # AI chatbot edge function
 ```
 
 ## 🔧 Customization
@@ -100,9 +125,17 @@ The design system is built with CSS custom properties in `src/index.css`:
 - All components use semantic tokens
 - Easy theme customization via CSS variables
 
+## 🤝 Backend Features (Lovable Cloud)
+- **Database**: PostgreSQL for data persistence
+- **Authentication**: User management system
+- **Storage**: File uploads and management
+- **Edge Functions**: Serverless backend logic
+- **AI Gateway**: Integrated Lovable AI for chatbot
+
 ## 📄 License
 This project is personal portfolio of Vanshu Agarwal. All creative content and designs are proprietary.
 
 ---
 
-**Built with ❤️ by Vanshu Agarwal**
+**Built with ❤️ by Vanshu Agarwal**  
+**Powered by Lovable AI**
