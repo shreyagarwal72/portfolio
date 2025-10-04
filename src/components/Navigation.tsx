@@ -14,6 +14,7 @@ const Navigation = () => {
     { label: 'Portfolio', path: '/portfolio' },
     { label: 'Skills', path: '/skills' },
     { label: 'My YouTube Videos', path: '/youtube' },
+    { label: 'Vanshu Bot', path: '/vanshu-bot' },
     { label: 'Contact', path: '/contact' },
   ];
 
