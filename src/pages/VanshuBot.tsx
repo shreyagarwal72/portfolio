@@ -23,6 +23,36 @@ const VanshuBot = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  const renderMessageContent = (content: string) => {
+    const parts: (string | JSX.Element)[] = [];
+    let lastIndex = 0;
+    
+    // Match **text** or *text* patterns
+    const boldPattern = /(\*\*([^*]+)\*\*|\*([^*]+)\*)/g;
+    let match;
+    let key = 0;
+    
+    while ((match = boldPattern.exec(content)) !== null) {
+      // Add text before the match
+      if (match.index > lastIndex) {
+        parts.push(content.slice(lastIndex, match.index));
+      }
+      
+      // Add bold text
+      const boldText = match[2] || match[3]; // match[2] for **, match[3] for *
+      parts.push(<strong key={key++}>{boldText}</strong>);
+      
+      lastIndex = match.index + match[0].length;
+    }
+    
+    // Add remaining text
+    if (lastIndex < content.length) {
+      parts.push(content.slice(lastIndex));
+    }
+    
+    return parts.length > 0 ? parts : content;
+  };
+
   useEffect(() => {
     // Set page title and meta tags for SEO
     document.title = 'Vanshu Bot - AI Assistant | Ask About Vanshu Aggarwal';
@@ -265,7 +295,7 @@ const VanshuBot = () => {
                     }`}
                   >
                     <p className="text-sm leading-relaxed whitespace-pre-wrap">
-                      {message.content}
+                      {renderMessageContent(message.content)}
                     </p>
                   </div>
                 </div>
