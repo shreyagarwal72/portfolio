@@ -9,6 +9,9 @@ import previewYoutube from "@/assets/preview-youtube.jpg"
 import previewWebtools from "@/assets/preview-webtools.jpg"
 import previewTools from "@/assets/preview-tools.jpg"
 import previewOG from "@/assets/preview-og.jpg"
+import certificateGreenhat from "@/assets/certificate-greenhat.jpg"
+import certificateAmarujala from "@/assets/certificate-amarujala.jpg"
+import { Card, CardContent } from "@/components/ui/card"
 
 // SEO Hook
 const useSEO = () => {
@@ -174,6 +177,79 @@ export default function Portfolio() {
             Each project represents passion, creativity, and dedication to storytelling.
           </motion.p>
         </header>
+
+        {/* Achievements Section */}
+        <section aria-label="Achievements and Certificates" className="mb-20">
+          <motion.h2
+            className="text-4xl font-bold text-white mb-10 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">
+              Achievements
+            </span>
+          </motion.h2>
+          
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            {/* Green Hat Hacker Certificate */}
+            <motion.div
+              whileHover={{ y: -8, scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            >
+              <Card className="overflow-hidden border-primary/30 bg-card/50 backdrop-blur-sm hover:shadow-glow transition-smooth">
+                <CardContent className="p-0">
+                  <div className="relative aspect-[4/3]">
+                    <img
+                      src={certificateGreenhat}
+                      alt="Green Hat Hacker Certificate - Vanshu Agarwal achieved certification demonstrating creative problem-solving and ethical security practices"
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-white mb-2">Green Hat Hacker Certification</h3>
+                    <p className="text-muted-foreground text-sm">
+                      Successfully achieved Green Hat Hacker certification, demonstrating creative problem-solving and ethical security practices.
+                    </p>
+                    <time className="text-xs text-primary mt-2 block">August 2025</time>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Amar Ujala Certificate */}
+            <motion.div
+              whileHover={{ y: -8, scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            >
+              <Card className="overflow-hidden border-primary/30 bg-card/50 backdrop-blur-sm hover:shadow-glow transition-smooth">
+                <CardContent className="p-0">
+                  <div className="relative aspect-[4/3]">
+                    <img
+                      src={certificateAmarujala}
+                      alt="Amar Ujala Certificate - Recognition for outstanding academic performance in Class 10th"
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-white mb-2">Academic Excellence Award</h3>
+                    <p className="text-muted-foreground text-sm">
+                      Honored by Amar Ujala for exceptional academic performance and outstanding marks in Class 10th examinations.
+                    </p>
+                    <time className="text-xs text-primary mt-2 block">May 2025</time>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </motion.div>
+        </section>
 
         {/* Categories */}
         <nav aria-label="Portfolio category filter">
