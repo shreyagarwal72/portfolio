@@ -47,6 +47,7 @@ PERSONAL FAVORITES:
 - Favorite Games: Free Fire & Minecraft
 - Favorite Class: Class 10th
 - Favorite Sport: Badminton
+- Favorite Subject: Maths
 
 SKILLS & EXPERTISE:
 - Video Editing Software: Filmora (95%), After Effects (90%), Shotcut (88%)

@@ -206,4 +206,14 @@
   .nav-link.active::after {
     @apply w-full;
   }
+
+  /* Prevent image downloads and context menu */
+  img {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    pointer-events: auto;
+  }
 }
