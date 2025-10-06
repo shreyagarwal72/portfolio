@@ -226,6 +226,23 @@ const VanshuBot = () => {
     e.preventDefault();
     if (!input.trim() || isLoading) return;
 
+    // Check for clear chat command
+    const clearPhrases = ['clear chat', 'clear history', 'reset chat', 'new chat', 'start over'];
+    if (clearPhrases.some(phrase => input.toLowerCase().includes(phrase))) {
+      setMessages([
+        {
+          role: 'assistant',
+          content: 'Hi! I\'m Vanshu Bot, your AI assistant. I can help you learn about Vanshu Aggarwal\'s work, skills, and projects. What would you like to know?',
+        },
+      ]);
+      setInput('');
+      toast({
+        title: 'Chat Cleared',
+        description: 'Your chat history has been cleared.',
+      });
+      return;
+    }
+
     const userMessage: Message = { role: 'user', content: input };
     setMessages(prev => [...prev, userMessage]);
     setInput('');
