@@ -41,6 +41,13 @@ ABOUT VANSHU AGGARWAL:
 - Phone: 9412104618
 - Location: 106/1 Balkeshwar Road, Agra, UP
 
+PERSONAL FAVORITES:
+- Favorite Color: Blue
+- Favorite Dish: S.P
+- Favorite Games: Free Fire & Minecraft
+- Favorite Class: Class 10th
+- Favorite Sport: Badminton
+
 SKILLS & EXPERTISE:
 - Video Editing Software: Filmora (95%), After Effects (90%), Shotcut (88%)
 - AI Tools: AI Image Generation (85%), ChatGPT (70%)
