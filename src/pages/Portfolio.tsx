@@ -64,7 +64,7 @@ const projects = [
     thumbnail: previewMinecraft,
     duration: "Interactive",
     views: "",
-    link: "https://shreyagarwal72.github.io/Nextup-Studio/",
+    link: "https://nextup-hub-mc.vercel.app/",
   },
   {
     id: 2,
