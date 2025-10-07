@@ -118,6 +118,11 @@
 
   body {
     @apply bg-background text-foreground font-sans;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
   }
 
   /* Fallback for backdrop-filter support */
