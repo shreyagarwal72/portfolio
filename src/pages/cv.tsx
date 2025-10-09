@@ -43,11 +43,11 @@ const CV = () => {
   };
 
   return (
-    <div className="min-h-screen pt-20 pb-16">
+    <main className="min-h-screen pt-20 pb-16" role="main">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Hero Header */}
-        <div className="text-center mb-20">
+        <header className="text-center mb-20">
           <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6 animate-fade-in">
             CURRICULUM <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">VITAE</span>
           </h1>
@@ -69,17 +69,17 @@ const CV = () => {
               Download CV
             </Button>
           </div>
-        </div>
+        </header>
 
         {/* Personal Info Card */}
-        <div className="relative mb-16 animate-slide-up">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl blur-xl scale-105"></div>
+        <section className="relative mb-16 animate-slide-up" aria-labelledby="personal-info">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl blur-xl scale-105" aria-hidden="true"></div>
           <div className="relative card-gradient rounded-2xl p-8 border border-border/50 backdrop-blur-sm hover:border-primary/30 transition-smooth">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center border border-primary/30">
-                <Mail size={20} className="text-primary" />
+              <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center border border-primary/30" aria-hidden="true">
+                <Mail size={20} className="text-primary" aria-label="Email Icon" />
               </div>
-              <h2 className="text-3xl font-bold text-white">Personal Information</h2>
+              <h2 id="personal-info" className="text-3xl font-bold text-white">Personal Information</h2>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="space-y-2">
@@ -111,17 +111,17 @@ const CV = () => {
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
         {/* Objective */}
-        <div className="relative mb-16 animate-slide-up delay-200">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl blur-xl scale-105"></div>
+        <section className="relative mb-16 animate-slide-up delay-200" aria-labelledby="objective">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl blur-xl scale-105" aria-hidden="true"></div>
           <div className="relative card-gradient rounded-2xl p-8 border border-border/50 backdrop-blur-sm hover:border-primary/30 transition-smooth hover:scale-[1.02]">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center shadow-glow">
-                <span className="text-white font-bold text-lg">🎯</span>
+              <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center shadow-glow" aria-hidden="true">
+                <span className="text-white font-bold text-lg" role="img" aria-label="Target">🎯</span>
               </div>
-              <h2 className="text-3xl font-bold text-white">Objective</h2>
+              <h2 id="objective" className="text-3xl font-bold text-white">Objective</h2>
             </div>
             <div className="pl-15">
               <p className="text-lg text-muted-foreground leading-relaxed">
@@ -132,17 +132,17 @@ const CV = () => {
               </p>
             </div>
           </div>
-        </div>
+        </section>
 
         {/* Skills */}
-        <div className="relative mb-16 animate-slide-up delay-300">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl blur-xl scale-105"></div>
+        <section className="relative mb-16 animate-slide-up delay-300" aria-labelledby="skills">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl blur-xl scale-105" aria-hidden="true"></div>
           <div className="relative card-gradient rounded-2xl p-8 border border-border/50 backdrop-blur-sm hover:border-primary/30 transition-smooth">
             <div className="flex items-center gap-3 mb-8">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center shadow-glow">
-                <span className="text-white font-bold text-lg">⚡</span>
+              <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center shadow-glow" aria-hidden="true">
+                <span className="text-white font-bold text-lg" role="img" aria-label="Lightning">⚡</span>
               </div>
-              <h2 className="text-3xl font-bold text-white">Skills & Expertise</h2>
+              <h2 id="skills" className="text-3xl font-bold text-white">Skills & Expertise</h2>
             </div>
             <div className="grid sm:grid-cols-2 gap-6">
               <div className="space-y-4">
@@ -193,17 +193,17 @@ const CV = () => {
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
         {/* Projects */}
-        <div className="relative mb-16 animate-slide-up delay-400">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl blur-xl scale-105"></div>
+        <section className="relative mb-16 animate-slide-up delay-400" aria-labelledby="projects">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl blur-xl scale-105" aria-hidden="true"></div>
           <div className="relative card-gradient rounded-2xl p-8 border border-border/50 backdrop-blur-sm hover:border-primary/30 transition-smooth">
             <div className="flex items-center gap-3 mb-8">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center shadow-glow">
-                <span className="text-white font-bold text-lg">🚀</span>
+              <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center shadow-glow" aria-hidden="true">
+                <span className="text-white font-bold text-lg" role="img" aria-label="Rocket">🚀</span>
               </div>
-              <h2 className="text-3xl font-bold text-white">Featured Projects</h2>
+              <h2 id="projects" className="text-3xl font-bold text-white">Featured Projects</h2>
             </div>
             <div className="grid gap-6">
               <div className="p-6 bg-card/20 rounded-xl border border-border/30 backdrop-blur-sm hover:bg-card/40 transition-smooth group">
@@ -267,17 +267,17 @@ const CV = () => {
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
         {/* Education */}
-        <div className="relative mb-16 animate-slide-up delay-500">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl blur-xl scale-105"></div>
+        <section className="relative mb-16 animate-slide-up delay-500" aria-labelledby="education">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl blur-xl scale-105" aria-hidden="true"></div>
           <div className="relative card-gradient rounded-2xl p-8 border border-border/50 backdrop-blur-sm hover:border-primary/30 transition-smooth hover:scale-[1.02]">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center shadow-glow">
-                <span className="text-white font-bold text-lg">🎓</span>
+              <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center shadow-glow" aria-hidden="true">
+                <span className="text-white font-bold text-lg" role="img" aria-label="Graduation Cap">🎓</span>
               </div>
-              <h2 className="text-3xl font-bold text-white">Education</h2>
+              <h2 id="education" className="text-3xl font-bold text-white">Education</h2>
             </div>
             <div className="p-6 bg-card/20 rounded-xl border border-border/30 backdrop-blur-sm">
               <div className="flex items-center justify-between mb-4">
@@ -299,17 +299,17 @@ const CV = () => {
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
         {/* Social Links */}
-        <div className="relative text-center animate-slide-up delay-600">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl blur-xl scale-105"></div>
+        <section className="relative text-center animate-slide-up delay-600" aria-labelledby="social">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl blur-xl scale-105" aria-hidden="true"></div>
           <div className="relative card-gradient rounded-2xl p-8 border border-border/50 backdrop-blur-sm hover:border-primary/30 transition-smooth">
             <div className="flex items-center justify-center gap-3 mb-8">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center shadow-glow">
-                <span className="text-white font-bold text-lg">🌐</span>
+              <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center shadow-glow" aria-hidden="true">
+                <span className="text-white font-bold text-lg" role="img" aria-label="Globe">🌐</span>
               </div>
-              <h2 className="text-3xl font-bold text-white">Connect With Me</h2>
+              <h2 id="social" className="text-3xl font-bold text-white">Connect With Me</h2>
             </div>
             <p className="text-muted-foreground mb-8 text-lg">
               Follow my creative journey and stay updated with my latest projects
@@ -346,10 +346,10 @@ const CV = () => {
               </a>
             </div>
           </div>
-        </div>
+        </section>
 
         </div>
-      </div>
+      </main>
   );
 };
 

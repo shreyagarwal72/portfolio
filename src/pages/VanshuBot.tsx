@@ -257,12 +257,12 @@ const VanshuBot = () => {
   };
 
   return (
-    <div className="min-h-screen pt-16 bg-background pb-32">
+    <main className="min-h-screen pt-16 bg-background pb-32" role="main">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4 animate-pulse">
-            <Bot className="w-8 h-8 text-primary" />
+        <header className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4 animate-pulse" aria-hidden="true">
+            <Bot className="w-8 h-8 text-primary" aria-label="AI Bot Icon" />
           </div>
           <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-primary via-primary-glow to-primary bg-clip-text text-transparent">
             Vanshu Bot
@@ -270,13 +270,13 @@ const VanshuBot = () => {
           <p className="text-muted-foreground">
             Your AI assistant with complete knowledge about Vanshu Aggarwal's work
           </p>
-        </div>
+        </header>
 
         {/* Suggested Questions */}
         {messages.length === 1 && (
-          <div className="mb-6 animate-fade-in">
+          <section className="mb-6 animate-fade-in" aria-label="Suggested questions">
             <div className="flex items-center gap-2 mb-3">
-              <Sparkles className="w-4 h-4 text-primary" />
+              <Sparkles className="w-4 h-4 text-primary" aria-hidden="true" />
               <h2 className="text-sm font-medium text-muted-foreground">Suggested Questions</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -290,13 +290,13 @@ const VanshuBot = () => {
                 </button>
               ))}
             </div>
-          </div>
+          </section>
         )}
 
         {/* Chat Messages */}
-        <div className="card-gradient rounded-xl border border-border overflow-hidden mb-4">
+        <section className="card-gradient rounded-xl border border-border overflow-hidden mb-4" aria-label="Chat conversation">
           <ScrollArea className="h-[calc(100vh-400px)] min-h-[400px] p-6" ref={scrollRef}>
-            <div className="space-y-4">
+            <div className="space-y-4" role="log" aria-live="polite" aria-atomic="false">
               {messages.map((message, index) => (
                 <div
                   key={index}
@@ -320,7 +320,7 @@ const VanshuBot = () => {
               <div ref={messagesEndRef} />
             </div>
           </ScrollArea>
-        </div>
+        </section>
 
         {/* Info */}
         <div className="text-center text-xs text-muted-foreground mb-2">
@@ -354,7 +354,7 @@ const VanshuBot = () => {
           </form>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 
