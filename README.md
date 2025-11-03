@@ -8,7 +8,7 @@
 
 <!-- 🧩 GitHub Repository Badges -->
 [![Stars](https://img.shields.io/github/stars/your-username/repo-name?style=social)](https://github.com/shreyagarwal72/portfolio/stargazers)
-[![Forks](https://github.com/shreyagarwal72/portfolio/github/forks/your-username/repo-name?style=social)](https://github.com/your-username/repo-name/network/members)
+[![Forks](https://github.com/shreyagarwal72/portfolio/github/forks/shreyagarwal72/portfolio?style=social)](https://github.com/shreyagarwal72/portfolio/network/members)
 [![Issues](https://img.shields.io/github/issues/your-username/repo-name?color=yellow)](https://github.com/your-username/repo-name/issues)
 [![Last Commit](https://img.shields.io/github/last-commit/shreyagarwal72/portfolio?color=brightgreen)](https://github.com/shreyagarwal72/portfolio/commits/main)
 
