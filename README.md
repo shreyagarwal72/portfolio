@@ -2,10 +2,10 @@
 
 A modern, responsive portfolio website showcasing the creative work of Vanshu Aggarwal - Video Editor, Gamer & Musician.
 
-## 🌟 Live Website
-🔗 **[vanshubhai.vercel.app](https://vanshubhai.vercel.app)**
+## ðŸŒŸ Live Website
+ðŸ”— **[vanshubhai.vercel.app](https://vanshubhai.vercel.app)**
 
-## 👨‍🎨 About Vanshu
+## ðŸ‘¨â€ðŸŽ¨ About Vanshu
 **Video Editor | Gamer | Musician | Creative Mind**
 
 Vanshu Agarwal is a passionate creative professional specializing in:
@@ -16,7 +16,7 @@ Vanshu Agarwal is a passionate creative professional specializing in:
 
 Currently a Class 11 PCM Science student balancing academics with creative pursuits.
 
-## 🤖 Vanshu Bot - AI Assistant
+## ðŸ¤– Vanshu Bot - AI Assistant
 **NEW!** Interactive AI chatbot powered by Lovable AI with comprehensive knowledge about:
 - Vanshu's portfolio, skills, and experience
 - Services offered and project details
@@ -24,13 +24,13 @@ Currently a Class 11 PCM Science student balancing academics with creative pursu
 - FAQs and quick answers
 - Real-time streaming responses using Gemini models
 
-## 🎯 Featured Work
+## ðŸŽ¯ Featured Work
 - **Fire Within** - Original rap track with powerful visuals
 - **Raat Ka Banda** - Lo-fi beats with raw, authentic lyrics
 - **Minecraft Projects** - Creative builds and interactive experiences
 - **Nextup Studio** - Creative brand and content hub
 
-## 🛠️ Technical Stack
+## ðŸ› ï¸ Technical Stack
 - **Frontend**: React 18 + TypeScript
 - **Build Tool**: Vite
 - **Styling**: Tailwind CSS with custom design system
@@ -42,7 +42,7 @@ Currently a Class 11 PCM Science student balancing academics with creative pursu
 - **Backend**: Lovable Cloud (Supabase)
 - **AI Integration**: Lovable AI Gateway (Gemini 2.5 Flash)
 
-## 🎨 Design Features
+## ðŸŽ¨ Design Features
 - **Dark-first Design** - Professional video editor aesthetic
 - **Responsive Layout** - Mobile-first approach
 - **Smooth Animations** - Framer Motion powered transitions
@@ -50,7 +50,7 @@ Currently a Class 11 PCM Science student balancing academics with creative pursu
 - **Accessibility** - WCAG compliant components
 - **TV Browser Compatible** - ES2015 build target for maximum compatibility
 
-## 📱 Pages & Features
+## ðŸ“± Pages & Features
 - **Homepage** - Clean introduction with call-to-actions
 - **About** - Personal journey and background
 - **Portfolio** - Categorized project showcase (Web Dev, Tools, Portfolio)
@@ -60,7 +60,7 @@ Currently a Class 11 PCM Science student balancing academics with creative pursu
 - **Contact** - Direct messaging via EmailJS
 - **CV/Resume** - Professional experience
 
-## 🚀 Getting Started
+## ðŸš€ Getting Started
 
 ```bash
 # Clone the repository
@@ -79,7 +79,7 @@ npm run dev
 npm run build
 ```
 
-## 📊 SEO & Performance
+## ðŸ“Š SEO & Performance
 - **Semantic HTML** - Proper heading structure and landmarks
 - **Meta Tags** - Open Graph and Twitter cards
 - **Structured Data** - JSON-LD for better search visibility
@@ -88,54 +88,54 @@ npm run build
 - **Sitemap** - Complete XML sitemap for search engines
 - **Robots.txt** - Proper crawling instructions
 
-## 📧 Contact
+## ðŸ“§ Contact
 - **Email**: sanjayvansu1973@gmail.com
 - **Phone**: +91 9412104618
 - **Location**: 106/1 Balkeshwar Road, Agra, UP, India
 - **YouTube**: [@nextupstudioyt](https://www.youtube.com/@nextupstudioyt)
 
-## 🏗️ Project Structure
+## ðŸ—ï¸ Project Structure
 ```
 src/
-├── components/          # Reusable UI components
-│   ├── ui/             # shadcn/ui components
-│   ├── Hero.tsx        # Homepage hero section
-│   └── Navigation.tsx  # Site navigation
-├── pages/              # Route components
-│   ├── Index.tsx       # Homepage
-│   ├── About.tsx       # About page
-│   ├── Portfolio.tsx   # Portfolio gallery
-│   ├── Skills.tsx      # Skills showcase
-│   ├── VanshuBot.tsx   # AI chatbot page
-│   ├── YouTube.tsx     # YouTube videos
-│   ├── Contact.tsx     # Contact form
-│   └── cv.tsx          # Resume/CV
-├── assets/             # Images and static files
-├── hooks/              # Custom React hooks
-├── lib/                # Utility functions
-└── index.css           # Global styles & design system
+â”œâ”€â”€ components/          # Reusable UI components
+â”‚   â”œâ”€â”€ ui/             # shadcn/ui components
+â”‚   â”œâ”€â”€ Hero.tsx        # Homepage hero section
+â”‚   â””â”€â”€ Navigation.tsx  # Site navigation
+â”œâ”€â”€ pages/              # Route components
+â”‚   â”œâ”€â”€ Index.tsx       # Homepage
+â”‚   â”œâ”€â”€ About.tsx       # About page
+â”‚   â”œâ”€â”€ Portfolio.tsx   # Portfolio gallery
+â”‚   â”œâ”€â”€ Skills.tsx      # Skills showcase
+â”‚   â”œâ”€â”€ VanshuBot.tsx   # AI chatbot page
+â”‚   â”œâ”€â”€ YouTube.tsx     # YouTube videos
+â”‚   â”œâ”€â”€ Contact.tsx     # Contact form
+â”‚   â””â”€â”€ cv.tsx          # Resume/CV
+â”œâ”€â”€ assets/             # Images and static files
+â”œâ”€â”€ hooks/              # Custom React hooks
+â”œâ”€â”€ lib/                # Utility functions
+â””â”€â”€ index.css           # Global styles & design system
 supabase/
-└── functions/
-    └── chat/           # AI chatbot edge function
+â””â”€â”€ functions/
+    â””â”€â”€ chat/           # AI chatbot edge function
 ```
 
-## 🔧 Customization
+## ðŸ”§ Customization
 The design system is built with CSS custom properties in `src/index.css`:
 - Colors use HSL values for better manipulation
 - All components use semantic tokens
 - Easy theme customization via CSS variables
 
-## 🤝 Backend Features (Lovable Cloud)
+## ðŸ¤ Backend Features (Lovable Cloud)
 - **Database**: PostgreSQL for data persistence
 - **Authentication**: User management system
 - **Storage**: File uploads and management
 - **Edge Functions**: Serverless backend logic
 - **AI Gateway**: Integrated Lovable AI for chatbot
 
-## 📄 License
+## ðŸ“„ License
 This project is personal portfolio of Vanshu Agarwal. All creative content and designs are proprietary.
 
 ---
 
-**Built with ❤️ by Vanshu Agarwal**  
+**Built with â¤ï¸ by Vanshu Agarwal**  
 **Powered by Lovable AI**
