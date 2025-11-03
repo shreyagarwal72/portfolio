@@ -7,10 +7,10 @@
 [![Lovable AI](https://img.shields.io/badge/AI-Lovable_AI-9b59b6?logo=openai&logoColor=white)](https://lovable.ai)
 
 <!-- 🧩 GitHub Repository Badges -->
-[![Stars](https://img.shields.io/github/stars/your-username/repo-name?style=social)](https://github.com/your-username/repo-name/stargazers)
-[![Forks](https://img.shields.io/github/forks/your-username/repo-name?style=social)](https://github.com/your-username/repo-name/network/members)
+[![Stars](https://img.shields.io/github/stars/your-username/repo-name?style=social)](https://github.com/shreyagarwal72/portfolio/stargazers)
+[![Forks](https://github.com/shreyagarwal72/portfolio/github/forks/your-username/repo-name?style=social)](https://github.com/your-username/repo-name/network/members)
 [![Issues](https://img.shields.io/github/issues/your-username/repo-name?color=yellow)](https://github.com/your-username/repo-name/issues)
-[![Last Commit](https://img.shields.io/github/last-commit/your-username/repo-name?color=brightgreen)](https://github.com/your-username/repo-name/commits/main)
+[![Last Commit](https://img.shields.io/github/last-commit/shreyagarwal72/portfolio?color=brightgreen)](https://github.com/shreyagarwal72/portfolio/commits/main)
 
 > A modern, responsive, and interactive portfolio website showcasing the creative work of **Vanshu Agarwal** — *Video Editor, Gamer & Musician.*
 
