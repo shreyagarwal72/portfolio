@@ -3,9 +3,10 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
+import LoadingAnimation from "./components/LoadingAnimation";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Portfolio from "./pages/Portfolio";
@@ -19,6 +20,8 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     // Prevent context menu on all images
     const handleContextMenu = (e: MouseEvent) => {
@@ -39,6 +42,7 @@ const App = () => {
       <TooltipProvider>
         <Toaster />
         <Sonner />
+        {isLoading && <LoadingAnimation onComplete={() => setIsLoading(false)} duration={1800} />}
         <BrowserRouter>
           <div className="min-h-screen bg-background flex flex-col">
             <Navigation />

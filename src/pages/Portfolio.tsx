@@ -110,13 +110,13 @@ const projects = [
     title: "My OG Website",
     category: "portfolio",
     year: "2024",
-    client: "Personal Brand",
+    client: "NextUp Studio",
     description:
-      "The original portfolio website showcasing my creative journey, projects, and skills with elegant design and smooth user experience.",
+      "Official NextUp Studio website - A professional creative portfolio showcasing services, projects, and studio brand with modern design.",
     thumbnail: previewOG,
     duration: "Live",
     views: "",
-    link: "https://shreyagarwal72.github.io/home.html",
+    link: "https://nextup-studio.vercel.app/",
   },
 ]
 
