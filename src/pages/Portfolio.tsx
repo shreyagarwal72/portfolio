@@ -55,16 +55,16 @@ const categories = ["all", "web development", "tools", "portfolio"]
 const projects = [
   {
     id: 1,
-    title: "My Minecraft Site",
-    category: "web development",
+    title: "My Website",
+    category: "portfolio",
     year: "2024",
-    client: "Personal Project",
+    client: "NextUp Studio",
     description:
-      "A comprehensive Minecraft-themed website showcasing creative builds, gaming content, and immersive experiences with interactive elements.",
-    thumbnail: previewMinecraft,
-    duration: "Interactive",
+      "Official NextUp Studio website - A professional creative portfolio showcasing services, projects, and studio brand with modern design.",
+    thumbnail: previewOG,
+    duration: "Live",
     views: "",
-    link: "https://nextup-hub-mc.vercel.app/",
+    link: "https://nextup-studio.vercel.app/",
   },
   {
     id: 2,
@@ -107,16 +107,16 @@ const projects = [
   },
   {
     id: 5,
-    title: "My OG Website",
-    category: "portfolio",
+    title: "My Minecraft Site",
+    category: "web development",
     year: "2024",
-    client: "NextUp Studio",
+    client: "Personal Project",
     description:
-      "Official NextUp Studio website - A professional creative portfolio showcasing services, projects, and studio brand with modern design.",
-    thumbnail: previewOG,
-    duration: "Live",
+      "A comprehensive Minecraft-themed website showcasing creative builds, gaming content, and immersive experiences with interactive elements.",
+    thumbnail: previewMinecraft,
+    duration: "Interactive",
     views: "",
-    link: "https://nextup-studio.vercel.app/",
+    link: "https://nextup-hub-mc.vercel.app/",
   },
 ]
 
