@@ -36,7 +36,7 @@ const Navigation = () => {
                 <Link
                   to={item.path}
                   className={cn(
-                    'nav-link',
+                    'nav-link transition-smooth hover:scale-105',
                     isActive(item.path) && 'active'
                   )}
                   aria-current={isActive(item.path) ? 'page' : undefined}
@@ -71,7 +71,7 @@ const Navigation = () => {
         {isOpen && (
           <div 
             id="mobile-menu" 
-            className="md:hidden absolute top-16 left-0 right-0 bg-background/95 backdrop-blur-md border-b border-border"
+            className="md:hidden absolute top-16 left-0 right-0 bg-background/95 backdrop-blur-md border-b border-border animate-slide-in-right"
             role="menu"
           >
             <ul className="px-4 py-4 space-y-4">
@@ -80,7 +80,7 @@ const Navigation = () => {
                   <Link
                     to={item.path}
                     className={cn(
-                      'block py-2 text-base nav-link',
+                      'block py-2 text-base nav-link transition-smooth hover:translate-x-2',
                       isActive(item.path) && 'active'
                     )}
                     onClick={() => setIsOpen(false)}

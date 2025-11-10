@@ -124,7 +124,7 @@ const Skills = () => {
           <div className="space-y-8">
             
             {/* Software Skills */}
-            <div className="card-gradient rounded-2xl p-6">
+            <div className="card-gradient rounded-2xl p-6 animate-fade-in hover-lift transition-smooth">
               <h3 className="text-xl font-bold text-white mb-6">SOFTWARE SKILLS</h3>
               <div className="space-y-4">
                 {softwareSkills.map((skill, index) => (
@@ -148,7 +148,7 @@ const Skills = () => {
             </div>
 
             {/* Languages */}
-            <div className="card-gradient rounded-2xl p-6">
+            <div className="card-gradient rounded-2xl p-6 animate-fade-in hover-lift transition-smooth" style={{ animationDelay: '0.1s' }}>
               <h3 className="text-xl font-bold text-white mb-6">LANGUAGES</h3>
               <div className="space-y-4">
                 {languages.map((lang, index) => (
@@ -172,7 +172,7 @@ const Skills = () => {
             </div>
 
             {/* Personal Skills */}
-            <div className="card-gradient rounded-2xl p-6">
+            <div className="card-gradient rounded-2xl p-6 animate-fade-in hover-lift transition-smooth" style={{ animationDelay: '0.2s' }}>
               <h3 className="text-xl font-bold text-white mb-6">PERSONAL SKILLS</h3>
               <div className="space-y-3 text-muted-foreground">
                 <p>Creativity • Team Work • Organization</p>
@@ -186,7 +186,7 @@ const Skills = () => {
           <div className="space-y-8">
             
             {/* Experience */}
-            <div className="card-gradient rounded-2xl p-6">
+            <div className="card-gradient rounded-2xl p-6 animate-fade-in hover-lift transition-smooth" style={{ animationDelay: '0.15s' }}>
               <h3 className="text-xl font-bold text-white mb-6">EXPERIENCE</h3>
               <div className="space-y-6">
                 {experiences.map((exp, index) => (
@@ -204,7 +204,7 @@ const Skills = () => {
             </div>
 
             {/* Education */}
-            <div className="card-gradient rounded-2xl p-6">
+            <div className="card-gradient rounded-2xl p-6 animate-fade-in hover-lift transition-smooth" style={{ animationDelay: '0.25s' }}>
               <h3 className="text-xl font-bold text-white mb-6">EDUCATION</h3>
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
@@ -223,7 +223,7 @@ const Skills = () => {
           <div className="space-y-8">
             
             {/* What Can I Do */}
-            <div className="card-gradient rounded-2xl p-6">
+            <div className="card-gradient rounded-2xl p-6 animate-fade-in hover-lift transition-smooth" style={{ animationDelay: '0.2s' }}>
               <h3 className="text-xl font-bold text-white mb-6">WHAT CAN I DO?</h3>
               <div className="space-y-4 text-muted-foreground">
                 <p>• Video Editing & Post-Production</p>
@@ -236,11 +236,11 @@ const Skills = () => {
             </div>
 
             {/* Design Skills */}
-            <div className="card-gradient rounded-2xl p-6">
+            <div className="card-gradient rounded-2xl p-6 animate-fade-in hover-lift transition-smooth" style={{ animationDelay: '0.3s' }}>
               <h3 className="text-xl font-bold text-white mb-6">DESIGN SKILLS</h3>
               <div className="grid grid-cols-2 gap-4">
                 {designSkills.map((skill, index) => (
-                  <div key={skill.name} className="text-center p-4 bg-muted/20 rounded-lg transition-smooth hover:bg-muted/30">
+                  <div key={skill.name} className="text-center p-4 bg-muted/20 rounded-lg transition-smooth hover:bg-muted/30 hover:scale-105 hover:-translate-y-1">
                     <skill.icon className="text-primary mx-auto mb-2" size={24} />
                     <p className="text-muted-foreground text-sm">{skill.name}</p>
                   </div>
@@ -249,11 +249,11 @@ const Skills = () => {
             </div>
 
             {/* Hobbies & Interests */}
-            <div className="card-gradient rounded-2xl p-6">
+            <div className="card-gradient rounded-2xl p-6 animate-fade-in hover-lift transition-smooth" style={{ animationDelay: '0.4s' }}>
               <h3 className="text-xl font-bold text-white mb-6">HOBBIES & INTERESTS</h3>
               <div className="grid grid-cols-2 gap-4">
                 {interests.map((interest, index) => (
-                  <div key={interest.name} className="text-center p-4 bg-muted/20 rounded-lg transition-smooth hover:bg-muted/30">
+                  <div key={interest.name} className="text-center p-4 bg-muted/20 rounded-lg transition-smooth hover:bg-muted/30 hover:scale-105 hover:-translate-y-1">
                     <interest.icon className="text-primary mx-auto mb-2" size={24} />
                     <p className="text-muted-foreground text-sm">{interest.name}</p>
                   </div>

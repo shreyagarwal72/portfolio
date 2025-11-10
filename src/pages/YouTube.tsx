@@ -72,7 +72,7 @@ const YouTube = () => {
         </div>
 
         {/* Channel Stats */}
-        <section className="mb-8 p-6 bg-card border border-border rounded-lg card-gradient">
+        <section className="mb-8 p-6 bg-card border border-border rounded-lg card-gradient animate-fade-in hover-lift transition-smooth">
           <div className="space-y-2">
             <p className="text-lg font-medium text-foreground">
               Subscribers: <span className="text-primary font-bold">{subscriberCount}</span>
@@ -85,8 +85,8 @@ const YouTube = () => {
 
         {/* Videos Grid */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <div className="space-y-4 animate-fade-in">
-            <div className="relative aspect-video rounded-lg overflow-hidden shadow-lg">
+          <div className="space-y-4 animate-fade-in hover-lift transition-smooth">
+            <div className="relative aspect-video rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-smooth">
               <iframe 
                 src="https://www.youtube.com/embed/apok4v8Pzow" 
                 title="🔥 Fire Within - Official Track"
@@ -100,8 +100,8 @@ const YouTube = () => {
             </div>
           </div>
 
-          <div className="space-y-4 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            <div className="relative aspect-video rounded-lg overflow-hidden shadow-lg">
+          <div className="space-y-4 animate-fade-in hover-lift transition-smooth" style={{ animationDelay: '0.2s' }}>
+            <div className="relative aspect-video rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-smooth">
               <iframe 
                 src="https://www.youtube.com/embed/xftcj39h-QY" 
                 title="🎵 Raat Ka Banda - Epic Edit"

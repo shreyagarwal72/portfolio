@@ -88,13 +88,13 @@ const Contact = () => {
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Information */}
-          <div className="space-y-8">
-            <div className="card-gradient rounded-2xl p-8">
+          <div className="space-y-8 animate-fade-in">
+            <div className="card-gradient rounded-2xl p-8 hover-lift transition-smooth">
               <h2 className="text-2xl font-bold text-white mb-6">Contact Information</h2>
 
               <div className="space-y-6">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
+                <div className="flex items-center space-x-4 hover:translate-x-2 transition-smooth">
+                  <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center hover:bg-primary/30 transition-smooth">
                     <Mail className="text-primary" size={20} />
                   </div>
                   <div>
@@ -103,8 +103,8 @@ const Contact = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
+                <div className="flex items-center space-x-4 hover:translate-x-2 transition-smooth">
+                  <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center hover:bg-primary/30 transition-smooth">
                     <Phone className="text-primary" size={20} />
                   </div>
                   <div>
@@ -113,8 +113,8 @@ const Contact = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
+                <div className="flex items-center space-x-4 hover:translate-x-2 transition-smooth">
+                  <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center hover:bg-primary/30 transition-smooth">
                     <MapPin className="text-primary" size={20} />
                   </div>
                   <div>
@@ -127,7 +127,7 @@ const Contact = () => {
             </div>
 
             {/* Services */}
-            <div className="card-gradient rounded-2xl p-8">
+            <div className="card-gradient rounded-2xl p-8 hover-lift transition-smooth">
               <h3 className="text-xl font-bold text-white mb-6">Services Offered</h3>
               <div className="space-y-3 text-muted-foreground">
                 <p>• Commercial Video Production</p>
@@ -141,7 +141,7 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="card-gradient rounded-2xl p-8">
+          <div className="card-gradient rounded-2xl p-8 animate-fade-in hover-lift transition-smooth" style={{ animationDelay: '0.2s' }}>
             <h2 className="text-2xl font-bold text-white mb-6">Send a Message</h2>
 
             <form onSubmit={handleSubmit} className="space-y-6">

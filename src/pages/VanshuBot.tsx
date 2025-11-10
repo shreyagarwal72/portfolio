@@ -277,7 +277,7 @@ const VanshuBot = () => {
 
         {/* Suggested Questions */}
         {messages.length === 1 && (
-          <section className="mb-6 animate-fade-in" aria-label="Suggested questions">
+          <section className="mb-6 animate-fade-in transition-smooth" aria-label="Suggested questions">
             <div className="flex items-center gap-2 mb-3">
               <Sparkles className="w-4 h-4 text-primary" aria-hidden="true" />
               <h2 className="text-sm font-medium text-muted-foreground">Suggested Questions</h2>
@@ -287,7 +287,7 @@ const VanshuBot = () => {
                 <button
                   key={index}
                   onClick={() => handleSuggestionClick(question)}
-                  className="text-left p-3 rounded-lg bg-card border border-border hover:border-primary/50 hover:bg-card-hover transition-smooth text-sm text-muted-foreground hover:text-foreground"
+                  className="text-left p-3 rounded-lg bg-card border border-border hover:border-primary/50 hover:bg-card-hover transition-smooth text-sm text-muted-foreground hover:text-foreground hover:scale-105 hover:-translate-y-1"
                 >
                   {question}
                 </button>
@@ -297,7 +297,7 @@ const VanshuBot = () => {
         )}
 
         {/* Chat Messages */}
-        <section className="card-gradient rounded-xl border border-border overflow-hidden mb-4" aria-label="Chat conversation">
+        <section className="card-gradient rounded-xl border border-border overflow-hidden mb-4 animate-fade-in transition-smooth" aria-label="Chat conversation">
           <ScrollArea className="h-[calc(100vh-400px)] min-h-[400px] p-6" ref={scrollRef}>
             <div className="space-y-4" role="log" aria-live="polite" aria-atomic="false">
               {messages.map((message, index) => (

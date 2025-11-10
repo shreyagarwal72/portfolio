@@ -61,23 +61,23 @@ const Hero = () => {
 
         {/* Content */}
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="space-y-8">
+          <div className="space-y-8 animate-fade-in">
             {/* Main Title */}
             <header className="space-y-4">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight animate-scale-in">
                 <span className="block bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent text-glow">VANSHU</span>
                 <span className="block text-white">AGARWAL</span>
               </h1>
-              <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-light tracking-wide" role="doc-subtitle">
+              <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-light tracking-wide animate-fade-in" role="doc-subtitle" style={{ animationDelay: '0.2s' }}>
                 Video Editor & Creative Mind
               </p>
             </header>
 
             {/* CTA Buttons */}
-            <nav className="flex flex-col sm:flex-row gap-4 justify-center items-center" aria-label="Main navigation actions">
+            <nav className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in" aria-label="Main navigation actions" style={{ animationDelay: '0.4s' }}>
               <Button 
                 size="lg" 
-                className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg font-medium"
+                className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg font-medium hover-lift transition-smooth"
                 asChild
               >
                 <Link to="/cv" aria-label="Download or view Vanshu Agarwal's CV and resume">
@@ -88,7 +88,7 @@ const Hero = () => {
               <Button 
                 variant="outline" 
                 size="lg"
-                className="w-full sm:w-auto border-white/20 bg-white/10 hover:bg-white/20 text-white px-8 py-3 text-lg backdrop-blur-sm"
+                className="w-full sm:w-auto border-white/20 bg-white/10 hover:bg-white/20 text-white px-8 py-3 text-lg backdrop-blur-sm hover-lift transition-smooth"
                 asChild
               >
                 <Link to="/portfolio" aria-label="View Vanshu Agarwal's creative portfolio and projects">View Portfolio</Link>
