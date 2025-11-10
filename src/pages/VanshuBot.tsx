@@ -91,7 +91,10 @@ const VanshuBot = () => {
   }, []);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    // Skip scrolling on initial mount (when only welcome message exists)
+    if (messages.length > 1) {
+      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
   }, [messages]);
 
   const suggestedQuestions = [
