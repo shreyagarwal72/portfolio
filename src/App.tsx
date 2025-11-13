@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import LoadingAnimation from "./components/LoadingAnimation";
+import CursorGlow from "./components/CursorGlow";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Portfolio from "./pages/Portfolio";
@@ -15,6 +16,7 @@ import Contact from "./pages/Contact";
 import CV from "./pages/cv";
 import YouTube from "./pages/YouTube";
 import VanshuBot from "./pages/VanshuBot";
+import TermsAndConditions from "./pages/TermsAndConditions";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -42,6 +44,7 @@ const App = () => {
       <TooltipProvider>
         <Toaster />
         <Sonner />
+        <CursorGlow />
         {isLoading && <LoadingAnimation onComplete={() => setIsLoading(false)} duration={1800} />}
         <BrowserRouter>
           <div className="min-h-screen bg-background flex flex-col">
@@ -56,6 +59,7 @@ const App = () => {
                 <Route path="/vanshu-bot" element={<VanshuBot />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/cv" element={<CV />} />
+                <Route path="/terms" element={<TermsAndConditions />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>

@@ -49,10 +49,12 @@ const Hero = () => {
   return (
     <main role="main">
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
+        {/* Background Image with Parallax */}
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${heroWorkspace})` }}
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat parallax-slow"
+          style={{ 
+            backgroundImage: `url(${heroWorkspace})`,
+          }}
           role="img"
           aria-label="Creative workspace background with editing equipment"
         >

@@ -1,9 +1,18 @@
 import { useState, useRef, useEffect } from 'react';
-import { Bot, Send, Loader2, Sparkles } from 'lucide-react';
+import { Bot, Send, Loader2, Sparkles, Trash2, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useToast } from '@/hooks/use-toast';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
+import { Link } from 'react-router-dom';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -20,6 +29,7 @@ const VanshuBot = () => {
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [showTermsDialog, setShowTermsDialog] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -81,6 +91,12 @@ const VanshuBot = () => {
       }
     });
     document.head.appendChild(script);
+
+    // Check if user has seen terms dialog
+    const hasSeenTerms = localStorage.getItem('vanshubot_terms_accepted');
+    if (!hasSeenTerms) {
+      setShowTermsDialog(true);
+    }
     
     return () => {
       const existingScript = document.querySelector('script[type="application/ld+json"]');
@@ -259,6 +275,24 @@ const VanshuBot = () => {
     setInput(question);
   };
 
+  const handleClearChat = () => {
+    setMessages([
+      {
+        role: 'assistant',
+        content: 'Hi! I\'m Vanshu Bot, your AI assistant. I can help you learn about Vanshu Aggarwal\'s work, skills, and projects. What would you like to know?',
+      },
+    ]);
+    toast({
+      title: 'Chat Cleared',
+      description: 'Your chat history has been cleared.',
+    });
+  };
+
+  const handleAcceptTerms = () => {
+    localStorage.setItem('vanshubot_terms_accepted', 'true');
+    setShowTermsDialog(false);
+  };
+
   return (
     <main className="min-h-screen pt-16 bg-background pb-32" role="main">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -273,7 +307,51 @@ const VanshuBot = () => {
           <p className="text-muted-foreground">
             Your AI assistant with complete knowledge about Vanshu Aggarwal's work
           </p>
+          <Button
+            onClick={handleClearChat}
+            variant="outline"
+            size="sm"
+            className="mt-4 hover:bg-destructive hover:text-destructive-foreground transition-smooth"
+          >
+            <Trash2 className="w-4 h-4 mr-2" />
+            Clear Chat
+          </Button>
         </header>
+
+        {/* Terms Dialog */}
+        <Dialog open={showTermsDialog} onOpenChange={setShowTermsDialog}>
+          <DialogContent className="sm:max-w-md">
+            <DialogHeader>
+              <DialogTitle className="text-2xl bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
+                Welcome to Vanshu Bot
+              </DialogTitle>
+              <DialogDescription className="text-base pt-4 space-y-4">
+                <p>
+                  By using Vanshu Bot, you agree to our Terms and Conditions. This AI assistant provides information about 
+                  Vanshu Aggarwal's work and uses AI technology to respond to your questions.
+                </p>
+                <p>
+                  Your conversations are processed securely and are not stored permanently. For more details, please read our{' '}
+                  <Link 
+                    to="/terms" 
+                    className="text-primary hover:text-primary-glow underline font-medium transition-smooth"
+                    onClick={() => setShowTermsDialog(false)}
+                  >
+                    full Terms and Conditions
+                  </Link>.
+                </p>
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter className="sm:justify-center">
+              <Button
+                onClick={handleAcceptTerms}
+                className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground px-8"
+              >
+                I Agree
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
 
         {/* Suggested Questions */}
         {messages.length === 1 && (
