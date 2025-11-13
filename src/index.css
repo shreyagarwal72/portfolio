@@ -19,10 +19,11 @@
     --popover: 210 11% 9%;
     --popover-foreground: 0 0% 98%;
 
-    /* Blue accent system */
-    --primary: 213 89% 64%;
-    --primary-foreground: 0 0% 8%;
-    --primary-glow: 213 89% 70%;
+    /* Blue accent system - Enhanced vibrant blues */
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 220 100% 70%;
+    --primary-dark: 215 85% 50%;
 
     /* Secondary greys */
     --secondary: 210 11% 15%;
@@ -45,16 +46,18 @@
     --input: 210 11% 15%;
     --ring: 213 89% 64%;
 
-    /* Design system additions */
-    --hero-gradient: linear-gradient(135deg, hsl(210 11% 6%) 0%, hsl(210 11% 10%) 100%);
-    --text-gradient: linear-gradient(135deg, hsl(213 89% 64%) 0%, hsl(213 89% 75%) 50%, hsl(220 100% 70%) 100%);
-    --card-gradient: linear-gradient(145deg, hsl(210 11% 10%) 0%, hsl(210 11% 12%) 100%);
-    --accent-gradient: linear-gradient(120deg, hsl(213 89% 64%) 0%, hsl(213 89% 70%) 100%);
+    /* Design system additions - Enhanced gradients */
+    --hero-gradient: linear-gradient(135deg, hsl(210 15% 5%) 0%, hsl(217 20% 10%) 50%, hsl(210 15% 8%) 100%);
+    --text-gradient: linear-gradient(135deg, hsl(217 91% 60%) 0%, hsl(220 100% 70%) 50%, hsl(230 100% 75%) 100%);
+    --card-gradient: linear-gradient(145deg, hsl(210 11% 9%) 0%, hsl(210 15% 13%) 100%);
+    --accent-gradient: linear-gradient(120deg, hsl(217 91% 60%) 0%, hsl(220 100% 70%) 50%, hsl(230 100% 75%) 100%);
+    --glow-gradient: radial-gradient(circle at 50% 50%, hsl(217 91% 60% / 0.2) 0%, transparent 70%);
     
-    /* Shadows */
-    --shadow-card: 0 8px 32px hsl(210 11% 4% / 0.6);
-    --shadow-glow: 0 0 40px hsl(213 89% 64% / 0.3);
-    --shadow-subtle: 0 4px 16px hsl(210 11% 6% / 0.4);
+    /* Shadows - Enhanced depth */
+    --shadow-card: 0 10px 40px hsl(210 11% 3% / 0.7), 0 0 0 1px hsl(217 91% 60% / 0.1);
+    --shadow-glow: 0 0 50px hsl(217 91% 60% / 0.4), 0 0 100px hsl(220 100% 70% / 0.2);
+    --shadow-subtle: 0 4px 20px hsl(210 11% 4% / 0.5);
+    --shadow-intense: 0 20px 60px hsl(217 91% 60% / 0.3), 0 0 120px hsl(220 100% 70% / 0.15);
 
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

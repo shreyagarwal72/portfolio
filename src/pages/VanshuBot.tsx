@@ -108,10 +108,11 @@ const VanshuBot = () => {
 
   useEffect(() => {
     // Skip scrolling on initial mount (when only welcome message exists)
-    if (messages.length > 1) {
+    if (messages.length > 1 && !isLoading) {
+      // Only scroll after message is complete (not during streaming)
       messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [messages]);
+  }, [messages, isLoading]);
 
   const suggestedQuestions = [
     "What services does Vanshu offer?",

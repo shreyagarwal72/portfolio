@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Download, Github, Linkedin, Instagram, Twitter, Facebook } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Floating3D } from '@/components/Floating3D';
 import heroWorkspace from '@/assets/hero-workspace.jpg';
 import { useEffect } from 'react';
 
@@ -49,9 +50,14 @@ const Hero = () => {
   return (
     <main role="main">
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* 3D Background Animation */}
+        <div className="absolute inset-0 opacity-20 pointer-events-none z-0">
+          <Floating3D className="w-full h-full" />
+        </div>
+        
         {/* Background Image with Parallax */}
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat parallax-slow"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat parallax-slow z-0"
           style={{ 
             backgroundImage: `url(${heroWorkspace})`,
           }}
