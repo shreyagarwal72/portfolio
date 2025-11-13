@@ -297,32 +297,38 @@ export default function Portfolio() {
             {filteredProjects.map((project, index) => (
               <motion.article
                 key={project.id}
-                className="group relative overflow-hidden rounded-2xl"
-                whileHover={{ y: -8, scale: 1.02 }}
+                className="group relative overflow-hidden rounded-2xl card-3d"
+                whileHover={{ y: -12 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 variants={{
                   hidden: { opacity: 0, y: 30 },
                   visible: { opacity: 1, y: 0 },
                 }}
+                style={{
+                  transformStyle: 'preserve-3d',
+                }}
               >
                 {/* Glow Effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl blur-xl scale-105 opacity-0 group-hover:opacity-100 transition-smooth" aria-hidden="true" />
+                <div className="absolute -inset-1 bg-gradient-to-br from-primary/20 via-primary-glow/10 to-transparent rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-500" aria-hidden="true" />
                 
                 {/* Main Card */}
-                <div className="relative card-gradient rounded-2xl border border-border/50 backdrop-blur-sm overflow-hidden transition-smooth group-hover:border-primary/30 group-hover:shadow-2xl">
+                <div className="relative card-gradient rounded-2xl border border-border/50 backdrop-blur-sm overflow-hidden hover-glow card-3d-content">
                   
-                  {/* Thumbnail */}
+                  {/* Thumbnail with 3D effect */}
                   <div className="relative overflow-hidden aspect-video">
+                    <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10 opacity-60" />
                     <img
                       src={project.thumbnail}
                       alt={`${project.title} - ${project.description.substring(0, 50)}...`}
-                      className="w-full h-full object-cover transition-smooth group-hover:scale-110"
+                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-1"
                       loading="lazy"
-                      width="400"
-                      height="225"
+                      style={{ 
+                        transform: 'translateZ(0)',
+                        backfaceVisibility: 'hidden'
+                      }}
                     />
                     
-                     {/* Duration Badge */}
+                    {/* Duration Badge */}
                     <div className="absolute top-3 right-3 bg-black/80 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full border border-white/20">
                       {project.duration}
                     </div>
@@ -330,14 +336,14 @@ export default function Portfolio() {
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-smooth" aria-hidden="true" />
                     
-                     {/* Play Button */}
-                     {project.link && (
-                       <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-smooth">
-                         <div className="w-16 h-16 bg-primary/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-2xl" aria-hidden="true">
-                           <ExternalLink size={24} className="text-white" />
-                         </div>
-                       </div>
-                     )}
+                    {/* Play Button */}
+                    {project.link && (
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-smooth">
+                        <div className="w-16 h-16 bg-primary/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-2xl" aria-hidden="true">
+                          <ExternalLink size={24} className="text-white" />
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   {/* Content */}
