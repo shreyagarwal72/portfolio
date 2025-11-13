@@ -4,11 +4,11 @@ import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { ExternalLink } from "lucide-react"
 
-import previewMinecraft from "@/assets/preview-minecraft.jpg"
-import previewYoutube from "@/assets/preview-youtube.jpg"
-import previewWebtools from "@/assets/preview-webtools.jpg"
-import previewTools from "@/assets/preview-tools.jpg"
-import previewOG from "@/assets/preview-og.jpg"
+import previewWebsite from "@/assets/preview-website.jpg"
+import previewYoutubeSite from "@/assets/preview-youtube-site.jpg"
+import previewWebtoolsSuite from "@/assets/preview-webtools-suite.jpg"
+import previewToolsSite from "@/assets/preview-tools-site.jpg"
+import previewMinecraftSite from "@/assets/preview-minecraft-site.jpg"
 import certificateGreenhat from "@/assets/certificate-greenhat.jpg"
 import certificateAmarujala from "@/assets/certificate-amarujala.jpg"
 import { Card, CardContent } from "@/components/ui/card"
@@ -61,7 +61,7 @@ const projects = [
     client: "NextUp Studio",
     description:
       "Official NextUp Studio website - A professional creative portfolio showcasing services, projects, and studio brand with modern design.",
-    thumbnail: previewOG,
+    thumbnail: previewWebsite,
     duration: "Live",
     views: "",
     link: "https://nextup-studio.vercel.app/",
@@ -74,7 +74,7 @@ const projects = [
     client: "Nextup Studio",
     description:
       "A modern YouTube-style platform featuring video content, channel statistics, and seamless integration with YouTube API for real-time data.",
-    thumbnail: previewYoutube,
+    thumbnail: previewYoutubeSite,
     duration: "Live",
     views: "",
     link: "https://myyoutube-cyan.vercel.app/",
@@ -87,7 +87,7 @@ const projects = [
     client: "Personal Project",
     description:
       "A comprehensive suite of web utilities and tools designed to enhance productivity and streamline digital workflows with modern UI.",
-    thumbnail: previewWebtools,
+    thumbnail: previewWebtoolsSuite,
     duration: "Interactive",
     views: "",
     link: "https://nextuptool2.vercel.app/",
@@ -100,7 +100,7 @@ const projects = [
     client: "Personal Project",
     description:
       "A collection of useful developer tools and utilities featuring clean design, intuitive interface, and powerful functionality for everyday tasks.",
-    thumbnail: previewTools,
+    thumbnail: previewToolsSite,
     duration: "Interactive",
     views: "",
     link: "https://nextuptool.vercel.app/",
@@ -113,7 +113,7 @@ const projects = [
     client: "Personal Project",
     description:
       "A comprehensive Minecraft-themed website showcasing creative builds, gaming content, and immersive experiences with interactive elements.",
-    thumbnail: previewMinecraft,
+    thumbnail: previewMinecraftSite,
     duration: "Interactive",
     views: "",
     link: "https://nextup-hub-mc.vercel.app/",

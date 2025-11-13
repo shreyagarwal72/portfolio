@@ -114,7 +114,7 @@ const TermsAndConditions = () => {
               </CardHeader>
               <CardContent className="text-muted-foreground space-y-4">
                 <p>
-                  If you have any questions about these Terms and Conditions, please contact us through the contact page or email at nextupstudioyt@gmail.com
+                  If you have any questions about these Terms and Conditions, please contact us through the contact page or email at sanjayvansu1973@gmail.com
                 </p>
               </CardContent>
             </Card>
