@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Phone, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import SearchDialog from '@/components/SearchDialog';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const location = useLocation();
 
   const navItems = [
@@ -13,7 +15,8 @@ const Navigation = () => {
     { label: 'About', path: '/about' },
     { label: 'Portfolio', path: '/portfolio' },
     { label: 'Skills', path: '/skills' },
-    { label: 'My YouTube Videos', path: '/youtube' },
+    { label: 'Articles', path: '/articles' },
+    { label: 'YouTube', path: '/youtube' },
     { label: 'Vanshu Bot', path: '/vanshu-bot' },
     { label: 'Contact', path: '/contact' },
   ];
@@ -47,8 +50,17 @@ const Navigation = () => {
             ))}
           </ul>
 
-          {/* Contact Info */}
+          {/* Search and Contact Info */}
           <div className="hidden md:flex items-center space-x-4 text-sm text-muted-foreground" role="contentinfo">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setSearchOpen(true)}
+              className="hover:text-primary"
+              aria-label="Search"
+            >
+              <Search size={18} />
+            </Button>
             <Phone size={16} aria-hidden="true" />
             <a href="tel:+919412104618" className="hover:text-primary transition-smooth">9412104618</a>
           </div>
@@ -99,6 +111,8 @@ const Navigation = () => {
           </div>
         )}
       </div>
+      
+      <SearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
     </nav>
   );
 };
