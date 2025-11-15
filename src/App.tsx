@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import LoadingAnimation from "./components/LoadingAnimation";
 import CursorGlow from "./components/CursorGlow";
+import BackToTop from "./components/BackToTop";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Portfolio from "./pages/Portfolio";
@@ -17,6 +18,10 @@ import CV from "./pages/cv";
 import YouTube from "./pages/YouTube";
 import VanshuBot from "./pages/VanshuBot";
 import TermsAndConditions from "./pages/TermsAndConditions";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Articles from "./pages/Articles";
+import ProcessWorkflow from "./pages/ProcessWorkflow";
+import Booking from "./pages/Booking";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -60,11 +65,16 @@ const App = () => {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/cv" element={<CV />} />
                 <Route path="/terms" element={<TermsAndConditions />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/articles" element={<Articles />} />
+                <Route path="/process" element={<ProcessWorkflow />} />
+                <Route path="/booking" element={<Booking />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
             <Footer />
+            <BackToTop />
           </div>
         </BrowserRouter>
       </TooltipProvider>
