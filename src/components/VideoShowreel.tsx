@@ -31,7 +31,7 @@ const VideoShowreel = () => {
             <div className="relative aspect-video bg-gradient-to-br from-primary/20 to-accent/20">
               <iframe
                 className="w-full h-full"
-                src="https://www.youtube.com/embed/videoseries?list=PLu5SFE7_zNMvVz4yQrKGC_xF-lF-kVfX0"
+                src="https://youtu.be/koZVuRfa_Gc?si=mA8PVlMJ3pCtFpPC"
                 title="Video Showreel"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
@@ -43,7 +43,7 @@ const VideoShowreel = () => {
           <div className="mt-6 text-center">
             <p className="text-muted-foreground flex items-center justify-center gap-2">
               <Play className="h-4 w-4 text-primary" />
-              Professional video editing showcase featuring gaming, music, and creative content
+              Professional video editing showcase featuring sppoky music, and creative content
             </p>
           </div>
         </motion.div>
