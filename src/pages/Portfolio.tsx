@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { ExternalLink } from "lucide-react"
 
-import previewWebsite from "@/assets/preview-website.jpg"
+import previewWebsite from "@/assets/preview-og.jpg"
 import previewYoutubeSite from "@/assets/preview-youtube-site.jpg"
 import previewWebtoolsSuite from "@/assets/preview-webtools-suite.jpg"
 import previewToolsSite from "@/assets/preview-tools-site.jpg"
