@@ -73,19 +73,19 @@ const Skills = () => {
     {
       company: 'CONTENT CREATOR',
       role: 'Video Editor',
-      period: '2020 - Present',
+      period: '2020',
       description: 'Creating engaging video content and tutorials'
     },
     {
       company: 'GAMING ENTHUSIAST',
       role: 'Gamer',
-      period: '2018 - Present',
+      period: '2018',
       description: 'Passionate about gaming content and community building'
     },
     {
       company: 'CREATIVE ARTIST',
       role: 'Musician',
-      period: '2019 - Present',
+      period: '2019',
       description: 'Music production and composition for various projects'
     },
   ];
@@ -212,7 +212,7 @@ const Skills = () => {
                   <div>
                     <h4 className="text-white font-medium">Class 11 Student</h4>
                     <p className="text-muted-foreground text-sm">Stream PCM Science</p>
-                    <p className="text-muted-foreground text-sm">2024 - Present</p>
+                    <p className="text-muted-foreground text-sm">2025 - Present</p>
                   </div>
                 </div>
               </div>
