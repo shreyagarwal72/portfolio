@@ -57,10 +57,10 @@ const Skills = () => {
 
   const softwareSkills = [
     { name: 'Filmora', level: 95 },
-    { name: 'After Effects', level: 90 },
+    { name: 'Capcut', level: 90 },
     { name: 'AI Image Generation', level: 85 },
     { name: 'Shotcut', level: 88 },
-    { name: 'Lightroom', level: 75 },
+    { name: 'Pixabay', level: 75 },
     { name: 'ChatGPT', level: 70 },
   ];
 
