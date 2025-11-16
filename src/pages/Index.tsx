@@ -45,8 +45,8 @@ const Index = () => {
   ];
 
   const clients = [
-    { name: 'Necrovia', logo: clientNecrovia, url: 'https://youtube.com/@Necrovia' },
-    { name: 'If You Know You Know', logo: clientIfYouKnow, url: 'https://youtube.com/@ifyouknowknow' }
+    { name: 'Neckrovia', logo: clientNecrovia, url: 'https://youtube.com/@neckrovia' },
+    { name: 'If You Know You Know', logo: clientIfYouKnow, url: 'https://youtube.com/@ifyouknowknowyt' }
   ];
 
   return (
