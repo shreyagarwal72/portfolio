@@ -157,7 +157,7 @@ const Articles = () => {
       date: '2024-10-10',
       readTime: '12 min read',
       image: articleVideoEditing,
-      url: 'https://www.youtube.com/@nextupstudioyt'
+      url: 'https://www.svgator.com/blog/motion-design-basics-guide/'
     }
   ];
 
