@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Star, TrendingUp, Users, Play } from 'lucide-react';
 import Hero from '@/components/Hero';
+import VideoShowreel from '@/components/VideoShowreel';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import clientNecrovia from '@/assets/client-necrovia.png';
@@ -51,6 +52,9 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Hero />
+      
+      {/* Video Showreel */}
+      <VideoShowreel />
       
       {/* Achievements Section */}
       <section className="py-20 card-gradient backdrop-blur-sm">

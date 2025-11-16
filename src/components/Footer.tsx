@@ -1,4 +1,5 @@
-import { Github, Instagram, Youtube } from 'lucide-react';
+import { Github, Instagram, Youtube, Linkedin, Twitter } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -46,6 +47,37 @@ const Footer = () => {
             >
               <Youtube size={20} aria-hidden="true" />
             </a>
+            <a 
+              href="https://linkedin.com/in/vanshu-agarwal" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="p-2 rounded-full bg-card/50 hover:bg-blue-500/20 text-muted-foreground hover:text-blue-400 transition-smooth"
+              aria-label="Visit Vanshu Agarwal's LinkedIn profile"
+            >
+              <Linkedin size={20} aria-hidden="true" />
+            </a>
+            <a 
+              href="https://twitter.com/vanshu_ag_72" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="p-2 rounded-full bg-card/50 hover:bg-sky-500/20 text-muted-foreground hover:text-sky-400 transition-smooth"
+              aria-label="Visit Vanshu Agarwal's Twitter profile"
+            >
+              <Twitter size={20} aria-hidden="true" />
+            </a>
+          </nav>
+
+          {/* Quick Links */}
+          <nav className="flex items-center gap-6 text-sm" aria-label="Footer navigation">
+            <Link to="/privacy-policy" className="text-muted-foreground hover:text-primary transition-smooth">
+              Privacy Policy
+            </Link>
+            <Link to="/terms" className="text-muted-foreground hover:text-primary transition-smooth">
+              Terms & Conditions
+            </Link>
+            <Link to="/contact" className="text-muted-foreground hover:text-primary transition-smooth">
+              Contact
+            </Link>
           </nav>
 
           {/* Copyright */}

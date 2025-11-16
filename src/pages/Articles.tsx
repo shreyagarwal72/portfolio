@@ -16,6 +16,7 @@ interface Article {
   date: string;
   readTime: string;
   image: string;
+  url: string;
 }
 
 const Articles = () => {
@@ -75,7 +76,8 @@ const Articles = () => {
       category: 'Video Editing',
       date: '2024-11-10',
       readTime: '5 min read',
-      image: articleVideoEditing
+      image: articleVideoEditing,
+      url: 'https://medium.com/@nextupstudio/video-editing-tips'
     },
     {
       id: '2',
@@ -84,7 +86,8 @@ const Articles = () => {
       category: 'Gaming',
       date: '2024-11-08',
       readTime: '7 min read',
-      image: articleGaming
+      image: articleGaming,
+      url: 'https://www.youtube.com/@nextupstudioyt'
     },
     {
       id: '3',
@@ -93,7 +96,8 @@ const Articles = () => {
       category: 'Music Production',
       date: '2024-11-05',
       readTime: '6 min read',
-      image: articleMusic
+      image: articleMusic,
+      url: 'https://www.youtube.com/@nextupstudioyt'
     },
     {
       id: '4',
@@ -102,7 +106,8 @@ const Articles = () => {
       category: 'Tutorials',
       date: '2024-11-01',
       readTime: '10 min read',
-      image: articleTutorials
+      image: articleTutorials,
+      url: 'https://www.youtube.com/@nextupstudioyt'
     },
     {
       id: '5',
@@ -111,7 +116,8 @@ const Articles = () => {
       category: 'Video Editing',
       date: '2024-10-28',
       readTime: '8 min read',
-      image: articleVideoEditing
+      image: articleVideoEditing,
+      url: 'https://www.youtube.com/@nextupstudioyt'
     },
     {
       id: '6',
@@ -120,7 +126,8 @@ const Articles = () => {
       category: 'Gaming',
       date: '2024-10-25',
       readTime: '9 min read',
-      image: articleGaming
+      image: articleGaming,
+      url: 'https://www.youtube.com/@nextupstudioyt'
     },
     {
       id: '7',
@@ -129,7 +136,8 @@ const Articles = () => {
       category: 'Music Production',
       date: '2024-10-20',
       readTime: '7 min read',
-      image: articleMusic
+      image: articleMusic,
+      url: 'https://www.youtube.com/@nextupstudioyt'
     },
     {
       id: '8',
@@ -138,7 +146,8 @@ const Articles = () => {
       category: 'Tutorials',
       date: '2024-10-15',
       readTime: '6 min read',
-      image: articleTutorials
+      image: articleTutorials,
+      url: 'https://www.youtube.com/@nextupstudioyt'
     },
     {
       id: '9',
@@ -147,7 +156,8 @@ const Articles = () => {
       category: 'Video Editing',
       date: '2024-10-10',
       readTime: '12 min read',
-      image: articleVideoEditing
+      image: articleVideoEditing,
+      url: 'https://www.youtube.com/@nextupstudioyt'
     }
   ];
 
@@ -211,12 +221,16 @@ const Articles = () => {
         {/* Articles Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredArticles.map((article, index) => (
-            <motion.div
+            <motion.a
               key={article.id}
+              href={article.url}
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               whileHover={{ y: -8 }}
               transition={{ delay: 0.7 + index * 0.1, duration: 0.3 }}
+              className="block"
             >
               <Card className="h-full hover-glow transition-premium cursor-pointer group overflow-hidden">
                 <motion.div 
@@ -263,7 +277,7 @@ const Articles = () => {
                   </motion.div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
 
