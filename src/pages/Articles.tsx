@@ -107,7 +107,7 @@ const Articles = () => {
       date: '2024-11-01',
       readTime: '10 min read',
       image: articleTutorials,
-      url: 'https://www.youtube.com/@nextupstudioyt'
+      url: 'https://drive.google.com/drive/folders/150czSRhyRc9fsAHVMVxRzs1WN_O6N7GD'
     },
     {
       id: '5',
