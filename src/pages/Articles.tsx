@@ -137,7 +137,7 @@ const Articles = () => {
       date: '2024-10-20',
       readTime: '7 min read',
       image: articleMusic,
-      url: 'https://www.youtube.com/@nextupstudioyt'
+      url: 'https://www.avid.com/resource-center/how-to-mix-music'
     },
     {
       id: '8',
