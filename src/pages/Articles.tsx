@@ -87,7 +87,7 @@ const Articles = () => {
       date: '2024-11-08',
       readTime: '7 min read',
       image: articleGaming,
-      url: 'https://www.youtube.com/@nextupstudioyt'
+      url: 'https://www.researchgate.net/publication/327919575_Cinematic_Game_Secrets_for_Creative_Directors_and_Producers_Inspired_Techniques_From_Industry_Legends'
     },
     {
       id: '3',
