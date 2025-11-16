@@ -53,12 +53,13 @@ const Index = () => {
       <Hero />
       
       {/* Achievements Section */}
-      <section className="py-20 bg-background/50">
+      <section className="py-20 card-gradient backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
             <h2 className="text-4xl font-bold mb-4">
@@ -66,6 +67,7 @@ const Index = () => {
                 Achievements & Milestones
               </span>
             </h2>
+            <p className="text-muted-foreground text-lg">Celebrating growth and success</p>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -75,12 +77,28 @@ const Index = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ delay: index * 0.15, duration: 0.3 }}
               >
-                <Card className="text-center hover-glow transition-premium">
+                <Card className="text-center hover-glow transition-premium bg-background/50 backdrop-blur-sm border-primary/20">
                   <CardContent className="pt-6">
-                    <achievement.icon className="h-12 w-12 text-primary mx-auto mb-4" />
-                    <h3 className="text-4xl font-bold text-primary mb-2">{achievement.value}</h3>
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.15 + 0.2, type: "spring" }}
+                    >
+                      <achievement.icon className="h-12 w-12 text-primary mx-auto mb-4" />
+                    </motion.div>
+                    <motion.h3 
+                      className="text-4xl font-bold text-primary mb-2"
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.15 + 0.3 }}
+                    >
+                      {achievement.value}
+                    </motion.h3>
                     <p className="text-lg font-semibold mb-2">{achievement.label}</p>
                     <p className="text-sm text-muted-foreground">{achievement.description}</p>
                   </CardContent>
@@ -98,6 +116,7 @@ const Index = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
             <h2 className="text-4xl font-bold mb-4">
@@ -118,19 +137,27 @@ const Index = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -8, scale: 1.05 }}
+                transition={{ delay: index * 0.2, duration: 0.3 }}
                 className="group"
               >
-                <div className="card-gradient rounded-full p-4 hover-scale transition-premium backdrop-blur-sm">
+                <motion.div 
+                  className="card-gradient rounded-full p-4 backdrop-blur-sm border border-primary/20 shadow-glow"
+                  whileHover={{ boxShadow: "0 0 40px hsl(var(--primary-glow) / 0.6)" }}
+                >
                   <img 
                     src={client.logo} 
-                    alt={`${client.name} logo`}
-                    className="h-24 w-24 object-contain group-hover:scale-110 transition-smooth"
+                    alt={`${client.name} - YouTube channel logo`}
+                    className="h-24 w-24 object-contain"
+                    loading="lazy"
                   />
-                </div>
-                <p className="text-center mt-3 font-medium text-muted-foreground group-hover:text-primary transition-smooth">
+                </motion.div>
+                <motion.p 
+                  className="text-center mt-3 font-medium text-muted-foreground group-hover:text-primary transition-smooth"
+                  whileHover={{ scale: 1.05 }}
+                >
                   {client.name}
-                </p>
+                </motion.p>
               </motion.a>
             ))}
           </div>
@@ -138,12 +165,13 @@ const Index = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-background/50">
+      <section className="py-20 card-gradient backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
             <h2 className="text-4xl font-bold mb-4">
@@ -161,17 +189,32 @@ const Index = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
+                transition={{ delay: index * 0.15, duration: 0.3 }}
               >
-                <Card className="h-full hover-glow transition-premium">
+                <Card className="h-full hover-glow transition-premium bg-background/50 backdrop-blur-sm border-primary/20">
                   <CardHeader>
                     <div className="flex items-center justify-between mb-3">
                       <CardTitle className="text-xl">{testimonial.name}</CardTitle>
-                      <div className="flex gap-1">
+                      <motion.div 
+                        className="flex gap-1"
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.15 + 0.2 }}
+                      >
                         {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star key={i} className="h-5 w-5 fill-yellow-500 text-yellow-500" />
+                          <motion.div
+                            key={i}
+                            initial={{ opacity: 0, rotate: -180 }}
+                            whileInView={{ opacity: 1, rotate: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: index * 0.15 + 0.3 + i * 0.1 }}
+                          >
+                            <Star className="h-5 w-5 fill-yellow-500 text-yellow-500" />
+                          </motion.div>
                         ))}
-                      </div>
+                      </motion.div>
                     </div>
                     <Badge variant="secondary">{testimonial.project}</Badge>
                   </CardHeader>
@@ -192,26 +235,51 @@ const Index = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="card-gradient rounded-2xl p-12 text-center backdrop-blur-sm"
+            transition={{ duration: 0.6 }}
+            className="card-gradient rounded-2xl p-12 text-center backdrop-blur-sm border border-primary/20 shadow-glow"
           >
-            <h2 className="text-4xl font-bold mb-4">Ready to Bring Your Vision to Life?</h2>
-            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+            <motion.h2 
+              className="text-4xl font-bold mb-4"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            >
+              Ready to Bring Your Vision to Life?
+            </motion.h2>
+            <motion.p 
+              className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+            >
               Let's collaborate on your next video project. From concept to final cut, I'll help you create content that engages and inspires.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
+            </motion.p>
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+            >
+              <motion.a
                 href="/booking"
-                className="inline-flex items-center justify-center px-8 py-4 bg-primary hover:bg-primary/90 text-primary-foreground font-medium rounded-lg transition-smooth shadow-glow hover-scale"
+                className="inline-flex items-center justify-center px-8 py-4 bg-primary hover:bg-primary/90 text-primary-foreground font-medium rounded-lg transition-smooth shadow-glow"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 Book a Session
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href="/contact"
-                className="inline-flex items-center justify-center px-8 py-4 bg-background/50 hover:bg-background/70 text-foreground font-medium rounded-lg transition-smooth border border-border hover-scale"
+                className="inline-flex items-center justify-center px-8 py-4 bg-background/50 hover:bg-background/70 text-foreground font-medium rounded-lg transition-smooth border border-border"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 Get in Touch
-              </a>
-            </div>
+              </motion.a>
+            </motion.div>
           </motion.div>
         </div>
       </section>
