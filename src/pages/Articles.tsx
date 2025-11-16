@@ -117,7 +117,7 @@ const Articles = () => {
       date: '2024-10-28',
       readTime: '8 min read',
       image: articleVideoEditing,
-      url: 'https://www.youtube.com/@nextupstudioyt'
+      url: 'https://www.descript.com/blog/article/video-transitions'
     },
     {
       id: '6',
