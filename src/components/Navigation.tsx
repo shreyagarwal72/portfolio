@@ -4,6 +4,7 @@ import { Menu, X, Phone, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import SearchDialog from '@/components/SearchDialog';
+import ThemeToggle from '@/components/ThemeToggle';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,8 +17,9 @@ const Navigation = () => {
     { label: 'Portfolio', path: '/portfolio' },
     { label: 'Skills', path: '/skills' },
     { label: 'Articles', path: '/articles' },
+    { label: 'Process', path: '/process' },
+    { label: 'Booking', path: '/booking' },
     { label: 'YouTube', path: '/youtube' },
-    { label: 'Vanshu Bot', path: '/vanshu-bot' },
     { label: 'Contact', path: '/contact' },
   ];
 
@@ -50,8 +52,9 @@ const Navigation = () => {
             ))}
           </ul>
 
-          {/* Search and Contact Info */}
+          {/* Search, Theme Toggle and Contact Info */}
           <div className="hidden md:flex items-center space-x-4 text-sm text-muted-foreground" role="contentinfo">
+            <ThemeToggle />
             <Button
               variant="ghost"
               size="sm"

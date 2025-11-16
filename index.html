@@ -45,8 +45,9 @@
   <meta name="format-detection" content="telephone=no">
 
   <!-- --------------  FAVICONS  -------------- -->
-  <link rel="icon" type="image/png" href="/favicon.png">
-  <link rel="apple-touch-icon" href="/favicon.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png">
+  <link rel="apple-touch-icon" sizes="512x512" href="/favicon.png">
+  <link rel="shortcut icon" href="/favicon.png">
   <link rel="manifest" href="/manifest.json">
 
   <!-- --------------  PERFORMANCE HINTS  -------------- -->
@@ -131,6 +132,15 @@
       </div>
     </div>
   </noscript>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
 
   <script type="module" src="/src/main.tsx"></script>
 </body>
