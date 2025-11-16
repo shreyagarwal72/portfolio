@@ -106,9 +106,9 @@ const ProcessWorkflow = () => {
           <h2 className="text-3xl font-bold text-primary mb-6 text-center">Tools & Software I Use</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { name: 'Adobe Premiere Pro', category: 'Video Editing' },
-              { name: 'DaVinci Resolve', category: 'Color Grading' },
-              { name: 'After Effects', category: 'Motion Graphics' },
+              { name: 'Filmora', category: 'Video Editing' },
+              { name: 'Capcut', category: 'Color Grading' },
+              { name: 'Motion Ninja', category: 'Motion Graphics' },
               { name: 'Audacity', category: 'Audio Editing' },
             ].map((tool, index) => (
               <div key={index} className="text-center p-4 bg-background/50 rounded-lg hover-scale transition-premium">
