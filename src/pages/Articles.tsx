@@ -97,7 +97,7 @@ const Articles = () => {
       date: '2024-11-05',
       readTime: '6 min read',
       image: articleMusic,
-      url: 'https://www.youtube.com/@nextupstudioyt'
+      url: 'https://julianlangham.co.uk/how-to-make-a-music-video/'
     },
     {
       id: '4',
