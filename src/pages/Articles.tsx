@@ -127,7 +127,7 @@ const Articles = () => {
       date: '2024-10-25',
       readTime: '9 min read',
       image: articleGaming,
-      url: 'https://www.youtube.com/@nextupstudioyt'
+      url: 'https://www.togwe.com/blog/game-marketing-strategies/'
     },
     {
       id: '7',
