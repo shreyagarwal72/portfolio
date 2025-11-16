@@ -31,7 +31,7 @@ const VideoShowreel = () => {
             <div className="relative aspect-video bg-gradient-to-br from-primary/20 to-accent/20">
               <iframe
                 className="w-full h-full"
-                src="https://youtu.be/koZVuRfa_Gc?si=mA8PVlMJ3pCtFpPC"
+                src="https://www.youtube.com/embed/koZVuRfa_Gc?si=ofETtIZaxof-mWya"
                 title="Video Showreel"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
