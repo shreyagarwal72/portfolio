@@ -77,7 +77,7 @@ const Articles = () => {
       date: '2024-11-10',
       readTime: '5 min read',
       image: articleVideoEditing,
-      url: 'https://medium.com/@nextupstudio/video-editing-tips'
+      url: 'https://medium.com/honest-creative/5-beginner-video-editing-tips-to-create-view-worthy-content-362efd0dab7c'
     },
     {
       id: '2',
