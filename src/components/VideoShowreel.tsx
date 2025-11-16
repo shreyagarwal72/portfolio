@@ -43,7 +43,7 @@ const VideoShowreel = () => {
           <div className="mt-6 text-center">
             <p className="text-muted-foreground flex items-center justify-center gap-2">
               <Play className="h-4 w-4 text-primary" />
-              Professional video editing showcase featuring sppoky music, and creative content
+              Professional video editing showcase featuring spooky music, and creative content
             </p>
           </div>
         </motion.div>
