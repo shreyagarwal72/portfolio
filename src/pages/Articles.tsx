@@ -147,7 +147,7 @@ const Articles = () => {
       date: '2024-10-15',
       readTime: '6 min read',
       image: articleTutorials,
-      url: 'https://www.youtube.com/@nextupstudioyt'
+      url: 'https://www.google.com/amp/s/kissflow.com/workflow/workflow-optimization-tips-to-sharpen-business-processes/%3fhs_amp=true'
     },
     {
       id: '9',
