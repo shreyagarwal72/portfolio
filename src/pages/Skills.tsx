@@ -71,16 +71,16 @@ const Skills = () => {
 
   const experiences = [
     {
-      company: 'CONTENT CREATOR',
-      role: 'Video Editor',
-      period: '2020',
-      description: 'Creating engaging video content and tutorials'
-    },
-    {
       company: 'GAMING ENTHUSIAST',
       role: 'Gamer',
       period: '2018',
       description: 'Passionate about gaming content and community building'
+    },
+    {
+      company: 'CONTENT CREATOR',
+      role: 'Video Editor',
+      period: '2020',
+      description: 'Creating engaging video content and tutorials'
     },
     {
       company: 'CREATIVE ARTIST',
