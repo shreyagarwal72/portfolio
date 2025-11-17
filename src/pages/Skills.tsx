@@ -85,7 +85,7 @@ const Skills = () => {
     {
       company: 'CREATIVE ARTIST',
       role: 'Musician',
-      period: '2019',
+      period: '2024',
       description: 'Music production and composition for various projects'
     },
   ];
