@@ -13,14 +13,12 @@ const Navigation = () => {
 
   const navItems = [
     { label: 'Home', path: '/' },
-    { label: 'About', path: '/about' },
     { label: 'Portfolio', path: '/portfolio' },
     { label: 'Skills', path: '/skills' },
     { label: 'Articles', path: '/articles' },
     { label: 'Process', path: '/process' },
     { label: 'Booking', path: '/booking' },
     { label: 'YouTube', path: '/youtube' },
-    { label: 'Contact', path: '/contact' },
   ];
 
   const isActive = (path: string) => location.pathname === path;
