@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import LoadingAnimation from "./components/LoadingAnimation";
 import CursorGlow from "./components/CursorGlow";
 import BackToTop from "./components/BackToTop";
+import WhatsAppChat from "./components/WhatsAppChat";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Portfolio from "./pages/Portfolio";
@@ -66,6 +67,7 @@ const AppContent = () => {
         </main>
         <Footer />
         <BackToTop />
+        <WhatsAppChat />
       </div>
     </>
   );
