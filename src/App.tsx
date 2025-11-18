@@ -21,7 +21,6 @@ import TermsAndConditions from "./pages/TermsAndConditions";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Articles from "./pages/Articles";
 import ProcessWorkflow from "./pages/ProcessWorkflow";
-import Booking from "./pages/Booking";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -61,7 +60,6 @@ const AppContent = () => {
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/articles" element={<Articles />} />
             <Route path="/process" element={<ProcessWorkflow />} />
-            <Route path="/booking" element={<Booking />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
