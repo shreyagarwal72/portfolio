@@ -315,12 +315,12 @@ export default function Portfolio() {
                 <div className="relative card-gradient rounded-2xl border border-border/50 backdrop-blur-sm overflow-hidden hover-glow card-3d-content">
                   
                   {/* Thumbnail with 3D effect */}
-                  <div className="relative overflow-hidden aspect-video">
+                  <div className="relative overflow-hidden aspect-[16/10] bg-muted">
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10 opacity-60" />
                     <img
                       src={project.thumbnail}
                       alt={`${project.title} - ${project.description.substring(0, 50)}...`}
-                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-1"
+                      className="w-full h-full object-contain transition-all duration-700 group-hover:scale-105"
                       loading="lazy"
                       style={{ 
                         transform: 'translateZ(0)',
