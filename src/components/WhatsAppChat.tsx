@@ -28,7 +28,7 @@ const WhatsAppChat = () => {
 
   return (
     <motion.div
-      className="fixed bottom-24 right-6 z-50"
+      className="fixed bottom-20 right-6 md:bottom-24 z-50"
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ delay: 1, type: "spring", stiffness: 300, damping: 25 }}
@@ -37,7 +37,7 @@ const WhatsAppChat = () => {
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center justify-center w-16 h-16 bg-[#25D366] rounded-full shadow-2xl relative group cursor-pointer"
+        className="flex items-center justify-center w-14 h-14 md:w-16 md:h-16 bg-[#25D366] rounded-full shadow-2xl relative group cursor-pointer"
         style={{ x: springX, y: springY }}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
@@ -56,7 +56,7 @@ const WhatsAppChat = () => {
             ease: "easeInOut"
           }}
         >
-          <MessageCircle className="w-8 h-8 text-white" />
+          <MessageCircle className="w-7 h-7 md:w-8 md:h-8 text-white" />
         </motion.div>
         
         {/* Multiple pulse rings */}

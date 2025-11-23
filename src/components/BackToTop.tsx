@@ -43,7 +43,7 @@ const BackToTop = () => {
           whileHover={{ scale: 1.15, rotate: 5 }}
           whileTap={{ scale: 0.9 }}
           transition={{ type: "spring", stiffness: 400, damping: 17 }}
-          className="fixed bottom-8 right-8 z-40 rounded-full w-14 h-14 bg-primary text-primary-foreground shadow-lg hover-glow group"
+          className="fixed bottom-32 right-6 md:bottom-8 md:right-8 z-40 rounded-full w-12 h-12 md:w-14 md:h-14 bg-primary text-primary-foreground shadow-lg hover-glow group"
           style={{ scale }}
           aria-label="Back to top"
         >
@@ -55,7 +55,7 @@ const BackToTop = () => {
               ease: "easeInOut"
             }}
           >
-            <ArrowUp className="h-6 w-6 mx-auto" />
+            <ArrowUp className="h-5 w-5 md:h-6 md:w-6 mx-auto" />
           </motion.div>
           
           {/* Glow ring */}

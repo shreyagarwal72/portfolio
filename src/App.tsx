@@ -37,43 +37,34 @@ const AppContent = () => {
   const isHomePage = location.pathname === '/';
 
   useEffect(() => {
-    // Reset loading state for non-home pages on route change
-    if (!isHomePage) {
-      setIsLoading(true);
-      const timer = setTimeout(() => setIsLoading(false), 1000);
-      return () => clearTimeout(timer);
-    } else {
-      setIsLoading(false);
-    }
-  }, [location.pathname, isHomePage]);
+    // No loading animation - instant page transitions
+    setIsLoading(false);
+  }, [location.pathname]);
 
   return (
     <>
-      {isLoading && !isHomePage && <LoadingAnimation onComplete={() => setIsLoading(false)} duration={800} />}
       <ScrollProgressBar />
       <div className="min-h-screen bg-background flex flex-col">
         <ScrollNavigation />
         <main className="flex-grow">
-          <Suspense fallback={<LoadingAnimation onComplete={() => {}} duration={800} />}>
-            <PageTransition>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/portfolio" element={<Portfolio />} />
-                <Route path="/skills" element={<Skills />} />
-                <Route path="/youtube" element={<YouTube />} />
-                <Route path="/vanshu-bot" element={<VanshuBot />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/cv" element={<CV />} />
-                <Route path="/terms" element={<TermsAndConditions />} />
-                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                <Route path="/articles" element={<Articles />} />
-                <Route path="/process" element={<ProcessWorkflow />} />
-                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </PageTransition>
-          </Suspense>
+          <PageTransition>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/portfolio" element={<Portfolio />} />
+              <Route path="/skills" element={<Skills />} />
+              <Route path="/youtube" element={<YouTube />} />
+              <Route path="/vanshu-bot" element={<VanshuBot />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/cv" element={<CV />} />
+              <Route path="/terms" element={<TermsAndConditions />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/articles" element={<Articles />} />
+              <Route path="/process" element={<ProcessWorkflow />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </PageTransition>
         </main>
         <Footer />
         <BackToTop />

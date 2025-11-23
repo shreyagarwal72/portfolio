@@ -101,7 +101,7 @@ const ScrollNavigation = () => {
             ))}
           </ul>
 
-          {/* Search, Theme Toggle and Contact Info */}
+          {/* Search, Theme Toggle and Contact Info - Desktop */}
           <div className="hidden md:flex items-center space-x-4 text-sm text-muted-foreground" role="contentinfo">
             <ThemeToggle />
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -124,21 +124,24 @@ const ScrollNavigation = () => {
               9412104618
             </motion.a>
           </div>
+          
+          {/* Mobile - Theme Toggle and Menu Button */}
+          <div className="md:hidden flex items-center space-x-2">
+            <ThemeToggle />
+            <motion.div whileTap={{ scale: 0.95 }}>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsOpen(!isOpen)}
+                aria-label={isOpen ? "Close menu" : "Open menu"}
+                aria-expanded={isOpen}
+                aria-controls="mobile-menu"
+              >
+                {isOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
+              </Button>
+            </motion.div>
+          </div>
 
-          {/* Mobile menu button */}
-          <motion.div whileTap={{ scale: 0.95 }}>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="md:hidden"
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label={isOpen ? "Close menu" : "Open menu"}
-              aria-expanded={isOpen}
-              aria-controls="mobile-menu"
-            >
-              {isOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
-            </Button>
-          </motion.div>
         </motion.div>
 
         {/* Mobile Navigation */}
