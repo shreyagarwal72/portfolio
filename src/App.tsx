@@ -13,6 +13,7 @@ import LoadingAnimation from "./components/LoadingAnimation";
 import CursorGlow from "./components/CursorGlow";
 import BackToTop from "./components/BackToTop";
 import WhatsAppChat from "./components/WhatsAppChat";
+import MobileCTA from "./components/MobileCTA";
 
 // Lazy load pages for better performance
 const Index = lazy(() => import("./pages/Index"));
@@ -69,6 +70,7 @@ const AppContent = () => {
         <Footer />
         <BackToTop />
         <WhatsAppChat />
+        <MobileCTA />
       </div>
     </>
   );
