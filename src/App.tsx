@@ -6,10 +6,8 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
-import LoadingAnimation from "./components/LoadingAnimation";
 import CursorGlow from "./components/CursorGlow";
 import BackToTop from "./components/BackToTop";
-import WhatsAppChat from "./components/WhatsAppChat";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Portfolio from "./pages/Portfolio";
@@ -32,19 +30,12 @@ const AppContent = () => {
   const isHomePage = location.pathname === '/';
 
   useEffect(() => {
-    // Reset loading state for non-home pages on route change
-    if (!isHomePage) {
-      setIsLoading(true);
-      const timer = setTimeout(() => setIsLoading(false), 1000);
-      return () => clearTimeout(timer);
-    } else {
-      setIsLoading(false);
-    }
-  }, [location.pathname, isHomePage]);
+    // No loading animation for any page
+    setIsLoading(false);
+  }, [location.pathname]);
 
   return (
     <>
-      {isLoading && !isHomePage && <LoadingAnimation onComplete={() => setIsLoading(false)} duration={1000} />}
       <div className="min-h-screen bg-background flex flex-col">
         <Navigation />
         <main className="flex-grow">
@@ -67,7 +58,6 @@ const AppContent = () => {
         </main>
         <Footer />
         <BackToTop />
-        <WhatsAppChat />
       </div>
     </>
   );
