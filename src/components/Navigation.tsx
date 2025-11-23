@@ -19,6 +19,7 @@ const Navigation = () => {
     { label: 'Process', path: '/process' },
     { label: 'About', path: '/about' },
     { label: 'YouTube', path: '/youtube' },
+    { label: 'Vanshu Bot', path: '/vanshu-bot' },
   ];
 
   const isActive = (path: string) => location.pathname === path;
