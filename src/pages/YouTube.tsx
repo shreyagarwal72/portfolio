@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Sun, Moon } from 'lucide-react';
+import VideoPlayer from '@/components/VideoPlayer';
 
 const YouTube = () => {
   const [subscriberCount, setSubscriberCount] = useState('Loading...');
@@ -86,12 +86,11 @@ const YouTube = () => {
         {/* Videos Grid */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <div className="space-y-4 animate-fade-in hover-lift transition-smooth">
-            <div className="relative aspect-video rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-smooth">
-              <iframe 
-                src="https://www.youtube.com/embed/apok4v8Pzow" 
-                title="🔥 Fire Within - Official Track"
-                className="w-full h-full"
-                allowFullScreen
+            <div className="relative rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-smooth">
+              <VideoPlayer
+                src="/videos/fire-within.mp4"
+                poster="https://i.ytimg.com/vi/apok4v8Pzow/maxresdefault.jpg"
+                className="w-full"
               />
             </div>
             <div className="space-y-2">
@@ -101,12 +100,11 @@ const YouTube = () => {
           </div>
 
           <div className="space-y-4 animate-fade-in hover-lift transition-smooth" style={{ animationDelay: '0.2s' }}>
-            <div className="relative aspect-video rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-smooth">
-              <iframe 
-                src="https://www.youtube.com/embed/xftcj39h-QY" 
-                title="🎵 Raat Ka Banda - Epic Edit"
-                className="w-full h-full"
-                allowFullScreen
+            <div className="relative rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-smooth">
+              <VideoPlayer
+                src="/videos/raat-ka-banda.mp4"
+                poster="https://i.ytimg.com/vi/xftcj39h-QY/maxresdefault.jpg"
+                className="w-full"
               />
             </div>
             <div className="space-y-2">
