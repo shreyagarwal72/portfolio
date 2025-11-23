@@ -1,5 +1,6 @@
 import { MapPin, Mail } from 'lucide-react';
 import { useEffect } from 'react';
+import vanshuProfile from '@/assets/vanshu-profile.jpg';
 
 const About = () => {
   useEffect(() => {
@@ -114,12 +115,12 @@ const About = () => {
               <figure className="relative card-gradient rounded-2xl p-8 transition-smooth hover:scale-105 hover:shadow-2xl">
                 <div className="aspect-[3/4] bg-muted rounded-xl overflow-hidden shadow-inner">
                   <img 
-                    src="https://i.postimg.cc/d3xjhmn2/IMG-20250316-WA0005.jpg" 
-                    alt="Professional portrait of Vanshu Agarwal, video editor and creative content creator"
+                    src={vanshuProfile}
+                    alt="Vanshu Agarwal - Professional video editor, content creator, and musician specializing in gaming content and creative production"
                     className="w-full h-full object-cover hover:scale-110 transition-smooth"
-                    loading="lazy"
-                    width="400"
-                    height="533"
+                    loading="eager"
+                    width="800"
+                    height="1056"
                   />
                 </div>
                 
