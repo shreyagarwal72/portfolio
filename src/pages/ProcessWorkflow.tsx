@@ -5,8 +5,64 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 
 const ProcessWorkflow = () => {
   useEffect(() => {
-    document.title = 'My Process & Workflow | Vanshu Agarwal';
+    document.title = 'My Process & Workflow | Vanshu Agarwal - Professional Video Editing Process';
+    
+    // Add meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Discover Vanshu Agarwal\'s streamlined video editing process from initial consultation to final delivery. Learn about professional workflows, tools, and collaborative approach to creative projects.');
+    }
+    
+    // Add structured data
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Video Editing Process & Workflow",
+      "description": "Professional video editing workflow from consultation to delivery",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Initial Consultation",
+          "text": "Discuss project requirements, vision, goals, and timeline"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Planning & Scripting",
+          "text": "Create detailed plan with storyboards and scripts"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Editing & Production",
+          "text": "Professional editing with effects, transitions, and color grading"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Review & Refinement",
+          "text": "Client review and feedback implementation"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Final Delivery",
+          "text": "Deliver optimized final video in preferred format"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Ongoing Support",
+          "text": "Post-delivery support and future collaboration"
+        }
+      ]
+    });
+    document.head.appendChild(script);
+    
     window.scrollTo(0, 0);
+    
+    return () => {
+      if (document.head.contains(script)) {
+        document.head.removeChild(script);
+      }
+    };
   }, []);
 
   const steps = [
