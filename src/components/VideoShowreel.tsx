@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Play } from 'lucide-react';
 import { Card } from '@/components/ui/card';
+import VideoPlayer from '@/components/VideoPlayer';
 
 const VideoShowreel = () => {
   return (
@@ -29,12 +30,10 @@ const VideoShowreel = () => {
         >
           <Card className="overflow-hidden hover-lift transition-premium border-primary/20">
             <div className="relative aspect-video bg-gradient-to-br from-primary/20 to-accent/20">
-              <iframe
+              <VideoPlayer
+                src="/videos/night-of-shadows.mp4"
+                poster="https://i.ytimg.com/vi/koZVuRfa_Gc/maxresdefault.jpg"
                 className="w-full h-full"
-                src="https://www.youtube.com/embed/koZVuRfa_Gc?si=ofETtIZaxof-mWya"
-                title="Video Showreel"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent pointer-events-none" />
             </div>
@@ -43,7 +42,7 @@ const VideoShowreel = () => {
           <div className="mt-6 text-center">
             <p className="text-muted-foreground flex items-center justify-center gap-2">
               <Play className="h-4 w-4 text-primary" />
-              Professional video editing showcase featuring spooky music, and creative content
+              Night of Shadows - Official Halloween Music Video featuring spooky music and creative content
             </p>
           </div>
         </motion.div>
