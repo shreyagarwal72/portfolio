@@ -5,12 +5,6 @@
 /* Dark video editor portfolio design system. All colors MUST be HSL. */
 
 @layer base {
-  * {
-    transition-property: background-color, border-color, color, fill, stroke;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 300ms;
-  }
-
   :root {
     /* Dark theme base colors */
     --background: 210 11% 8%;
@@ -91,70 +85,35 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  /* Light mode - Bright and clean design */
-  .light {
-    --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
-    --primary: 221 83% 53%;
-    --primary-foreground: 0 0% 100%;
-    --primary-glow: 217 91% 60%;
-    --primary-dark: 221 83% 40%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
-    --accent: 210 40% 93%;
-    --accent-foreground: 222 47% 11%;
+  /* Dark mode uses the same colors since we're dark by default */
+  .dark {
+    --background: 210 11% 8%;
+    --foreground: 0 0% 98%;
+    --card: 210 11% 10%;
+    --card-foreground: 0 0% 98%;
+    --popover: 210 11% 9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 213 89% 64%;
+    --primary-foreground: 0 0% 8%;
+    --secondary: 210 11% 15%;
+    --secondary-foreground: 0 0% 90%;
+    --muted: 210 11% 13%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 210 11% 14%;
+    --accent-foreground: 0 0% 98%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 221 83% 53%;
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 221 83% 53%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 221 83% 53%;
-  }
-
-  /* Dark mode - Enhanced dark colors */
-  .dark {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
-    --card: 222 47% 11%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 47% 11%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217 91% 60%;
-    --primary-foreground: 0 0% 100%;
-    --primary-glow: 220 100% 70%;
-    --primary-dark: 215 85% 50%;
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 223 47% 11%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 216 34% 17%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 224 76% 48%;
-    --sidebar-background: 222 47% 11%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 217 91% 60%;
-    --sidebar-primary-foreground: 222 47% 11%;
-    --sidebar-accent: 216 34% 17%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 217 33% 17%;
-    --sidebar-ring: 224 76% 48%;
+    --border: 210 11% 18%;
+    --input: 210 11% 15%;
+    --ring: 213 89% 64%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
@@ -258,49 +217,22 @@
   }
   }
 
-  /* iOS-like glass morphism - Enhanced */
+  /* iOS-like glass morphism */
   .glass-effect {
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.08) 0%,
-      rgba(255, 255, 255, 0.03) 100%
-    );
-    backdrop-filter: blur(24px) saturate(180%) brightness(1.1);
-    -webkit-backdrop-filter: blur(24px) saturate(180%) brightness(1.1);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 
-      0 8px 32px rgba(0, 0, 0, 0.37),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-  }
-  
-  .glass-effect::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.05) 0%,
-      transparent 50%,
-      rgba(0, 0, 0, 0.05) 100%
-    );
-    pointer-events: none;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  /* Smooth hover states - Enhanced */
+  /* Smooth hover states */
   .hover-lift {
-    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                box-shadow 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                filter 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .hover-lift:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 
-      0 20px 40px -12px hsl(var(--primary) / 0.4),
-      0 0 60px hsl(var(--primary) / 0.2);
-    filter: brightness(1.1);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px -8px hsl(var(--primary) / 0.3);
   }
 
   /* 3D card transform effect */
@@ -318,28 +250,9 @@
     transition: var(--transition-ios);
   }
 
-  /* Premium glow on hover - Enhanced with animation */
+  /* Premium glow on hover */
   .hover-glow {
-    position: relative;
     transition: var(--transition-ios);
-  }
-  
-  .hover-glow::before {
-    content: '';
-    position: absolute;
-    inset: -4px;
-    background: linear-gradient(
-      135deg,
-      hsl(var(--primary) / 0.3),
-      hsl(var(--primary-glow) / 0.2),
-      hsl(var(--primary) / 0.3)
-    );
-    border-radius: inherit;
-    opacity: 0;
-    filter: blur(20px);
-    transition: opacity 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    z-index: -1;
-    animation: glow-rotate 3s linear infinite;
   }
 
   .hover-glow:hover {
@@ -349,19 +262,6 @@
       inset 0 0 0 1px hsl(var(--primary) / 0.15);
     border-color: hsl(var(--primary) / 0.6);
     transform: translateY(-4px) scale(1.01);
-  }
-  
-  .hover-glow:hover::before {
-    opacity: 1;
-  }
-  
-  @keyframes glow-rotate {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
   }
 
   /* Parallax scrolling */

@@ -3,32 +3,26 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { useEffect, useState, Suspense, lazy } from "react";
-import { ThemeProvider } from "./components/ThemeProvider";
-import ScrollNavigation from "./components/ScrollNavigation";
-import PageTransition from "./components/PageTransition";
-import ScrollProgressBar from "./components/ScrollProgressBar";
+import { useEffect, useState } from "react";
+import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import LoadingAnimation from "./components/LoadingAnimation";
 import CursorGlow from "./components/CursorGlow";
 import BackToTop from "./components/BackToTop";
 import WhatsAppChat from "./components/WhatsAppChat";
-import MobileCTA from "./components/MobileCTA";
-
-// Lazy load pages for better performance
-const Index = lazy(() => import("./pages/Index"));
-const About = lazy(() => import("./pages/About"));
-const Portfolio = lazy(() => import("./pages/Portfolio"));
-const Skills = lazy(() => import("./pages/Skills"));
-const Contact = lazy(() => import("./pages/Contact"));
-const CV = lazy(() => import("./pages/cv"));
-const YouTube = lazy(() => import("./pages/YouTube"));
-const VanshuBot = lazy(() => import("./pages/VanshuBot"));
-const TermsAndConditions = lazy(() => import("./pages/TermsAndConditions"));
-const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
-const Articles = lazy(() => import("./pages/Articles"));
-const ProcessWorkflow = lazy(() => import("./pages/ProcessWorkflow"));
-const NotFound = lazy(() => import("./pages/NotFound"));
+import Index from "./pages/Index";
+import About from "./pages/About";
+import Portfolio from "./pages/Portfolio";
+import Skills from "./pages/Skills";
+import Contact from "./pages/Contact";
+import CV from "./pages/cv";
+import YouTube from "./pages/YouTube";
+import VanshuBot from "./pages/VanshuBot";
+import TermsAndConditions from "./pages/TermsAndConditions";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Articles from "./pages/Articles";
+import ProcessWorkflow from "./pages/ProcessWorkflow";
+import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
@@ -38,45 +32,42 @@ const AppContent = () => {
   const isHomePage = location.pathname === '/';
 
   useEffect(() => {
-    // No loading animation - instant page transitions
-    setIsLoading(false);
-  }, [location.pathname]);
+    // Reset loading state for non-home pages on route change
+    if (!isHomePage) {
+      setIsLoading(true);
+      const timer = setTimeout(() => setIsLoading(false), 1000);
+      return () => clearTimeout(timer);
+    } else {
+      setIsLoading(false);
+    }
+  }, [location.pathname, isHomePage]);
 
   return (
     <>
-      <ScrollProgressBar />
+      {isLoading && !isHomePage && <LoadingAnimation onComplete={() => setIsLoading(false)} duration={1000} />}
       <div className="min-h-screen bg-background flex flex-col">
-        <ScrollNavigation />
+        <Navigation />
         <main className="flex-grow">
-          <Suspense fallback={
-            <div className="min-h-screen flex items-center justify-center">
-              <LoadingAnimation />
-            </div>
-          }>
-            <PageTransition>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/portfolio" element={<Portfolio />} />
-                <Route path="/skills" element={<Skills />} />
-                <Route path="/youtube" element={<YouTube />} />
-                <Route path="/vanshu-bot" element={<VanshuBot />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/cv" element={<CV />} />
-                <Route path="/terms" element={<TermsAndConditions />} />
-                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                <Route path="/articles" element={<Articles />} />
-                <Route path="/process" element={<ProcessWorkflow />} />
-                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </PageTransition>
-          </Suspense>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/skills" element={<Skills />} />
+            <Route path="/youtube" element={<YouTube />} />
+            <Route path="/vanshu-bot" element={<VanshuBot />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/cv" element={<CV />} />
+            <Route path="/terms" element={<TermsAndConditions />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/articles" element={<Articles />} />
+            <Route path="/process" element={<ProcessWorkflow />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
         </main>
         <Footer />
         <BackToTop />
         <WhatsAppChat />
-        <MobileCTA />
       </div>
     </>
   );
@@ -100,16 +91,14 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <CursorGlow />
-          <BrowserRouter>
-            <AppContent />
-          </BrowserRouter>
-        </TooltipProvider>
-      </ThemeProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <CursorGlow />
+        <BrowserRouter>
+          <AppContent />
+        </BrowserRouter>
+      </TooltipProvider>
     </QueryClientProvider>
   );
 };
