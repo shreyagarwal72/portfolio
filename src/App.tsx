@@ -48,24 +48,30 @@ const AppContent = () => {
       <div className="min-h-screen bg-background flex flex-col">
         <ScrollNavigation />
         <main className="flex-grow">
-          <PageTransition>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/portfolio" element={<Portfolio />} />
-              <Route path="/skills" element={<Skills />} />
-              <Route path="/youtube" element={<YouTube />} />
-              <Route path="/vanshu-bot" element={<VanshuBot />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/cv" element={<CV />} />
-              <Route path="/terms" element={<TermsAndConditions />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-              <Route path="/articles" element={<Articles />} />
-              <Route path="/process" element={<ProcessWorkflow />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </PageTransition>
+          <Suspense fallback={
+            <div className="min-h-screen flex items-center justify-center">
+              <LoadingAnimation />
+            </div>
+          }>
+            <PageTransition>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/portfolio" element={<Portfolio />} />
+                <Route path="/skills" element={<Skills />} />
+                <Route path="/youtube" element={<YouTube />} />
+                <Route path="/vanshu-bot" element={<VanshuBot />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/cv" element={<CV />} />
+                <Route path="/terms" element={<TermsAndConditions />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/articles" element={<Articles />} />
+                <Route path="/process" element={<ProcessWorkflow />} />
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </PageTransition>
+          </Suspense>
         </main>
         <Footer />
         <BackToTop />
