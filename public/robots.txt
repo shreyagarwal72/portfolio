@@ -12,6 +12,15 @@ Allow: /
 
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*.json$
+
+# Sitemap location
+Sitemap: https://vanshu-aggarwal.lovable.app/sitemap.xml
+
+# Crawl delay for bots
+Crawl-delay: 1
 
 # Sitemap location
 Sitemap: https://vanshubhai.vercel.app/sitemap.xml
