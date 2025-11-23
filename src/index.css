@@ -5,6 +5,12 @@
 /* Dark video editor portfolio design system. All colors MUST be HSL. */
 
 @layer base {
+  * {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+
   :root {
     /* Dark theme base colors */
     --background: 210 11% 8%;
