@@ -89,7 +89,7 @@ const YouTube = () => {
             <div className="relative rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-smooth">
               <VideoPlayer
                 src="/videos/fire-within.mp4"
-                poster="https://i.ytimg.com/vi/apok4v8Pzow/maxresdefault.jpg"
+                poster="/images/fire-within-thumb.jpg"
                 className="w-full"
               />
             </div>
@@ -103,7 +103,7 @@ const YouTube = () => {
             <div className="relative rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-smooth">
               <VideoPlayer
                 src="/videos/raat-ka-banda.mp4"
-                poster="https://i.ytimg.com/vi/xftcj39h-QY/maxresdefault.jpg"
+                poster="/images/raat-ka-banda-thumb.jpg"
                 className="w-full"
               />
             </div>
