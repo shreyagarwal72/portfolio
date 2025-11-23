@@ -16,6 +16,7 @@ import Contact from "./pages/Contact";
 import CV from "./pages/cv";
 import YouTube from "./pages/YouTube";
 import VanshuBot from "./pages/VanshuBot";
+import VideoShowcase from "./pages/VideoShowcase";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Articles from "./pages/Articles";
@@ -46,6 +47,7 @@ const AppContent = () => {
             <Route path="/skills" element={<Skills />} />
             <Route path="/youtube" element={<YouTube />} />
             <Route path="/vanshu-bot" element={<VanshuBot />} />
+            <Route path="/video-showcase" element={<VideoShowcase />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/cv" element={<CV />} />
             <Route path="/terms" element={<TermsAndConditions />} />
