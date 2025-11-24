@@ -209,7 +209,7 @@ Please open an issue or submit a pull request if you’d like to help improve th
 
 📧 Email: sanjayvansu1973@gmail.com
 📞 Phone: +91 9412104618
-📍 Location: Agra, UP, India
+📍 Location: Agra, Uttar Pradesh, India
 🎥 YouTube: @nextupstudioyt
 
 
