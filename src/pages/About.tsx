@@ -113,12 +113,12 @@ const About = () => {
               
               {/* Main card */}
               <figure className="relative card-gradient rounded-2xl p-8 transition-smooth hover:scale-105 hover:shadow-2xl">
-                <div className="aspect-[3/4] bg-muted rounded-xl overflow-hidden shadow-inner">
+                <div className="aspect-[3/4] bg-muted rounded-xl overflow-hidden shadow-inner flex items-center justify-center">
                   <img 
                     src={vanshuProfile}
-                    alt="Vanshu Agarwal - Professional video editor, content creator, and musician from Agra specializing in gaming content, music production, and creative video editing services"
-                    title="Vanshu Agarwal - Video Editor & Content Creator"
-                    className="w-full h-full object-cover hover:scale-110 transition-smooth"
+                    alt="Vanshu Agarwal professional photo - Video editor and content creator from Agra, India specializing in gaming content creation, music production, video editing services, and creative digital storytelling"
+                    title="Vanshu Agarwal - Professional Video Editor, Gamer & Musician from Agra"
+                    className="w-full h-full object-contain hover:scale-105 transition-smooth"
                     loading="eager"
                     width="800"
                     height="1067"
