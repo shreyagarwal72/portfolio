@@ -1,9 +1,10 @@
 import { Button } from '@/components/ui/button';
-import { Download, Github, Linkedin, Instagram, Twitter, Facebook } from 'lucide-react';
+import { Download } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Floating3D } from '@/components/Floating3D';
 import heroWorkspace from '@/assets/hero-workspace.jpg';
 import { useEffect } from 'react';
+import ElectricButton from '@/components/ElectricButton';
 
 const Hero = () => {
   useEffect(() => {
@@ -93,14 +94,7 @@ const Hero = () => {
                   Open CV
                 </Link>
               </Button>
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="w-full sm:w-auto border-white/20 bg-white/10 hover:bg-white/20 text-white px-8 py-3 text-lg backdrop-blur-sm hover-lift transition-smooth"
-                asChild
-              >
-                <Link to="/portfolio" aria-label="View Vanshu Agarwal's creative portfolio and projects">View Portfolio</Link>
-              </Button>
+              <ElectricButton to="/portfolio" text="View Portfolio" />
             </nav>
           </div>
         </div>
