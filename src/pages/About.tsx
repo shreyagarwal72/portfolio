@@ -139,8 +139,8 @@ const About = () => {
           </aside>
         </div>
 
-        {/* Social Media Cards */}
-        <section className="mt-20 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+        {/* Social Media Cards - Desktop Only */}
+        <section className="hidden md:block mt-20 animate-fade-in" style={{ animationDelay: '0.4s' }}>
           <h2 className="text-3xl font-bold text-white mb-8 text-center">
             Connect With <span className="text-primary">Me</span>
           </h2>
