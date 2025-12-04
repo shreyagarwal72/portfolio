@@ -1,0 +1,452 @@
+.electric-button-container {
+  --filament: #8b451333;
+  --filament-grow: #fdfdf9;
+  --glow: #ff9f70;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  position: relative;
+  width: 215px;
+  height: 60px;
+}
+
+.electric-button-container .area:nth-child(1):hover ~ .electric-button::before {
+  transform: translate(0%, 0);
+}
+
+.electric-button-container .area:nth-child(2):hover ~ .electric-button::before {
+  transform: translate(-25%, 0);
+}
+
+.electric-button-container .area:nth-child(3):hover ~ .electric-button::before {
+  transform: translate(-50%, 0);
+}
+
+.electric-button-container .area:nth-child(4):hover ~ .electric-button::before {
+  transform: translate(-75%, 0);
+}
+
+.electric-button-container .area:nth-child(5):hover ~ .electric-button::before {
+  transform: translate(-100%, 0);
+}
+
+.electric-button-container .area:nth-child(6):hover ~ .electric-button::before {
+  transform: translate(0%, -50%);
+}
+
+.electric-button-container .area:nth-child(7):hover ~ .electric-button::before {
+  transform: translate(-25%, -50%);
+}
+
+.electric-button-container .area:nth-child(8):hover ~ .electric-button::before {
+  transform: translate(-50%, -50%);
+}
+
+.electric-button-container .area:nth-child(9):hover ~ .electric-button::before {
+  transform: translate(-75%, -50%);
+}
+
+.electric-button-container .area:nth-child(10):hover ~ .electric-button::before {
+  transform: translate(-100%, -50%);
+}
+
+.electric-button-container .area:nth-child(11):hover ~ .electric-button::before {
+  transform: translate(0%, -100%);
+}
+
+.electric-button-container .area:nth-child(12):hover ~ .electric-button::before {
+  transform: translate(-25%, -100%);
+}
+
+.electric-button-container .area:nth-child(13):hover ~ .electric-button::before {
+  transform: translate(-50%, -100%);
+}
+
+.electric-button-container .area:nth-child(14):hover ~ .electric-button::before {
+  transform: translate(-75%, -100%);
+}
+
+.electric-button-container .area:nth-child(15):hover ~ .electric-button::before {
+  transform: translate(-100%, -100%);
+}
+
+.electric-button {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 215px;
+  height: 60px;
+  border: none;
+  outline: none;
+  background: none;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 2;
+  text-decoration: none;
+}
+
+.electric-button::before {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 60px;
+  background-color: #ff9f7080;
+  filter: blur(50px);
+  border-radius: 50px;
+  top: 50%;
+  left: 50%;
+  z-index: -4;
+  transform: translateX(-50%);
+  transition: all 0.3s ease-out;
+}
+
+.electric-button:hover .base,
+.electric-button:focus .base {
+  box-shadow:
+    inset 5px -5px 10px 0 #000000cc,
+    inset 1px -10px 15px 1px #ffffff66;
+}
+
+.electric-button:hover .filament-glow path,
+.electric-button:focus .filament-glow path {
+  animation: electric-drawLine 1s ease-in-out forwards;
+}
+
+.electric-button:hover .filament-glow stop,
+.electric-button:focus .filament-glow stop {
+  animation: electric-light-on 0.2s forwards;
+}
+
+.electric-button:hover .electric-text,
+.electric-button:focus .electric-text {
+  text-shadow: 0 0 5px var(--glow);
+}
+
+.electric-button:hover .glow {
+  opacity: 1;
+  transition: all 0.5s ease-out;
+}
+
+.electric-button:hover .electric-text > span {
+  animation: electric-slide-scroll 0.5s calc(var(--i) * 0.02s) ease;
+}
+
+.electric-button:not(:hover):not(:focus) .filament-glow path {
+  stroke-dashoffset: 0;
+}
+
+.electric-button:not(:hover):not(:focus) .filament-glow stop {
+  animation: electric-light-off 0.2s forwards;
+}
+
+.electric-button .base {
+  position: relative;
+  width: 65px;
+  height: 60px;
+  background-color: #101522;
+  border-radius: 40px 2px 2px 40px;
+  box-shadow:
+    inset 0 -5px 10px 0 #000000cc,
+    inset 1px -10px 15px 1px #ffffff66;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+}
+
+.electric-button .base::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  width: 65px;
+  height: 25px;
+  background: linear-gradient(#fff, #e8edf7);
+  border-radius: 30px;
+  filter: blur(10px);
+  opacity: 0.7;
+}
+
+.electric-button .base::after {
+  content: "";
+  position: absolute;
+  right: 2px;
+  width: 2px;
+  height: 60px;
+  background: linear-gradient(transparent 0%, #fff 30%, transparent 90%);
+  filter: blur(1px);
+}
+
+.electric-button .filament {
+  position: absolute;
+  top: 50%;
+  left: 45px;
+  transform: translateY(-50%);
+  z-index: -1;
+}
+
+.electric-button .filament-glow path {
+  stroke: url(#strokeGradient);
+  stroke-width: 3;
+  fill: none;
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+}
+
+.electric-button .glow {
+  position: absolute;
+  top: 50%;
+  left: 65px;
+  width: 35px;
+  height: 40px;
+  background-color: #ffe7a0;
+  filter: blur(5px);
+  border-radius: 0 50% 50% 0;
+  z-index: -2;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: all 0.2s ease-out;
+}
+
+.electric-button .glow::before {
+  content: "";
+  display: block;
+  width: 150px;
+  height: 60px;
+  background: radial-gradient(circle at 0 50%, var(--glow) 40%, #ff9d0000);
+  filter: blur(20px);
+  border-radius: 5px 40px 40px 5px;
+  z-index: -3;
+  transform: translateY(-10px);
+}
+
+.electric-button .glow::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 40px;
+  border: 3px solid orange;
+  border-right: none;
+  border-radius: 40%;
+  transition: all 0.2s ease-in-out;
+  transform: translate(-10px, -65px);
+}
+
+.electric-button .lightning-marquee {
+  display: flex;
+  width: 150px;
+  mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 1) 20%,
+    rgba(0, 0, 0, 1) 80%,
+    rgba(0, 0, 0, 0)
+  );
+  overflow: hidden;
+  border-radius: 5px 40px 40px 5px;
+  opacity: 0;
+}
+
+.electric-button .lightning-marquee > div {
+  display: flex;
+  flex-shrink: 0;
+  width: 100%;
+  transform: translateX(-100%);
+  opacity: 0.3;
+  animation: electric-marquee 1s linear infinite;
+}
+
+.electric-button .lightning-marquee > div > :nth-child(1) {
+  animation: electric-lightning-rotate-1 0.2s linear infinite;
+}
+
+.electric-button .lightning-marquee > div > :nth-child(2) {
+  animation: electric-lightning-rotate-2 0.2s linear infinite;
+}
+
+.electric-button .lightning-marquee > div > :nth-child(3) {
+  animation: electric-lightning-rotate-3 0.2s linear infinite;
+}
+
+.electric-button .lightning-marquee > div > :nth-child(4) {
+  animation: electric-lightning-rotate-4 0.2s linear infinite;
+}
+
+.electric-button .lightning-marquee > div > :nth-child(5) {
+  animation: electric-lightning-rotate-5 0.2s linear infinite;
+}
+
+.electric-button .electric-text {
+  position: absolute;
+  z-index: -1;
+  top: 30%;
+  left: 95px;
+  color: var(--filament-grow);
+  white-space: nowrap;
+  letter-spacing: -0.1rem;
+  user-select: none;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.electric-button .electric-text span {
+  display: inline-block;
+  animation: electric-slide-down 0.5s calc(var(--i) * 0.02s) ease;
+}
+
+.electric-button .bulb-wrapper {
+  position: absolute;
+  top: 50%;
+  left: calc(50% + 32.5px);
+  width: 150px;
+  height: 60px;
+  pointer-events: none;
+  z-index: 3;
+  transform: translate(-50%, -50%);
+}
+
+.electric-button .bulb {
+  position: relative;
+  width: 150px;
+  height: 60px;
+  box-shadow:
+    inset 0 1px 3px 0 #ffffff55,
+    inset -1px -3px 5px 0 #ffffff55;
+  border-radius: 5px 40px 40px 5px;
+  overflow: hidden;
+}
+
+.electric-button .bulb::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: -20px;
+  width: 150px;
+  height: 30px;
+  background: linear-gradient(#fff, #ffffff22 80%);
+  border-radius: 30px;
+  box-shadow: 0 0 5px 10px #ffffff22;
+  filter: blur(2px);
+  opacity: 0.7;
+}
+
+.electric-button .bulb::after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: -10px;
+  width: 150px;
+  height: 30px;
+  border-radius: 30px;
+  box-shadow: -1px 2px 2px 2px #ffffff44;
+  filter: blur(2px);
+  opacity: 0.7;
+}
+
+@keyframes electric-drawLine {
+  0% {
+    stroke-dashoffset: 500;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes electric-light-on {
+  from {
+    stop-color: var(--filament);
+  }
+  to {
+    stop-color: var(--filament-grow);
+  }
+}
+
+@keyframes electric-light-off {
+  from {
+    stop-color: var(--filament-grow);
+  }
+  to {
+    stop-color: var(--filament);
+  }
+}
+
+@keyframes electric-marquee {
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes electric-slide-down {
+  0% {
+    transform: translateY(0);
+  }
+  33% {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  66% {
+    opacity: 1;
+    transform: translateY(-0.5rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes electric-slide-scroll {
+  0% {
+    transform: translateY(0);
+  }
+  33% {
+    opacity: 0;
+    transform: translateY(-1rem);
+  }
+  66% {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes electric-lightning-rotate-1 {
+  0% { transform: translate(5px, 5px) rotate(5deg); }
+  25% { transform: translate(5px, 5px) rotate(-30deg); }
+  50% { transform: translate(5px, 5px) rotate(5deg); }
+  75% { transform: translate(5px, 5px) rotate(35deg); }
+  100% { transform: translate(5px, 5px) rotate(5deg); }
+}
+
+@keyframes electric-lightning-rotate-2 {
+  0% { transform: translate(10px, 40px) rotate(30deg); }
+  25% { transform: translate(10px, 40px) rotate(0); }
+  50% { transform: translate(10px, 40px) rotate(30deg); }
+  75% { transform: translate(10px, 40px) rotate(60deg); }
+  100% { transform: translate(10px, 40px) rotate(30deg); }
+}
+
+@keyframes electric-lightning-rotate-3 {
+  0% { transform: translate(10px, 10px) rotate(5deg); }
+  25% { transform: translate(10px, 10px) rotate(-30deg); }
+  50% { transform: translate(10px, 10px) rotate(5deg); }
+  75% { transform: translate(10px, 10px) rotate(35deg); }
+  100% { transform: translate(10px, 10px) rotate(5deg); }
+}
+
+@keyframes electric-lightning-rotate-4 {
+  0% { transform: translate(20px, 35px) rotate(5deg); }
+  25% { transform: translate(20px, 35px) rotate(-30deg); }
+  50% { transform: translate(20px, 35px) rotate(5deg); }
+  75% { transform: translate(20px, 35px) rotate(35deg); }
+  100% { transform: translate(20px, 35px) rotate(5deg); }
+}
+
+@keyframes electric-lightning-rotate-5 {
+  0% { transform: translate(35px, 5px) rotate(30deg); }
+  25% { transform: translate(35px, 5px) rotate(0); }
+  50% { transform: translate(35px, 5px) rotate(30deg); }
+  75% { transform: translate(35px, 5px) rotate(60deg); }
+  100% { transform: translate(35px, 5px) rotate(30deg); }
+}
