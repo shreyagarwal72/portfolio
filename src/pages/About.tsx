@@ -1,6 +1,7 @@
 import { MapPin, Mail } from 'lucide-react';
 import { useEffect } from 'react';
 import vanshuProfile from '@/assets/vanshu-profile-new.jpg';
+import SocialMediaCards from '@/components/SocialMediaCards';
 
 const About = () => {
   useEffect(() => {
@@ -137,6 +138,14 @@ const About = () => {
             </div>
           </aside>
         </div>
+
+        {/* Social Media Cards */}
+        <section className="mt-20 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+          <h2 className="text-3xl font-bold text-white mb-8 text-center">
+            Connect With <span className="text-primary">Me</span>
+          </h2>
+          <SocialMediaCards />
+        </section>
       </div>
     </main>
   );
