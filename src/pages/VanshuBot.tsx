@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Bot, Send, Loader2, Sparkles, Trash2, X } from 'lucide-react';
+import { Bot, Send, Loader2, Sparkles, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -13,6 +13,9 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Link } from 'react-router-dom';
+import { Card } from '@/components/ui/card';
+import { SplineScene } from '@/components/ui/splite';
+import { Spotlight } from '@/components/ui/spotlight';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -296,28 +299,43 @@ const VanshuBot = () => {
 
   return (
     <main className="min-h-screen pt-16 bg-background pb-32" role="main">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Header */}
-        <header className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4 animate-pulse" aria-hidden="true">
-            <Bot className="w-8 h-8 text-primary" aria-label="AI Bot Icon" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Hero Section with 3D Robot */}
+        <Card className="w-full h-[300px] md:h-[400px] lg:h-[500px] bg-card/50 relative overflow-hidden mb-8 border-border">
+          <Spotlight
+            className="-top-40 left-0 md:left-60 md:-top-20"
+            fill="hsl(var(--primary))"
+          />
+          
+          <div className="flex flex-col md:flex-row h-full">
+            {/* Left content */}
+            <div className="flex-1 p-6 md:p-8 relative z-10 flex flex-col justify-center">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-foreground to-muted-foreground">
+                Vanshu Bot
+              </h1>
+              <p className="mt-4 text-muted-foreground max-w-lg text-sm md:text-base">
+                Your AI assistant with complete knowledge about Vanshu Aggarwal's work, skills, and projects. Ask me anything!
+              </p>
+              <Button
+                onClick={handleClearChat}
+                variant="outline"
+                size="sm"
+                className="mt-4 w-fit hover:bg-destructive hover:text-destructive-foreground transition-smooth"
+              >
+                <Trash2 className="w-4 h-4 mr-2" />
+                Clear Chat
+              </Button>
+            </div>
+
+            {/* Right content - 3D Robot */}
+            <div className="flex-1 relative h-[150px] md:h-full">
+              <SplineScene 
+                scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                className="w-full h-full"
+              />
+            </div>
           </div>
-          <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-primary via-primary-glow to-primary bg-clip-text text-transparent">
-            Vanshu Bot
-          </h1>
-          <p className="text-muted-foreground">
-            Your AI assistant with complete knowledge about Vanshu Aggarwal's work
-          </p>
-          <Button
-            onClick={handleClearChat}
-            variant="outline"
-            size="sm"
-            className="mt-4 hover:bg-destructive hover:text-destructive-foreground transition-smooth"
-          >
-            <Trash2 className="w-4 h-4 mr-2" />
-            Clear Chat
-          </Button>
-        </header>
+        </Card>
 
         {/* Terms Dialog */}
         <Dialog open={showTermsDialog} onOpenChange={setShowTermsDialog}>
@@ -377,7 +395,7 @@ const VanshuBot = () => {
 
         {/* Chat Messages */}
         <section className="card-gradient rounded-xl border border-border overflow-hidden mb-4 animate-fade-in transition-smooth" aria-label="Chat conversation">
-          <ScrollArea className="h-[calc(100vh-400px)] min-h-[400px] p-6" ref={scrollRef}>
+          <ScrollArea className="h-[calc(100vh-600px)] md:h-[calc(100vh-550px)] min-h-[300px] p-6" ref={scrollRef}>
             <div className="space-y-4" role="log" aria-live="polite" aria-atomic="false">
               {messages.map((message, index) => (
                 <div
@@ -412,7 +430,7 @@ const VanshuBot = () => {
 
       {/* Fixed Chat Input Bar */}
       <div className="fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur-md border-t border-border z-50">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <form onSubmit={handleSubmit} className="flex gap-2">
             <Input
               value={input}
