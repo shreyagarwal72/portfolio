@@ -225,7 +225,6 @@
   .transition-premium {
     transition: var(--transition-premium);
   }
-  }
 
   /* iOS-like glass morphism */
   .glass-effect {
@@ -315,20 +314,20 @@
     pointer-events: auto;
   }
 
-  /* Spotlight animation for 3D scenes */
-  @keyframes spotlight {
-    0% {
-      opacity: 0;
-      transform: translate(-72%, -62%) scale(0.5);
-    }
-    100% {
-      opacity: 1;
-      transform: translate(-50%, -40%) scale(1);
-    }
-  }
-
   .animate-spotlight {
     animation: spotlight 2s ease 0.75s 1 forwards;
+  }
+}
+
+/* Spotlight animation for 3D scenes - must be outside @layer */
+@keyframes spotlight {
+  0% {
+    opacity: 0;
+    transform: translate(-72%, -62%) scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -40%) scale(1);
   }
 }
 
