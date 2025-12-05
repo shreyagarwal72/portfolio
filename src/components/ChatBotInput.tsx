@@ -51,7 +51,7 @@ const ChatBotInput = ({
     
     recognition.continuous = false;
     recognition.interimResults = true;
-    recognition.lang = 'en-US';
+    recognition.lang = 'hi-IN'; // Hindi language support
 
     recognition.onstart = () => setIsListening(true);
     
