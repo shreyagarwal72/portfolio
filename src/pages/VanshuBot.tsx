@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Sparkles, Trash2 } from 'lucide-react';
+import { Sparkles, Trash2, Copy, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useToast } from '@/hooks/use-toast';
@@ -21,6 +21,28 @@ interface Message {
   role: 'user' | 'assistant';
   content: string;
 }
+
+const CopyButton = ({ text }: { text: string }) => {
+  const [copied, setCopied] = useState(false);
+  const { toast } = useToast();
+
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(text.replace(/\*\*/g, '').replace(/\*/g, ''));
+    setCopied(true);
+    toast({ title: 'Copied!', description: 'Message copied to clipboard' });
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <button
+      onClick={handleCopy}
+      className="absolute -bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-background border border-border rounded-md p-1 hover:bg-muted"
+      aria-label="Copy message"
+    >
+      {copied ? <Check className="w-3 h-3 text-green-500" /> : <Copy className="w-3 h-3 text-muted-foreground" />}
+    </button>
+  );
+};
 
 const VanshuBot = () => {
   const { toast } = useToast();
@@ -401,7 +423,7 @@ const VanshuBot = () => {
         <section className="card-gradient rounded-xl border border-border overflow-hidden mb-4 animate-fade-in transition-smooth" aria-label="Chat conversation">
           <ScrollArea className="h-[calc(100vh-600px)] md:h-[calc(100vh-550px)] min-h-[300px] p-6" ref={scrollRef}>
             <div className="space-y-4" role="log" aria-live="polite" aria-atomic="false">
-              {messages.map((message, index) => (
+                {messages.map((message, index) => (
                 <div
                   key={index}
                   className={`flex ${
@@ -409,7 +431,7 @@ const VanshuBot = () => {
                   }`}
                 >
                   <div
-                    className={`max-w-[85%] rounded-2xl px-4 py-3 ${
+                    className={`max-w-[85%] rounded-2xl px-4 py-3 relative group ${
                       message.role === 'user'
                         ? 'bg-primary text-primary-foreground'
                         : 'bg-muted text-foreground'
@@ -418,9 +440,23 @@ const VanshuBot = () => {
                     <p className="text-sm leading-relaxed whitespace-pre-wrap">
                       {renderMessageContent(message.content)}
                     </p>
+                    {message.role === 'assistant' && message.content && (
+                      <CopyButton text={message.content} />
+                    )}
                   </div>
                 </div>
               ))}
+              {isLoading && messages[messages.length - 1]?.role === 'user' && (
+                <div className="flex justify-start">
+                  <div className="bg-muted rounded-2xl px-4 py-3">
+                    <div className="flex gap-1">
+                      <span className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                      <span className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                      <span className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                    </div>
+                  </div>
+                </div>
+              )}
               <div ref={messagesEndRef} />
             </div>
           </ScrollArea>

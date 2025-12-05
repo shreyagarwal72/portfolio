@@ -2,10 +2,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
 import Navigation from "./components/Navigation";
-import TextLoader from "./components/TextLoader";
 import Footer from "./components/Footer";
 import CursorGlow from "./components/CursorGlow";
 import BackToTop from "./components/BackToTop";
@@ -26,32 +25,6 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const AppContent = () => {
-  const location = useLocation();
-  const [isInitialLoad, setIsInitialLoad] = useState(true);
-  const [isFadingOut, setIsFadingOut] = useState(false);
-
-  useEffect(() => {
-    // Only show loading on initial app load, not on route changes
-    if (isInitialLoad) {
-      const timer = setTimeout(() => {
-        setIsFadingOut(true);
-        // Wait for fade animation to complete before hiding
-        setTimeout(() => {
-          setIsInitialLoad(false);
-        }, 500);
-      }, 1500);
-      return () => clearTimeout(timer);
-    }
-  }, [isInitialLoad]);
-
-  if (isInitialLoad) {
-    return (
-      <div className={`min-h-screen bg-background flex items-center justify-center transition-opacity duration-500 ${isFadingOut ? 'opacity-0' : 'opacity-100'}`}>
-        <TextLoader text="Loading" />
-      </div>
-    );
-  }
-
   return (
     <>
       <div className="min-h-screen bg-background flex flex-col">

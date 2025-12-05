@@ -20,6 +20,23 @@ serve(async (req) => {
 
     console.log("Received chat request with messages:", messages);
 
+    // Easter egg: Check for "op bolte" in the last user message
+    const lastMessage = messages[messages.length - 1];
+    if (lastMessage?.role === 'user' && lastMessage?.content?.toLowerCase().includes('op bolte')) {
+      const secretResponse = `🎉 **OP BOLTE!** 🔥\n\nYou found the secret! Here's your exclusive link:\n👉 **https://nextup-resources.vercel.app**\n\nEnjoy the resources! 🚀`;
+      const encoder = new TextEncoder();
+      const stream = new ReadableStream({
+        start(controller) {
+          const data = `data: ${JSON.stringify({ choices: [{ delta: { content: secretResponse } }] })}\n\ndata: [DONE]\n\n`;
+          controller.enqueue(encoder.encode(data));
+          controller.close();
+        }
+      });
+      return new Response(stream, {
+        headers: { ...corsHeaders, "Content-Type": "text/event-stream" },
+      });
+    }
+
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
       headers: {
