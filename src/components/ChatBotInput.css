@@ -1,0 +1,204 @@
+/* From Uiverse.io by Cobp - Adapted for theme system */
+.container_chat_bot {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  width: 100%;
+}
+
+.container_chat_bot .container-chat-options {
+  position: relative;
+  display: flex;
+  background: linear-gradient(
+    to bottom right,
+    hsl(var(--muted-foreground) / 0.3),
+    hsl(var(--border)),
+    hsl(var(--border)),
+    hsl(var(--border)),
+    hsl(var(--border))
+  );
+  border-radius: 16px;
+  padding: 1.5px;
+  overflow: hidden;
+}
+
+.container_chat_bot .container-chat-options::after {
+  position: absolute;
+  content: "";
+  top: -10px;
+  left: -10px;
+  background: radial-gradient(
+    ellipse at center,
+    hsl(var(--foreground)),
+    hsl(var(--foreground) / 0.3),
+    hsl(var(--foreground) / 0.1),
+    transparent,
+    transparent,
+    transparent,
+    transparent
+  );
+  width: 30px;
+  height: 30px;
+  filter: blur(1px);
+}
+
+.container_chat_bot .container-chat-options .chat {
+  display: flex;
+  flex-direction: column;
+  background-color: hsl(var(--background) / 0.8);
+  border-radius: 15px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.container_chat_bot .container-chat-options .chat .chat-bot {
+  position: relative;
+  display: flex;
+}
+
+.container_chat_bot .chat .chat-bot textarea {
+  background-color: transparent;
+  border-radius: 16px;
+  border: none;
+  width: 100%;
+  height: 50px;
+  color: hsl(var(--foreground));
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 14px 16px;
+  resize: none;
+  outline: none;
+}
+
+.container_chat_bot .chat .chat-bot textarea::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.container_chat_bot .chat .chat-bot textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.container_chat_bot .chat .chat-bot textarea::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.5);
+  border-radius: 5px;
+}
+
+.container_chat_bot .chat .chat-bot textarea::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+  cursor: pointer;
+}
+
+.container_chat_bot .chat .chat-bot textarea::placeholder {
+  color: hsl(var(--muted-foreground));
+  transition: all 0.3s ease;
+}
+
+.container_chat_bot .chat .chat-bot textarea:focus::placeholder {
+  color: hsl(var(--muted-foreground) / 0.5);
+}
+
+.container_chat_bot .chat .options {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 10px 14px;
+}
+
+.container_chat_bot .chat .options .btns-add {
+  display: flex;
+  gap: 8px;
+}
+
+.container_chat_bot .chat .options .btns-add button {
+  display: flex;
+  color: hsl(var(--muted-foreground) / 0.4);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.container_chat_bot .chat .options .btns-add button:hover {
+  transform: translateY(-5px);
+  color: hsl(var(--foreground));
+}
+
+.container_chat_bot .chat .options .btn-submit {
+  display: flex;
+  padding: 2px;
+  background-image: linear-gradient(
+    to top,
+    hsl(var(--muted)),
+    hsl(var(--secondary)),
+    hsl(var(--muted))
+  );
+  border-radius: 10px;
+  box-shadow: inset 0 6px 2px -4px hsl(var(--foreground) / 0.3);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+.container_chat_bot .chat .options .btn-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.container_chat_bot .chat .options .btn-submit i {
+  width: 30px;
+  height: 30px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: hsl(var(--background) / 0.3);
+  border-radius: 10px;
+  backdrop-filter: blur(3px);
+  color: hsl(var(--muted-foreground));
+}
+
+.container_chat_bot .chat .options .btn-submit svg {
+  transition: all 0.3s ease;
+}
+
+.container_chat_bot .chat .options .btn-submit:hover:not(:disabled) svg {
+  color: hsl(var(--foreground));
+  filter: drop-shadow(0 0 5px hsl(var(--foreground)));
+}
+
+.container_chat_bot .chat .options .btn-submit:focus:not(:disabled) svg {
+  color: hsl(var(--foreground));
+  filter: drop-shadow(0 0 5px hsl(var(--foreground)));
+  transform: scale(1.2) rotate(45deg) translateX(-2px) translateY(1px);
+}
+
+.container_chat_bot .chat .options .btn-submit:active:not(:disabled) {
+  transform: scale(0.92);
+}
+
+.container_chat_bot .tags {
+  padding: 14px 0;
+  display: flex;
+  color: hsl(var(--foreground));
+  font-size: 10px;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.container_chat_bot .tags span {
+  padding: 4px 8px;
+  background-color: hsl(var(--muted));
+  border: 1.5px solid hsl(var(--border));
+  border-radius: 10px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+
+.container_chat_bot .tags span:hover {
+  background-color: hsl(var(--accent));
+  border-color: hsl(var(--primary) / 0.5);
+}
