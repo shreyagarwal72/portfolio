@@ -87,9 +87,12 @@ const Hero = () => {
                 <Download className="mr-2" size={20} aria-hidden="true" />
                 Open CV
               </GradientButton>
-              <GradientButton to="/portfolio">
+              <Link
+                to="/portfolio"
+                className="px-8 py-4 rounded-full border border-primary/50 text-foreground hover:bg-primary/10 hover:border-primary transition-all duration-300 font-medium"
+              >
                 View Portfolio
-              </GradientButton>
+              </Link>
             </nav>
           </div>
         </div>
