@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Sparkles, Trash2 } from 'lucide-react';
+import { Sparkles, Trash2, Copy, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useToast } from '@/hooks/use-toast';
@@ -20,7 +20,77 @@ import ChatBotInput from '@/components/ChatBotInput';
 interface Message {
   role: 'user' | 'assistant';
   content: string;
+  isTyping?: boolean;
 }
+
+// Message Bubble Component with copy button and typing animation
+const MessageBubble = ({
+  message,
+  isTyping,
+  renderMessageContent,
+}: {
+  message: Message;
+  isTyping: boolean;
+  renderMessageContent: (content: string) => React.ReactNode;
+}) => {
+  const [copied, setCopied] = useState(false);
+  const { toast } = useToast();
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(message.content);
+      setCopied(true);
+      toast({
+        title: 'Copied!',
+        description: 'Message copied to clipboard.',
+      });
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      toast({
+        title: 'Failed to copy',
+        description: 'Please try again.',
+        variant: 'destructive',
+      });
+    }
+  };
+
+  return (
+    <div
+      className={`flex ${
+        message.role === 'user' ? 'justify-end' : 'justify-start'
+      }`}
+    >
+      <div className="group relative">
+        <div
+          className={`max-w-[85%] rounded-2xl px-4 py-3 ${
+            message.role === 'user'
+              ? 'bg-primary text-primary-foreground'
+              : 'bg-muted text-foreground'
+          }`}
+        >
+          <p className="text-sm leading-relaxed whitespace-pre-wrap">
+            {renderMessageContent(message.content)}
+            {isTyping && <span className="typing-cursor" />}
+          </p>
+        </div>
+        {/* Copy button for assistant messages */}
+        {message.role === 'assistant' && message.content && (
+          <button
+            onClick={handleCopy}
+            className="absolute -bottom-6 left-2 opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded-md hover:bg-muted text-muted-foreground hover:text-foreground"
+            aria-label="Copy message"
+          >
+            {copied ? (
+              <Check className="w-3.5 h-3.5 text-green-500" />
+            ) : (
+              <Copy className="w-3.5 h-3.5" />
+            )}
+          </button>
+        )}
+      </div>
+    </div>
+  );
+};
 
 const VanshuBot = () => {
   const { toast } = useToast();
@@ -402,24 +472,12 @@ const VanshuBot = () => {
           <ScrollArea className="h-[calc(100vh-600px)] md:h-[calc(100vh-550px)] min-h-[300px] p-6" ref={scrollRef}>
             <div className="space-y-4" role="log" aria-live="polite" aria-atomic="false">
               {messages.map((message, index) => (
-                <div
+                <MessageBubble
                   key={index}
-                  className={`flex ${
-                    message.role === 'user' ? 'justify-end' : 'justify-start'
-                  }`}
-                >
-                  <div
-                    className={`max-w-[85%] rounded-2xl px-4 py-3 ${
-                      message.role === 'user'
-                        ? 'bg-primary text-primary-foreground'
-                        : 'bg-muted text-foreground'
-                    }`}
-                  >
-                    <p className="text-sm leading-relaxed whitespace-pre-wrap">
-                      {renderMessageContent(message.content)}
-                    </p>
-                  </div>
-                </div>
+                  message={message}
+                  isTyping={isLoading && index === messages.length - 1 && message.role === 'assistant'}
+                  renderMessageContent={renderMessageContent}
+                />
               ))}
               <div ref={messagesEndRef} />
             </div>
