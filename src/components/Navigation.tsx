@@ -105,9 +105,12 @@ const Navigation = () => {
                   </Link>
                 </li>
               ))}
-              <li className="flex items-center space-x-2 text-sm text-muted-foreground pt-4 border-t border-border" role="none">
-                <Phone size={16} aria-hidden="true" />
-                <a href="tel:+919412104618" className="hover:text-primary transition-smooth">9412104618</a>
+              <li className="flex items-center justify-between pt-4 border-t border-border" role="none">
+                <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+                  <Phone size={16} aria-hidden="true" />
+                  <a href="tel:+919412104618" className="hover:text-primary transition-smooth">9412104618</a>
+                </div>
+                <ThemeToggle />
               </li>
             </ul>
           </div>
