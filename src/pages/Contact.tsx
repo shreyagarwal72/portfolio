@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Mail, Phone, MapPin, Send, Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import emailjs from "emailjs-com";
-import { GradientButton } from '@/components/ui/gradient-button';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -248,10 +248,11 @@ const Contact = () => {
                 {errors.message && <p className="text-destructive text-sm mt-1">{errors.message}</p>}
               </div>
 
-              <GradientButton
+              <Button
                 type="submit"
+                size="lg"
                 disabled={isSubmitting}
-                className="w-full py-4"
+                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground glow-effect transition-smooth disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? (
                   <>
@@ -264,7 +265,7 @@ const Contact = () => {
                     Send Message
                   </>
                 )}
-              </GradientButton>
+              </Button>
             </form>
           </div>
         </div>

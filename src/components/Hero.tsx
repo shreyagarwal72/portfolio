@@ -1,9 +1,10 @@
+import { Button } from '@/components/ui/button';
 import { Download } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Floating3D } from '@/components/Floating3D';
 import heroWorkspace from '@/assets/hero-workspace.jpg';
 import { useEffect } from 'react';
-import { GradientButton } from '@/components/ui/gradient-button';
+import ElectricButton from '@/components/ElectricButton';
 
 const Hero = () => {
   useEffect(() => {
@@ -83,16 +84,17 @@ const Hero = () => {
 
             {/* CTA Buttons */}
             <nav className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in" aria-label="Main navigation actions" style={{ animationDelay: '0.4s' }}>
-              <GradientButton to="/cv">
-                <Download className="mr-2" size={20} aria-hidden="true" />
-                Open CV
-              </GradientButton>
-              <Link
-                to="/portfolio"
-                className="px-8 py-4 rounded-full border border-primary/50 text-foreground hover:bg-primary/10 hover:border-primary transition-all duration-300 font-medium"
+              <Button 
+                size="lg" 
+                className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg font-medium hover-lift transition-smooth"
+                asChild
               >
-                View Portfolio
-              </Link>
+                <Link to="/cv" aria-label="Download or view Vanshu Agarwal's CV and resume">
+                  <Download className="mr-2" size={20} aria-hidden="true" />
+                  Open CV
+                </Link>
+              </Button>
+              <ElectricButton to="/portfolio" text="View Portfolio" />
             </nav>
           </div>
         </div>
