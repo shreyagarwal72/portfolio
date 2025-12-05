@@ -51,9 +51,13 @@ const VanshuBot = () => {
         parts.push(content.slice(lastIndex, match.index));
       }
       
-      // Add bold text
+      // Add bold text with gradient styling
       const boldText = match[2] || match[3]; // match[2] for **, match[3] for *
-      parts.push(<strong key={key++}>{boldText}</strong>);
+      parts.push(
+        <strong key={key++} className="gradient-text font-bold">
+          {boldText}
+        </strong>
+      );
       
       lastIndex = match.index + match[0].length;
     }
