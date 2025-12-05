@@ -48,7 +48,7 @@ const CV = () => {
         
         {/* Hero Header */}
         <header className="text-center mb-20">
-          <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6 animate-fade-in">
+          <h1 className="text-5xl lg:text-7xl font-bold text-foreground mb-6 animate-fade-in">
             CURRICULUM <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">VITAE</span>
           </h1>
           <p className="text-2xl text-muted-foreground max-w-4xl mx-auto animate-fade-in delay-200 leading-relaxed">
@@ -79,7 +79,7 @@ const CV = () => {
               <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center border border-primary/30" aria-hidden="true">
                 <Mail size={20} className="text-primary" aria-label="Email Icon" />
               </div>
-              <h2 id="personal-info" className="text-3xl font-bold text-white">Personal Information</h2>
+              <h2 id="personal-info" className="text-3xl font-bold text-foreground">Personal Information</h2>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="space-y-2">
@@ -87,7 +87,7 @@ const CV = () => {
                   <Mail size={20} className="text-primary" />
                   <div>
                     <p className="text-xs text-muted-foreground uppercase tracking-wide">Email</p>
-                    <p className="text-white font-medium">sanjayvansu1973@gmail.com</p>
+                    <p className="text-foreground font-medium">sanjayvansu1973@gmail.com</p>
                   </div>
                 </div>
               </div>
@@ -96,7 +96,7 @@ const CV = () => {
                   <Phone size={20} className="text-primary" />
                   <div>
                     <p className="text-xs text-muted-foreground uppercase tracking-wide">Phone</p>
-                    <p className="text-white font-medium">9412104618</p>
+                    <p className="text-foreground font-medium">9412104618</p>
                   </div>
                 </div>
               </div>
@@ -105,7 +105,7 @@ const CV = () => {
                   <Calendar size={20} className="text-primary" />
                   <div>
                     <p className="text-xs text-muted-foreground uppercase tracking-wide">Education</p>
-                    <p className="text-white font-medium">Class 11 • Science (PCM)</p>
+                    <p className="text-foreground font-medium">Class 11 • Science (PCM)</p>
                   </div>
                 </div>
               </div>
@@ -119,9 +119,9 @@ const CV = () => {
           <div className="relative card-gradient rounded-2xl p-8 border border-border/50 backdrop-blur-sm hover:border-primary/30 transition-smooth hover:scale-[1.02]">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center shadow-glow" aria-hidden="true">
-                <span className="text-white font-bold text-lg" role="img" aria-label="Target">🎯</span>
+                <span className="text-primary-foreground font-bold text-lg" role="img" aria-label="Target">🎯</span>
               </div>
-              <h2 id="objective" className="text-3xl font-bold text-white">Objective</h2>
+              <h2 id="objective" className="text-3xl font-bold text-foreground">Objective</h2>
             </div>
             <div className="pl-15">
               <p className="text-lg text-muted-foreground leading-relaxed">
@@ -140,30 +140,30 @@ const CV = () => {
           <div className="relative card-gradient rounded-2xl p-8 border border-border/50 backdrop-blur-sm hover:border-primary/30 transition-smooth">
             <div className="flex items-center gap-3 mb-8">
               <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center shadow-glow" aria-hidden="true">
-                <span className="text-white font-bold text-lg" role="img" aria-label="Lightning">⚡</span>
+                <span className="text-primary-foreground font-bold text-lg" role="img" aria-label="Lightning">⚡</span>
               </div>
-              <h2 id="skills" className="text-3xl font-bold text-white">Skills & Expertise</h2>
+              <h2 id="skills" className="text-3xl font-bold text-foreground">Skills & Expertise</h2>
             </div>
             <div className="grid sm:grid-cols-2 gap-6">
               <div className="space-y-4">
                 <div className="p-4 bg-card/30 rounded-xl border border-border/30 backdrop-blur-sm hover:bg-card/50 transition-smooth group">
                   <div className="flex items-center gap-3 mb-2">
                     <span className="text-2xl">🎬</span>
-                    <h3 className="text-white font-semibold group-hover:text-primary transition-smooth">Video Editing</h3>
+                    <h3 className="text-foreground font-semibold group-hover:text-primary transition-smooth">Video Editing</h3>
                   </div>
                   <p className="text-muted-foreground text-sm">Shorts, Music Videos, Gaming Highlights</p>
                 </div>
                 <div className="p-4 bg-card/30 rounded-xl border border-border/30 backdrop-blur-sm hover:bg-card/50 transition-smooth group">
                   <div className="flex items-center gap-3 mb-2">
                     <span className="text-2xl">🎵</span>
-                    <h3 className="text-white font-semibold group-hover:text-primary transition-smooth">Music Production</h3>
+                    <h3 className="text-foreground font-semibold group-hover:text-primary transition-smooth">Music Production</h3>
                   </div>
                   <p className="text-muted-foreground text-sm">Rap Writing & Audio Production</p>
                 </div>
                 <div className="p-4 bg-card/30 rounded-xl border border-border/30 backdrop-blur-sm hover:bg-card/50 transition-smooth group">
                   <div className="flex items-center gap-3 mb-2">
                     <span className="text-2xl">🎭</span>
-                    <h3 className="text-white font-semibold group-hover:text-primary transition-smooth">Creative Direction</h3>
+                    <h3 className="text-foreground font-semibold group-hover:text-primary transition-smooth">Creative Direction</h3>
                   </div>
                   <p className="text-muted-foreground text-sm">Storytelling & Content Strategy</p>
                 </div>
@@ -172,21 +172,21 @@ const CV = () => {
                 <div className="p-4 bg-card/30 rounded-xl border border-border/30 backdrop-blur-sm hover:bg-card/50 transition-smooth group">
                   <div className="flex items-center gap-3 mb-2">
                     <span className="text-2xl">🌐</span>
-                    <h3 className="text-white font-semibold group-hover:text-primary transition-smooth">Languages</h3>
+                    <h3 className="text-foreground font-semibold group-hover:text-primary transition-smooth">Languages</h3>
                   </div>
                   <p className="text-muted-foreground text-sm">English, Hindi (Fluent)</p>
                 </div>
                 <div className="p-4 bg-card/30 rounded-xl border border-border/30 backdrop-blur-sm hover:bg-card/50 transition-smooth group">
                   <div className="flex items-center gap-3 mb-2">
                     <span className="text-2xl">🛠️</span>
-                    <h3 className="text-white font-semibold group-hover:text-primary transition-smooth">Tools & Software</h3>
+                    <h3 className="text-foreground font-semibold group-hover:text-primary transition-smooth">Tools & Software</h3>
                   </div>
                   <p className="text-muted-foreground text-sm">CapCut, Premiere Pro, Canva</p>
                 </div>
                 <div className="p-4 bg-card/30 rounded-xl border border-border/30 backdrop-blur-sm hover:bg-card/50 transition-smooth group">
                   <div className="flex items-center gap-3 mb-2">
                     <span className="text-2xl">🎮</span>
-                    <h3 className="text-white font-semibold group-hover:text-primary transition-smooth">Gaming</h3>
+                    <h3 className="text-foreground font-semibold group-hover:text-primary transition-smooth">Gaming</h3>
                   </div>
                   <p className="text-muted-foreground text-sm">Content Creation & Streaming</p>
                 </div>
@@ -201,18 +201,18 @@ const CV = () => {
           <div className="relative card-gradient rounded-2xl p-8 border border-border/50 backdrop-blur-sm hover:border-primary/30 transition-smooth">
             <div className="flex items-center gap-3 mb-8">
               <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center shadow-glow" aria-hidden="true">
-                <span className="text-white font-bold text-lg" role="img" aria-label="Rocket">🚀</span>
+                <span className="text-primary-foreground font-bold text-lg" role="img" aria-label="Rocket">🚀</span>
               </div>
-              <h2 id="projects" className="text-3xl font-bold text-white">Featured Projects</h2>
+              <h2 id="projects" className="text-3xl font-bold text-foreground">Featured Projects</h2>
             </div>
             <div className="grid gap-6">
               <div className="p-6 bg-card/20 rounded-xl border border-border/30 backdrop-blur-sm hover:bg-card/40 transition-smooth group">
                 <div className="flex items-start gap-4">
                   <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg">
-                    <span className="text-white text-2xl">🔥</span>
+                    <span className="text-primary-foreground text-2xl">🔥</span>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-smooth">
+                    <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-smooth">
                       Raat Ka Banda (2025)
                     </h3>
                     <p className="text-muted-foreground mb-2">Original Song • Nextup Studio</p>
@@ -229,10 +229,10 @@ const CV = () => {
               <div className="p-6 bg-card/20 rounded-xl border border-border/30 backdrop-blur-sm hover:bg-card/40 transition-smooth group">
                 <div className="flex items-start gap-4">
                   <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center shadow-lg">
-                    <span className="text-white text-2xl">🎮</span>
+                    <span className="text-primary-foreground text-2xl">🎮</span>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-smooth">
+                    <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-smooth">
                       Minecraft All-in-One Shorts
                     </h3>
                     <p className="text-muted-foreground mb-2">Gaming Content • YouTube</p>
@@ -240,7 +240,7 @@ const CV = () => {
                       Engaging gaming content featuring creative builds, tutorials, and entertainment for the gaming community.
                     </p>
                   </div>
-                  <span className="px-3 py-1 bg-green-500/20 text-green-400 text-xs font-medium rounded-full border border-green-500/30">
+                  <span className="px-3 py-1 bg-green-500/20 text-green-600 dark:text-green-400 text-xs font-medium rounded-full border border-green-500/30">
                     Gaming
                   </span>
                 </div>
@@ -249,10 +249,10 @@ const CV = () => {
               <div className="p-6 bg-card/20 rounded-xl border border-border/30 backdrop-blur-sm hover:bg-card/40 transition-smooth group">
                 <div className="flex items-start gap-4">
                   <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-                    <span className="text-white text-2xl">🦑</span>
+                    <span className="text-primary-foreground text-2xl">🦑</span>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-smooth">
+                    <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-smooth">
                       Squid Game Inspired Videos
                     </h3>
                     <p className="text-muted-foreground mb-2">Creative Content • Social Media</p>
@@ -260,7 +260,7 @@ const CV = () => {
                       Creative adaptations and parodies inspired by popular culture, showcasing storytelling skills.
                     </p>
                   </div>
-                  <span className="px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-medium rounded-full border border-purple-500/30">
+                  <span className="px-3 py-1 bg-purple-500/20 text-purple-600 dark:text-purple-400 text-xs font-medium rounded-full border border-purple-500/30">
                     Content
                   </span>
                 </div>
@@ -275,26 +275,26 @@ const CV = () => {
           <div className="relative card-gradient rounded-2xl p-8 border border-border/50 backdrop-blur-sm hover:border-primary/30 transition-smooth hover:scale-[1.02]">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center shadow-glow" aria-hidden="true">
-                <span className="text-white font-bold text-lg" role="img" aria-label="Graduation Cap">🎓</span>
+                <span className="text-primary-foreground font-bold text-lg" role="img" aria-label="Graduation Cap">🎓</span>
               </div>
-              <h2 id="education" className="text-3xl font-bold text-white">Education</h2>
+              <h2 id="education" className="text-3xl font-bold text-foreground">Education</h2>
             </div>
             <div className="p-6 bg-card/20 rounded-xl border border-border/30 backdrop-blur-sm">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-bold text-white">Higher Secondary Education</h3>
+                <h3 className="text-xl font-bold text-foreground">Higher Secondary Education</h3>
                 <span className="px-3 py-1 bg-primary/20 text-primary text-sm font-medium rounded-full border border-primary/30">
                   Current
                 </span>
               </div>
               <div className="space-y-2">
                 <p className="text-muted-foreground">
-                  <span className="text-white font-medium">Class:</span> 11th Grade (2025)
+                  <span className="text-foreground font-medium">Class:</span> 11th Grade (2025)
                 </p>
                 <p className="text-muted-foreground">
-                  <span className="text-white font-medium">Stream:</span> Science - Physics, Chemistry, Mathematics (PCM)
+                  <span className="text-foreground font-medium">Stream:</span> Science - Physics, Chemistry, Mathematics (PCM)
                 </p>
                 <p className="text-muted-foreground">
-                  <span className="text-white font-medium">Focus:</span> Balancing academics with creative pursuits in content creation
+                  <span className="text-foreground font-medium">Focus:</span> Balancing academics with creative pursuits in content creation
                 </p>
               </div>
             </div>
@@ -307,9 +307,9 @@ const CV = () => {
           <div className="relative card-gradient rounded-2xl p-8 border border-border/50 backdrop-blur-sm hover:border-primary/30 transition-smooth">
             <div className="flex items-center justify-center gap-3 mb-8">
               <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/70 rounded-full flex items-center justify-center shadow-glow" aria-hidden="true">
-                <span className="text-white font-bold text-lg" role="img" aria-label="Globe">🌐</span>
+                <span className="text-primary-foreground font-bold text-lg" role="img" aria-label="Globe">🌐</span>
               </div>
-              <h2 id="social" className="text-3xl font-bold text-white">Connect With Me</h2>
+              <h2 id="social" className="text-3xl font-bold text-foreground">Connect With Me</h2>
             </div>
             <p className="text-muted-foreground mb-8 text-lg">
               Follow my creative journey and stay updated with my latest projects
@@ -319,7 +319,7 @@ const CV = () => {
                 <div className="flex items-center gap-3 px-6 py-4 bg-card/30 rounded-xl border border-border/30 backdrop-blur-sm hover:bg-card/50 transition-smooth hover:scale-105">
                   <Github size={24} className="text-muted-foreground group-hover:text-primary transition-smooth" />
                   <div className="text-left">
-                    <p className="text-white font-medium group-hover:text-primary transition-smooth">GitHub</p>
+                    <p className="text-foreground font-medium group-hover:text-primary transition-smooth">GitHub</p>
                     <p className="text-xs text-muted-foreground">Code & Projects</p>
                   </div>
                 </div>
@@ -329,7 +329,7 @@ const CV = () => {
                 <div className="flex items-center gap-3 px-6 py-4 bg-card/30 rounded-xl border border-border/30 backdrop-blur-sm hover:bg-card/50 transition-smooth hover:scale-105">
                   <Instagram size={24} className="text-muted-foreground group-hover:text-pink-400 transition-smooth" />
                   <div className="text-left">
-                    <p className="text-white font-medium group-hover:text-pink-400 transition-smooth">Instagram</p>
+                    <p className="text-foreground font-medium group-hover:text-pink-400 transition-smooth">Instagram</p>
                     <p className="text-xs text-muted-foreground">Daily Updates</p>
                   </div>
                 </div>
@@ -339,7 +339,7 @@ const CV = () => {
                 <div className="flex items-center gap-3 px-6 py-4 bg-card/30 rounded-xl border border-border/30 backdrop-blur-sm hover:bg-card/50 transition-smooth hover:scale-105">
                   <Youtube size={24} className="text-muted-foreground group-hover:text-red-400 transition-smooth" />
                   <div className="text-left">
-                    <p className="text-white font-medium group-hover:text-red-400 transition-smooth">YouTube</p>
+                    <p className="text-foreground font-medium group-hover:text-red-400 transition-smooth">YouTube</p>
                     <p className="text-xs text-muted-foreground">Video Content</p>
                   </div>
                 </div>

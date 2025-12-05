@@ -65,7 +65,7 @@ const Hero = () => {
           role="img"
           aria-label="Creative workspace background with editing equipment"
         >
-          <div className="absolute inset-0 hero-gradient opacity-80" />
+          <div className="absolute inset-0 bg-background/85 dark:bg-background/80" />
         </div>
 
         {/* Content */}
@@ -73,9 +73,9 @@ const Hero = () => {
           <div className="space-y-8 animate-fade-in">
             {/* Main Title */}
             <header className="space-y-4">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight animate-scale-in">
-                <span className="block bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent text-glow">VANSHU</span>
-                <span className="block text-white">AGARWAL</span>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight animate-scale-in">
+                <span className="block bg-gradient-to-r from-primary via-primary/80 to-primary-foreground bg-clip-text text-transparent text-glow">VANSHU</span>
+                <span className="block text-foreground">AGARWAL</span>
               </h1>
               <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-light tracking-wide animate-fade-in" role="doc-subtitle" style={{ animationDelay: '0.2s' }}>
                 Video Editor & Creative Mind

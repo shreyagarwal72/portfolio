@@ -50,7 +50,7 @@ const About = () => {
         
         {/* Hero Header */}
         <div className="text-center mb-16">
-          <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6 animate-fade-in">
+          <h1 className="text-5xl lg:text-7xl font-bold text-foreground mb-6 animate-fade-in">
             ABOUT <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">ME</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-fade-in delay-200">
@@ -63,7 +63,7 @@ const About = () => {
           <article className="space-y-8 animate-fade-in">
             <section className="space-y-6">
               <div className="card-gradient rounded-xl p-6 backdrop-blur-sm hover:scale-[1.02] transition-smooth">
-                <h2 className="text-xl font-semibold text-white mb-4">My Journey</h2>
+                <h2 className="text-xl font-semibold text-foreground mb-4">My Journey</h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p className="text-lg">
                     <span className="text-primary font-medium">Video Editor</span> with passion for storytelling through visual media. 
@@ -129,8 +129,8 @@ const About = () => {
                 
                 {/* Name overlay */}
                 <figcaption className="absolute bottom-6 left-6 right-6">
-                  <div className="bg-black/50 backdrop-blur-sm rounded-lg p-3">
-                    <h3 className="text-white font-bold text-lg">Vanshu Agarwal</h3>
+                  <div className="bg-background/80 dark:bg-black/50 backdrop-blur-sm rounded-lg p-3">
+                    <h3 className="text-foreground font-bold text-lg">Vanshu Agarwal</h3>
                     <p className="text-primary text-sm">Creative Mind</p>
                   </div>
                 </figcaption>
@@ -141,7 +141,7 @@ const About = () => {
 
         {/* Social Media Cards - Desktop Only */}
         <section className="hidden md:block mt-20 animate-fade-in" style={{ animationDelay: '0.4s' }}>
-          <h2 className="text-3xl font-bold text-white mb-8 text-center">
+          <h2 className="text-3xl font-bold text-foreground mb-8 text-center">
             Connect With <span className="text-primary">Me</span>
           </h2>
           <SocialMediaCards />

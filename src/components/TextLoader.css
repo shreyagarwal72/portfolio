@@ -1,9 +1,9 @@
 /* From Uiverse.io by andrew-manzyk */
 .loader {
   --main-size: 4em;
-  --text-color: #ffffff;
-  --shine-color: #ffffff40;
-  --shadow-color: #aaaaaa;
+  --text-color: hsl(var(--foreground));
+  --shine-color: hsl(var(--primary) / 0.4);
+  --shadow-color: hsl(var(--muted-foreground));
   display: flex;
   justify-content: center;
   align-items: center;
