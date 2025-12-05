@@ -160,7 +160,7 @@ export default function Portfolio() {
         {/* Hero Section */}
         <header className="text-center mb-20">
           <motion.h1
-            className="text-5xl lg:text-7xl font-bold text-white mb-6 animate-fade-in"
+            className="text-5xl lg:text-7xl font-bold text-foreground mb-6 animate-fade-in"
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -181,7 +181,7 @@ export default function Portfolio() {
         {/* Achievements Section */}
         <section aria-label="Achievements and Certificates" className="mb-20">
           <motion.h2
-            className="text-4xl font-bold text-white mb-10 text-center"
+            className="text-4xl font-bold text-foreground mb-10 text-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -213,7 +213,7 @@ export default function Portfolio() {
                     />
                   </div>
                   <div className="p-6">
-                    <h3 className="text-xl font-bold text-white mb-2">Green Hat Hacker Certification</h3>
+                    <h3 className="text-xl font-bold text-foreground mb-2">Green Hat Hacker Certification</h3>
                     <p className="text-muted-foreground text-sm">
                       Successfully achieved Green Hat Hacker certification, demonstrating creative problem-solving and ethical security practices.
                     </p>
@@ -239,7 +239,7 @@ export default function Portfolio() {
                     />
                   </div>
                   <div className="p-6">
-                    <h3 className="text-xl font-bold text-white mb-2">Academic Excellence Award</h3>
+                    <h3 className="text-xl font-bold text-foreground mb-2">Academic Excellence Award</h3>
                     <p className="text-muted-foreground text-sm">
                       Honored by Amar Ujala for exceptional academic performance and outstanding marks in Class 10th examinations.
                     </p>
@@ -264,8 +264,8 @@ export default function Portfolio() {
                 key={category}
                 className={`px-8 py-3 rounded-full font-medium transition-smooth ${
                   selectedCategory === category
-                    ? "card-gradient text-white shadow-glow border border-primary/30"
-                    : "bg-card/50 backdrop-blur-sm text-muted-foreground hover:text-white hover:bg-card border border-border hover:border-primary/30"
+                    ? "card-gradient text-foreground shadow-glow border border-primary/30"
+                    : "bg-card/50 backdrop-blur-sm text-muted-foreground hover:text-foreground hover:bg-card border border-border hover:border-primary/30"
                 }`}
                 onClick={() => setSelectedCategory(category)}
                 whileHover={{ scale: 1.05 }}
@@ -329,7 +329,7 @@ export default function Portfolio() {
                     />
                     
                     {/* Duration Badge */}
-                    <div className="absolute top-3 right-3 bg-black/80 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full border border-white/20">
+                    <div className="absolute top-3 right-3 bg-background/80 dark:bg-black/80 backdrop-blur-sm text-foreground text-xs px-3 py-1 rounded-full border border-border">
                       {project.duration}
                     </div>
                     
@@ -340,7 +340,7 @@ export default function Portfolio() {
                     {project.link && (
                       <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-smooth">
                         <div className="w-16 h-16 bg-primary/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-2xl" aria-hidden="true">
-                          <ExternalLink size={24} className="text-white" />
+                          <ExternalLink size={24} className="text-primary-foreground" />
                         </div>
                       </div>
                     )}
@@ -355,7 +355,7 @@ export default function Portfolio() {
                       <time className="text-muted-foreground text-xs">{project.year}</time>
                     </div>
                     
-                    <h2 className="text-xl font-bold text-white group-hover:text-primary transition-smooth">
+                    <h2 className="text-xl font-bold text-foreground group-hover:text-primary transition-smooth">
                       {project.title}
                     </h2>
                     
@@ -370,7 +370,7 @@ export default function Portfolio() {
                           href={project.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center text-primary hover:text-white transition-smooth font-medium text-sm group/link"
+                          className="inline-flex items-center text-primary hover:text-foreground transition-smooth font-medium text-sm group/link"
                           aria-label={`View ${project.title} project`}
                         >
                           View Project
