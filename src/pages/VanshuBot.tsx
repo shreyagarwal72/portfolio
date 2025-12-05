@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
-import { Bot, Send, Loader2, Sparkles, Trash2 } from 'lucide-react';
+import { Sparkles, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useToast } from '@/hooks/use-toast';
 import {
@@ -16,6 +15,7 @@ import { Link } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
 import { SplineScene } from '@/components/ui/splite';
 import { Spotlight } from '@/components/ui/spotlight';
+import ChatBotInput from '@/components/ChatBotInput';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -431,27 +431,13 @@ const VanshuBot = () => {
       {/* Fixed Chat Input Bar */}
       <div className="fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur-md border-t border-border z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <form onSubmit={handleSubmit} className="flex gap-2">
-            <Input
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask me anything about Vanshu's work..."
-              disabled={isLoading}
-              className="flex-1 bg-background"
-            />
-            <Button 
-              type="submit" 
-              disabled={isLoading || !input.trim()}
-              size="icon"
-              className="shrink-0"
-            >
-              {isLoading ? (
-                <Loader2 className="w-4 h-4 animate-spin" />
-              ) : (
-                <Send className="w-4 h-4" />
-              )}
-            </Button>
-          </form>
+          <ChatBotInput
+            value={input}
+            onChange={setInput}
+            onSubmit={handleSubmit}
+            isLoading={isLoading}
+            placeholder="Ask me anything about Vanshu's work... ✦˚"
+          />
         </div>
       </div>
     </main>
