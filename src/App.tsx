@@ -27,21 +27,26 @@ const queryClient = new QueryClient();
 
 const AppContent = () => {
   const location = useLocation();
-  const [isLoading, setIsLoading] = useState(true);
-  const isHomePage = location.pathname === '/';
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const [isFadingOut, setIsFadingOut] = useState(false);
 
   useEffect(() => {
-    // Show loading animation for 1.5 seconds on initial load and route changes
-    setIsLoading(true);
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
-    return () => clearTimeout(timer);
-  }, [location.pathname]);
+    // Only show loading on initial app load, not on route changes
+    if (isInitialLoad) {
+      const timer = setTimeout(() => {
+        setIsFadingOut(true);
+        // Wait for fade animation to complete before hiding
+        setTimeout(() => {
+          setIsInitialLoad(false);
+        }, 500);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [isInitialLoad]);
 
-  if (isLoading) {
+  if (isInitialLoad) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className={`min-h-screen bg-background flex items-center justify-center transition-opacity duration-500 ${isFadingOut ? 'opacity-0' : 'opacity-100'}`}>
         <TextLoader text="Loading" />
       </div>
     );
