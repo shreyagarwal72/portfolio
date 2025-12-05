@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Navigation from "./components/Navigation";
+import TextLoader from "./components/TextLoader";
 import Footer from "./components/Footer";
 import CursorGlow from "./components/CursorGlow";
 import BackToTop from "./components/BackToTop";
@@ -30,9 +31,21 @@ const AppContent = () => {
   const isHomePage = location.pathname === '/';
 
   useEffect(() => {
-    // No loading animation for any page
-    setIsLoading(false);
+    // Show loading animation for 1.5 seconds on initial load and route changes
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+    return () => clearTimeout(timer);
   }, [location.pathname]);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <TextLoader text="Loading" />
+      </div>
+    );
+  }
 
   return (
     <>
