@@ -1,4 +1,4 @@
-import { Loader2, Paperclip, Globe, LayoutGrid, Send } from 'lucide-react';
+import { Loader2, Send } from 'lucide-react';
 import './ChatBotInput.css';
 
 interface ChatBotInputProps {
@@ -48,15 +48,7 @@ const ChatBotInput = ({
           </form>
           <div className="options">
             <div className="btns-add">
-              <button type="button" aria-label="Attach file">
-                <Paperclip className="w-5 h-5" />
-              </button>
-              <button type="button" aria-label="Add block">
-                <LayoutGrid className="w-5 h-5" />
-              </button>
-              <button type="button" aria-label="Web search">
-                <Globe className="w-5 h-5" />
-              </button>
+              {/* Buttons removed as per user request */}
             </div>
             <button 
               className="btn-submit" 
