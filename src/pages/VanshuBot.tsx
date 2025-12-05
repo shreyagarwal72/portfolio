@@ -323,9 +323,25 @@ const VanshuBot = () => {
     e.preventDefault();
     if (!input.trim() || isLoading) return;
 
+    const lowerInput = input.toLowerCase().trim();
+
+    // Check for "op bolte" command - redirect to NextUp Resources
+    const opBoltePhrases = ['op bolte', 'op boltay', 'op bolti', 'opbolte', 'op boltey'];
+    if (opBoltePhrases.some(phrase => lowerInput.includes(phrase))) {
+      toast({
+        title: '🔥 OP Bolte!',
+        description: 'Redirecting to NextUp Resources...',
+      });
+      setInput('');
+      setTimeout(() => {
+        window.open('https://nextup-resources.vercel.app', '_blank');
+      }, 500);
+      return;
+    }
+
     // Check for clear chat command
     const clearPhrases = ['clear chat', 'clear history', 'reset chat', 'new chat', 'start over'];
-    if (clearPhrases.some(phrase => input.toLowerCase().includes(phrase))) {
+    if (clearPhrases.some(phrase => lowerInput.includes(phrase))) {
       setMessages([
         {
           role: 'assistant',

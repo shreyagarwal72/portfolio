@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { Loader2, Send, Mic, MicOff } from 'lucide-react';
+import { Loader2, Send, Mic, MicOff, Languages } from 'lucide-react';
 import './ChatBotInput.css';
 
 interface ChatBotInputProps {
@@ -24,12 +24,17 @@ const ChatBotInput = ({
   showTags = false,
 }: ChatBotInputProps) => {
   const [isListening, setIsListening] = useState(false);
+  const [voiceLang, setVoiceLang] = useState<'en-US' | 'hi-IN'>('en-US');
   const recognitionRef = useRef<any>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!value.trim() || isLoading) return;
     onSubmit(e);
+  };
+
+  const toggleLanguage = () => {
+    setVoiceLang(prev => prev === 'en-US' ? 'hi-IN' : 'en-US');
   };
 
   const toggleVoiceInput = () => {
@@ -51,7 +56,7 @@ const ChatBotInput = ({
     
     recognition.continuous = false;
     recognition.interimResults = true;
-    recognition.lang = 'en-US';
+    recognition.lang = voiceLang;
 
     recognition.onstart = () => setIsListening(true);
     
@@ -88,6 +93,16 @@ const ChatBotInput = ({
           </form>
           <div className="options">
             <div className="btns-add">
+              <button 
+                type="button" 
+                onClick={toggleLanguage}
+                className="lang-btn"
+                aria-label={`Switch to ${voiceLang === 'en-US' ? 'Hindi' : 'English'}`}
+                title={voiceLang === 'en-US' ? 'EN → HI' : 'HI → EN'}
+              >
+                <Languages className="w-4 h-4" />
+                <span className="lang-label">{voiceLang === 'en-US' ? 'EN' : 'HI'}</span>
+              </button>
               <button 
                 type="button" 
                 onClick={toggleVoiceInput}
