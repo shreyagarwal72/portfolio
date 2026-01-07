@@ -360,6 +360,11 @@
   .intro-page .pagination .progress-sub-container {
     max-width: 200px;
   }
+  
+  /* Hide cards on smaller screens */
+  .intro-page .card-content {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {
@@ -369,86 +374,159 @@
   
   .intro-page .intro-nav > div:last-child {
     gap: 16px;
+    font-size: 12px;
   }
   
   .intro-page .details {
-    top: 100px;
+    top: 80px;
     left: 20px;
     right: 20px;
+    bottom: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .intro-page .details .place-box {
+    height: 36px;
+  }
+  
+  .intro-page .details .place-box .text {
+    font-size: 14px;
+    padding-top: 12px;
   }
   
   .intro-page .details .title-1,
   .intro-page .details .title-2 {
-    font-size: 36px;
+    font-size: 32px;
+    line-height: 1.1;
   }
   
   .intro-page .details .title-box-1,
   .intro-page .details .title-box-2 {
-    height: 55px;
+    height: 44px;
+    margin-top: 0;
   }
   
   .intro-page .details > .desc {
-    font-size: 14px;
+    font-size: 13px;
     width: 100%;
+    line-height: 1.5;
+    margin-top: 12px;
+    max-height: 80px;
+    overflow: hidden;
   }
   
+  .intro-page .details > .cta {
+    margin-top: 16px;
+    display: none;
+  }
+  
+  /* Hide pagination on mobile */
   .intro-page .pagination {
-    flex-wrap: wrap;
-    gap: 10px;
+    display: none;
   }
   
-  .intro-page .pagination > .arrow {
-    width: 40px;
-    height: 40px;
-  }
-  
-  .intro-page .pagination > .arrow:nth-child(2) {
-    margin-left: 10px;
-  }
-  
-  .intro-page .pagination .progress-sub-container {
-    max-width: 120px;
-    margin-left: 16px;
-  }
-  
-  .intro-page .pagination .slide-numbers {
-    width: 40px;
-    height: 40px;
-  }
-  
-  .intro-page .pagination .slide-numbers .item {
-    width: 40px;
-    height: 40px;
-    font-size: 24px;
+  /* Mobile swipe indicator */
+  .intro-page .mobile-swipe-hint {
+    display: flex;
   }
   
   .intro-page .intro-actions {
-    bottom: 30px;
+    bottom: 24px;
     left: 20px;
     right: 20px;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
   }
   
-  .intro-page .enter-btn,
+  .intro-page .enter-btn {
+    width: 100%;
+    text-align: center;
+    padding: 16px 32px;
+    font-size: 15px;
+  }
+  
   .intro-page .skip-btn {
     width: 100%;
     text-align: center;
+    padding: 14px 24px;
+  }
+  
+  /* Mobile overlay gradient */
+  .intro-page .card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70%;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 50%, transparent 100%);
+    pointer-events: none;
   }
 }
 
 @media (max-width: 480px) {
+  .intro-page .details {
+    top: 70px;
+    bottom: 160px;
+  }
+  
   .intro-page .details .title-1,
   .intro-page .details .title-2 {
-    font-size: 28px;
+    font-size: 26px;
   }
   
   .intro-page .details .title-box-1,
   .intro-page .details .title-box-2 {
-    height: 42px;
+    height: 36px;
   }
   
   .intro-page .details .place-box .text {
-    font-size: 16px;
+    font-size: 12px;
   }
+  
+  .intro-page .details > .desc {
+    font-size: 12px;
+    max-height: 60px;
+  }
+  
+  .intro-page .intro-nav .logo-text {
+    font-size: 20px;
+  }
+  
+  .intro-page .intro-nav > div:last-child {
+    font-size: 11px;
+  }
+}
+
+/* Mobile swipe hint */
+.intro-page .mobile-swipe-hint {
+  display: none;
+  position: fixed;
+  bottom: 140px;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  color: hsl(var(--foreground) / 0.5);
+  font-size: 12px;
+  z-index: 55;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Page transition overlay */
+.intro-page .page-transition-overlay {
+  position: fixed;
+  inset: 0;
+  background: hsl(var(--background));
+  z-index: 200;
+  pointer-events: none;
+  opacity: 0;
 }
