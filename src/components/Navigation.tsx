@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, Search } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import SearchDialog from '@/components/SearchDialog';
 import ThemeToggle from '@/components/ThemeToggle';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
   const location = useLocation();
 
   const navItems = [
@@ -29,7 +27,7 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="text-xl font-bold text-primary" aria-label="Vanshu Agarwal Home">
+          <Link to="/book-portfolio" className="text-xl font-bold text-primary" aria-label="View Book Portfolio">
             VA
           </Link>
 
@@ -51,18 +49,9 @@ const Navigation = () => {
             ))}
           </ul>
 
-          {/* Search, Theme Toggle and Contact Info */}
+          {/* Theme Toggle and Contact Info */}
           <div className="hidden md:flex items-center space-x-4 text-sm text-muted-foreground" role="contentinfo">
             <ThemeToggle />
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setSearchOpen(true)}
-              className="hover:text-primary"
-              aria-label="Search"
-            >
-              <Search size={18} />
-            </Button>
             <Phone size={16} aria-hidden="true" />
             <a href="tel:+919412104618" className="hover:text-primary transition-smooth">9412104618</a>
           </div>
@@ -116,8 +105,6 @@ const Navigation = () => {
           </div>
         )}
       </div>
-      
-      <SearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
     </nav>
   );
 };
