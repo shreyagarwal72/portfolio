@@ -4,6 +4,8 @@ import { Instagram, Github, Linkedin, Link } from 'lucide-react';
 interface SocialCard {
   icon: React.ReactNode;
   name: string;
+  stat: string;
+  statValue: string;
   action: string;
   href: string;
   color: string;
@@ -13,6 +15,8 @@ const socialCards: SocialCard[] = [
   {
     icon: <Instagram className="w-16 h-16" />,
     name: 'Instagram',
+    stat: 'Followers',
+    statValue: '1.2k',
     action: 'Follow me',
     href: 'https://www.instagram.com/vanshu_bhai_1973/',
     color: '348 80% 60%',
@@ -20,6 +24,8 @@ const socialCards: SocialCard[] = [
   {
     icon: <Github className="w-16 h-16" />,
     name: 'Github',
+    stat: 'Repos',
+    statValue: '10+',
     action: 'Follow me',
     href: 'https://github.com/vanshu778',
     color: '0 0% 100%',
@@ -27,6 +33,8 @@ const socialCards: SocialCard[] = [
   {
     icon: <Linkedin className="w-16 h-16" />,
     name: 'LinkedIn',
+    stat: 'Connections',
+    statValue: '500+',
     action: 'Connect',
     href: 'https://in.linkedin.com/in/vanshu-agarwal-954262330',
     color: '220 100% 50%',
@@ -76,6 +84,9 @@ const SocialMediaCards = () => {
           <div className="absolute inset-[1px] bg-[#131315] rounded-xl flex flex-col items-center justify-center gap-4 p-6">
             <div className="text-white/50">{card.icon}</div>
             <h3 className="text-xl font-semibold text-white">{card.name}</h3>
+            <p className="text-white/50">
+              {card.stat}: <span className="text-white">{card.statValue}</span>
+            </p>
             <a
               href={card.href}
               target="_blank"
