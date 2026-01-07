@@ -3,13 +3,13 @@ import { gsap } from 'gsap';
 import { Play, Bookmark, ChevronLeft, ChevronRight } from 'lucide-react';
 import './Intro.css';
 
-// Import images
-import heroWorkspace from '@/assets/hero-workspace.jpg';
-import profilePhoto from '@/assets/vanshu-profile-new.jpg';
-import previewWebtools from '@/assets/preview-webtools-suite.jpg';
-import previewYoutube from '@/assets/preview-youtube.jpg';
-import clientNecrovia from '@/assets/client-necrovia.png';
-import articleGaming from '@/assets/article-gaming.jpg';
+// Import AI-generated slide images
+import introSlide1 from '@/assets/intro-slide-1.jpg';
+import introSlide2 from '@/assets/intro-slide-2.jpg';
+import introSlide3 from '@/assets/intro-slide-3.jpg';
+import introSlide4 from '@/assets/intro-slide-4.jpg';
+import introSlide5 from '@/assets/intro-slide-5.jpg';
+import introSlide6 from '@/assets/intro-slide-6.jpg';
 
 interface IntroProps {
   onEnter: () => void;
@@ -22,42 +22,42 @@ const data = [
     title: 'VANSHU',
     title2: 'AGARWAL',
     description: 'A passionate video editor and content creator from India, specializing in cinematic edits, music production, and web development. Let me bring your vision to life with creativity and precision.',
-    image: profilePhoto
+    image: introSlide1
   },
   {
     place: 'Professional Services',
     title: 'VIDEO',
     title2: 'EDITING',
     description: 'Transform your raw footage into stunning visual stories. From YouTube videos to cinematic shorts, I deliver professional edits with seamless transitions, color grading, and sound design.',
-    image: heroWorkspace
+    image: introSlide2
   },
   {
     place: 'Creative Portfolio',
     title: 'FEATURED',
     title2: 'PROJECTS',
     description: 'Explore my collection of work including gaming content, music videos, promotional material, and web development projects. Each project is crafted with attention to detail and creative excellence.',
-    image: previewWebtools
+    image: introSlide3
   },
   {
     place: 'Technical Expertise',
     title: 'SKILLS &',
     title2: 'TOOLS',
     description: 'Proficient in Adobe Premiere Pro, After Effects, DaVinci Resolve, and modern web technologies like React and TypeScript. Always learning and adapting to new creative tools.',
-    image: previewYoutube
+    image: introSlide4
   },
   {
     place: 'Client Success',
     title: 'TRUSTED',
     title2: 'REVIEWS',
     description: '"Exceptional quality and attention to detail. Vanshu transformed our content beyond expectations." - Working with amazing creators and businesses to deliver outstanding results.',
-    image: clientNecrovia
+    image: introSlide5
   },
   {
     place: 'Get In Touch',
     title: 'LETS',
     title2: 'CONNECT',
     description: 'Ready to start your next project? Whether you need video editing, content creation, or web development, I\'m here to help bring your ideas to reality. Let\'s create something amazing together.',
-    image: articleGaming
+    image: introSlide6
   },
 ];
 
@@ -68,9 +68,12 @@ const Intro = ({ onEnter, onSkip }: IntroProps) => {
   const loopIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const isInitializedRef = useRef(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const transitionRef = useRef<HTMLDivElement>(null);
+  const touchStartRef = useRef<number>(0);
   
   // Sound effect URLs (royalty-free whoosh sounds)
   const whooshSound = 'https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3';
+  const enterSound = 'https://assets.mixkit.co/active_storage/sfx/1111/1111-preview.mp3';
   
   const playWhoosh = useCallback(() => {
     if (audioRef.current) {
@@ -79,6 +82,42 @@ const Intro = ({ onEnter, onSkip }: IntroProps) => {
       audioRef.current.play().catch(() => {});
     }
   }, []);
+  
+  const handleEnterWithTransition = useCallback(() => {
+    // Play enter sound
+    const enterAudio = new Audio(enterSound);
+    enterAudio.volume = 0.4;
+    enterAudio.play().catch(() => {});
+    
+    // Animate transition
+    if (transitionRef.current) {
+      gsap.to(transitionRef.current, {
+        opacity: 1,
+        duration: 0.5,
+        ease: 'power2.inOut',
+        onComplete: () => {
+          onEnter();
+        }
+      });
+    } else {
+      onEnter();
+    }
+  }, [onEnter]);
+  
+  const handleSkipWithTransition = useCallback(() => {
+    if (transitionRef.current) {
+      gsap.to(transitionRef.current, {
+        opacity: 1,
+        duration: 0.3,
+        ease: 'power2.inOut',
+        onComplete: () => {
+          onSkip();
+        }
+      });
+    } else {
+      onSkip();
+    }
+  }, [onSkip]);
 
   const getCard = (index: number) => `#card${index}`;
   const getCardContent = (index: number) => `#card-content-${index}`;
@@ -333,6 +372,27 @@ const Intro = ({ onEnter, onSkip }: IntroProps) => {
       }
     };
 
+    // Touch support for mobile
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartRef.current = e.touches[0].clientX;
+    };
+    
+    const handleTouchEnd = (e: TouchEvent) => {
+      const touchEnd = e.changedTouches[0].clientX;
+      const diff = touchStartRef.current - touchEnd;
+      
+      // Swipe left to go next
+      if (diff > 50) {
+        step();
+      }
+    };
+    
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener('touchstart', handleTouchStart, { passive: true });
+      container.addEventListener('touchend', handleTouchEnd, { passive: true });
+    }
+
     loadImages();
 
     return () => {
@@ -340,8 +400,12 @@ const Intro = ({ onEnter, onSkip }: IntroProps) => {
         clearInterval(loopIntervalRef.current);
       }
       gsap.killTweensOf("*");
+      if (container) {
+        container.removeEventListener('touchstart', handleTouchStart);
+        container.removeEventListener('touchend', handleTouchEnd);
+      }
     };
-  }, [init]);
+  }, [init, step]);
 
   return (
     <div className="intro-page" ref={containerRef}>
@@ -393,7 +457,7 @@ const Intro = ({ onEnter, onSkip }: IntroProps) => {
           <button className="bookmark">
             <Bookmark size={20} />
           </button>
-          <button className="discover" onClick={onEnter}>Explore Portfolio</button>
+          <button className="discover" onClick={handleEnterWithTransition}>Explore Portfolio</button>
         </div>
       </div>
 
@@ -409,7 +473,7 @@ const Intro = ({ onEnter, onSkip }: IntroProps) => {
           <button className="bookmark">
             <Bookmark size={20} />
           </button>
-          <button className="discover" onClick={onEnter}>Explore Portfolio</button>
+          <button className="discover" onClick={handleEnterWithTransition}>Explore Portfolio</button>
         </div>
       </div>
 
@@ -435,17 +499,27 @@ const Intro = ({ onEnter, onSkip }: IntroProps) => {
 
       {/* Enter/Skip Actions */}
       <div className="intro-actions">
-        <button className="enter-btn" onClick={onEnter}>
+        <button className="enter-btn" onClick={handleEnterWithTransition}>
           <Play size={16} style={{ marginRight: 8, display: 'inline' }} />
           Enter Website
         </button>
-        <button className="skip-btn" onClick={onSkip}>
+        <button className="skip-btn" onClick={handleSkipWithTransition}>
           Skip Intro
         </button>
       </div>
 
+      {/* Mobile swipe hint */}
+      <div className="mobile-swipe-hint">
+        <ChevronLeft size={16} />
+        <span>Swipe to explore</span>
+        <ChevronRight size={16} />
+      </div>
+
       {/* Cover */}
       <div className="cover"></div>
+      
+      {/* Page Transition Overlay */}
+      <div className="page-transition-overlay" ref={transitionRef}></div>
     </div>
   );
 };
