@@ -83,6 +83,15 @@
   cursor: pointer;
   z-index: 2;
   text-decoration: none;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.electric-button:hover {
+  transform: translate(-50%, -50%) scale(1.03);
+}
+
+.electric-button:active {
+  transform: translate(-50%, -50%) scale(0.98);
 }
 
 .electric-button::before {
@@ -97,7 +106,12 @@
   left: 50%;
   z-index: -4;
   transform: translateX(-50%);
-  transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out, filter 0.3s ease;
+}
+
+.electric-button:hover::before {
+  filter: blur(70px);
+  background-color: #ff9f70cc;
 }
 
 .electric-button:hover .base,

@@ -19,11 +19,26 @@
   letter-spacing: 1px;
   min-width: 9em;
   outline: 0.1875em solid transparent;
-  transition: outline 0.1s linear;
+  transition: outline 0.1s linear, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
   -webkit-tap-highlight-color: transparent;
   text-decoration: none;
   display: inline-block;
   position: relative;
+  overflow: hidden;
+}
+
+.creepy-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), hsl(var(--hue) 90% 55% / 0.3), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.creepy-btn:hover::before {
+  opacity: 1;
 }
 
 .creepy-btn,
@@ -45,11 +60,11 @@
 
 .creepy-btn__cover {
   background-color: var(--primary5);
-  box-shadow: 0 0 0 0.125em var(--black) inset;
+  box-shadow: 0 0 0 0.125em var(--black) inset, 0 4px 15px -3px rgba(0, 0, 0, 0.3);
   padding: 0.5em 1em;
   inset: 0;
   transform-origin: 1.25em 50%;
-  transition: background-color var(--trans-dur), transform var(--trans-dur) cubic-bezier(0.65, 0, 0.35, 1);
+  transition: background-color var(--trans-dur), transform var(--trans-dur) cubic-bezier(0.65, 0, 0.35, 1), box-shadow 0.3s ease;
 }
 
 .creepy-btn__eye {
@@ -59,6 +74,7 @@
   overflow: hidden;
   width: 0.75em;
   height: 0.75em;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .creepy-btn__eyes,
@@ -81,14 +97,25 @@
   left: 50%;
   width: 0.375em;
   transform: translate(-50%, -50%);
+  transition: transform 0.1s ease-out;
 }
 
 .creepy-btn:focus-visible {
   outline: 0.1875em solid var(--primary3);
 }
 
+.creepy-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px -10px rgba(100, 108, 255, 0.5);
+}
+
+.creepy-btn:active {
+  transform: scale(0.98);
+}
+
 .creepy-btn:hover .creepy-btn__cover {
   background-color: var(--primary6);
+  box-shadow: 0 0 0 0.125em var(--black) inset, 0 8px 25px -5px rgba(0, 0, 0, 0.4);
 }
 
 .creepy-btn:focus-visible .creepy-btn__cover,
@@ -111,4 +138,27 @@
     animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
     height: 0;
   }
+}
+
+/* Add a subtle glow effect on hover */
+.creepy-btn::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 1.5em;
+  background: linear-gradient(90deg, hsl(var(--hue) 90% 55%), hsl(var(--hue) 90% 75%), hsl(var(--hue) 90% 55%));
+  background-size: 200% 100%;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: gradient-flow 2s linear infinite;
+}
+
+.creepy-btn:hover::after {
+  opacity: 0.6;
+}
+
+@keyframes gradient-flow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
 }
