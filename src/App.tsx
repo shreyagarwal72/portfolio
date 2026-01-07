@@ -2,12 +2,13 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useEffect } from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import CursorGlow from "./components/CursorGlow";
 import BackToTop from "./components/BackToTop";
+import IntroWrapper from "./components/IntroWrapper";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Portfolio from "./pages/Portfolio";
@@ -20,16 +21,50 @@ import TermsAndConditions from "./pages/TermsAndConditions";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Articles from "./pages/Articles";
 import ProcessWorkflow from "./pages/ProcessWorkflow";
-import BookPortfolio from "./pages/BookPortfolio";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
 const AppContent = () => {
+  const location = useLocation();
+  const [showIntro, setShowIntro] = useState(false);
+  const [introKey, setIntroKey] = useState(0);
+
+  // Check if we should show intro (first visit or VA click)
+  useEffect(() => {
+    const hasSeenIntro = localStorage.getItem('hasSeenIntro');
+    if (!hasSeenIntro && location.pathname === '/') {
+      setShowIntro(true);
+    }
+  }, [location.pathname]);
+
+  const handleTriggerIntro = () => {
+    localStorage.removeItem('hasSeenIntro');
+    setShowIntro(true);
+    setIntroKey(prev => prev + 1);
+  };
+
+  const handleIntroComplete = () => {
+    setShowIntro(false);
+  };
+
+  // Only show intro on homepage and when showIntro is true
+  if (showIntro && location.pathname === '/') {
+    return (
+      <IntroWrapper 
+        key={introKey}
+        forceShowIntro={true} 
+        onIntroComplete={handleIntroComplete}
+      >
+        <div />
+      </IntroWrapper>
+    );
+  }
+
   return (
     <>
       <div className="min-h-screen bg-background flex flex-col">
-        <Navigation />
+        <Navigation onLogoClick={handleTriggerIntro} />
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Index />} />
@@ -44,7 +79,6 @@ const AppContent = () => {
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/articles" element={<Articles />} />
             <Route path="/process" element={<ProcessWorkflow />} />
-            <Route path="/book-portfolio" element={<BookPortfolio />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
