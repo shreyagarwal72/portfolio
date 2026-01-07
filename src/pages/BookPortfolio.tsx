@@ -1,289 +1,211 @@
-"use client"
-
-import { useEffect, useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Link } from "react-router-dom"
-import "./BookPortfolio.css"
-
-// Pages data with content
-const pages = [
-  {
-    id: 0,
-    title: "Cover",
-    content: (
-      <div className="book-cover">
-        <div className="cover-decoration top-left"></div>
-        <div className="cover-decoration top-right"></div>
-        <div className="cover-decoration bottom-left"></div>
-        <div className="cover-decoration bottom-right"></div>
-        <h1 className="cover-title">
-          <span className="title-line">VANSHU</span>
-          <span className="title-line accent">AGARWAL</span>
-        </h1>
-        <div className="cover-divider"></div>
-        <p className="cover-subtitle">Portfolio Book</p>
-        <p className="cover-year">2025</p>
-      </div>
-    ),
-  },
-  {
-    id: 1,
-    title: "About Me",
-    content: (
-      <div className="book-page-content">
-        <h2 className="page-title">About Me</h2>
-        <div className="page-divider"></div>
-        <p className="page-text">
-          I'm <strong>Vanshu Agarwal</strong>, a creative video editor, passionate gamer, and musician from Agra, Uttar Pradesh, India.
-        </p>
-        <p className="page-text">
-          Currently pursuing my education as a <strong>Class 11 PCM Science student</strong>, I balance academics with my passion for digital content creation.
-        </p>
-        <div className="page-highlight">
-          <span className="highlight-icon">🎬</span>
-          <span>Video Editor</span>
-        </div>
-        <div className="page-highlight">
-          <span className="highlight-icon">🎮</span>
-          <span>Gamer</span>
-        </div>
-        <div className="page-highlight">
-          <span className="highlight-icon">🎵</span>
-          <span>Musician</span>
-        </div>
-      </div>
-    ),
-  },
-  {
-    id: 2,
-    title: "Skills",
-    content: (
-      <div className="book-page-content">
-        <h2 className="page-title">My Skills</h2>
-        <div className="page-divider"></div>
-        <div className="skills-grid">
-          <div className="skill-item">
-            <div className="skill-bar" style={{ width: "90%" }}></div>
-            <span>Video Editing</span>
-          </div>
-          <div className="skill-item">
-            <div className="skill-bar" style={{ width: "85%" }}></div>
-            <span>Music Production</span>
-          </div>
-          <div className="skill-item">
-            <div className="skill-bar" style={{ width: "80%" }}></div>
-            <span>Web Development</span>
-          </div>
-          <div className="skill-item">
-            <div className="skill-bar" style={{ width: "95%" }}></div>
-            <span>Gaming</span>
-          </div>
-          <div className="skill-item">
-            <div className="skill-bar" style={{ width: "75%" }}></div>
-            <span>Graphic Design</span>
-          </div>
-        </div>
-      </div>
-    ),
-  },
-  {
-    id: 3,
-    title: "Projects",
-    content: (
-      <div className="book-page-content">
-        <h2 className="page-title">Featured Projects</h2>
-        <div className="page-divider"></div>
-        <div className="projects-list">
-          <div className="project-item">
-            <h3>Orbital World</h3>
-            <p>Solar system exploration website</p>
-          </div>
-          <div className="project-item">
-            <h3>NextUp Studio</h3>
-            <p>Professional creative portfolio</p>
-          </div>
-          <div className="project-item">
-            <h3>My Webtools Suite</h3>
-            <p>Web utilities collection</p>
-          </div>
-          <div className="project-item">
-            <h3>Minecraft Site</h3>
-            <p>Gaming content showcase</p>
-          </div>
-        </div>
-      </div>
-    ),
-  },
-  {
-    id: 4,
-    title: "Contact",
-    content: (
-      <div className="book-page-content">
-        <h2 className="page-title">Get In Touch</h2>
-        <div className="page-divider"></div>
-        <div className="contact-info">
-          <div className="contact-item">
-            <span className="contact-icon">📧</span>
-            <span>sanjayvansu1973@gmail.com</span>
-          </div>
-          <div className="contact-item">
-            <span className="contact-icon">📱</span>
-            <span>+91 9412104618</span>
-          </div>
-          <div className="contact-item">
-            <span className="contact-icon">📍</span>
-            <span>Agra, Uttar Pradesh, India</span>
-          </div>
-        </div>
-        <div className="social-links">
-          <a href="https://github.com/shreyagarwal72" target="_blank" rel="noopener noreferrer" className="social-link">GitHub</a>
-          <a href="https://instagram.com/vanshu_ag_72" target="_blank" rel="noopener noreferrer" className="social-link">Instagram</a>
-          <a href="https://youtube.com/@nextupstudioyt" target="_blank" rel="noopener noreferrer" className="social-link">YouTube</a>
-        </div>
-      </div>
-    ),
-  },
-]
+import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import './BookPortfolio.css';
+import profilePhoto from '@/assets/vanshu-profile-new.jpg';
+import previewOrbital from '@/assets/preview-orbital-world.png';
 
 const BookPortfolio = () => {
-  const [currentPage, setCurrentPage] = useState(0)
-  const [isFlipping, setIsFlipping] = useState(false)
-  const [flipDirection, setFlipDirection] = useState<"next" | "prev">("next")
+  const pagesRef = useRef<(HTMLDivElement | null)[]>([]);
+  const coverRightRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    document.title = "Book Portfolio - Vanshu Agarwal | Creative Journey"
-    
-    const metaDescription = document.querySelector('meta[name="description"]')
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Explore Vanshu Agarwal\'s interactive book portfolio showcasing skills, projects, and creative journey in video editing, gaming, and music production.')
-    }
+    document.title = 'Vanshu Agarwal - Interactive Portfolio Book';
 
-    const script = document.createElement('script')
-    script.type = 'application/ld+json'
-    script.text = JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "Book Portfolio - Vanshu Agarwal",
-      "description": "Interactive book portfolio showcasing creative work and skills",
-      "author": {
-        "@type": "Person",
-        "name": "Vanshu Agarwal"
+    // Opening animation
+    const timer1 = setTimeout(() => {
+      if (coverRightRef.current) {
+        coverRightRef.current.classList.add('turn');
       }
-    })
-    document.head.appendChild(script)
+    }, 2100);
+
+    const timer2 = setTimeout(() => {
+      if (coverRightRef.current) {
+        coverRightRef.current.style.zIndex = '-1';
+      }
+    }, 2800);
+
+    let pageNumber = pagesRef.current.length - 1;
+    const pageTimers: NodeJS.Timeout[] = [];
+    
+    pagesRef.current.forEach((_, index) => {
+      const timer = setTimeout(() => {
+        if (pagesRef.current[pageNumber]) {
+          pagesRef.current[pageNumber]!.classList.remove('turn');
+          const currentPage = pageNumber;
+          setTimeout(() => {
+            if (pagesRef.current[currentPage]) {
+              pagesRef.current[currentPage]!.style.zIndex = String(10 + index);
+            }
+          }, 500);
+        }
+        pageNumber--;
+      }, (index + 1) * 200 + 2100);
+      pageTimers.push(timer);
+    });
 
     return () => {
-      const existingScript = document.querySelector('script[type="application/ld+json"]')
-      if (existingScript) {
-        document.head.removeChild(existingScript)
-      }
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      pageTimers.forEach(t => clearTimeout(t));
+    };
+  }, []);
+
+  const handlePageTurn = (pageIndex: number) => {
+    const page = pagesRef.current[pageIndex];
+    if (!page) return;
+    if (page.classList.contains('turn')) {
+      page.classList.remove('turn');
+      setTimeout(() => { page.style.zIndex = String(2 - pageIndex); }, 500);
+    } else {
+      page.classList.add('turn');
+      setTimeout(() => { page.style.zIndex = String(2 + pageIndex); }, 500);
     }
-  }, [])
+  };
 
-  const flipPage = (direction: "next" | "prev") => {
-    if (isFlipping) return
-    
-    if (direction === "next" && currentPage < pages.length - 1) {
-      setFlipDirection("next")
-      setIsFlipping(true)
+  const handleContactMe = () => {
+    pagesRef.current.forEach((page, index) => {
       setTimeout(() => {
-        setCurrentPage(prev => prev + 1)
-        setIsFlipping(false)
-      }, 600)
-    } else if (direction === "prev" && currentPage > 0) {
-      setFlipDirection("prev")
-      setIsFlipping(true)
+        if (page) {
+          page.classList.add('turn');
+          setTimeout(() => { page.style.zIndex = String(20 + index); }, 500);
+        }
+      }, (index + 1) * 200 + 100);
+    });
+  };
+
+  const handleBackProfile = () => {
+    let pageNumber = pagesRef.current.length - 1;
+    pagesRef.current.forEach((_, index) => {
       setTimeout(() => {
-        setCurrentPage(prev => prev - 1)
-        setIsFlipping(false)
-      }, 600)
-    }
-  }
-
-  const handleKeyDown = (e: KeyboardEvent) => {
-    if (e.key === "ArrowRight") flipPage("next")
-    if (e.key === "ArrowLeft") flipPage("prev")
-  }
-
-  useEffect(() => {
-    window.addEventListener("keydown", handleKeyDown)
-    return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [currentPage, isFlipping])
+        if (pagesRef.current[pageNumber]) {
+          pagesRef.current[pageNumber]!.classList.remove('turn');
+          const currentPage = pageNumber;
+          setTimeout(() => {
+            if (pagesRef.current[currentPage]) {
+              pagesRef.current[currentPage]!.style.zIndex = String(10 + index);
+            }
+          }, 500);
+        }
+        pageNumber--;
+      }, (index + 1) * 200 + 100);
+    });
+  };
 
   return (
-    <main className="book-portfolio-page">
-      <div className="book-container">
+    <div className="book-portfolio-page">
+      <div className="wrapper">
+        <div className="cover cover-left"></div>
+        <div className="cover cover-right" ref={coverRightRef}></div>
+
         <div className="book">
-          {/* Book binding */}
-          <div className="book-spine"></div>
-          
-          {/* Current page */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentPage}
-              className={`book-page ${isFlipping ? `flipping-${flipDirection}` : ""}`}
-              initial={{ rotateY: flipDirection === "next" ? 90 : -90 }}
-              animate={{ rotateY: 0 }}
-              exit={{ rotateY: flipDirection === "next" ? -90 : 90 }}
-              transition={{ duration: 0.6, ease: "easeInOut" }}
-            >
-              <div className="page-front">
-                {pages[currentPage].content}
+          <div className="book-page page-left">
+            <div className="profile-page">
+              <img src={profilePhoto} alt="Vanshu Agarwal" />
+              <h1>Vanshu Agarwal</h1>
+              <h3>Video Editor & Creative Mind</h3>
+              <div className="social-media">
+                <a href="https://github.com/shreyagarwal72" target="_blank" rel="noopener noreferrer"><i className="bx bxl-github"></i></a>
+                <a href="https://instagram.com/vanshu_ag_72" target="_blank" rel="noopener noreferrer"><i className="bx bxl-instagram"></i></a>
+                <a href="https://youtube.com/@nextupstudioyt" target="_blank" rel="noopener noreferrer"><i className="bx bxl-youtube"></i></a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><i className="bx bxl-linkedin-square"></i></a>
               </div>
-            </motion.div>
-          </AnimatePresence>
+              <p>Hi, I'm a passionate video editor and content creator from India specializing in gaming content, music production, and digital storytelling.</p>
+              <div className="btn-box">
+                <a href="/cv" className="btn">Download CV</a>
+                <button className="btn contact-me" onClick={handleContactMe}>Contact Me!</button>
+              </div>
+            </div>
+          </div>
 
-          {/* Page number */}
-          <div className="page-number">
-            {currentPage + 1} / {pages.length}
+          <div className="book-page page-right turn" ref={el => pagesRef.current[0] = el}>
+            <div className="page-front">
+              <h1 className="title">Work Experience</h1>
+              <div className="workeduc-box">
+                <div className="workeduc-content">
+                  <span className="year"><i className="bx bxs-calendar"></i>2022 - Present</span>
+                  <h3>Video Editor - NextUp Studio</h3>
+                  <p>Creating engaging gaming content, music videos, and promotional materials.</p>
+                </div>
+                <div className="workeduc-content">
+                  <span className="year"><i className="bx bxs-calendar"></i>2021 - 2022</span>
+                  <h3>Content Creator - Freelance</h3>
+                  <p>Produced original music tracks, gaming videos, and tutorials.</p>
+                </div>
+              </div>
+              <span className="number-page">1</span>
+              <span className="nextprev-btn" onClick={() => handlePageTurn(0)}><i className="bx bx-chevron-right"></i></span>
+            </div>
+            <div className="page-back">
+              <h1 className="title">Education</h1>
+              <div className="workeduc-box">
+                <div className="workeduc-content">
+                  <span className="year"><i className="bx bxs-calendar"></i>2020 - Present</span>
+                  <h3>High School</h3>
+                  <p>Currently pursuing high school education while developing creative skills.</p>
+                </div>
+                <div className="workeduc-content">
+                  <span className="year"><i className="bx bxs-calendar"></i>Ongoing</span>
+                  <h3>Certifications</h3>
+                  <p>Earned recognition from Amar Ujala and Green Hat for excellence in digital content creation.</p>
+                </div>
+              </div>
+              <span className="number-page">2</span>
+              <span className="nextprev-btn back" onClick={() => handlePageTurn(0)}><i className="bx bx-chevron-left"></i></span>
+            </div>
+          </div>
+
+          <div className="book-page page-right turn" ref={el => pagesRef.current[1] = el}>
+            <div className="page-front">
+              <h1 className="title">My Services</h1>
+              <div className="services-box">
+                <div className="services-content"><i className="bx bx-video"></i><h3>Video Editing</h3><p>Professional editing for YouTube and social media.</p></div>
+                <div className="services-content"><i className="bx bx-music"></i><h3>Music Production</h3><p>Original tracks and audio design.</p></div>
+                <div className="services-content"><i className="bx bx-game"></i><h3>Gaming Content</h3><p>Minecraft builds and gameplay videos.</p></div>
+                <div className="services-content"><i className="bx bx-palette"></i><h3>Graphic Design</h3><p>Thumbnails, banners, and logos.</p></div>
+              </div>
+              <span className="number-page">3</span>
+              <span className="nextprev-btn" onClick={() => handlePageTurn(1)}><i className="bx bx-chevron-right"></i></span>
+            </div>
+            <div className="page-back">
+              <h1 className="title">My Skills</h1>
+              <div className="skills-box">
+                <div className="skills-content"><h3>Video Editing</h3><div className="content"><span><i className="bx bxl-adobe"></i>Premiere</span><span><i className="bx bx-film"></i>DaVinci</span></div></div>
+                <div className="skills-content"><h3>Web Development</h3><div className="content"><span><i className="bx bxl-html5"></i>HTML</span><span><i className="bx bxl-css3"></i>CSS</span><span><i className="bx bxl-react"></i>React</span></div></div>
+              </div>
+              <span className="number-page">4</span>
+              <span className="nextprev-btn back" onClick={() => handlePageTurn(1)}><i className="bx bx-chevron-left"></i></span>
+            </div>
+          </div>
+
+          <div className="book-page page-right turn" ref={el => pagesRef.current[2] = el}>
+            <div className="page-front">
+              <h1 className="title">Latest Project</h1>
+              <div className="portfolio-box">
+                <div className="img-box"><img src={previewOrbital} alt="Orbital World" /></div>
+                <div className="info-box">
+                  <div className="info-title"><h3>Orbital World</h3><a href="https://orbital-world.vercel.app" target="_blank" rel="noopener noreferrer">Live Preview <i className="bx bx-link-external"></i></a></div>
+                  <p>Tech Used: React, Three.js, Tailwind CSS</p>
+                </div>
+                <div className="btn-box"><Link to="/portfolio" className="btn">More Projects</Link></div>
+              </div>
+              <span className="number-page">5</span>
+              <span className="nextprev-btn" onClick={() => handlePageTurn(2)}><i className="bx bx-chevron-right"></i></span>
+            </div>
+            <div className="page-back">
+              <h1 className="title">Contact Me!</h1>
+              <div className="contact-box">
+                <form><input type="text" className="field" placeholder="Full Name" /><input type="email" className="field" placeholder="Email" /><textarea className="field" placeholder="Your Message" rows={5}></textarea><input type="submit" value="Send Message" className="btn" /></form>
+              </div>
+              <span className="number-page">6</span>
+              <span className="nextprev-btn back" onClick={() => handlePageTurn(2)}><i className="bx bx-chevron-left"></i></span>
+              <button className="back-profile" onClick={handleBackProfile}><p>Profile</p><i className="bx bxs-user"></i></button>
+            </div>
           </div>
         </div>
-
-        {/* Navigation */}
-        <div className="book-navigation">
-          <button 
-            className="nav-button prev"
-            onClick={() => flipPage("prev")}
-            disabled={currentPage === 0 || isFlipping}
-            aria-label="Previous page"
-          >
-            ← Previous
-          </button>
-          <div className="page-dots">
-            {pages.map((_, index) => (
-              <span
-                key={index}
-                className={`dot ${index === currentPage ? "active" : ""}`}
-                onClick={() => {
-                  if (!isFlipping && index !== currentPage) {
-                    setFlipDirection(index > currentPage ? "next" : "prev")
-                    setIsFlipping(true)
-                    setTimeout(() => {
-                      setCurrentPage(index)
-                      setIsFlipping(false)
-                    }, 600)
-                  }
-                }}
-              />
-            ))}
-          </div>
-          <button 
-            className="nav-button next"
-            onClick={() => flipPage("next")}
-            disabled={currentPage === pages.length - 1 || isFlipping}
-            aria-label="Next page"
-          >
-            Next →
-          </button>
-        </div>
-
-        {/* Back to home link */}
-        <Link to="/" className="back-to-home">
-          ← Back to Home
-        </Link>
       </div>
-    </main>
-  )
-}
+      <Link to="/" className="home-link"><i className="bx bx-home"></i> Back to Home</Link>
+    </div>
+  );
+};
 
-export default BookPortfolio
+export default BookPortfolio;

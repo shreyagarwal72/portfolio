@@ -1,9 +1,8 @@
-import { Link } from 'react-router-dom';
 import { Floating3D } from '@/components/Floating3D';
 import heroWorkspace from '@/assets/hero-workspace.jpg';
 import { useEffect } from 'react';
 import ElectricButton from '@/components/ElectricButton';
-import GradientButton from '@/components/GradientButton';
+import CreepyButton from '@/components/CreepyButton';
 
 const Hero = () => {
   useEffect(() => {
@@ -83,7 +82,7 @@ const Hero = () => {
 
             {/* CTA Buttons */}
             <nav className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in" aria-label="Main navigation actions" style={{ animationDelay: '0.4s' }}>
-              <GradientButton to="/cv" text="Open CV" />
+              <CreepyButton to="/cv">Open CV</CreepyButton>
               <ElectricButton to="/portfolio" text="View Portfolio" />
             </nav>
           </div>
