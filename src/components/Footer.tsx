@@ -1,5 +1,5 @@
-import { Github, Instagram, Youtube, Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SocialMediaCards from './SocialMediaCards';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -18,45 +18,10 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Social Links */}
-          <nav className="flex items-center gap-4" aria-label="Social media links">
-            <a 
-              href="https://github.com/shreyagarwal72" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="p-2 rounded-full bg-card/50 hover:bg-primary/20 text-muted-foreground hover:text-primary transition-smooth"
-              aria-label="Visit Vanshu Agarwal's GitHub profile"
-            >
-              <Github size={20} aria-hidden="true" />
-            </a>
-            <a 
-              href="https://instagram.com/vanshu_ag_72" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="p-2 rounded-full bg-card/50 hover:bg-pink-500/20 text-muted-foreground hover:text-pink-400 transition-smooth"
-              aria-label="Visit Vanshu Agarwal's Instagram profile"
-            >
-              <Instagram size={20} aria-hidden="true" />
-            </a>
-            <a 
-              href="https://www.youtube.com/@nextupstudioyt" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="p-2 rounded-full bg-card/50 hover:bg-red-500/20 text-muted-foreground hover:text-red-400 transition-smooth"
-              aria-label="Visit Vanshu Agarwal's YouTube channel"
-            >
-              <Youtube size={20} aria-hidden="true" />
-            </a>
-            <a 
-              href="https://in.linkedin.com/in/vanshu-agarwal-954262330" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="p-2 rounded-full bg-card/50 hover:bg-blue-500/20 text-muted-foreground hover:text-blue-400 transition-smooth hover:scale-110 transition-all duration-300"
-              aria-label="Visit Vanshu Agarwal's LinkedIn profile"
-            >
-              <Linkedin size={20} aria-hidden="true" />
-            </a>
-          </nav>
+          {/* Social Media Cards */}
+          <div className="w-full max-w-4xl">
+            <SocialMediaCards />
+          </div>
 
           {/* Quick Links */}
           <nav className="flex items-center gap-6 text-sm" aria-label="Footer navigation">
