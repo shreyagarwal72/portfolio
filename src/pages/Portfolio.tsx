@@ -9,6 +9,7 @@ import previewYoutubeSite from "@/assets/preview-youtube-site.jpg"
 import previewWebtoolsSuite from "@/assets/preview-webtools-suite.jpg"
 import previewToolsSite from "@/assets/preview-tools-site.jpg"
 import previewMinecraftSite from "@/assets/preview-minecraft-site.jpg"
+import previewOrbitalWorld from "@/assets/preview-orbital-world.png"
 import certificateGreenhat from "@/assets/certificate-greenhat.jpg"
 import certificateAmarujala from "@/assets/certificate-amarujala.jpg"
 import { Card, CardContent } from "@/components/ui/card"
@@ -53,6 +54,19 @@ const useSEO = () => {
 const categories = ["all", "web development", "tools", "portfolio"]
 
 const projects = [
+  {
+    id: 0,
+    title: "Orbital World",
+    category: "web development",
+    year: "2025",
+    client: "NextUp Studio",
+    description:
+      "An immersive solar system exploration website featuring interactive planets, detailed information about celestial bodies, and stunning visuals.",
+    thumbnail: previewOrbitalWorld,
+    duration: "Live",
+    views: "",
+    link: "https://orbital-world.vercel.app",
+  },
   {
     id: 1,
     title: "My Website",
