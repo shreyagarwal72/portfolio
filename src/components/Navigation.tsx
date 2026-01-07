@@ -5,7 +5,11 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import ThemeToggle from '@/components/ThemeToggle';
 
-const Navigation = () => {
+interface NavigationProps {
+  onLogoClick?: () => void;
+}
+
+const Navigation = ({ onLogoClick }: NavigationProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
@@ -22,12 +26,25 @@ const Navigation = () => {
 
   const isActive = (path: string) => location.pathname === path;
 
+  const handleLogoClick = (e: React.MouseEvent) => {
+    if (onLogoClick && location.pathname === '/') {
+      e.preventDefault();
+      onLogoClick();
+    }
+  };
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border" role="navigation" aria-label="Main navigation">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/book-portfolio" className="text-xl font-bold text-primary" aria-label="View Book Portfolio">
+          <Link 
+            to="/" 
+            className="text-xl font-bold text-primary hover:scale-110 transition-transform" 
+            aria-label="Replay intro animation"
+            onClick={handleLogoClick}
+            title="Click to replay intro"
+          >
             VA
           </Link>
 

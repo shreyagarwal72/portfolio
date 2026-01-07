@@ -1,0 +1,454 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500&display=swap");
+
+.intro-page {
+  margin: 0;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  position: relative;
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
+  width: 100vw;
+  height: 100vh;
+}
+
+.intro-page .card {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-position: center;
+  background-size: cover;
+  box-shadow: 6px 6px 10px 2px rgba(0, 0, 0, 0.6);
+}
+
+.intro-page .card-content {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: hsl(var(--foreground));
+  padding-left: 16px;
+}
+
+.intro-page .content-place {
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.intro-page .content-title-1,
+.intro-page .content-title-2 {
+  font-weight: 600;
+  font-size: 20px;
+  font-family: "Oswald", sans-serif;
+}
+
+.intro-page .content-start {
+  width: 30px;
+  height: 5px;
+  border-radius: 99px;
+  background-color: hsl(var(--primary));
+}
+
+.intro-page .details {
+  z-index: 22;
+  position: absolute;
+  top: 180px;
+  left: 60px;
+}
+
+.intro-page .details .place-box {
+  height: 46px;
+  overflow: hidden;
+}
+
+.intro-page .details .place-box .text {
+  padding-top: 16px;
+  font-size: 20px;
+}
+
+.intro-page .details .place-box .text:before {
+  top: 0;
+  left: 0;
+  position: absolute;
+  content: "";
+  width: 30px;
+  height: 4px;
+  border-radius: 99px;
+  background-color: hsl(var(--primary));
+}
+
+.intro-page .details .title-1,
+.intro-page .details .title-2 {
+  font-weight: 600;
+  font-size: 72px;
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+}
+
+.intro-page .details .title-box-1,
+.intro-page .details .title-box-2 {
+  margin-top: 2px;
+  height: 100px;
+  overflow: hidden;
+}
+
+.intro-page .details > .desc {
+  margin-top: 16px;
+  width: 500px;
+  max-width: 90vw;
+  line-height: 1.6;
+}
+
+.intro-page .details > .cta {
+  width: 500px;
+  max-width: 90vw;
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.intro-page .details > .cta > .bookmark {
+  border: none;
+  background-color: hsl(var(--primary));
+  width: 36px;
+  height: 36px;
+  border-radius: 99px;
+  color: hsl(var(--primary-foreground));
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.intro-page .details > .cta > .bookmark:hover {
+  transform: scale(1.1);
+}
+
+.intro-page .details > .cta > .bookmark svg {
+  width: 20px;
+  height: 20px;
+}
+
+.intro-page .details > .cta > .discover {
+  border: 1px solid hsl(var(--foreground));
+  background-color: transparent;
+  height: 36px;
+  border-radius: 99px;
+  color: hsl(var(--foreground));
+  padding: 4px 24px;
+  font-size: 12px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.intro-page .details > .cta > .discover:hover {
+  background-color: hsl(var(--primary));
+  border-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+.intro-page .intro-nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 36px;
+  font-weight: 500;
+}
+
+.intro-page .intro-nav svg {
+  width: 20px;
+  height: 20px;
+}
+
+.intro-page .intro-nav .svg-container {
+  width: 20px;
+  height: 20px;
+}
+
+.intro-page .intro-nav > div {
+  display: inline-flex;
+  align-items: center;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.intro-page .intro-nav > div:first-child {
+  gap: 10px;
+}
+
+.intro-page .intro-nav > div:last-child {
+  gap: 24px;
+}
+
+.intro-page .intro-nav .logo-text {
+  font-size: 24px;
+  font-weight: 700;
+  color: hsl(var(--primary));
+  cursor: pointer;
+}
+
+.intro-page .indicator {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 5px;
+  z-index: 60;
+  background-color: hsl(var(--primary));
+}
+
+.intro-page .pagination {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.intro-page .pagination > .arrow {
+  z-index: 60;
+  width: 50px;
+  height: 50px;
+  border-radius: 999px;
+  border: 2px solid hsl(var(--foreground) / 0.3);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.intro-page .pagination > .arrow:hover {
+  border-color: hsl(var(--primary));
+  background-color: hsl(var(--primary) / 0.1);
+}
+
+.intro-page .pagination > .arrow:nth-child(2) {
+  margin-left: 20px;
+}
+
+.intro-page .pagination > .arrow svg {
+  width: 24px;
+  height: 24px;
+  stroke-width: 2;
+  color: hsl(var(--foreground) / 0.6);
+}
+
+.intro-page .pagination .progress-sub-container {
+  margin-left: 24px;
+  z-index: 60;
+  width: 500px;
+  max-width: 30vw;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.intro-page .pagination .progress-sub-container .progress-sub-background {
+  width: 100%;
+  height: 3px;
+  background-color: hsl(var(--foreground) / 0.2);
+}
+
+.intro-page .pagination .progress-sub-container .progress-sub-background .progress-sub-foreground {
+  height: 3px;
+  background-color: hsl(var(--primary));
+}
+
+.intro-page .pagination .slide-numbers {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  z-index: 60;
+  position: relative;
+}
+
+.intro-page .pagination .slide-numbers .item {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  color: hsl(var(--foreground));
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.intro-page .cover {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: hsl(var(--background));
+  z-index: 100;
+}
+
+/* Enter/Skip buttons */
+.intro-page .intro-actions {
+  position: fixed;
+  bottom: 40px;
+  left: 60px;
+  z-index: 55;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.intro-page .enter-btn {
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.8));
+  color: hsl(var(--primary-foreground));
+  border: none;
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px hsl(var(--primary) / 0.4);
+}
+
+.intro-page .enter-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 30px hsl(var(--primary) / 0.5);
+}
+
+.intro-page .skip-btn {
+  background: transparent;
+  color: hsl(var(--foreground) / 0.7);
+  border: 1px solid hsl(var(--foreground) / 0.3);
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.intro-page .skip-btn:hover {
+  border-color: hsl(var(--foreground) / 0.6);
+  color: hsl(var(--foreground));
+}
+
+/* Mobile Responsive */
+@media (max-width: 1024px) {
+  .intro-page .details {
+    top: 120px;
+    left: 40px;
+  }
+  
+  .intro-page .details .title-1,
+  .intro-page .details .title-2 {
+    font-size: 56px;
+  }
+  
+  .intro-page .details .title-box-1,
+  .intro-page .details .title-box-2 {
+    height: 80px;
+  }
+  
+  .intro-page .pagination .progress-sub-container {
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .intro-page .intro-nav {
+    padding: 16px 20px;
+  }
+  
+  .intro-page .intro-nav > div:last-child {
+    gap: 16px;
+  }
+  
+  .intro-page .details {
+    top: 100px;
+    left: 20px;
+    right: 20px;
+  }
+  
+  .intro-page .details .title-1,
+  .intro-page .details .title-2 {
+    font-size: 36px;
+  }
+  
+  .intro-page .details .title-box-1,
+  .intro-page .details .title-box-2 {
+    height: 55px;
+  }
+  
+  .intro-page .details > .desc {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  .intro-page .pagination {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .intro-page .pagination > .arrow {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .intro-page .pagination > .arrow:nth-child(2) {
+    margin-left: 10px;
+  }
+  
+  .intro-page .pagination .progress-sub-container {
+    max-width: 120px;
+    margin-left: 16px;
+  }
+  
+  .intro-page .pagination .slide-numbers {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .intro-page .pagination .slide-numbers .item {
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+  }
+  
+  .intro-page .intro-actions {
+    bottom: 30px;
+    left: 20px;
+    right: 20px;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .intro-page .enter-btn,
+  .intro-page .skip-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .intro-page .details .title-1,
+  .intro-page .details .title-2 {
+    font-size: 28px;
+  }
+  
+  .intro-page .details .title-box-1,
+  .intro-page .details .title-box-2 {
+    height: 42px;
+  }
+  
+  .intro-page .details .place-box .text {
+    font-size: 16px;
+  }
+}
