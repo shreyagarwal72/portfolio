@@ -29,19 +29,13 @@ const IntroWrapper = ({ children, forceShowIntro, onIntroComplete }: IntroWrappe
     onIntroComplete?.();
   };
 
-  const handleSkip = () => {
-    localStorage.setItem(INTRO_SEEN_KEY, 'true');
-    setShowIntro(false);
-    onIntroComplete?.();
-  };
-
   // Still loading
   if (showIntro === null) {
     return null;
   }
 
   if (showIntro) {
-    return <Intro onEnter={handleEnter} onSkip={handleSkip} />;
+    return <Intro onEnter={handleEnter} />;
   }
 
   return <>{children}</>;

@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import CursorGlow from "./components/CursorGlow";
 import BackToTop from "./components/BackToTop";
 import IntroWrapper from "./components/IntroWrapper";
+import { SoundProvider } from "./contexts/SoundContext";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Portfolio from "./pages/Portfolio";
@@ -117,14 +118,16 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <CursorGlow />
-        <BrowserRouter>
-          <AppContent />
-        </BrowserRouter>
-      </TooltipProvider>
+      <SoundProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <CursorGlow />
+          <BrowserRouter>
+            <AppContent />
+          </BrowserRouter>
+        </TooltipProvider>
+      </SoundProvider>
     </QueryClientProvider>
   );
 };
