@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback, useState } from 'react';
 import { gsap } from 'gsap';
 import { Play, Bookmark, ChevronLeft, ChevronRight } from 'lucide-react';
 import './Intro.css';
@@ -70,6 +70,7 @@ const Intro = ({ onEnter, onSkip }: IntroProps) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const transitionRef = useRef<HTMLDivElement>(null);
   const touchStartRef = useRef<number>(0);
+  const [isLoading, setIsLoading] = useState(true);
   
   // Sound effect URLs (royalty-free whoosh sounds)
   const whooshSound = 'https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3';
@@ -365,9 +366,14 @@ const Intro = ({ onEnter, onSkip }: IntroProps) => {
       
       try {
         await Promise.all(promises);
-        init();
+        setIsLoading(false);
+        // Small delay to ensure DOM is ready
+        setTimeout(() => {
+          init();
+        }, 100);
       } catch (error) {
         console.error("One or more images failed to load", error);
+        setIsLoading(false);
         init(); // Initialize anyway
       }
     };
@@ -409,6 +415,24 @@ const Intro = ({ onEnter, onSkip }: IntroProps) => {
 
   return (
     <div className="intro-page" ref={containerRef}>
+      {/* Loading Skeleton */}
+      {isLoading && (
+        <div className="loading-skeleton">
+          <div className="skeleton-logo"></div>
+          <div className="skeleton-text">
+            <div className="skeleton-line title"></div>
+            <div className="skeleton-line subtitle"></div>
+            <div className="skeleton-line desc"></div>
+            <div className="skeleton-line desc" style={{ width: 220 }}></div>
+          </div>
+          <div className="skeleton-cards">
+            <div className="skeleton-card"></div>
+            <div className="skeleton-card"></div>
+            <div className="skeleton-card"></div>
+          </div>
+        </div>
+      )}
+      
       {/* Audio preload */}
       <audio src={whooshSound} preload="auto" style={{ display: 'none' }} />
       
