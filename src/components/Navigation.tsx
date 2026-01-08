@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Phone, Volume2, VolumeX } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import ThemeToggle from '@/components/ThemeToggle';
+import { useSound } from '@/contexts/SoundContext';
 
 interface NavigationProps {
   onLogoClick?: () => void;
@@ -13,6 +14,7 @@ interface NavigationProps {
 const Navigation = ({ onLogoClick }: NavigationProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { soundEnabled, toggleSound } = useSound();
 
   const navItems = [
     { label: 'Home', path: '/' },
@@ -114,7 +116,7 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
             ))}
           </ul>
 
-          {/* Theme Toggle and Contact Info */}
+          {/* Theme Toggle, Sound Toggle and Contact Info */}
           <motion.div 
             className="hidden md:flex items-center space-x-4 text-sm text-muted-foreground" 
             role="contentinfo"
@@ -122,6 +124,20 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3, duration: 0.5 }}
           >
+            <motion.button
+              onClick={toggleSound}
+              className="p-2 rounded-full hover:bg-muted transition-colors"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label={soundEnabled ? "Mute sounds" : "Enable sounds"}
+              title={soundEnabled ? "Click to mute sounds" : "Click to enable sounds"}
+            >
+              {soundEnabled ? (
+                <Volume2 size={18} className="text-primary" />
+              ) : (
+                <VolumeX size={18} className="text-muted-foreground" />
+              )}
+            </motion.button>
             <ThemeToggle />
             <motion.div 
               className="flex items-center space-x-2"
@@ -222,7 +238,20 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
                     <Phone size={16} aria-hidden="true" />
                     <a href="tel:+919412104618" className="hover:text-primary transition-smooth">9412104618</a>
                   </div>
-                  <ThemeToggle />
+                  <div className="flex items-center space-x-3">
+                    <button
+                      onClick={toggleSound}
+                      className="p-2 rounded-full hover:bg-muted transition-colors"
+                      aria-label={soundEnabled ? "Mute sounds" : "Enable sounds"}
+                    >
+                      {soundEnabled ? (
+                        <Volume2 size={18} className="text-primary" />
+                      ) : (
+                        <VolumeX size={18} className="text-muted-foreground" />
+                      )}
+                    </button>
+                    <ThemeToggle />
+                  </div>
                 </motion.li>
               </ul>
             </motion.div>

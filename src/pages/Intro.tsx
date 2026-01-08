@@ -1,8 +1,10 @@
 import { useEffect, useRef, useCallback, useState } from 'react';
 import { gsap } from 'gsap';
-import { Play, Bookmark, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Play, Bookmark, ChevronLeft, ChevronRight, Volume2, VolumeX } from 'lucide-react';
 import './Intro.css';
 
+// Sound context for intro page (standalone since intro loads before main app)
+const SOUND_ENABLED_KEY = 'soundEnabled';
 // Import AI-generated slide images
 import introSlide1 from '@/assets/intro-slide-1.jpg';
 import introSlide2 from '@/assets/intro-slide-2.jpg';
@@ -13,7 +15,7 @@ import introSlide6 from '@/assets/intro-slide-6.jpg';
 
 interface IntroProps {
   onEnter: () => void;
-  onSkip: () => void;
+  onSkip?: () => void; // Made optional since we're removing skip button
 }
 
 const data = [
@@ -61,7 +63,7 @@ const data = [
   },
 ];
 
-const Intro = ({ onEnter, onSkip }: IntroProps) => {
+const Intro = ({ onEnter }: IntroProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const orderRef = useRef([0, 1, 2, 3, 4, 5]);
   const detailsEvenRef = useRef(true);
@@ -71,24 +73,38 @@ const Intro = ({ onEnter, onSkip }: IntroProps) => {
   const transitionRef = useRef<HTMLDivElement>(null);
   const touchStartRef = useRef<number>(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [soundEnabled, setSoundEnabled] = useState(() => {
+    const stored = localStorage.getItem(SOUND_ENABLED_KEY);
+    return stored !== 'false';
+  });
   
   // Sound effect URLs (royalty-free whoosh sounds)
   const whooshSound = 'https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3';
   const enterSound = 'https://assets.mixkit.co/active_storage/sfx/1111/1111-preview.mp3';
+
+  const toggleSound = () => {
+    setSoundEnabled(prev => {
+      const newValue = !prev;
+      localStorage.setItem(SOUND_ENABLED_KEY, String(newValue));
+      return newValue;
+    });
+  };
   
   const playWhoosh = useCallback(() => {
-    if (audioRef.current) {
+    if (audioRef.current && soundEnabled) {
       audioRef.current.currentTime = 0;
       audioRef.current.volume = 0.3;
       audioRef.current.play().catch(() => {});
     }
-  }, []);
+  }, [soundEnabled]);
   
   const handleEnterWithTransition = useCallback(() => {
-    // Play enter sound
-    const enterAudio = new Audio(enterSound);
-    enterAudio.volume = 0.4;
-    enterAudio.play().catch(() => {});
+    // Play enter sound if enabled
+    if (soundEnabled) {
+      const enterAudio = new Audio(enterSound);
+      enterAudio.volume = 0.4;
+      enterAudio.play().catch(() => {});
+    }
     
     // Animate transition
     if (transitionRef.current) {
@@ -103,22 +119,7 @@ const Intro = ({ onEnter, onSkip }: IntroProps) => {
     } else {
       onEnter();
     }
-  }, [onEnter]);
-  
-  const handleSkipWithTransition = useCallback(() => {
-    if (transitionRef.current) {
-      gsap.to(transitionRef.current, {
-        opacity: 1,
-        duration: 0.3,
-        ease: 'power2.inOut',
-        onComplete: () => {
-          onSkip();
-        }
-      });
-    } else {
-      onSkip();
-    }
-  }, [onSkip]);
+  }, [onEnter, soundEnabled]);
 
   const getCard = (index: number) => `#card${index}`;
   const getCardContent = (index: number) => `#card-content-${index}`;
@@ -444,7 +445,14 @@ const Intro = ({ onEnter, onSkip }: IntroProps) => {
         <div>
           <span className="logo-text">VA</span>
         </div>
-        <div>
+        <div className="intro-nav-right">
+          <button 
+            className="sound-toggle"
+            onClick={toggleSound}
+            aria-label={soundEnabled ? "Mute sounds" : "Enable sounds"}
+          >
+            {soundEnabled ? <Volume2 size={18} /> : <VolumeX size={18} />}
+          </button>
           <span style={{ opacity: 0.7 }}>Vanshu Agarwal</span>
         </div>
       </nav>
@@ -521,14 +529,11 @@ const Intro = ({ onEnter, onSkip }: IntroProps) => {
         </div>
       </div>
 
-      {/* Enter/Skip Actions */}
+      {/* Enter Action - Skip button removed */}
       <div className="intro-actions">
         <button className="enter-btn" onClick={handleEnterWithTransition}>
           <Play size={16} style={{ marginRight: 8, display: 'inline' }} />
           Enter Website
-        </button>
-        <button className="skip-btn" onClick={handleSkipWithTransition}>
-          Skip Intro
         </button>
       </div>
 
