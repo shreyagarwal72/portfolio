@@ -424,13 +424,14 @@ const Intro = ({ onEnter }: IntroProps) => {
             <div className="skeleton-line title"></div>
             <div className="skeleton-line subtitle"></div>
             <div className="skeleton-line desc"></div>
-            <div className="skeleton-line desc" style={{ width: 220 }}></div>
+            <div className="skeleton-line desc"></div>
           </div>
           <div className="skeleton-cards">
             <div className="skeleton-card"></div>
             <div className="skeleton-card"></div>
             <div className="skeleton-card"></div>
           </div>
+          <div className="skeleton-pulse"></div>
         </div>
       )}
       
