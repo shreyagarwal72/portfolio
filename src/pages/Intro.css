@@ -581,15 +581,66 @@
     height: 32px;
   }
   
+  /* Mobile: Show cards as background with proper positioning */
+  .intro-page .card {
+    visibility: visible !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 55vh !important;
+    z-index: 1 !important;
+    border-radius: 0 0 32px 32px !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3) !important;
+    object-fit: cover;
+    background-position: center top !important;
+    transition: opacity 0.5s ease-in-out !important;
+  }
+  
+  /* Hide non-active cards using opacity */
+  .intro-page .card:not([style*="width: 100vw"]):not([style*="width:100vw"]) {
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+  
+  /* Show active cards */
+  .intro-page .card[style*="width: 100vw"],
+  .intro-page .card[style*="width:100vw"] {
+    opacity: 1 !important;
+    z-index: 5 !important;
+  }
+  
+  /* Mobile gradient overlay on card - bottom fade for smooth transition */
+  .intro-page .card::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to top, 
+      hsl(var(--background)) 0%, 
+      hsl(var(--background) / 0.8) 30%,
+      hsl(var(--background) / 0.3) 60%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 10;
+    border-radius: 0 0 32px 32px;
+  }
+  
+  /* Details section - positioned below the image */
   .intro-page .details {
-    top: auto;
-    bottom: 140px;
-    left: 20px;
-    right: 20px;
+    position: fixed !important;
+    top: calc(55vh - 40px) !important;
+    bottom: auto !important;
+    left: 0 !important;
+    right: 0 !important;
+    padding: 40px 24px 20px !important;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    z-index: 25;
+    z-index: 20;
+    background: hsl(var(--background));
     pointer-events: none;
   }
   
@@ -598,40 +649,56 @@
   }
   
   .intro-page .details .place-box {
-    height: 36px;
+    height: auto;
+    margin-bottom: 8px;
   }
   
   .intro-page .details .place-box .text {
-    font-size: 14px;
-    padding-top: 12px;
+    font-size: 12px;
+    padding-top: 0;
+    color: hsl(var(--primary));
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
   }
   
   .intro-page .details .title-1,
   .intro-page .details .title-2 {
-    font-size: 32px;
+    font-size: 36px;
     line-height: 1.1;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+    text-shadow: none;
+    color: hsl(var(--foreground));
   }
   
   .intro-page .details .title-box-1,
   .intro-page .details .title-box-2 {
-    height: 44px;
+    height: auto;
     margin-top: 0;
+    overflow: visible;
+  }
+  
+  .intro-page .details .title-box-1 {
+    margin-bottom: 0;
+  }
+  
+  .intro-page .details .title-box-2 {
+    margin-bottom: 16px;
   }
   
   .intro-page .details > .desc {
-    font-size: 13px;
+    font-size: 14px;
     width: 100%;
-    line-height: 1.5;
-    margin-top: 12px;
-    max-height: 80px;
-    overflow: hidden;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+    line-height: 1.6;
+    margin-top: 0;
+    max-height: none;
+    overflow: visible;
+    text-shadow: none;
+    color: hsl(var(--muted-foreground));
   }
   
   .intro-page .details > .cta {
-    margin-top: 16px;
-    display: none;
+    margin-top: 24px;
+    display: flex;
   }
   
   /* Hide pagination on mobile */
@@ -647,12 +714,19 @@
   /* Mobile swipe indicator */
   .intro-page .mobile-swipe-hint {
     display: flex;
+    bottom: 100px;
+    background: hsl(var(--muted) / 0.5);
+    padding: 8px 16px;
+    border-radius: 20px;
+    backdrop-filter: blur(8px);
   }
   
+  /* Enter button positioned at bottom */
   .intro-page .intro-actions {
-    bottom: 24px;
-    left: 20px;
-    right: 20px;
+    position: fixed;
+    bottom: 32px;
+    left: 24px;
+    right: 24px;
     flex-direction: column;
     gap: 10px;
     z-index: 56;
@@ -661,19 +735,11 @@
   .intro-page .enter-btn {
     width: 100%;
     text-align: center;
-    padding: 16px 32px;
+    padding: 18px 32px;
     font-size: 15px;
-  }
-  
-  /* Hide ALL non-active cards on mobile */
-  .intro-page .card {
-    visibility: hidden;
-  }
-  
-  /* Only show the currently active full-screen card */
-  .intro-page .card[style*="width: 100vw"],
-  .intro-page .card[style*="width:100vw"] {
-    visibility: visible;
+    border-radius: 16px;
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-dark)));
+    box-shadow: 0 8px 32px hsl(var(--primary) / 0.4);
   }
   
   .intro-page .skip-btn {
@@ -681,60 +747,40 @@
     text-align: center;
     padding: 14px 24px;
   }
-  
-  /* Mobile overlay gradient - full height coverage */
-  .intro-page .card::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    background: linear-gradient(to top, 
-      rgba(0,0,0,0.95) 0%, 
-      rgba(0,0,0,0.8) 30%, 
-      rgba(0,0,0,0.4) 60%, 
-      rgba(0,0,0,0.2) 80%,
-      transparent 100%
-    );
-    pointer-events: none;
-    z-index: 2;
-  }
-  
-  /* Ensure active card fills screen */
-  .intro-page #card0,
-  .intro-page #card1,
-  .intro-page #card2,
-  .intro-page #card3,
-  .intro-page #card4,
-  .intro-page #card5 {
-    object-fit: cover;
-  }
 }
 
 @media (max-width: 480px) {
+  .intro-page .card {
+    height: 50vh !important;
+    border-radius: 0 0 24px 24px !important;
+  }
+  
+  .intro-page .card::after {
+    border-radius: 0 0 24px 24px;
+  }
+  
   .intro-page .details {
-    top: 70px;
-    bottom: 160px;
+    top: calc(50vh - 40px) !important;
+    padding: 40px 20px 20px !important;
   }
   
   .intro-page .details .title-1,
   .intro-page .details .title-2 {
-    font-size: 26px;
+    font-size: 28px;
   }
   
   .intro-page .details .title-box-1,
   .intro-page .details .title-box-2 {
-    height: 36px;
+    height: auto;
   }
   
   .intro-page .details .place-box .text {
-    font-size: 12px;
+    font-size: 11px;
   }
   
   .intro-page .details > .desc {
-    font-size: 12px;
-    max-height: 60px;
+    font-size: 13px;
+    line-height: 1.5;
   }
   
   .intro-page .intro-nav .logo-text {
@@ -744,6 +790,21 @@
   .intro-page .intro-nav > div:last-child {
     font-size: 11px;
   }
+  
+  .intro-page .mobile-swipe-hint {
+    bottom: 90px;
+  }
+  
+  .intro-page .intro-actions {
+    bottom: 24px;
+    left: 20px;
+    right: 20px;
+  }
+  
+  .intro-page .enter-btn {
+    padding: 16px 24px;
+    font-size: 14px;
+  }
 }
 
 /* Mobile swipe hint */
@@ -751,15 +812,16 @@
   display: none;
   position: fixed;
   bottom: 140px;
-  left: 0;
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%);
   justify-content: center;
   align-items: center;
   gap: 8px;
-  color: hsl(var(--foreground) / 0.5);
+  color: hsl(var(--foreground) / 0.7);
   font-size: 12px;
   z-index: 55;
   animation: pulse 2s infinite;
+  white-space: nowrap;
 }
 
 @keyframes pulse {
