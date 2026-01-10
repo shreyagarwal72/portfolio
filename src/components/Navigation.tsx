@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, Volume2, VolumeX } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Menu, X, Phone, Volume2, VolumeX, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import ThemeToggle from '@/components/ThemeToggle';
@@ -39,14 +38,16 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
   const menuVariants = {
     closed: {
       opacity: 0,
-      x: "100%",
+      y: -20,
+      scale: 0.95,
       transition: {
-        duration: 0.3
+        duration: 0.2
       }
     },
     open: {
       opacity: 1,
-      x: 0,
+      y: 0,
+      scale: 1,
       transition: {
         duration: 0.3,
         staggerChildren: 0.05,
@@ -56,204 +57,225 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
   };
 
   const menuItemVariants = {
-    closed: { opacity: 0, x: 20 },
+    closed: { opacity: 0, x: -20 },
     open: { opacity: 1, x: 0 }
   };
 
   return (
     <motion.nav 
-      className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border" 
+      className="fixed top-4 left-4 right-4 z-50" 
       role="navigation" 
       aria-label="Main navigation"
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <motion.div
-            whileHover={{ scale: 1.15, rotate: 5 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-          >
-            <Link 
-              to="/" 
-              className="text-xl font-bold text-primary btn-glow-pulse" 
-              aria-label="Replay intro animation"
-              onClick={handleLogoClick}
-              title="Click to replay intro"
-            >
-              VA
-            </Link>
-          </motion.div>
-
-          {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center space-x-8">
-            {navItems.map((item, index) => (
-              <motion.li 
-                key={item.path}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05, duration: 0.3 }}
+      <div className="max-w-7xl mx-auto">
+        <div className="relative bg-background/60 backdrop-blur-xl rounded-2xl border border-border/50 shadow-lg shadow-primary/5">
+          {/* Gradient border effect */}
+          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/20 via-transparent to-primary/20 opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+          
+          <div className="relative px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between h-14">
+              {/* Logo */}
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                className="relative"
               >
-                <Link
-                  to={item.path}
-                  className={cn(
-                    'nav-link transition-smooth hover-underline',
-                    isActive(item.path) && 'active'
-                  )}
-                  aria-current={isActive(item.path) ? 'page' : undefined}
+                <Link 
+                  to="/" 
+                  className="relative flex items-center gap-2 text-xl font-bold" 
+                  aria-label="Replay intro animation"
+                  onClick={handleLogoClick}
+                  title="Click to replay intro"
                 >
-                  <motion.span
-                    whileHover={{ y: -2 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {item.label}
-                  </motion.span>
+                  <span className="relative z-10 bg-gradient-to-r from-primary via-primary to-primary-foreground bg-clip-text text-transparent">
+                    VA
+                  </span>
+                  <motion.div
+                    className="absolute -inset-2 rounded-lg bg-primary/10"
+                    animate={{ scale: [1, 1.1, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
                 </Link>
-              </motion.li>
-            ))}
-          </ul>
+              </motion.div>
 
-          {/* Theme Toggle, Sound Toggle and Contact Info */}
-          <motion.div 
-            className="hidden md:flex items-center space-x-4 text-sm text-muted-foreground" 
-            role="contentinfo"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-          >
-            <motion.button
-              onClick={toggleSound}
-              className="p-2 rounded-full hover:bg-muted transition-colors"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              aria-label={soundEnabled ? "Mute sounds" : "Enable sounds"}
-              title={soundEnabled ? "Click to mute sounds" : "Click to enable sounds"}
-            >
-              {soundEnabled ? (
-                <Volume2 size={18} className="text-primary" />
-              ) : (
-                <VolumeX size={18} className="text-muted-foreground" />
-              )}
-            </motion.button>
-            <ThemeToggle />
-            <motion.div 
-              className="flex items-center space-x-2"
-              whileHover={{ scale: 1.05 }}
-            >
-              <Phone size={16} aria-hidden="true" />
-              <a href="tel:+919412104618" className="hover:text-primary transition-smooth">9412104618</a>
-            </motion.div>
-          </motion.div>
+              {/* Desktop Navigation */}
+              <ul className="hidden lg:flex items-center space-x-1">
+                {navItems.map((item, index) => (
+                  <motion.li 
+                    key={item.path}
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.05, duration: 0.3 }}
+                  >
+                    <Link
+                      to={item.path}
+                      className={cn(
+                        'relative px-3 py-2 text-sm font-medium rounded-lg transition-all duration-300',
+                        'hover:bg-muted/50 hover:text-primary',
+                        isActive(item.path) 
+                          ? 'text-primary bg-primary/10' 
+                          : 'text-muted-foreground'
+                      )}
+                      aria-current={isActive(item.path) ? 'page' : undefined}
+                    >
+                      <span className="relative z-10">{item.label}</span>
+                      {isActive(item.path) && (
+                        <motion.div
+                          layoutId="activeNav"
+                          className="absolute inset-0 rounded-lg bg-primary/10 border border-primary/20"
+                          transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                        />
+                      )}
+                    </Link>
+                  </motion.li>
+                ))}
+              </ul>
 
-          {/* Mobile menu button */}
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <Button
-              variant="ghost"
-              size="sm"
-              className="md:hidden"
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label={isOpen ? "Close menu" : "Open menu"}
-              aria-expanded={isOpen}
-              aria-controls="mobile-menu"
-            >
-              <AnimatePresence mode="wait">
-                {isOpen ? (
-                  <motion.div
-                    key="close"
-                    initial={{ rotate: -90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: 90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <X size={20} aria-hidden="true" />
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="menu"
-                    initial={{ rotate: 90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: -90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <Menu size={20} aria-hidden="true" />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </Button>
-          </motion.div>
+              {/* Right side controls */}
+              <motion.div 
+                className="hidden md:flex items-center gap-2" 
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3, duration: 0.5 }}
+              >
+                {/* Sound Toggle */}
+                <motion.button
+                  onClick={toggleSound}
+                  className={cn(
+                    "p-2.5 rounded-xl transition-all duration-300",
+                    soundEnabled 
+                      ? "bg-primary/10 text-primary" 
+                      : "bg-muted/50 text-muted-foreground hover:bg-muted"
+                  )}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  aria-label={soundEnabled ? "Mute sounds" : "Enable sounds"}
+                >
+                  {soundEnabled ? <Volume2 size={18} /> : <VolumeX size={18} />}
+                </motion.button>
+                
+                {/* Theme Toggle */}
+                <div className="p-1">
+                  <ThemeToggle />
+                </div>
+
+                {/* Contact pill */}
+                <motion.a 
+                  href="tel:+919412104618"
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary/10 text-primary text-sm font-medium hover:bg-primary/20 transition-all duration-300"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Phone size={14} />
+                  <span className="hidden xl:inline">9412104618</span>
+                </motion.a>
+              </motion.div>
+
+              {/* Mobile menu button */}
+              <motion.button
+                className="lg:hidden relative p-2.5 rounded-xl bg-muted/50 hover:bg-muted transition-colors"
+                onClick={() => setIsOpen(!isOpen)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                aria-label={isOpen ? "Close menu" : "Open menu"}
+                aria-expanded={isOpen}
+              >
+                <AnimatePresence mode="wait">
+                  {isOpen ? (
+                    <motion.div
+                      key="close"
+                      initial={{ rotate: -90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: 90, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <X size={20} className="text-foreground" />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="menu"
+                      initial={{ rotate: 90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: -90, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Menu size={20} className="text-foreground" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.button>
+            </div>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
         <AnimatePresence>
           {isOpen && (
             <motion.div 
-              id="mobile-menu" 
-              className="md:hidden absolute top-16 left-0 right-0 bg-background/95 backdrop-blur-md border-b border-border"
-              role="menu"
+              className="lg:hidden mt-2 bg-background/80 backdrop-blur-xl rounded-2xl border border-border/50 shadow-xl overflow-hidden"
               variants={menuVariants}
               initial="closed"
               animate="open"
               exit="closed"
             >
-              <ul className="px-4 py-4 space-y-4">
-                {navItems.map((item, index) => (
-                  <motion.li 
-                    key={item.path} 
-                    role="none"
-                    variants={menuItemVariants}
-                    custom={index}
-                  >
-                    <Link
-                      to={item.path}
-                      className={cn(
-                        'block py-2 text-base nav-link transition-smooth',
-                        isActive(item.path) && 'active'
-                      )}
-                      onClick={() => setIsOpen(false)}
-                      aria-current={isActive(item.path) ? 'page' : undefined}
-                      role="menuitem"
+              <div className="p-4">
+                {/* Nav items grid */}
+                <div className="grid grid-cols-2 gap-2 mb-4">
+                  {navItems.map((item, index) => (
+                    <motion.div
+                      key={item.path}
+                      variants={menuItemVariants}
+                      custom={index}
                     >
-                      <motion.span
-                        whileHover={{ x: 10 }}
-                        transition={{ duration: 0.2 }}
-                        className="inline-block"
+                      <Link
+                        to={item.path}
+                        className={cn(
+                          'flex items-center justify-center px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300',
+                          isActive(item.path) 
+                            ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25' 
+                            : 'bg-muted/50 text-foreground hover:bg-muted'
+                        )}
+                        onClick={() => setIsOpen(false)}
                       >
                         {item.label}
-                      </motion.span>
-                    </Link>
-                  </motion.li>
-                ))}
-                <motion.li 
-                  className="flex items-center justify-between pt-4 border-t border-border" 
-                  role="none"
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Bottom controls */}
+                <motion.div 
+                  className="flex items-center justify-between pt-4 border-t border-border/50"
                   variants={menuItemVariants}
                 >
-                  <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-                    <Phone size={16} aria-hidden="true" />
-                    <a href="tel:+919412104618" className="hover:text-primary transition-smooth">9412104618</a>
-                  </div>
-                  <div className="flex items-center space-x-3">
+                  <a 
+                    href="tel:+919412104618" 
+                    className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    <Phone size={16} />
+                    <span>9412104618</span>
+                  </a>
+                  
+                  <div className="flex items-center gap-2">
                     <button
                       onClick={toggleSound}
-                      className="p-2 rounded-full hover:bg-muted transition-colors"
+                      className={cn(
+                        "p-2.5 rounded-xl transition-all duration-300",
+                        soundEnabled 
+                          ? "bg-primary/10 text-primary" 
+                          : "bg-muted/50 text-muted-foreground"
+                      )}
                       aria-label={soundEnabled ? "Mute sounds" : "Enable sounds"}
                     >
-                      {soundEnabled ? (
-                        <Volume2 size={18} className="text-primary" />
-                      ) : (
-                        <VolumeX size={18} className="text-muted-foreground" />
-                      )}
+                      {soundEnabled ? <Volume2 size={18} /> : <VolumeX size={18} />}
                     </button>
                     <ThemeToggle />
                   </div>
-                </motion.li>
-              </ul>
+                </motion.div>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
