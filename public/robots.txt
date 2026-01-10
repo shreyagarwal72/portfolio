@@ -1,17 +1,37 @@
+# Robots.txt for Vanshu Agarwal Portfolio
+# https://vanshubhai.vercel.app
+
+User-agent: *
+Allow: /
+Crawl-delay: 1
+
+# Major search engines
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
 Allow: /
 
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Social media bots
 User-agent: Twitterbot
 Allow: /
 
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: *
+User-agent: LinkedInBot
 Allow: /
+
+# Disallow private paths
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
 
 # Sitemap location
 Sitemap: https://vanshubhai.vercel.app/sitemap.xml
