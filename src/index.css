@@ -135,8 +135,9 @@
     color-scheme: dark light;
   }
 
-  html, body, * {
-    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.15s ease;
+  /* Optimized transitions - only color properties */
+  html, body {
+    transition: background-color 0.3s ease, color 0.15s ease;
   }
 
   body {
@@ -149,6 +150,15 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  /* GPU acceleration for animated elements */
+  .will-change-transform {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  /* Fallback for backdrop-filter support */
 
   /* Fallback for backdrop-filter support */
   @supports not (backdrop-filter: blur(10px)) {

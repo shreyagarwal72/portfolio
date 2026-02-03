@@ -3,26 +3,35 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, lazy, Suspense } from "react";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
-import CursorGlow from "./components/CursorGlow";
+import MagneticCursor from "./components/MagneticCursor";
 import BackToTop from "./components/BackToTop";
 import IntroWrapper from "./components/IntroWrapper";
 import { SoundProvider } from "./contexts/SoundContext";
-import Index from "./pages/Index";
-import About from "./pages/About";
-import Portfolio from "./pages/Portfolio";
-import Skills from "./pages/Skills";
-import Contact from "./pages/Contact";
-import CV from "./pages/cv";
-import YouTube from "./pages/YouTube";
-import VanshuBot from "./pages/VanshuBot";
-import TermsAndConditions from "./pages/TermsAndConditions";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import Articles from "./pages/Articles";
-import ProcessWorkflow from "./pages/ProcessWorkflow";
-import NotFound from "./pages/NotFound";
+
+// Lazy load pages for better performance
+const Index = lazy(() => import("./pages/Index"));
+const About = lazy(() => import("./pages/About"));
+const Portfolio = lazy(() => import("./pages/Portfolio"));
+const Skills = lazy(() => import("./pages/Skills"));
+const Contact = lazy(() => import("./pages/Contact"));
+const CV = lazy(() => import("./pages/cv"));
+const YouTube = lazy(() => import("./pages/YouTube"));
+const VanshuBot = lazy(() => import("./pages/VanshuBot"));
+const TermsAndConditions = lazy(() => import("./pages/TermsAndConditions"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const Articles = lazy(() => import("./pages/Articles"));
+const ProcessWorkflow = lazy(() => import("./pages/ProcessWorkflow"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+
+// Loading fallback
+const PageLoader = () => (
+  <div className="min-h-screen flex items-center justify-center bg-background">
+    <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+  </div>
+);
 
 const queryClient = new QueryClient();
 
@@ -63,10 +72,10 @@ const AppContent = () => {
   }
 
   return (
-    <>
-      <div className="min-h-screen bg-background flex flex-col">
-        <Navigation onLogoClick={handleTriggerIntro} />
-        <main className="flex-grow">
+    <div className="min-h-screen bg-background flex flex-col">
+      <Navigation onLogoClick={handleTriggerIntro} />
+      <main className="flex-grow">
+        <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
@@ -83,11 +92,11 @@ const AppContent = () => {
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </main>
-        <Footer />
-        <BackToTop />
-      </div>
-    </>
+        </Suspense>
+      </main>
+      <Footer />
+      <BackToTop />
+    </div>
   );
 };
 
@@ -122,7 +131,7 @@ const App = () => {
         <TooltipProvider>
           <Toaster />
           <Sonner />
-          <CursorGlow />
+          <MagneticCursor />
           <BrowserRouter>
             <AppContent />
           </BrowserRouter>
