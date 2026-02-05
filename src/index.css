@@ -521,4 +521,58 @@
   .border-glow:hover::before {
     opacity: 1;
   }
+
+  /* Improved glass morphism - iOS 26 style */
+  .glass-morphism {
+    background: hsl(var(--background) / 0.03);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid hsl(var(--border) / 0.15);
+  }
+
+  .dark .glass-morphism {
+    background: hsl(var(--background) / 0.05);
+    border: 1px solid hsl(var(--border) / 0.1);
+  }
+
+  /* Better focus states for accessibility */
+  .focus-visible-ring:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--primary) / 0.5);
+  }
+
+  /* Premium card hover effect */
+  .card-hover-premium {
+    transition: var(--transition-ios);
+  }
+
+  .card-hover-premium:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 20px 40px -12px hsl(var(--primary) / 0.25);
+  }
+
+  /* Touch feedback for mobile */
+  .touch-feedback {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .touch-feedback:active {
+    transform: scale(0.98);
+    opacity: 0.9;
+  }
+
+  /* Improved section spacing for mobile */
+  @media (max-width: 768px) {
+    .section-spacing {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .section-spacing {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+  }
 }

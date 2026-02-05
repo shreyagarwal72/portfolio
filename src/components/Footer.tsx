@@ -33,8 +33,8 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-card/30 border-t border-border backdrop-blur-sm" role="contentinfo">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <footer className="bg-gradient-to-t from-card/50 to-background border-t border-border/50 backdrop-blur-sm" role="contentinfo">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-12">
         <motion.div 
           className="flex flex-col items-center space-y-8"
           variants={containerVariants}
