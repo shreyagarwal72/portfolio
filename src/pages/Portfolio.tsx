@@ -197,7 +197,8 @@ export default function Portfolio() {
           <motion.h2
             className="text-4xl font-bold text-foreground mb-10 text-center"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">
@@ -207,14 +208,26 @@ export default function Portfolio() {
           
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: { staggerChildren: 0.2, delayChildren: 0.1 }
+              }
+            }}
           >
             {/* Green Hat Hacker Certificate */}
             <motion.div
-              whileHover={{ y: -8, scale: 1.02 }}
+              variants={{
+                hidden: { opacity: 0, y: 30, rotateX: 10 },
+                visible: { opacity: 1, y: 0, rotateX: 0 }
+              }}
+              whileHover={{ y: -8, scale: 1.02, rotateY: -3 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              style={{ transformStyle: 'preserve-3d' }}
             >
               <Card className="overflow-hidden border-primary/30 bg-card/50 backdrop-blur-sm hover:shadow-glow transition-smooth">
                 <CardContent className="p-0">
@@ -239,8 +252,13 @@ export default function Portfolio() {
 
             {/* Amar Ujala Certificate */}
             <motion.div
-              whileHover={{ y: -8, scale: 1.02 }}
+              variants={{
+                hidden: { opacity: 0, y: 30, rotateX: 10 },
+                visible: { opacity: 1, y: 0, rotateX: 0 }
+              }}
+              whileHover={{ y: -8, scale: 1.02, rotateY: 3 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              style={{ transformStyle: 'preserve-3d' }}
             >
               <Card className="overflow-hidden border-primary/30 bg-card/50 backdrop-blur-sm hover:shadow-glow transition-smooth">
                 <CardContent className="p-0">
@@ -301,41 +319,78 @@ export default function Portfolio() {
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
             variants={{
+              hidden: { opacity: 0 },
               visible: {
-                transition: { staggerChildren: 0.1 },
+                opacity: 1,
+                transition: { staggerChildren: 0.15, delayChildren: 0.1 },
               },
             }}
           >
             {filteredProjects.map((project, index) => (
               <motion.article
                 key={project.id}
-                className="group relative overflow-hidden rounded-2xl card-3d"
-                whileHover={{ y: -12 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="group relative overflow-hidden rounded-2xl perspective-1000"
                 variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0 },
+                  hidden: { opacity: 0, y: 40, rotateX: 10 },
+                  visible: { 
+                    opacity: 1, 
+                    y: 0, 
+                    rotateX: 0,
+                    transition: { 
+                      type: "spring", 
+                      stiffness: 100, 
+                      damping: 15,
+                      delay: index * 0.08
+                    }
+                  },
+                }}
+                whileHover={{ 
+                  y: -12, 
+                  rotateX: 5, 
+                  rotateY: -5,
+                  scale: 1.02,
+                  transition: { type: "spring", stiffness: 300, damping: 20 }
                 }}
                 style={{
                   transformStyle: 'preserve-3d',
+                  transformPerspective: 1000,
                 }}
               >
                 {/* Glow Effect */}
-                <div className="absolute -inset-1 bg-gradient-to-br from-primary/20 via-primary-glow/10 to-transparent rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-500" aria-hidden="true" />
+                <motion.div 
+                  className="absolute -inset-1 bg-gradient-to-br from-primary/30 via-primary-glow/20 to-transparent rounded-2xl blur-2xl opacity-0 group-hover:opacity-100" 
+                  aria-hidden="true"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileHover={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4 }}
+                />
                 
                 {/* Main Card */}
-                <div className="relative card-gradient rounded-2xl border border-border/50 backdrop-blur-sm overflow-hidden hover-glow card-3d-content">
+                <motion.div 
+                  className="relative card-gradient rounded-2xl border border-border/50 backdrop-blur-sm overflow-hidden"
+                  whileHover={{ 
+                    boxShadow: "0 25px 50px -12px hsl(var(--primary) / 0.35)",
+                    borderColor: "hsl(var(--primary) / 0.5)"
+                  }}
+                  style={{ transform: 'translateZ(30px)' }}
+                >
                   
                   {/* Thumbnail with 3D effect */}
                   <div className="relative overflow-hidden aspect-[16/10] bg-muted">
-                    <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10 opacity-60" />
-                    <img
+                    <motion.div 
+                      className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10 opacity-60"
+                      whileHover={{ opacity: 0.8 }}
+                    />
+                    <motion.img
                       src={project.thumbnail}
                       alt={`${project.title} - ${project.description.substring(0, 50)}...`}
-                      className="w-full h-full object-contain transition-all duration-700 group-hover:scale-105"
+                      className="w-full h-full object-contain"
                       loading="lazy"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.5, ease: "easeOut" }}
                       style={{ 
                         transform: 'translateZ(0)',
                         backfaceVisibility: 'hidden'
@@ -348,30 +403,56 @@ export default function Portfolio() {
                     </div>
                     
                     {/* Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-smooth" aria-hidden="true" />
+                    <motion.div 
+                      className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" 
+                      aria-hidden="true"
+                      initial={{ opacity: 0 }}
+                      whileHover={{ opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                    />
                     
                     {/* Play Button */}
                     {project.link && (
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-smooth">
-                        <div className="w-16 h-16 bg-primary/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-2xl" aria-hidden="true">
+                      <motion.div 
+                        className="absolute inset-0 flex items-center justify-center"
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        whileHover={{ opacity: 1, scale: 1 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      >
+                        <motion.div 
+                          className="w-16 h-16 bg-primary/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-2xl"
+                          aria-hidden="true"
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                        >
                           <ExternalLink size={24} className="text-primary-foreground" />
-                        </div>
-                      </div>
+                        </motion.div>
+                      </motion.div>
                     )}
                   </div>
 
                   {/* Content */}
                   <div className="p-6 space-y-4">
-                    <div className="flex items-center justify-between">
+                    <motion.div 
+                      className="flex items-center justify-between"
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.1 }}
+                    >
                       <span className="px-3 py-1 bg-primary/20 text-primary text-xs font-medium rounded-full border border-primary/30">
                         {project.category.charAt(0).toUpperCase() + project.category.slice(1)}
                       </span>
                       <time className="text-muted-foreground text-xs">{project.year}</time>
-                    </div>
+                    </motion.div>
                     
-                    <h2 className="text-xl font-bold text-foreground group-hover:text-primary transition-smooth">
+                    <motion.h2 
+                      className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300"
+                      whileHover={{ x: 4 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
                       {project.title}
-                    </h2>
+                    </motion.h2>
                     
                     <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">
                       {project.description}
@@ -380,20 +461,22 @@ export default function Portfolio() {
                     <div className="flex items-center justify-between pt-2">
                       <span className="text-primary text-xs font-medium">{project.client}</span>
                       {project.link && (
-                        <a
+                        <motion.a
                           href={project.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center text-primary hover:text-foreground transition-smooth font-medium text-sm group/link"
+                          className="inline-flex items-center text-primary hover:text-foreground transition-colors duration-300 font-medium text-sm group/link"
                           aria-label={`View ${project.title} project`}
+                          whileHover={{ x: 4 }}
+                          whileTap={{ scale: 0.95 }}
                         >
                           View Project
-                          <ExternalLink size={14} className="ml-1 transition-smooth group-hover/link:translate-x-1" aria-hidden="true" />
-                        </a>
+                          <ExternalLink size={14} className="ml-1 transition-transform duration-300 group-hover/link:translate-x-1" aria-hidden="true" />
+                        </motion.a>
                       )}
                     </div>
                   </div>
-                </div>
+                </motion.div>
               </motion.article>
             ))}
           </motion.div>
