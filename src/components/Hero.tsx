@@ -120,7 +120,7 @@ const Hero = () => {
             {/* Main Title */}
             <header className="space-y-4">
               <motion.h1 
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight"
                 variants={titleVariants}
               >
                 <motion.span 
@@ -150,7 +150,7 @@ const Hero = () => {
 
             {/* CTA Buttons */}
             <motion.nav 
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4 sm:px-0"
               variants={itemVariants}
               aria-label="Main navigation actions"
             >
@@ -174,18 +174,18 @@ const Hero = () => {
 
         {/* Scroll indicator */}
         <motion.div 
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 0.6 }}
         >
           <motion.div
-            className="w-6 h-10 border-2 border-muted-foreground/30 rounded-full flex justify-center"
+            className="w-6 h-10 border-2 border-muted-foreground/50 rounded-full flex justify-center backdrop-blur-sm"
             animate={{ y: [0, 5, 0] }}
             transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
           >
             <motion.div 
-              className="w-1 h-2 bg-primary rounded-full mt-2"
+              className="w-1.5 h-2.5 bg-primary rounded-full mt-2"
               animate={{ opacity: [0.5, 1, 0.5], y: [0, 8, 0] }}
               transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
             />

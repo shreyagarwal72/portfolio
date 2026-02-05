@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, Volume2, VolumeX, Sparkles } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import ThemeToggle from '@/components/ThemeToggle';
-import { useSound } from '@/contexts/SoundContext';
 
 interface NavigationProps {
   onLogoClick?: () => void;
@@ -13,7 +12,6 @@ interface NavigationProps {
 const Navigation = ({ onLogoClick }: NavigationProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
-  const { soundEnabled, toggleSound } = useSound();
 
   const navItems = [
     { label: 'Home', path: '/' },
@@ -141,21 +139,6 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
               >
-                {/* Sound Toggle */}
-                <motion.button
-                  onClick={toggleSound}
-                  className={cn(
-                    "p-2.5 rounded-xl transition-all duration-300",
-                    soundEnabled 
-                      ? "bg-primary/10 text-primary" 
-                      : "bg-muted/50 text-muted-foreground hover:bg-muted"
-                  )}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  aria-label={soundEnabled ? "Mute sounds" : "Enable sounds"}
-                >
-                  {soundEnabled ? <Volume2 size={18} /> : <VolumeX size={18} />}
-                </motion.button>
                 
                 {/* Theme Toggle */}
                 <div className="p-1">
@@ -260,18 +243,6 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
                   </a>
                   
                   <div className="flex items-center gap-2">
-                    <button
-                      onClick={toggleSound}
-                      className={cn(
-                        "p-2.5 rounded-xl transition-all duration-300",
-                        soundEnabled 
-                          ? "bg-primary/10 text-primary" 
-                          : "bg-muted/50 text-muted-foreground"
-                      )}
-                      aria-label={soundEnabled ? "Mute sounds" : "Enable sounds"}
-                    >
-                      {soundEnabled ? <Volume2 size={18} /> : <VolumeX size={18} />}
-                    </button>
                     <ThemeToggle />
                   </div>
                 </motion.div>

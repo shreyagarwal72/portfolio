@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ArrowUp } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -29,18 +29,44 @@ const BackToTop = () => {
   };
 
   return (
-    <>
+    <AnimatePresence>
       {isVisible && (
-        <Button
+        <motion.button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-40 rounded-full w-12 h-12 shadow-glow hover-glow transition-premium"
-          size="icon"
+          className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-40 w-12 h-12 rounded-full bg-primary text-primary-foreground shadow-lg flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+          initial={{ opacity: 0, scale: 0.5, y: 20 }}
+          animate={{ 
+            opacity: 1, 
+            scale: 1, 
+            y: 0,
+            boxShadow: [
+              '0 0 20px hsl(var(--primary) / 0.3)',
+              '0 0 40px hsl(var(--primary) / 0.5)',
+              '0 0 20px hsl(var(--primary) / 0.3)'
+            ]
+          }}
+          exit={{ opacity: 0, scale: 0.5, y: 20 }}
+          transition={{ 
+            type: 'spring', 
+            stiffness: 300, 
+            damping: 20,
+            boxShadow: {
+              duration: 2,
+              repeat: Infinity,
+              ease: 'easeInOut'
+            }
+          }}
+          whileHover={{ 
+            scale: 1.1,
+            boxShadow: '0 0 50px hsl(var(--primary) / 0.6)'
+          }}
+          whileTap={{ scale: 0.9 }}
           aria-label="Back to top"
         >
           <ArrowUp className="h-5 w-5" />
-        </Button>
+        </motion.button>
       )}
-    </>
+    </AnimatePresence>
   );
 };
 
