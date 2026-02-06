@@ -1,9 +1,12 @@
+import { useState } from 'react';
 import { Github, Instagram, Youtube, Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import RockPaperScissors from '@/components/RockPaperScissors';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const [showGame, setShowGame] = useState(false);
 
   const socialLinks = [
     { icon: Github, href: "https://github.com/shreyagarwal72", label: "GitHub", hoverColor: "hover:bg-primary/20 hover:text-primary" },
@@ -101,15 +104,28 @@ const Footer = () => {
             </Link>
           </motion.nav>
 
-          {/* Copyright */}
+          {/* Copyright with Easter Egg */}
           <motion.div 
             className="pt-8 border-t border-border text-center text-muted-foreground text-sm w-full"
             variants={itemVariants}
           >
-            <p>© {currentYear} Vanshu Agarwal. All rights reserved. Built with ❤️</p>
+            <p>
+              © <motion.button
+                onClick={() => setShowGame(true)}
+                className="cursor-pointer hover:text-primary transition-colors duration-300 font-medium"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                title="Click for a surprise!"
+              >
+                {currentYear}
+              </motion.button> Vanshu Agarwal. All rights reserved. Built with ❤️
+            </p>
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Easter Egg Game */}
+      <RockPaperScissors isOpen={showGame} onClose={() => setShowGame(false)} />
     </footer>
   );
 };
