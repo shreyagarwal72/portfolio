@@ -1,10 +1,9 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import ThemeToggle from '@/components/ThemeToggle';
-import RockPaperScissors from '@/components/RockPaperScissors';
 
 interface NavigationProps {
   onLogoClick?: () => void;
@@ -12,10 +11,7 @@ interface NavigationProps {
 
 const Navigation = ({ onLogoClick }: NavigationProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [showGame, setShowGame] = useState(false);
   const location = useLocation();
-  const longPressTimer = useRef<NodeJS.Timeout | null>(null);
-  const isLongPress = useRef(false);
 
   const navItems = [
     { label: 'Home', path: '/' },
@@ -30,34 +26,7 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
 
   const isActive = (path: string) => location.pathname === path;
 
-  // Long press handlers for easter egg
-  const handlePressStart = useCallback(() => {
-    isLongPress.current = false;
-    longPressTimer.current = setTimeout(() => {
-      isLongPress.current = true;
-      setShowGame(true);
-      // Haptic feedback if supported
-      if (navigator.vibrate) {
-        navigator.vibrate(50);
-      }
-    }, 800); // 800ms for long press
-  }, []);
-
-  const handlePressEnd = useCallback(() => {
-    if (longPressTimer.current) {
-      clearTimeout(longPressTimer.current);
-      longPressTimer.current = null;
-    }
-  }, []);
-
   const handleLogoClick = (e: React.MouseEvent) => {
-    // Prevent click if it was a long press
-    if (isLongPress.current) {
-      e.preventDefault();
-      isLongPress.current = false;
-      return;
-    }
-    
     if (onLogoClick && location.pathname === '/') {
       e.preventDefault();
       onLogoClick();
@@ -106,24 +75,18 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
           
           <div className="relative px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-14">
-              {/* Logo with Easter Egg */}
+              {/* Logo */}
               <motion.div
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 className="relative select-none"
-                onMouseDown={handlePressStart}
-                onMouseUp={handlePressEnd}
-                onMouseLeave={handlePressEnd}
-                onTouchStart={handlePressStart}
-                onTouchEnd={handlePressEnd}
-                onTouchCancel={handlePressEnd}
               >
                 <Link 
                   to="/" 
                   className="relative flex items-center gap-2 text-xl font-bold touch-manipulation" 
-                  aria-label="Replay intro animation (long press for secret)"
+                  aria-label="Go to homepage"
                   onClick={handleLogoClick}
-                  title="Click to replay intro • Long press for a surprise!"
+                  title="Click to replay intro"
                   draggable={false}
                 >
                   <span className="relative z-10 bg-gradient-to-r from-primary via-primary to-primary-foreground bg-clip-text text-transparent pointer-events-none">
@@ -136,9 +99,6 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
                   />
                 </Link>
               </motion.div>
-              
-              {/* Easter Egg Game */}
-              <RockPaperScissors isOpen={showGame} onClose={() => setShowGame(false)} />
 
               {/* Desktop Navigation */}
               <ul className="hidden lg:flex items-center space-x-1">
