@@ -119,7 +119,7 @@ const Contact = () => {
     <div className="min-h-screen pt-20 pb-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6 animate-fade-in">
+          <h1 className="text-5xl lg:text-7xl font-bold text-foreground mb-6 animate-fade-in">
             GET IN <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">TOUCH</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-fade-in delay-200">
@@ -131,7 +131,7 @@ const Contact = () => {
           {/* Contact Information */}
           <div className="space-y-8 animate-fade-in">
             <div className="card-gradient rounded-2xl p-8 hover-lift transition-smooth">
-              <h2 className="text-2xl font-bold text-white mb-6">Contact Information</h2>
+              <h2 className="text-2xl font-bold text-foreground mb-6">Contact Information</h2>
 
               <div className="space-y-6">
                 <div className="flex items-center space-x-4 hover:translate-x-2 transition-smooth">
@@ -140,7 +140,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-muted-foreground text-sm">Email</p>
-                    <p className="text-white">sanjayvansu1973@gmail.com</p>
+                    <p className="text-foreground">sanjayvansu1973@gmail.com</p>
                   </div>
                 </div>
 
@@ -150,7 +150,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-muted-foreground text-sm">Phone</p>
-                    <p className="text-white">9412104618</p>
+                    <p className="text-foreground">9412104618</p>
                   </div>
                 </div>
 
@@ -160,7 +160,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-muted-foreground text-sm">Location</p>
-                    <p className="text-white">Agra, India</p>
+                    <p className="text-foreground">Agra, India</p>
                     <p className="text-muted-foreground text-sm">106/1 Balkeshwar Road Agra</p>
                   </div>
                 </div>
@@ -169,7 +169,7 @@ const Contact = () => {
 
             {/* Services */}
             <div className="card-gradient rounded-2xl p-8 hover-lift transition-smooth">
-              <h3 className="text-xl font-bold text-white mb-6">Services Offered</h3>
+              <h3 className="text-xl font-bold text-foreground mb-6">Services Offered</h3>
               <div className="space-y-3 text-muted-foreground">
                 <p>• Commercial Video Production</p>
                 <p>• Corporate Content Creation</p>
@@ -183,7 +183,7 @@ const Contact = () => {
 
           {/* Contact Form */}
           <div className="card-gradient rounded-2xl p-8 animate-fade-in hover-lift transition-smooth" style={{ animationDelay: '0.2s' }}>
-            <h2 className="text-2xl font-bold text-white mb-6">Send a Message</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-6">Send a Message</h2>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid sm:grid-cols-2 gap-4">

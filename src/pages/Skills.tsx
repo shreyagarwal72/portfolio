@@ -110,7 +110,7 @@ const Skills = () => {
         
         {/* Hero Header */}
         <div className="text-center mb-16">
-          <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6 animate-fade-in">
+          <h1 className="text-5xl lg:text-7xl font-bold text-foreground mb-6 animate-fade-in">
             MY <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">SKILLS</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-fade-in delay-200">
@@ -125,7 +125,7 @@ const Skills = () => {
             
             {/* Software Skills */}
             <div className="card-gradient rounded-2xl p-6 animate-fade-in hover-lift transition-smooth">
-              <h3 className="text-xl font-bold text-white mb-6">SOFTWARE SKILLS</h3>
+              <h3 className="text-xl font-bold text-foreground mb-6">SOFTWARE SKILLS</h3>
               <div className="space-y-4">
                 {softwareSkills.map((skill, index) => (
                   <div key={skill.name} className="space-y-2">
@@ -149,7 +149,7 @@ const Skills = () => {
 
             {/* Languages */}
             <div className="card-gradient rounded-2xl p-6 animate-fade-in hover-lift transition-smooth" style={{ animationDelay: '0.1s' }}>
-              <h3 className="text-xl font-bold text-white mb-6">LANGUAGES</h3>
+              <h3 className="text-xl font-bold text-foreground mb-6">LANGUAGES</h3>
               <div className="space-y-4">
                 {languages.map((lang, index) => (
                   <div key={lang.name} className="space-y-2">
@@ -173,7 +173,7 @@ const Skills = () => {
 
             {/* Personal Skills */}
             <div className="card-gradient rounded-2xl p-6 animate-fade-in hover-lift transition-smooth" style={{ animationDelay: '0.2s' }}>
-              <h3 className="text-xl font-bold text-white mb-6">PERSONAL SKILLS</h3>
+              <h3 className="text-xl font-bold text-foreground mb-6">PERSONAL SKILLS</h3>
               <div className="space-y-3 text-muted-foreground">
                 <p>Creativity • Team Work • Organization</p>
                 <p>Problem Solving • Attention to Detail</p>
@@ -187,14 +187,14 @@ const Skills = () => {
             
             {/* Experience */}
             <div className="card-gradient rounded-2xl p-6 animate-fade-in hover-lift transition-smooth" style={{ animationDelay: '0.15s' }}>
-              <h3 className="text-xl font-bold text-white mb-6">EXPERIENCE</h3>
+              <h3 className="text-xl font-bold text-foreground mb-6">EXPERIENCE</h3>
               <div className="space-y-6">
                 {experiences.map((exp, index) => (
                   <div key={index} className="relative pl-6 border-l-2 border-primary/30">
                     <div className="absolute -left-2 top-0 w-4 h-4 bg-primary rounded-full" />
                     <div className="space-y-2">
                       <h4 className="text-primary font-medium text-sm">{exp.company}</h4>
-                      <p className="text-white font-medium">{exp.role}</p>
+                      <p className="text-foreground font-medium">{exp.role}</p>
                       <p className="text-muted-foreground text-sm">{exp.period}</p>
                       <p className="text-muted-foreground text-sm">{exp.description}</p>
                     </div>
@@ -205,12 +205,12 @@ const Skills = () => {
 
             {/* Education */}
             <div className="card-gradient rounded-2xl p-6 animate-fade-in hover-lift transition-smooth" style={{ animationDelay: '0.25s' }}>
-              <h3 className="text-xl font-bold text-white mb-6">EDUCATION</h3>
+              <h3 className="text-xl font-bold text-foreground mb-6">EDUCATION</h3>
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
                   <GraduationCap className="text-primary mt-1" size={20} />
                   <div>
-                    <h4 className="text-white font-medium">Class 11 Student</h4>
+                    <h4 className="text-foreground font-medium">Class 11 Student</h4>
                     <p className="text-muted-foreground text-sm">Stream PCM Science</p>
                     <p className="text-muted-foreground text-sm">2025 - Present</p>
                   </div>
@@ -224,7 +224,7 @@ const Skills = () => {
             
             {/* What Can I Do */}
             <div className="card-gradient rounded-2xl p-6 animate-fade-in hover-lift transition-smooth" style={{ animationDelay: '0.2s' }}>
-              <h3 className="text-xl font-bold text-white mb-6">WHAT CAN I DO?</h3>
+              <h3 className="text-xl font-bold text-foreground mb-6">WHAT CAN I DO?</h3>
               <div className="space-y-4 text-muted-foreground">
                 <p>• Video Editing & Post-Production</p>
                 <p>• Motion Graphics & Animation</p>
@@ -237,7 +237,7 @@ const Skills = () => {
 
             {/* Design Skills */}
             <div className="card-gradient rounded-2xl p-6 animate-fade-in hover-lift transition-smooth" style={{ animationDelay: '0.3s' }}>
-              <h3 className="text-xl font-bold text-white mb-6">DESIGN SKILLS</h3>
+              <h3 className="text-xl font-bold text-foreground mb-6">DESIGN SKILLS</h3>
               <div className="grid grid-cols-2 gap-4">
                 {designSkills.map((skill, index) => (
                   <div key={skill.name} className="text-center p-4 bg-muted/20 rounded-lg transition-smooth hover:bg-muted/30 hover:scale-105 hover:-translate-y-1">
@@ -250,7 +250,7 @@ const Skills = () => {
 
             {/* Hobbies & Interests */}
             <div className="card-gradient rounded-2xl p-6 animate-fade-in hover-lift transition-smooth" style={{ animationDelay: '0.4s' }}>
-              <h3 className="text-xl font-bold text-white mb-6">HOBBIES & INTERESTS</h3>
+              <h3 className="text-xl font-bold text-foreground mb-6">HOBBIES & INTERESTS</h3>
               <div className="grid grid-cols-2 gap-4">
                 {interests.map((interest, index) => (
                   <div key={interest.name} className="text-center p-4 bg-muted/20 rounded-lg transition-smooth hover:bg-muted/30 hover:scale-105 hover:-translate-y-1">
