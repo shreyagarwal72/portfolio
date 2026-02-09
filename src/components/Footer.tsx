@@ -3,6 +3,7 @@ import { Github, Instagram, Youtube, Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import RockPaperScissors from '@/components/RockPaperScissors';
+import NewsletterSignup from '@/components/NewsletterSignup';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -84,12 +85,29 @@ const Footer = () => {
             ))}
           </motion.nav>
 
+          {/* Newsletter Signup */}
+          <motion.div variants={itemVariants} className="w-full pt-4 border-t border-border/50">
+            <NewsletterSignup />
+          </motion.div>
+
           {/* Quick Links */}
           <motion.nav 
-            className="flex items-center gap-6 text-sm" 
+            className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-sm" 
             aria-label="Footer navigation"
             variants={itemVariants}
           >
+            <Link 
+              to="/faq" 
+              className="text-muted-foreground hover:text-primary transition-all duration-300 hover-underline"
+            >
+              FAQ
+            </Link>
+            <Link 
+              to="/process" 
+              className="text-muted-foreground hover:text-primary transition-all duration-300 hover-underline"
+            >
+              My Process
+            </Link>
             <Link 
               to="/privacy-policy" 
               className="text-muted-foreground hover:text-primary transition-all duration-300 hover-underline"
