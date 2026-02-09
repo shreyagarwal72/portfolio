@@ -24,6 +24,7 @@ const TermsAndConditions = lazy(() => import("./pages/TermsAndConditions"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const Articles = lazy(() => import("./pages/Articles"));
 const ProcessWorkflow = lazy(() => import("./pages/ProcessWorkflow"));
+const FAQ = lazy(() => import("./pages/FAQ"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Loading fallback
@@ -89,6 +90,7 @@ const AppContent = () => {
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/articles" element={<Articles />} />
             <Route path="/process" element={<ProcessWorkflow />} />
+            <Route path="/faq" element={<FAQ />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

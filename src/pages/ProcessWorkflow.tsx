@@ -123,33 +123,63 @@ const ProcessWorkflow = () => {
           </p>
         </motion.div>
 
-        {/* Process Steps */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {steps.map((step, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <Card className="h-full hover-glow transition-premium relative overflow-hidden group">
-                <div className="absolute top-0 right-0 text-8xl font-bold text-muted/5 group-hover:text-muted/10 transition-smooth">
+        {/* Process Steps - Timeline */}
+        <div className="relative mb-16">
+          {/* Vertical Timeline Line - Desktop */}
+          <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-primary/50 to-primary/20 transform -translate-x-1/2" />
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {steps.map((step, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 40, rotateX: -10 }}
+                animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                transition={{ 
+                  delay: index * 0.15,
+                  type: 'spring',
+                  stiffness: 100,
+                  damping: 15
+                }}
+                className="relative"
+              >
+                {/* Step Number Badge */}
+                <motion.div 
+                  className="absolute -top-3 -left-3 z-10 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-lg shadow-glow"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: index * 0.15 + 0.2, type: 'spring', stiffness: 200 }}
+                >
                   {index + 1}
-                </div>
-                <CardHeader>
-                  <div className={`${step.color} mb-4`}>
-                    <step.icon className="h-12 w-12" />
+                </motion.div>
+
+                {/* Connector Line to next card - horizontal on mobile/tablet */}
+                {index < steps.length - 1 && (
+                  <div className="hidden md:block lg:hidden absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-primary/50 to-primary/20" />
+                )}
+
+                <Card className="h-full hover-glow transition-premium relative overflow-hidden group hover:scale-[1.02] hover:-translate-y-1">
+                  <div className="absolute top-0 right-0 text-8xl font-bold text-muted/5 group-hover:text-muted/10 transition-smooth">
+                    {index + 1}
                   </div>
-                  <CardTitle className="text-2xl">{step.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base leading-relaxed">
-                    {step.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+                  <CardHeader className="pt-8">
+                    <motion.div 
+                      className={`${step.color} mb-4`}
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ type: 'spring', stiffness: 300 }}
+                    >
+                      <step.icon className="h-12 w-12" />
+                    </motion.div>
+                    <CardTitle className="text-2xl">{step.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base leading-relaxed">
+                      {step.description}
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* Tools & Software */}
