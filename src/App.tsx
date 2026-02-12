@@ -10,6 +10,7 @@ import MagneticCursor from "./components/MagneticCursor";
 import BackToTop from "./components/BackToTop";
 import IntroWrapper from "./components/IntroWrapper";
 import { SoundProvider } from "./contexts/SoundContext";
+import SquidLoader from "./components/SquidLoader";
 
 // Lazy load pages for better performance
 const Index = lazy(() => import("./pages/Index"));
@@ -28,11 +29,7 @@ const FAQ = lazy(() => import("./pages/FAQ"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Loading fallback
-const PageLoader = () => (
-  <div className="min-h-screen flex items-center justify-center bg-background">
-    <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
-  </div>
-);
+const PageLoader = () => <SquidLoader />;
 
 const queryClient = new QueryClient();
 

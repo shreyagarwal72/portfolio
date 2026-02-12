@@ -1,5 +1,6 @@
 import { Floating3D } from '@/components/Floating3D';
 import heroWorkspace from '@/assets/hero-workspace.jpg';
+import heroWorkspaceLight from '@/assets/hero-workspace-light.jpg';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import ElectricButton from '@/components/ElectricButton';
@@ -7,9 +8,15 @@ import CreepyButton from '@/components/CreepyButton';
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
-
+  const [isDark, setIsDark] = useState(document.documentElement.classList.contains('dark'));
   useEffect(() => {
     setIsVisible(true);
+
+    // Watch for theme changes
+    const observer = new MutationObserver(() => {
+      setIsDark(document.documentElement.classList.contains('dark'));
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
     
     // Set page title and meta tags for SEO
     document.title = 'Vanshu Agarwal - Video Editor, Gamer & Musician | Creative Portfolio';
@@ -44,6 +51,7 @@ const Hero = () => {
     document.head.appendChild(script);
     
     return () => {
+      observer.disconnect();
       const existingScript = document.querySelector('script[type="application/ld+json"]');
       if (existingScript) {
         document.head.removeChild(existingScript);
@@ -101,7 +109,7 @@ const Hero = () => {
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
           style={{ 
-            backgroundImage: `url(${heroWorkspace})`,
+            backgroundImage: `url(${isDark ? heroWorkspace : heroWorkspaceLight})`,
           }}
           role="img"
           aria-label="Creative workspace background with editing equipment"
