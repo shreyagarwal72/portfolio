@@ -9,6 +9,10 @@
   height: 60px;
 }
 
+:root:not(.dark) .electric-button-container {
+  --filament-grow: #1a1a2e;
+}
+
 .electric-button-container .area:nth-child(1):hover ~ .electric-button::before {
   transform: translate(0%, 0);
 }
@@ -164,6 +168,10 @@
     inset 1px -10px 15px 1px #ffffff66;
   overflow: hidden;
   transition: all 0.2s ease-in-out;
+}
+
+:root:not(.dark) .electric-button .base {
+  background-color: #2a2d3e;
 }
 
 .electric-button .base::before {
