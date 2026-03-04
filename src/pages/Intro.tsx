@@ -69,6 +69,7 @@ const Intro = ({ onEnter }: IntroProps) => {
   const detailsEvenRef = useRef(true);
   const loopIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const isInitializedRef = useRef(false);
+  const mountedRef = useRef(true);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const transitionRef = useRef<HTMLDivElement>(null);
   const touchStartRef = useRef<number>(0);
@@ -127,6 +128,7 @@ const Intro = ({ onEnter }: IntroProps) => {
 
   const step = useCallback(() => {
     return new Promise<void>((resolve) => {
+      if (!mountedRef.current) { resolve(); return; }
       const order = orderRef.current;
       order.push(order.shift()!);
       detailsEvenRef.current = !detailsEvenRef.current;
@@ -240,14 +242,17 @@ const Intro = ({ onEnter }: IntroProps) => {
   }, [playWhoosh]);
 
   const loop = useCallback(async () => {
+    if (!mountedRef.current) return;
     await gsap.to(".indicator", { x: 0, duration: 2 });
+    if (!mountedRef.current) return;
     await gsap.to(".indicator", { x: window.innerWidth, duration: 0.8, delay: 0.3 });
+    if (!mountedRef.current) return;
     gsap.set(".indicator", { x: -window.innerWidth });
     await step();
   }, [step]);
 
   const init = useCallback(() => {
-    if (isInitializedRef.current) return;
+    if (isInitializedRef.current || !mountedRef.current) return;
     isInitializedRef.current = true;
 
     const order = orderRef.current;
@@ -320,8 +325,9 @@ const Intro = ({ onEnter }: IntroProps) => {
       onComplete: () => {
         setTimeout(() => {
           const runLoop = async () => {
+            if (!mountedRef.current) return;
             await loop();
-            runLoop();
+            if (mountedRef.current) runLoop();
           };
           runLoop();
         }, 500);
@@ -403,6 +409,7 @@ const Intro = ({ onEnter }: IntroProps) => {
     loadImages();
 
     return () => {
+      mountedRef.current = false;
       if (loopIntervalRef.current) {
         clearInterval(loopIntervalRef.current);
       }
