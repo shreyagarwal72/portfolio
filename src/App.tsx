@@ -132,6 +132,7 @@ const App = () => {
           <Toaster />
           <Sonner />
           <MagneticCursor />
+          <PWAInstallPrompt />
           <BrowserRouter>
             <AppContent />
           </BrowserRouter>
