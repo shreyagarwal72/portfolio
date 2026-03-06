@@ -30,7 +30,6 @@ Allow: /
 
 # Disallow private paths
 Disallow: /api/
-Disallow: /_next/
 Disallow: /private/
 
 # Sitemap location
