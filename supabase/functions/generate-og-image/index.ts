@@ -21,7 +21,6 @@ serve(async (req) => {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
-    // Generate OG image using AI
     const prompt = `Create a professional Open Graph social media preview image (1200x630 pixels, 16:9 aspect ratio) for a creative portfolio website. 
 
 Design specifications:
@@ -45,7 +44,7 @@ The image should look professional and stand out when shared on social media pla
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemini-2.5-flash-image",
+        model: "google/gemini-3-pro-image-preview",
         messages: [
           {
             role: "user",
@@ -78,31 +77,47 @@ The image should look professional and stand out when shared on social media pla
     }
 
     const data = await response.json();
-    const imageUrl = data.choices?.[0]?.message?.images?.[0]?.image_url?.url;
+    
+    // Check for inline_data format (Gemini image generation)
+    const parts = data.choices?.[0]?.message?.content;
+    let imageData: string | null = null;
+    let mimeType = "image/png";
 
-    if (!imageUrl) {
+    // Try inline_data parts format
+    if (Array.isArray(parts)) {
+      for (const part of parts) {
+        if (part.inline_data?.data) {
+          imageData = part.inline_data.data;
+          mimeType = part.inline_data.mime_type || "image/png";
+          break;
+        }
+      }
+    }
+
+    // Fallback: try images array format
+    if (!imageData) {
+      const imageUrl = data.choices?.[0]?.message?.images?.[0]?.image_url?.url;
+      if (imageUrl?.startsWith("data:image")) {
+        imageData = imageUrl.split(",")[1];
+      }
+    }
+
+    if (!imageData) {
+      console.error("No image in response:", JSON.stringify(data).substring(0, 500));
       return new Response(JSON.stringify({ error: "No image generated" }), {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
-    // Return base64 image as actual image response
-    if (imageUrl.startsWith("data:image")) {
-      const base64Data = imageUrl.split(",")[1];
-      const imageBytes = Uint8Array.from(atob(base64Data), (c) => c.charCodeAt(0));
-      
-      return new Response(imageBytes, {
-        headers: {
-          ...corsHeaders,
-          "Content-Type": "image/png",
-          "Cache-Control": "public, max-age=86400",
-        },
-      });
-    }
+    const imageBytes = Uint8Array.from(atob(imageData), (c) => c.charCodeAt(0));
 
-    return new Response(JSON.stringify({ imageUrl }), {
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    return new Response(imageBytes, {
+      headers: {
+        ...corsHeaders,
+        "Content-Type": mimeType,
+        "Cache-Control": "public, max-age=86400",
+      },
     });
   } catch (error) {
     console.error("Error generating OG image:", error);
