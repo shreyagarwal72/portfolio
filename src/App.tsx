@@ -11,6 +11,7 @@ import BackToTop from "./components/BackToTop";
 import IntroWrapper from "./components/IntroWrapper";
 import { SoundProvider } from "./contexts/SoundContext";
 import SquidLoader from "./components/SquidLoader";
+import PWAInstallPrompt from "./components/PWAInstallPrompt";
 
 // Lazy load pages for better performance
 const Index = lazy(() => import("./pages/Index"));
