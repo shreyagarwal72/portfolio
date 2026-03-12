@@ -309,7 +309,7 @@ const VanshuBot = () => {
     setMessages([
       {
         role: 'assistant',
-        content: 'Hi! I\'m Vanshu Bot, your AI assistant. I can help you learn about Vanshu Aggarwal\'s work, skills, and projects. What would you like to know?',
+        content: 'Hi! I\'m Vanshu Bot, your AI assistant. I can help you learn about Vanshu Agarwal\'s work, skills, and projects. What would you like to know?',
       },
     ]);
     toast({
