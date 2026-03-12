@@ -340,7 +340,7 @@ const VanshuBot = () => {
                 Vanshu Bot
               </h1>
               <p className="mt-4 text-muted-foreground max-w-lg text-sm md:text-base">
-                Your AI assistant with complete knowledge about Vanshu Aggarwal's work, skills, and projects. Ask me anything!
+                Your AI assistant with complete knowledge about Vanshu Agarwal's work, skills, and projects. Ask me anything!
               </p>
               <Button
                 onClick={handleClearChat}
