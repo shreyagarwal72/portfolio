@@ -32,7 +32,8 @@ export default defineConfig(({ mode }) => ({
       },
       workbox: {
         navigateFallbackDenylist: [/^\/~oauth/],
-        globPatterns: ["**/*.{js,css,html,ico,png,jpg,svg,woff2}"],
+        globPatterns: ["**/*.{js,css,html,ico,svg,woff2}"],
+        maximumFileSizeToCacheInBytes: 10 * 1024 * 1024,
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
