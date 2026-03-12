@@ -23,7 +23,7 @@ serve(async (req) => {
     // Easter egg: Check for "op bolte" in the last user message
     const lastMessage = messages[messages.length - 1];
     if (lastMessage?.role === 'user' && lastMessage?.content?.toLowerCase().includes('op bolte')) {
-      const secretResponse = `🎉 **OP BOLTE!** 🔥\n\nYou found the secret! Here's your exclusive link:\n👉 **https://nextup-resources.vercel.app**\n\nEnjoy the resources! 🚀`;
+      const secretResponse = `🎉 **OP BOLTE!** 🔥\n\nYou found the secret! Here's your exclusive link:\n👉 **https://nextup-resource.vercel.app**\n\nThis is Vanshu's secret website for premium contents! Enjoy! 🚀`;
       const encoder = new TextEncoder();
       const stream = new ReadableStream({
         start(controller) {
