@@ -49,7 +49,7 @@ const VanshuBot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content: 'Hi! I\'m Vanshu Bot, your AI assistant. I can help you learn about Vanshu Aggarwal\'s work, skills, and projects. What would you like to know?',
+      content: 'Hi! I\'m Vanshu Bot, your AI assistant. I can help you learn about Vanshu Agarwal\'s work, skills, and projects. What would you like to know?',
     },
   ]);
   const [input, setInput] = useState('');
@@ -94,11 +94,11 @@ const VanshuBot = () => {
 
   useEffect(() => {
     // Set page title and meta tags for SEO
-    document.title = 'Vanshu Bot - AI Assistant | Ask About Vanshu Aggarwal';
+    document.title = 'Vanshu Bot - AI Assistant | Ask About Vanshu Agarwal';
     
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Chat with Vanshu Bot, an AI assistant with complete knowledge about Vanshu Aggarwal\'s video editing services, portfolio projects, skills, and experience. Get instant answers to your questions.');
+      metaDescription.setAttribute('content', 'Chat with Vanshu Bot, an AI assistant with complete knowledge about Vanshu Agarwal\'s video editing services, portfolio projects, skills, and experience. Get instant answers to your questions.');
     }
     
     const script = document.createElement('script');
@@ -107,7 +107,7 @@ const VanshuBot = () => {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": "Vanshu Bot",
-      "description": "AI chatbot assistant with comprehensive knowledge about Vanshu Aggarwal's work",
+      "description": "AI chatbot assistant with comprehensive knowledge about Vanshu Agarwal's work",
       "applicationCategory": "ChatApplication",
       "offers": {
         "@type": "Offer",
@@ -116,7 +116,7 @@ const VanshuBot = () => {
       },
       "creator": {
         "@type": "Person",
-        "name": "Vanshu Aggarwal"
+        "name": "Vanshu Agarwal"
       }
     });
     document.head.appendChild(script);
