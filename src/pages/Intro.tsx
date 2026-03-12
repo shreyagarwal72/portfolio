@@ -278,32 +278,68 @@ const Intro = ({ onEnter }: IntroProps) => {
     const detailsActive = detailsEvenRef.current ? "#details-even" : "#details-odd";
     const detailsInactive = detailsEvenRef.current ? "#details-odd" : "#details-even";
     const { innerHeight: height, innerWidth: width } = window;
-    const offsetTop = height - 430;
-    const offsetLeft = width - 830;
-    const cardWidth = 200;
-    const cardHeight = 300;
-    const gap = 40;
+    const mobile = isMobile();
+    const offsetTop = mobile ? 0 : height - 430;
+    const offsetLeft = mobile ? 0 : width - 830;
+    const cardWidth = mobile ? width : 200;
+    const cardHeight = mobile ? Math.round(height * 0.5) : 300;
+    const gap = mobile ? 0 : 40;
     const numberSize = 50;
     const ease = "sine.inOut";
 
-    gsap.set("#pagination", {
-      top: offsetTop + 330,
-      left: offsetLeft,
-      y: 200,
-      opacity: 0,
-      zIndex: 60,
-    });
+    if (!mobile) {
+      gsap.set("#pagination", {
+        top: offsetTop + 330,
+        left: offsetLeft,
+        y: 200,
+        opacity: 0,
+        zIndex: 60,
+      });
+    }
     gsap.set(".intro-nav", { y: -200, opacity: 0 });
     gsap.set(".intro-actions", { y: 100, opacity: 0 });
 
-    gsap.set(getCard(active), {
-      x: 0,
-      y: 0,
-      width: window.innerWidth,
-      height: window.innerHeight,
-    });
+    if (mobile) {
+      // Mobile: active card fills top half
+      gsap.set(getCard(active), {
+        x: 0, y: 0,
+        width: width,
+        height: cardHeight,
+        borderRadius: '0 0 24px 24px',
+        opacity: 1,
+        zIndex: 20,
+      });
+      // Hide all other cards
+      rest.forEach((i) => {
+        gsap.set(getCard(i), { x: 0, y: 0, width: width, height: cardHeight, opacity: 0, zIndex: 1 });
+        gsap.set(getCardContent(i), { opacity: 0 });
+      });
+    } else {
+      gsap.set(getCard(active), {
+        x: 0, y: 0,
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+      rest.forEach((i, index) => {
+        gsap.set(getCard(i), {
+          x: offsetLeft + 400 + index * (cardWidth + gap),
+          y: offsetTop,
+          width: cardWidth,
+          height: cardHeight,
+          zIndex: 30,
+          borderRadius: 10,
+        });
+        gsap.set(getCardContent(i), {
+          x: offsetLeft + 400 + index * (cardWidth + gap),
+          zIndex: 40,
+          y: offsetTop + cardHeight - 100,
+        });
+        gsap.set(getSliderItem(i), { x: (index + 1) * numberSize });
+      });
+    }
+
     gsap.set(getCardContent(active), { x: 0, y: 0, opacity: 0 });
-    gsap.set(detailsActive, { opacity: 0, zIndex: 22, x: -200 });
+    gsap.set(detailsActive, { opacity: 0, zIndex: 22, x: mobile ? 0 : -200 });
     gsap.set(detailsInactive, { opacity: 0, zIndex: 12 });
     gsap.set(`${detailsInactive} .text`, { y: 100 });
     gsap.set(`${detailsInactive} .title-1`, { y: 100 });
@@ -313,23 +349,6 @@ const Intro = ({ onEnter }: IntroProps) => {
 
     gsap.set(".progress-sub-foreground", {
       width: 500 * (1 / order.length) * (active + 1),
-    });
-
-    rest.forEach((i, index) => {
-      gsap.set(getCard(i), {
-        x: offsetLeft + 400 + index * (cardWidth + gap),
-        y: offsetTop,
-        width: cardWidth,
-        height: cardHeight,
-        zIndex: 30,
-        borderRadius: 10,
-      });
-      gsap.set(getCardContent(i), {
-        x: offsetLeft + 400 + index * (cardWidth + gap),
-        zIndex: 40,
-        y: offsetTop + cardHeight - 100,
-      });
-      gsap.set(getSliderItem(i), { x: (index + 1) * numberSize });
     });
 
     gsap.set(".indicator", { x: -window.innerWidth });
@@ -352,26 +371,28 @@ const Intro = ({ onEnter }: IntroProps) => {
       },
     });
 
-    rest.forEach((i, index) => {
-      gsap.to(getCard(i), {
-        x: offsetLeft + index * (cardWidth + gap),
-        zIndex: 30,
-        ease,
-        delay: startDelay,
+    if (!mobile) {
+      rest.forEach((i, index) => {
+        gsap.to(getCard(i), {
+          x: offsetLeft + index * (cardWidth + gap),
+          zIndex: 30,
+          ease,
+          delay: startDelay,
+        });
+        gsap.to(getCardContent(i), {
+          x: offsetLeft + index * (cardWidth + gap),
+          zIndex: 40,
+          ease,
+          delay: startDelay,
+        });
       });
-      gsap.to(getCardContent(i), {
-        x: offsetLeft + index * (cardWidth + gap),
-        zIndex: 40,
-        ease,
-        delay: startDelay,
-      });
-    });
+      gsap.to("#pagination", { y: 0, opacity: 1, ease, delay: startDelay });
+    }
 
-    gsap.to("#pagination", { y: 0, opacity: 1, ease, delay: startDelay });
     gsap.to(".intro-nav", { y: 0, opacity: 1, ease, delay: startDelay });
     gsap.to(".intro-actions", { y: 0, opacity: 1, ease, delay: startDelay + 0.3 });
     gsap.to(detailsActive, { opacity: 1, x: 0, ease, delay: startDelay });
-  }, [loop]);
+  }, [loop, isMobile]);
 
   useEffect(() => {
     // Create audio element for sound effects
