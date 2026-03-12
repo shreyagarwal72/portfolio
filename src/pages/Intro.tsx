@@ -126,6 +126,8 @@ const Intro = ({ onEnter }: IntroProps) => {
   const getCardContent = (index: number) => `#card-content-${index}`;
   const getSliderItem = (index: number) => `#slide-item-${index}`;
 
+  const isMobile = useCallback(() => window.innerWidth < 768, []);
+
   const step = useCallback(() => {
     return new Promise<void>((resolve) => {
       if (!mountedRef.current) { resolve(); return; }
@@ -139,11 +141,12 @@ const Intro = ({ onEnter }: IntroProps) => {
       const detailsInactive = detailsEvenRef.current ? "#details-odd" : "#details-even";
 
       const { innerHeight: height, innerWidth: width } = window;
-      const offsetTop = height - 430;
-      const offsetLeft = width - 830;
-      const cardWidth = 200;
-      const cardHeight = 300;
-      const gap = 40;
+      const mobile = isMobile();
+      const offsetTop = mobile ? 0 : height - 430;
+      const offsetLeft = mobile ? 0 : width - 830;
+      const cardWidth = mobile ? width : 200;
+      const cardHeight = mobile ? Math.round(height * 0.5) : 300;
+      const gap = mobile ? 0 : 40;
       const numberSize = 50;
       const ease = "sine.inOut";
 
@@ -169,77 +172,92 @@ const Intro = ({ onEnter }: IntroProps) => {
       const [active, ...rest] = order;
       const prv = rest[rest.length - 1];
 
-      gsap.set(getCard(prv), { zIndex: 10 });
-      gsap.set(getCard(active), { zIndex: 20 });
-      gsap.to(getCard(prv), { scale: 1.5, ease });
+      if (mobile) {
+        // Mobile: simple crossfade between full-width cards
+        gsap.set(getCard(active), { zIndex: 20 });
+        gsap.to(getCard(active), {
+          x: 0, y: 0, ease,
+          width: width,
+          height: cardHeight,
+          borderRadius: '0 0 24px 24px',
+          opacity: 1,
+        });
+        // Hide previous card
+        gsap.set(getCard(prv), { zIndex: 10, opacity: 0 });
+        rest.forEach((i) => {
+          if (i !== prv) {
+            gsap.set(getCard(i), { opacity: 0, zIndex: 1 });
+          }
+        });
+        gsap.to(".progress-sub-foreground", { width: 500 * (1 / order.length) * (active + 1), ease });
+      } else {
+        // Desktop: original card stack animation
+        gsap.set(getCard(prv), { zIndex: 10 });
+        gsap.set(getCard(active), { zIndex: 20 });
+        gsap.to(getCard(prv), { scale: 1.5, ease });
 
-      gsap.to(getCardContent(active), { y: offsetTop + cardHeight - 10, opacity: 0, duration: 0.3, ease });
-      gsap.to(getSliderItem(active), { x: 0, ease });
-      gsap.to(getSliderItem(prv), { x: -numberSize, ease });
-      gsap.to(".progress-sub-foreground", { width: 500 * (1 / order.length) * (active + 1), ease });
+        gsap.to(getCardContent(active), { y: offsetTop + cardHeight - 10, opacity: 0, duration: 0.3, ease });
+        gsap.to(getSliderItem(active), { x: 0, ease });
+        gsap.to(getSliderItem(prv), { x: -numberSize, ease });
+        gsap.to(".progress-sub-foreground", { width: 500 * (1 / order.length) * (active + 1), ease });
 
-      gsap.to(getCard(active), {
-        x: 0,
-        y: 0,
-        ease,
-        width: window.innerWidth,
-        height: window.innerHeight,
-        borderRadius: 0,
-        onComplete: () => {
-          const xNew = offsetLeft + (rest.length - 1) * (cardWidth + gap);
-          gsap.set(getCard(prv), {
-            x: xNew,
-            y: offsetTop,
-            width: cardWidth,
-            height: cardHeight,
-            zIndex: 30,
-            borderRadius: 10,
-            scale: 1,
-          });
+        gsap.to(getCard(active), {
+          x: 0, y: 0, ease,
+          width: window.innerWidth,
+          height: window.innerHeight,
+          borderRadius: 0,
+          onComplete: () => {
+            const xNew = offsetLeft + (rest.length - 1) * (cardWidth + gap);
+            gsap.set(getCard(prv), {
+              x: xNew, y: offsetTop,
+              width: cardWidth, height: cardHeight,
+              zIndex: 30, borderRadius: 10, scale: 1,
+            });
+            gsap.set(getCardContent(prv), {
+              x: xNew, y: offsetTop + cardHeight - 100,
+              opacity: 1, zIndex: 40,
+            });
+            gsap.set(getSliderItem(prv), { x: rest.length * numberSize });
 
-          gsap.set(getCardContent(prv), {
-            x: xNew,
-            y: offsetTop + cardHeight - 100,
-            opacity: 1,
-            zIndex: 40,
-          });
-          gsap.set(getSliderItem(prv), { x: rest.length * numberSize });
+            gsap.set(detailsInactive, { opacity: 0 });
+            gsap.set(`${detailsInactive} .text`, { y: 100 });
+            gsap.set(`${detailsInactive} .title-1`, { y: 100 });
+            gsap.set(`${detailsInactive} .title-2`, { y: 100 });
+            gsap.set(`${detailsInactive} .desc`, { y: 50 });
+            gsap.set(`${detailsInactive} .cta`, { y: 60 });
+          },
+        });
 
-          gsap.set(detailsInactive, { opacity: 0 });
-          gsap.set(`${detailsInactive} .text`, { y: 100 });
-          gsap.set(`${detailsInactive} .title-1`, { y: 100 });
-          gsap.set(`${detailsInactive} .title-2`, { y: 100 });
-          gsap.set(`${detailsInactive} .desc`, { y: 50 });
-          gsap.set(`${detailsInactive} .cta`, { y: 60 });
-        },
-      });
+        rest.forEach((i, index) => {
+          if (i !== prv) {
+            const xNew = offsetLeft + index * (cardWidth + gap);
+            gsap.set(getCard(i), { zIndex: 30 });
+            gsap.to(getCard(i), {
+              x: xNew, y: offsetTop,
+              width: cardWidth, height: cardHeight,
+              ease, delay: 0.1 * (index + 1),
+            });
+            gsap.to(getCardContent(i), {
+              x: xNew, y: offsetTop + cardHeight - 100,
+              opacity: 1, zIndex: 40, ease,
+              delay: 0.1 * (index + 1),
+            });
+            gsap.to(getSliderItem(i), { x: (index + 1) * numberSize, ease });
+          }
+        });
+      }
 
-      rest.forEach((i, index) => {
-        if (i !== prv) {
-          const xNew = offsetLeft + index * (cardWidth + gap);
-          gsap.set(getCard(i), { zIndex: 30 });
-          gsap.to(getCard(i), {
-            x: xNew,
-            y: offsetTop,
-            width: cardWidth,
-            height: cardHeight,
-            ease,
-            delay: 0.1 * (index + 1),
-          });
-
-          gsap.to(getCardContent(i), {
-            x: xNew,
-            y: offsetTop + cardHeight - 100,
-            opacity: 1,
-            zIndex: 40,
-            ease,
-            delay: 0.1 * (index + 1),
-          });
-          gsap.to(getSliderItem(i), { x: (index + 1) * numberSize, ease });
-        }
-      });
+      // Reset inactive details
+      if (mobile) {
+        gsap.set(detailsInactive, { opacity: 0 });
+        gsap.set(`${detailsInactive} .text`, { y: 100 });
+        gsap.set(`${detailsInactive} .title-1`, { y: 100 });
+        gsap.set(`${detailsInactive} .title-2`, { y: 100 });
+        gsap.set(`${detailsInactive} .desc`, { y: 50 });
+        gsap.set(`${detailsInactive} .cta`, { y: 60 });
+      }
     });
-  }, [playWhoosh]);
+  }, [playWhoosh, isMobile]);
 
   const loop = useCallback(async () => {
     if (!mountedRef.current) return;
