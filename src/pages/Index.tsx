@@ -104,7 +104,9 @@ const Index = () => {
       <Hero />
       
       {/* Video Showreel */}
-      <VideoShowreel />
+      <Suspense fallback={<div className="py-20" />}>
+        <VideoShowreel />
+      </Suspense>
       
       {/* Achievements Section */}
       <section className="py-16 md:py-20 card-gradient backdrop-blur-sm">

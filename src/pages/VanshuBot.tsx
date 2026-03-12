@@ -373,7 +373,7 @@ const VanshuBot = () => {
               <DialogDescription className="text-base pt-4 space-y-4">
                 <p>
                   By using Vanshu Bot, you agree to our Terms and Conditions. This AI assistant provides information about 
-                  Vanshu Aggarwal's work and uses AI technology to respond to your questions.
+                  Vanshu Agarwal's work and uses AI technology to respond to your questions.
                 </p>
                 <p>
                   Your conversations are processed securely and are not stored permanently. For more details, please read our{' '}
