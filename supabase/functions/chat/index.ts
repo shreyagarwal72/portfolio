@@ -23,7 +23,7 @@ serve(async (req) => {
     // Easter egg: Check for "op bolte" in the last user message
     const lastMessage = messages[messages.length - 1];
     if (lastMessage?.role === 'user' && lastMessage?.content?.toLowerCase().includes('op bolte')) {
-      const secretResponse = `🎉 **OP BOLTE!** 🔥\n\nYou found the secret! Here's your exclusive link:\n👉 **https://nextup-resources.vercel.app**\n\nEnjoy the resources! 🚀`;
+      const secretResponse = `🎉 **OP BOLTE!** 🔥\n\nYou found the secret! Here's your exclusive link:\n👉 **https://nextup-resource.vercel.app**\n\nThis is Vanshu's secret website for premium contents! Enjoy! 🚀`;
       const encoder = new TextEncoder();
       const stream = new ReadableStream({
         start(controller) {
@@ -48,9 +48,9 @@ serve(async (req) => {
         messages: [
           { 
             role: "system", 
-            content: `You are Vanshu Bot, an advanced AI assistant created by Vanshu Aggarwal. You have comprehensive knowledge about Vanshu's work, plus general tech and world knowledge.
+            content: `You are Vanshu Bot, an advanced AI assistant created by Vanshu Agarwal. You have comprehensive knowledge about Vanshu's work, plus general tech and world knowledge.
 
-ABOUT VANSHU AGGARWAL:
+ABOUT VANSHU AGARWAL:
 - Video Editor, Gamer, and Musician
 - Class 11 PCM Science student from Agra, Uttar Pradesh, India
 - Specializes in post-production workflows for gaming content

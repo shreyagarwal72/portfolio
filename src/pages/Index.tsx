@@ -1,11 +1,13 @@
+import { lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { Star, TrendingUp, Users, Play } from 'lucide-react';
 import Hero from '@/components/Hero';
-import VideoShowreel from '@/components/VideoShowreel';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import clientNecrovia from '@/assets/client-necrovia.png';
-import clientIfYouKnow from '@/assets/client-ifyouknow.png';
+
+const VideoShowreel = lazy(() => import('@/components/VideoShowreel'));
+const clientNecrovia = new URL('@/assets/client-necrovia.png', import.meta.url).href;
+const clientIfYouKnow = new URL('@/assets/client-ifyouknow.png', import.meta.url).href;
 
 // Staggered animation variants for consistent entrance effects
 const containerVariants = {
@@ -102,7 +104,9 @@ const Index = () => {
       <Hero />
       
       {/* Video Showreel */}
-      <VideoShowreel />
+      <Suspense fallback={<div className="py-20" />}>
+        <VideoShowreel />
+      </Suspense>
       
       {/* Achievements Section */}
       <section className="py-16 md:py-20 card-gradient backdrop-blur-sm">

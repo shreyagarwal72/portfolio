@@ -49,7 +49,7 @@ const VanshuBot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content: 'Hi! I\'m Vanshu Bot, your AI assistant. I can help you learn about Vanshu Aggarwal\'s work, skills, and projects. What would you like to know?',
+      content: 'Hi! I\'m Vanshu Bot, your AI assistant. I can help you learn about Vanshu Agarwal\'s work, skills, and projects. What would you like to know?',
     },
   ]);
   const [input, setInput] = useState('');
@@ -94,11 +94,11 @@ const VanshuBot = () => {
 
   useEffect(() => {
     // Set page title and meta tags for SEO
-    document.title = 'Vanshu Bot - AI Assistant | Ask About Vanshu Aggarwal';
+    document.title = 'Vanshu Bot - AI Assistant | Ask About Vanshu Agarwal';
     
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Chat with Vanshu Bot, an AI assistant with complete knowledge about Vanshu Aggarwal\'s video editing services, portfolio projects, skills, and experience. Get instant answers to your questions.');
+      metaDescription.setAttribute('content', 'Chat with Vanshu Bot, an AI assistant with complete knowledge about Vanshu Agarwal\'s video editing services, portfolio projects, skills, and experience. Get instant answers to your questions.');
     }
     
     const script = document.createElement('script');
@@ -107,7 +107,7 @@ const VanshuBot = () => {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": "Vanshu Bot",
-      "description": "AI chatbot assistant with comprehensive knowledge about Vanshu Aggarwal's work",
+      "description": "AI chatbot assistant with comprehensive knowledge about Vanshu Agarwal's work",
       "applicationCategory": "ChatApplication",
       "offers": {
         "@type": "Offer",
@@ -116,7 +116,7 @@ const VanshuBot = () => {
       },
       "creator": {
         "@type": "Person",
-        "name": "Vanshu Aggarwal"
+        "name": "Vanshu Agarwal"
       }
     });
     document.head.appendChild(script);
@@ -281,7 +281,7 @@ const VanshuBot = () => {
       setMessages([
         {
           role: 'assistant',
-          content: 'Hi! I\'m Vanshu Bot, your AI assistant. I can help you learn about Vanshu Aggarwal\'s work, skills, and projects. What would you like to know?',
+      content: 'Hi! I\'m Vanshu Bot, your AI assistant. I can help you learn about Vanshu Agarwal\'s work, skills, and projects. What would you like to know?',
         },
       ]);
       setInput('');
@@ -309,7 +309,7 @@ const VanshuBot = () => {
     setMessages([
       {
         role: 'assistant',
-        content: 'Hi! I\'m Vanshu Bot, your AI assistant. I can help you learn about Vanshu Aggarwal\'s work, skills, and projects. What would you like to know?',
+        content: 'Hi! I\'m Vanshu Bot, your AI assistant. I can help you learn about Vanshu Agarwal\'s work, skills, and projects. What would you like to know?',
       },
     ]);
     toast({
@@ -340,7 +340,7 @@ const VanshuBot = () => {
                 Vanshu Bot
               </h1>
               <p className="mt-4 text-muted-foreground max-w-lg text-sm md:text-base">
-                Your AI assistant with complete knowledge about Vanshu Aggarwal's work, skills, and projects. Ask me anything!
+                Your AI assistant with complete knowledge about Vanshu Agarwal's work, skills, and projects. Ask me anything!
               </p>
               <Button
                 onClick={handleClearChat}
@@ -373,7 +373,7 @@ const VanshuBot = () => {
               <DialogDescription className="text-base pt-4 space-y-4">
                 <p>
                   By using Vanshu Bot, you agree to our Terms and Conditions. This AI assistant provides information about 
-                  Vanshu Aggarwal's work and uses AI technology to respond to your questions.
+                  Vanshu Agarwal's work and uses AI technology to respond to your questions.
                 </p>
                 <p>
                   Your conversations are processed securely and are not stored permanently. For more details, please read our{' '}

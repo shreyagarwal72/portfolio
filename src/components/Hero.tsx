@@ -1,8 +1,10 @@
-import { Floating3D } from '@/components/Floating3D';
+import { lazy, Suspense } from 'react';
 import heroWorkspace from '@/assets/hero-workspace.jpg';
 import heroWorkspaceLight from '@/assets/hero-workspace-light.jpg';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+
+const Floating3D = lazy(() => import('@/components/Floating3D').then(m => ({ default: m.Floating3D })));
 import ElectricButton from '@/components/ElectricButton';
 import CreepyButton from '@/components/CreepyButton';
 
@@ -93,14 +95,16 @@ const Hero = () => {
     <main role="main">
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* 3D Background Animation */}
-        <motion.div 
-          className="absolute inset-0 opacity-20 pointer-events-none z-0"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.2 }}
-          transition={{ duration: 1.5 }}
-        >
-          <Floating3D className="w-full h-full" />
-        </motion.div>
+        <Suspense fallback={null}>
+          <motion.div 
+            className="absolute inset-0 opacity-20 pointer-events-none z-0"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.2 }}
+            transition={{ duration: 1.5 }}
+          >
+            <Floating3D className="w-full h-full" />
+          </motion.div>
+        </Suspense>
         
         {/* Background Image with Parallax */}
         <motion.div 
