@@ -1,6 +1,8 @@
 import { MapPin, Mail } from 'lucide-react';
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import vanshuProfile from '@/assets/vanshu-profile-new.jpg';
+
+const Avatar3D = lazy(() => import('@/components/Avatar3D'));
 import SocialMediaCards from '@/components/SocialMediaCards';
 
 const About = () => {
