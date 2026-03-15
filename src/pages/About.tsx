@@ -1,8 +1,6 @@
 import { MapPin, Mail } from 'lucide-react';
-import { useEffect, lazy, Suspense } from 'react';
+import { useEffect } from 'react';
 import vanshuProfile from '@/assets/vanshu-profile-new.jpg';
-
-const Avatar3D = lazy(() => import('@/components/Avatar3D'));
 import SocialMediaCards from '@/components/SocialMediaCards';
 
 const About = () => {
@@ -117,16 +115,16 @@ const About = () => {
               {/* Main card */}
               <figure className="relative card-gradient rounded-2xl p-8 transition-smooth hover:scale-105 hover:shadow-2xl">
                 <div className="aspect-[3/4] bg-muted rounded-xl overflow-hidden shadow-inner flex items-center justify-center">
-                  <Suspense fallback={
-                    <img 
-                      src={vanshuProfile}
-                      alt="Vanshu Agarwal"
-                      className="w-full h-full object-contain"
-                      loading="eager"
-                    />
-                  }>
-                    <Avatar3D className="w-full h-full" />
-                  </Suspense>
+                  <img 
+                    src={vanshuProfile}
+                    alt="Vanshu Agarwal professional photo - Video editor and content creator from Agra, India specializing in gaming content creation, music production, video editing services, and creative digital storytelling"
+                    title="Vanshu Agarwal - Professional Video Editor, Gamer & Musician from Agra"
+                    className="w-full h-full object-contain hover:scale-105 transition-smooth"
+                    loading="eager"
+                    width="800"
+                    height="1067"
+                    itemProp="image"
+                  />
                 </div>
                 
                 {/* Name overlay */}
