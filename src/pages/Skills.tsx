@@ -210,7 +210,7 @@ const Skills = () => {
                 <div className="flex items-start space-x-3">
                   <GraduationCap className="text-primary mt-1" size={20} />
                   <div>
-                    <h4 className="text-foreground font-medium">Class 11 Student</h4>
+                    <h4 className="text-foreground font-medium">Class 12 Student</h4>
                     <p className="text-muted-foreground text-sm">Stream PCM Science</p>
                     <p className="text-muted-foreground text-sm">2025 - Present</p>
                   </div>
