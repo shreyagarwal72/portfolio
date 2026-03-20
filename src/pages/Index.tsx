@@ -9,50 +9,28 @@ const VideoShowreel = lazy(() => import('@/components/VideoShowreel'));
 const clientNecrovia = new URL('@/assets/client-necrovia.png', import.meta.url).href;
 const clientIfYouKnow = new URL('@/assets/client-ifyouknow.png', import.meta.url).href;
 
-// Staggered animation variants for consistent entrance effects
+const smoothEase: [number, number, number, number] = [0.25, 0.4, 0.25, 1];
+
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.15,
       delayChildren: 0.1
     }
   }
 } as const;
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30, scale: 0.95 },
+  hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
     y: 0,
-    scale: 1,
     transition: {
-      type: 'spring' as const,
-      stiffness: 100,
-      damping: 15
-    }
-  }
-};
-
-const cardHoverVariants = {
-  rest: { 
-    y: 0, 
-    rotateX: 0, 
-    rotateY: 0,
-    scale: 1,
-    boxShadow: '0 4px 20px -5px hsl(var(--primary) / 0.1)'
-  },
-  hover: { 
-    y: -12, 
-    rotateX: 5, 
-    rotateY: -3,
-    scale: 1.02,
-    boxShadow: '0 20px 40px -10px hsl(var(--primary) / 0.25)',
-    transition: {
-      type: 'spring' as const,
-      stiffness: 300,
-      damping: 20
+      type: 'tween' as const,
+      ease: smoothEase,
+      duration: 0.8
     }
   }
 };
@@ -112,10 +90,10 @@ const Index = () => {
       <section className="py-16 md:py-20 card-gradient backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: smoothEase }}
             className="text-center mb-10 md:mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -131,33 +109,33 @@ const Index = () => {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: true, margin: "-100px" }}
           >
             {achievements.map((achievement, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
-                initial="rest"
-                whileHover="hover"
-                style={{ transformStyle: 'preserve-3d', perspective: 1000 }}
               >
-                <motion.div variants={cardHoverVariants}>
+                <motion.div
+                  whileHover={{ y: -8 }}
+                  transition={{ duration: 0.3, ease: smoothEase }}
+                >
                   <Card className="text-center bg-background/50 backdrop-blur-sm border-primary/20 overflow-hidden">
                     <CardContent className="pt-6 pb-6">
                       <motion.div
-                        initial={{ scale: 0, rotate: -180 }}
-                        whileInView={{ scale: 1, rotate: 0 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ delay: index * 0.1 + 0.2, type: "spring", stiffness: 200 }}
+                        transition={{ delay: index * 0.1 + 0.2, duration: 0.6, ease: smoothEase }}
                       >
                         <achievement.icon className="h-10 w-10 md:h-12 md:w-12 text-primary mx-auto mb-4" />
                       </motion.div>
                       <motion.h3 
                         className="text-3xl md:text-4xl font-bold text-primary mb-2"
-                        initial={{ opacity: 0, scale: 0.5 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
-                        transition={{ delay: index * 0.1 + 0.3, type: "spring" }}
+                        transition={{ delay: index * 0.1 + 0.3, duration: 0.6, ease: smoothEase }}
                       >
                         {achievement.value}
                       </motion.h3>
@@ -176,10 +154,10 @@ const Index = () => {
       <section className="py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: smoothEase }}
             className="text-center mb-10 md:mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -195,7 +173,7 @@ const Index = () => {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: true, margin: "-100px" }}
           >
             {clients.map((client, index) => (
               <motion.a
@@ -204,13 +182,13 @@ const Index = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 variants={itemVariants}
-                whileHover={{ y: -10, scale: 1.08 }}
+                whileHover={{ y: -8 }}
                 className="group"
               >
                 <motion.div 
                   className="card-gradient rounded-full p-4 backdrop-blur-sm border border-primary/20 shadow-glow"
-                  whileHover={{ boxShadow: "0 0 50px hsl(var(--primary-glow) / 0.6)" }}
-                  transition={{ duration: 0.3 }}
+                  whileHover={{ boxShadow: "0 0 40px hsl(var(--primary-glow) / 0.4)" }}
+                  transition={{ duration: 0.4, ease: smoothEase }}
                 >
                   <img 
                     src={client.logo} 
@@ -219,11 +197,9 @@ const Index = () => {
                     loading="lazy"
                   />
                 </motion.div>
-                <motion.p 
-                  className="text-center mt-3 font-medium text-muted-foreground group-hover:text-primary transition-colors duration-300"
-                >
+                <p className="text-center mt-3 font-medium text-muted-foreground group-hover:text-primary transition-colors duration-300">
                   {client.name}
-                </motion.p>
+                </p>
               </motion.a>
             ))}
           </motion.div>
@@ -234,10 +210,10 @@ const Index = () => {
       <section className="py-16 md:py-20 card-gradient backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: smoothEase }}
             className="text-center mb-10 md:mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -253,40 +229,34 @@ const Index = () => {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: true, margin: "-100px" }}
           >
             {testimonials.map((testimonial, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
-                initial="rest"
-                whileHover="hover"
-                style={{ transformStyle: 'preserve-3d', perspective: 1000 }}
               >
-                <motion.div variants={cardHoverVariants}>
+                <motion.div
+                  whileHover={{ y: -8 }}
+                  transition={{ duration: 0.3, ease: smoothEase }}
+                >
                   <Card className="h-full bg-background/50 backdrop-blur-sm border-primary/20 overflow-hidden">
                     <CardHeader className="pb-3">
                       <div className="flex items-center justify-between mb-3">
                         <CardTitle className="text-lg md:text-xl">{testimonial.name}</CardTitle>
-                        <motion.div 
-                          className="flex gap-1"
-                          initial={{ scale: 0 }}
-                          whileInView={{ scale: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: index * 0.1 + 0.2, type: "spring" }}
-                        >
+                        <div className="flex gap-1">
                           {[...Array(testimonial.rating)].map((_, i) => (
                             <motion.div
                               key={i}
-                              initial={{ opacity: 0, rotate: -180, scale: 0 }}
-                              whileInView={{ opacity: 1, rotate: 0, scale: 1 }}
+                              initial={{ opacity: 0 }}
+                              whileInView={{ opacity: 1 }}
                               viewport={{ once: true }}
-                              transition={{ delay: index * 0.1 + 0.3 + i * 0.05, type: "spring" }}
+                              transition={{ delay: index * 0.1 + 0.2 + i * 0.05, duration: 0.4, ease: smoothEase }}
                             >
                               <Star className="h-4 w-4 md:h-5 md:w-5 fill-yellow-500 text-yellow-500" />
                             </motion.div>
                           ))}
-                        </motion.div>
+                        </div>
                       </div>
                       <Badge variant="secondary" className="w-fit">{testimonial.project}</Badge>
                     </CardHeader>
@@ -305,18 +275,18 @@ const Index = () => {
       <section className="py-16 md:py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 30, scale: 0.95 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, type: "spring" }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: smoothEase }}
             className="card-gradient rounded-2xl md:rounded-3xl p-8 md:p-12 text-center backdrop-blur-sm border border-primary/20 shadow-glow"
           >
             <motion.h2 
               className="text-2xl md:text-4xl font-bold mb-4"
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+              transition={{ delay: 0.2, duration: 0.8, ease: smoothEase }}
             >
               Ready to Bring Your Vision to Life?
             </motion.h2>
@@ -325,21 +295,21 @@ const Index = () => {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
+              transition={{ delay: 0.4, duration: 0.8, ease: smoothEase }}
             >
               Let's collaborate on your next video project. From concept to final cut, I'll help you create content that engages and inspires.
             </motion.p>
             <motion.div 
               className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center"
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
+              transition={{ delay: 0.5, duration: 0.8, ease: smoothEase }}
             >
               <motion.a
                 href="/contact"
                 className="inline-flex items-center justify-center px-6 md:px-8 py-3 md:py-4 bg-primary hover:bg-primary/90 text-primary-foreground font-medium rounded-xl transition-all duration-300 shadow-glow"
-                whileHover={{ scale: 1.05, boxShadow: "0 10px 30px -5px hsl(var(--primary) / 0.4)" }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 Get in Touch
