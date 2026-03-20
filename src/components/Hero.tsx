@@ -1,35 +1,37 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import heroWorkspace from '@/assets/hero-workspace.jpg';
 import heroWorkspaceLight from '@/assets/hero-workspace-light.jpg';
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Floating3D = lazy(() => import('@/components/Floating3D').then(m => ({ default: m.Floating3D })));
 import ElectricButton from '@/components/ElectricButton';
 import CreepyButton from '@/components/CreepyButton';
 
-const Hero = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [isDark, setIsDark] = useState(document.documentElement.classList.contains('dark'));
-  useEffect(() => {
-    setIsVisible(true);
+const smoothEase = [0.25, 0.4, 0.25, 1];
 
-    // Watch for theme changes
+const roles = ['Video Editor', 'Gamer', 'Musician', 'Creative Mind'];
+
+const Hero = () => {
+  const [isDark, setIsDark] = useState(document.documentElement.classList.contains('dark'));
+  const [roleIndex, setRoleIndex] = useState(0);
+
+  useEffect(() => {
     const observer = new MutationObserver(() => {
       setIsDark(document.documentElement.classList.contains('dark'));
     });
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-    
-    // Set page title and meta tags for SEO
+
+    const interval = setInterval(() => {
+      setRoleIndex(prev => (prev + 1) % roles.length);
+    }, 3000);
+
+    // SEO
     document.title = 'Vanshu Agarwal - Video Editor, Gamer & Musician | Creative Portfolio';
-    
-    // Add meta description for homepage
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', 'Professional video editor and creative content creator specializing in gaming content, music production, and digital storytelling. View portfolio of original tracks, Minecraft projects, and creative videos.');
     }
-    
-    // Add structured data for homepage
+
     const script = document.createElement('script');
     script.type = 'application/ld+json';
     script.text = JSON.stringify({
@@ -51,70 +53,40 @@ const Hero = () => {
       }
     });
     document.head.appendChild(script);
-    
+
     return () => {
       observer.disconnect();
+      clearInterval(interval);
       const existingScript = document.querySelector('script[type="application/ld+json"]');
-      if (existingScript) {
-        document.head.removeChild(existingScript);
-      }
+      if (existingScript) document.head.removeChild(existingScript);
     };
   }, []);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 }
-    }
-  };
-
-  const titleVariants = {
-    hidden: { opacity: 0, scale: 0.8, y: 50 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      transition: { duration: 0.8 }
-    }
-  };
+  const nameChars = 'VANSHU'.split('');
+  const lastNameChars = 'AGARWAL'.split('');
 
   return (
     <main role="main">
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* 3D Background Animation */}
+        {/* 3D Background */}
         <Suspense fallback={null}>
-          <motion.div 
+          <motion.div
             className="absolute inset-0 opacity-20 pointer-events-none z-0"
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.2 }}
-            transition={{ duration: 1.5 }}
+            transition={{ duration: 2, ease: smoothEase }}
           >
             <Floating3D className="w-full h-full" />
           </motion.div>
         </Suspense>
-        
-        {/* Background Image with Parallax */}
-        <motion.div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat parallax-slow z-0"
-          initial={{ scale: 1.1, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          style={{ 
-            backgroundImage: `url(${isDark ? heroWorkspace : heroWorkspaceLight})`,
-          }}
+
+        {/* Background Image — simple fade, no scale */}
+        <motion.div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.2, ease: smoothEase }}
+          style={{ backgroundImage: `url(${isDark ? heroWorkspace : heroWorkspaceLight})` }}
           role="img"
           aria-label="Creative workspace background with editing equipment"
         >
@@ -123,47 +95,70 @@ const Hero = () => {
 
         {/* Content */}
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div 
-            className="space-y-8"
-            variants={containerVariants}
-            initial="hidden"
-            animate={isVisible ? "visible" : "hidden"}
-          >
-            {/* Main Title */}
+          <div className="space-y-8">
             <header className="space-y-4">
-              <motion.h1 
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight"
-                variants={titleVariants}
-              >
-                <motion.span 
-                  className="block bg-gradient-to-r from-primary via-primary/80 to-primary-foreground bg-clip-text text-transparent text-glow gradient-text-animate"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  VANSHU
-                </motion.span>
-                <motion.span 
-                  className="block text-foreground"
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.4, duration: 0.6 }}
-                >
-                  AGARWAL
-                </motion.span>
-              </motion.h1>
-              <motion.p 
-                className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-light tracking-wide"
-                variants={itemVariants}
-                role="doc-subtitle"
-              >
-                Video Editor & Creative Mind
-              </motion.p>
+              {/* Character-by-character VANSHU */}
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight">
+                <span className="block bg-gradient-to-r from-primary via-primary/80 to-primary-foreground bg-clip-text text-transparent gradient-text-animate">
+                  {nameChars.map((char, i) => (
+                    <motion.span
+                      key={`first-${i}`}
+                      className="inline-block"
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{
+                        duration: 0.6,
+                        delay: 0.3 + i * 0.05,
+                        ease: smoothEase,
+                      }}
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
+                </span>
+                <span className="block text-foreground">
+                  {lastNameChars.map((char, i) => (
+                    <motion.span
+                      key={`last-${i}`}
+                      className="inline-block"
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{
+                        duration: 0.6,
+                        delay: 0.6 + i * 0.05,
+                        ease: smoothEase,
+                      }}
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
+                </span>
+              </h1>
+
+              {/* Rotating subtitle */}
+              <div className="h-8 sm:h-10 md:h-12 relative overflow-hidden">
+                <AnimatePresence mode="wait">
+                  <motion.p
+                    key={roleIndex}
+                    className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-light tracking-wide absolute inset-x-0"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5, ease: smoothEase }}
+                    role="doc-subtitle"
+                  >
+                    {roles[roleIndex]}
+                  </motion.p>
+                </AnimatePresence>
+              </div>
             </header>
 
             {/* CTA Buttons */}
-            <motion.nav 
+            <motion.nav
               className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4 sm:px-0"
-              variants={itemVariants}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.2, ease: smoothEase }}
               aria-label="Main navigation actions"
             >
               <motion.div
@@ -181,25 +176,25 @@ const Hero = () => {
                 <ElectricButton to="/portfolio" text="View Portfolio" />
               </motion.div>
             </motion.nav>
-          </motion.div>
+          </div>
         </div>
 
         {/* Scroll indicator */}
-        <motion.div 
+        <motion.div
           className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.6 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.8, duration: 1, ease: smoothEase }}
         >
           <motion.div
             className="w-6 h-10 border-2 border-muted-foreground/50 rounded-full flex justify-center backdrop-blur-sm"
-            animate={{ y: [0, 5, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+            animate={{ y: [0, 4, 0] }}
+            transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
           >
-            <motion.div 
+            <motion.div
               className="w-1.5 h-2.5 bg-primary rounded-full mt-2"
-              animate={{ opacity: [0.5, 1, 0.5], y: [0, 8, 0] }}
-              transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+              animate={{ opacity: [0.4, 1, 0.4], y: [0, 8, 0] }}
+              transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
             />
           </motion.div>
         </motion.div>
