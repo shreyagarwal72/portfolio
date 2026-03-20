@@ -7,7 +7,7 @@ const Floating3D = lazy(() => import('@/components/Floating3D').then(m => ({ def
 import ElectricButton from '@/components/ElectricButton';
 import CreepyButton from '@/components/CreepyButton';
 
-const smoothEase = [0.25, 0.4, 0.25, 1];
+const smoothEase: [number, number, number, number] = [0.25, 0.4, 0.25, 1];
 
 const roles = ['Video Editor', 'Gamer', 'Musician', 'Creative Mind'];
 

@@ -9,7 +9,7 @@ const VideoShowreel = lazy(() => import('@/components/VideoShowreel'));
 const clientNecrovia = new URL('@/assets/client-necrovia.png', import.meta.url).href;
 const clientIfYouKnow = new URL('@/assets/client-ifyouknow.png', import.meta.url).href;
 
-const smoothEase = [0.25, 0.4, 0.25, 1];
+const smoothEase: [number, number, number, number] = [0.25, 0.4, 0.25, 1];
 
 const containerVariants = {
   hidden: { opacity: 0 },
