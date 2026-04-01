@@ -77,7 +77,7 @@ const About = () => {
                   </p>
 
                   <p>
-                    Currently pursuing my education as a <span className="text-primary font-medium">Class 12 PCM Science student</span>, 
+                    Currently pursuing my education as a <span className="text-primary font-medium">Class 11 PCM Science student</span>, 
                     I balance my academic journey with my passion for creative content creation and digital storytelling.
                   </p>
                 </div>

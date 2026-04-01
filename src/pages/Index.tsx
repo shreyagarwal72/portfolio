@@ -1,17 +1,11 @@
-import { lazy, Suspense, useEffect, useRef } from 'react';
+import { lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { Star, TrendingUp, Users, Play } from 'lucide-react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Hero from '@/components/Hero';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import WhatIDo from '@/components/WhatIDo';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const VideoShowreel = lazy(() => import('@/components/VideoShowreel'));
-const PhysicsTechStack = lazy(() => import('@/components/PhysicsTechStack'));
 const clientNecrovia = new URL('@/assets/client-necrovia.png', import.meta.url).href;
 const clientIfYouKnow = new URL('@/assets/client-ifyouknow.png', import.meta.url).href;
 
@@ -42,40 +36,6 @@ const itemVariants = {
 };
 
 const Index = () => {
-  const achievementsHeadingRef = useRef<HTMLDivElement>(null);
-  const clientsHeadingRef = useRef<HTMLDivElement>(null);
-  const testimonialsHeadingRef = useRef<HTMLDivElement>(null);
-
-  // GSAP ScrollTrigger for section headings
-  useEffect(() => {
-    const headings = [achievementsHeadingRef, clientsHeadingRef, testimonialsHeadingRef];
-
-    headings.forEach((ref) => {
-      if (!ref.current) return;
-      const lines = ref.current.querySelectorAll('.section-line');
-      gsap.fromTo(
-        lines,
-        { y: 60, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          stagger: 0.1,
-          ease: 'power4.out',
-          scrollTrigger: {
-            trigger: ref.current,
-            start: 'top 80%',
-            once: true,
-          },
-        }
-      );
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
-    };
-  }, []);
-
   const testimonials = [
     {
       name: 'Pradeep Gupta',
@@ -92,9 +52,24 @@ const Index = () => {
   ];
 
   const achievements = [
-    { icon: Users, value: '500+', label: 'YouTube Subscribers', description: 'Growing community of engaged viewers' },
-    { icon: Play, value: '50K+', label: 'Video Views', description: 'Reached on a single video' },
-    { icon: TrendingUp, value: '15+', label: 'Projects Completed', description: 'Successful client collaborations' }
+    {
+      icon: Users,
+      value: '500+',
+      label: 'YouTube Subscribers',
+      description: 'Growing community of engaged viewers'
+    },
+    {
+      icon: Play,
+      value: '50K+',
+      label: 'Video Views',
+      description: 'Reached on a single video'
+    },
+    {
+      icon: TrendingUp,
+      value: '15+',
+      label: 'Projects Completed',
+      description: 'Successful client collaborations'
+    }
   ];
 
   const clients = [
@@ -110,30 +85,24 @@ const Index = () => {
       <Suspense fallback={<div className="py-20" />}>
         <VideoShowreel />
       </Suspense>
-
-      {/* What I Do */}
-      <WhatIDo />
-
-      {/* Physics TechStack */}
-      <Suspense fallback={<div className="py-20" />}>
-        <PhysicsTechStack />
-      </Suspense>
       
       {/* Achievements Section */}
       <section className="py-16 md:py-20 card-gradient backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div ref={achievementsHeadingRef} className="text-center mb-10 md:mb-12">
-            <div className="overflow-hidden">
-              <h2 className="section-line text-3xl md:text-4xl font-bold mb-4 opacity-0">
-                <span className="bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent">
-                  Achievements & Milestones
-                </span>
-              </h2>
-            </div>
-            <div className="overflow-hidden">
-              <p className="section-line text-muted-foreground text-base md:text-lg opacity-0">Celebrating growth and success</p>
-            </div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: smoothEase }}
+            className="text-center mb-10 md:mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent">
+                Achievements & Milestones
+              </span>
+            </h2>
+            <p className="text-muted-foreground text-base md:text-lg">Celebrating growth and success</p>
+          </motion.div>
 
           <motion.div 
             className="grid md:grid-cols-3 gap-6 md:gap-8"
@@ -143,7 +112,10 @@ const Index = () => {
             viewport={{ once: true, margin: "-100px" }}
           >
             {achievements.map((achievement, index) => (
-              <motion.div key={index} variants={itemVariants}>
+              <motion.div
+                key={index}
+                variants={itemVariants}
+              >
                 <motion.div
                   whileHover={{ y: -8 }}
                   transition={{ duration: 0.3, ease: smoothEase }}
@@ -181,18 +153,20 @@ const Index = () => {
       {/* Client Logos Section */}
       <section className="py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div ref={clientsHeadingRef} className="text-center mb-10 md:mb-12">
-            <div className="overflow-hidden">
-              <h2 className="section-line text-3xl md:text-4xl font-bold mb-4 opacity-0">
-                <span className="bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent">
-                  Trusted by Amazing Creators
-                </span>
-              </h2>
-            </div>
-            <div className="overflow-hidden">
-              <p className="section-line text-muted-foreground text-base md:text-lg opacity-0">YouTube channels I've had the pleasure to work with</p>
-            </div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: smoothEase }}
+            className="text-center mb-10 md:mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent">
+                Trusted by Amazing Creators
+              </span>
+            </h2>
+            <p className="text-muted-foreground text-base md:text-lg">YouTube channels I've had the pleasure to work with</p>
+          </motion.div>
 
           <motion.div 
             className="flex flex-wrap justify-center items-center gap-8 md:gap-12"
@@ -235,18 +209,20 @@ const Index = () => {
       {/* Testimonials Section */}
       <section className="py-16 md:py-20 card-gradient backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div ref={testimonialsHeadingRef} className="text-center mb-10 md:mb-12">
-            <div className="overflow-hidden">
-              <h2 className="section-line text-3xl md:text-4xl font-bold mb-4 opacity-0">
-                <span className="bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent">
-                  Client Testimonials
-                </span>
-              </h2>
-            </div>
-            <div className="overflow-hidden">
-              <p className="section-line text-muted-foreground text-base md:text-lg opacity-0">What clients say about working with me</p>
-            </div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: smoothEase }}
+            className="text-center mb-10 md:mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent">
+                Client Testimonials
+              </span>
+            </h2>
+            <p className="text-muted-foreground text-base md:text-lg">What clients say about working with me</p>
+          </motion.div>
 
           <motion.div 
             className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto"
@@ -256,7 +232,10 @@ const Index = () => {
             viewport={{ once: true, margin: "-100px" }}
           >
             {testimonials.map((testimonial, index) => (
-              <motion.div key={index} variants={itemVariants}>
+              <motion.div
+                key={index}
+                variants={itemVariants}
+              >
                 <motion.div
                   whileHover={{ y: -8 }}
                   transition={{ duration: 0.3, ease: smoothEase }}
