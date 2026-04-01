@@ -87,7 +87,7 @@ const MousePointer = () => {
     if (!rigidBodyRef.current) return;
     const x = (pointer.x * viewport.width) / 2;
     const y = (pointer.y * viewport.height) / 2;
-    rigidBodyRef.current.setTranslation({ x, y, 0 }, true);
+    rigidBodyRef.current.setTranslation({ x, y, z: 0 }, true);
   });
 
   return (
