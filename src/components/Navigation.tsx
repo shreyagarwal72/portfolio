@@ -38,19 +38,13 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
       opacity: 0,
       y: -20,
       scale: 0.95,
-      transition: {
-        duration: 0.2
-      }
+      transition: { duration: 0.2 }
     },
     open: {
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: {
-        duration: 0.3,
-        staggerChildren: 0.05,
-        delayChildren: 0.1
-      }
+      transition: { duration: 0.3, staggerChildren: 0.05, delayChildren: 0.1 }
     }
   };
 
@@ -79,7 +73,7 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
               <motion.div
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                className="relative select-none"
+                className="relative select-none flex-shrink-0"
               >
                 <Link 
                   to="/" 
@@ -100,8 +94,8 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
                 </Link>
               </motion.div>
 
-              {/* Desktop Navigation */}
-              <ul className="hidden lg:flex items-center space-x-1">
+              {/* Desktop Navigation - All items visible */}
+              <ul className="hidden lg:flex items-center space-x-0.5 xl:space-x-1">
                 {navItems.map((item, index) => (
                   <motion.li 
                     key={item.path}
@@ -112,7 +106,7 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
                     <Link
                       to={item.path}
                       className={cn(
-                        'relative px-3 py-2 text-sm font-medium rounded-lg transition-all duration-300',
+                        'relative px-2.5 xl:px-3 py-2 text-xs xl:text-sm font-medium rounded-lg transition-all duration-300',
                         'hover:bg-muted/50 hover:text-primary',
                         isActive(item.path) 
                           ? 'text-primary bg-primary/10' 
@@ -135,12 +129,11 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
 
               {/* Right side controls */}
               <motion.div 
-                className="hidden md:flex items-center gap-2" 
+                className="hidden lg:flex items-center gap-2 flex-shrink-0" 
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
               >
-                
                 {/* Theme Toggle */}
                 <div className="p-1">
                   <ThemeToggle />
@@ -149,7 +142,7 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
                 {/* Contact pill */}
                 <motion.a 
                   href="tel:+919412104618"
-                  className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary/10 text-primary text-sm font-medium hover:bg-primary/20 transition-all duration-300"
+                  className="flex items-center gap-2 px-3 xl:px-4 py-2 rounded-xl bg-primary/10 text-primary text-xs xl:text-sm font-medium hover:bg-primary/20 transition-all duration-300"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -158,39 +151,42 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
                 </motion.a>
               </motion.div>
 
-              {/* Mobile menu button */}
-              <motion.button
-                className="lg:hidden relative p-2.5 rounded-xl bg-muted/50 hover:bg-muted transition-colors"
-                onClick={() => setIsOpen(!isOpen)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                aria-label={isOpen ? "Close menu" : "Open menu"}
-                aria-expanded={isOpen}
-              >
-                <AnimatePresence mode="wait">
-                  {isOpen ? (
-                    <motion.div
-                      key="close"
-                      initial={{ rotate: -90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: 90, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <X size={20} className="text-foreground" />
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key="menu"
-                      initial={{ rotate: 90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: -90, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <Menu size={20} className="text-foreground" />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.button>
+              {/* Mobile menu button - only visible below lg */}
+              <div className="flex lg:hidden items-center gap-2">
+                <ThemeToggle />
+                <motion.button
+                  className="relative p-2.5 rounded-xl bg-muted/50 hover:bg-muted transition-colors"
+                  onClick={() => setIsOpen(!isOpen)}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  aria-label={isOpen ? "Close menu" : "Open menu"}
+                  aria-expanded={isOpen}
+                >
+                  <AnimatePresence mode="wait">
+                    {isOpen ? (
+                      <motion.div
+                        key="close"
+                        initial={{ rotate: -90, opacity: 0 }}
+                        animate={{ rotate: 0, opacity: 1 }}
+                        exit={{ rotate: 90, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <X size={20} className="text-foreground" />
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key="menu"
+                        initial={{ rotate: 90, opacity: 0 }}
+                        animate={{ rotate: 0, opacity: 1 }}
+                        exit={{ rotate: -90, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <Menu size={20} className="text-foreground" />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.button>
+              </div>
             </div>
           </div>
         </div>
@@ -242,10 +238,6 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
                     <Phone size={16} />
                     <span>9412104618</span>
                   </a>
-                  
-                  <div className="flex items-center gap-2">
-                    <ThemeToggle />
-                  </div>
                 </motion.div>
               </div>
             </motion.div>

@@ -288,7 +288,7 @@ const CV = () => {
               </div>
               <div className="space-y-2">
                 <p className="text-muted-foreground">
-                  <span className="text-foreground font-medium">Class:</span> 11th Grade (2025)
+                  <span className="text-foreground font-medium">Class:</span> 12th Grade (2025)
                 </p>
                 <p className="text-muted-foreground">
                   <span className="text-foreground font-medium">Stream:</span> Science - Physics, Chemistry, Mathematics (PCM)
