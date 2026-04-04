@@ -107,8 +107,15 @@ const Skills = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-20 pb-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen pt-20 pb-16 relative overflow-hidden">
+      {/* Background particles */}
+      <Suspense fallback={null}>
+        <div className="absolute inset-0 opacity-20 pointer-events-none">
+          <FloatingParticles count={40} color="#8b5cf6" className="w-full h-full" />
+        </div>
+      </Suspense>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Hero Header */}
         <div className="text-center mb-16">
