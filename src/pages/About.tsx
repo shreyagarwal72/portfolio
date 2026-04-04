@@ -49,8 +49,14 @@ const About = () => {
   }, []);
 
   return (
-    <main className="min-h-screen pt-20 pb-16" role="main">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <main className="min-h-screen pt-20 pb-16 relative overflow-hidden" role="main">
+      {/* Background particles */}
+      <Suspense fallback={null}>
+        <div className="absolute inset-0 opacity-15 pointer-events-none">
+          <FloatingParticles count={35} color="#06b6d4" className="w-full h-full" />
+        </div>
+      </Suspense>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Hero Header */}
         <div className="text-center mb-16">
