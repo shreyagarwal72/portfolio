@@ -154,7 +154,7 @@ const Skills = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </TiltCard>
 
             {/* Languages */}
             <div className="card-gradient rounded-2xl p-6 animate-fade-in hover-lift transition-smooth" style={{ animationDelay: '0.1s' }}>
