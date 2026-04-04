@@ -149,7 +149,7 @@ const About = () => {
                     <p className="text-primary text-sm">Creative Mind</p>
                   </div>
                 </figcaption>
-              </figure>
+              </TiltCard>
             </div>
           </aside>
         </div>
