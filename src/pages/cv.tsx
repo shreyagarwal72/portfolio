@@ -105,7 +105,7 @@ const CV = () => {
                   <Calendar size={20} className="text-primary" />
                   <div>
                     <p className="text-xs text-muted-foreground uppercase tracking-wide">Education</p>
-                    <p className="text-foreground font-medium">Class 11 • Science (PCM)</p>
+                    <p className="text-foreground font-medium">Class 12 • Science (PCM)</p>
                   </div>
                 </div>
               </div>
@@ -288,7 +288,7 @@ const CV = () => {
               </div>
               <div className="space-y-2">
                 <p className="text-muted-foreground">
-                  <span className="text-foreground font-medium">Class:</span> 11th Grade (2025)
+                  <span className="text-foreground font-medium">Class:</span> 12th Grade (2025)
                 </p>
                 <p className="text-muted-foreground">
                   <span className="text-foreground font-medium">Stream:</span> Science - Physics, Chemistry, Mathematics (PCM)

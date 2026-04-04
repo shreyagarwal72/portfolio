@@ -1,7 +1,11 @@
 import { MapPin, Mail } from 'lucide-react';
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
+import { motion } from 'framer-motion';
 import vanshuProfile from '@/assets/vanshu-profile-new.jpg';
 import SocialMediaCards from '@/components/SocialMediaCards';
+import TiltCard from '@/components/TiltCard';
+
+const FloatingParticles = lazy(() => import('@/components/FloatingParticles'));
 
 const About = () => {
   useEffect(() => {
@@ -11,7 +15,7 @@ const About = () => {
     // Add meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Learn about Vanshu Agarwal, a creative video editor, passionate gamer, and musician. Discover the journey of a Class 11 student balancing academics with creative content creation.');
+      metaDescription.setAttribute('content', 'Learn about Vanshu Agarwal, a creative video editor, passionate gamer, and musician. Discover the journey of a Class 12 student balancing academics with creative content creation.');
     }
     
     // Add structured data
@@ -45,18 +49,29 @@ const About = () => {
   }, []);
 
   return (
-    <main className="min-h-screen pt-20 pb-16" role="main">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <main className="min-h-screen pt-20 pb-16 relative overflow-hidden" role="main">
+      {/* Background particles */}
+      <Suspense fallback={null}>
+        <div className="absolute inset-0 opacity-15 pointer-events-none">
+          <FloatingParticles count={35} color="#06b6d4" className="w-full h-full" />
+        </div>
+      </Suspense>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Hero Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-5xl lg:text-7xl font-bold text-foreground mb-6 animate-fade-in">
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
+        >
+          <h1 className="text-5xl lg:text-7xl font-bold text-foreground mb-6">
             ABOUT <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">ME</span>
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-fade-in delay-200">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Video Editor, Gamer, and Musician passionate about storytelling through visual media and creative content.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Content Section */}
@@ -77,7 +92,7 @@ const About = () => {
                   </p>
 
                   <p>
-                    Currently pursuing my education as a <span className="text-primary font-medium">Class 11 PCM Science student</span>, 
+                    Currently pursuing my education as a <span className="text-primary font-medium">Class 12 PCM Science student</span>, 
                     I balance my academic journey with my passion for creative content creation and digital storytelling.
                   </p>
                 </div>
@@ -113,7 +128,7 @@ const About = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/5 rounded-2xl blur-xl scale-105" aria-hidden="true"></div>
               
               {/* Main card */}
-              <figure className="relative card-gradient rounded-2xl p-8 transition-smooth hover:scale-105 hover:shadow-2xl">
+              <TiltCard className="relative card-gradient rounded-2xl p-8 transition-smooth hover:shadow-2xl">
                 <div className="aspect-[3/4] bg-muted rounded-xl overflow-hidden shadow-inner flex items-center justify-center">
                   <img 
                     src={vanshuProfile}
@@ -134,7 +149,7 @@ const About = () => {
                     <p className="text-primary text-sm">Creative Mind</p>
                   </div>
                 </figcaption>
-              </figure>
+              </TiltCard>
             </div>
           </aside>
         </div>

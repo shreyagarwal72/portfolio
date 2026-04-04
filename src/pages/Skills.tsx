@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { 
   Monitor, 
   Palette, 
@@ -12,6 +12,9 @@ import {
   Briefcase,
   MapPin
 } from 'lucide-react';
+import TiltCard from '@/components/TiltCard';
+
+const FloatingParticles = lazy(() => import('@/components/FloatingParticles'));
 
 const Skills = () => {
   const [animationStarted, setAnimationStarted] = useState(false);
@@ -105,8 +108,15 @@ const Skills = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-20 pb-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen pt-20 pb-16 relative overflow-hidden">
+      {/* Background particles */}
+      <Suspense fallback={null}>
+        <div className="absolute inset-0 opacity-20 pointer-events-none">
+          <FloatingParticles count={40} color="#8b5cf6" className="w-full h-full" />
+        </div>
+      </Suspense>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Hero Header */}
         <div className="text-center mb-16">
@@ -124,7 +134,7 @@ const Skills = () => {
           <div className="space-y-8">
             
             {/* Software Skills */}
-            <div className="card-gradient rounded-2xl p-6 animate-fade-in hover-lift transition-smooth">
+            <TiltCard className="card-gradient rounded-2xl p-6 animate-fade-in hover-lift transition-smooth">
               <h3 className="text-xl font-bold text-foreground mb-6">SOFTWARE SKILLS</h3>
               <div className="space-y-4">
                 {softwareSkills.map((skill, index) => (
@@ -145,7 +155,7 @@ const Skills = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </TiltCard>
 
             {/* Languages */}
             <div className="card-gradient rounded-2xl p-6 animate-fade-in hover-lift transition-smooth" style={{ animationDelay: '0.1s' }}>
@@ -210,7 +220,7 @@ const Skills = () => {
                 <div className="flex items-start space-x-3">
                   <GraduationCap className="text-primary mt-1" size={20} />
                   <div>
-                    <h4 className="text-foreground font-medium">Class 11 Student</h4>
+                    <h4 className="text-foreground font-medium">Class 12 Student</h4>
                     <p className="text-muted-foreground text-sm">Stream PCM Science</p>
                     <p className="text-muted-foreground text-sm">2025 - Present</p>
                   </div>
