@@ -52,7 +52,7 @@ serve(async (req) => {
 
 ABOUT VANSHU AGARWAL:
 - Video Editor, Gamer, and Musician
-- Class 11 PCM Science student from Agra, Uttar Pradesh, India
+- Class 12 PCM Science student from Agra, Uttar Pradesh, India
 - Specializes in post-production workflows for gaming content
 - Email: sanjayvansu1973@gmail.com
 - Phone: 9412104618
