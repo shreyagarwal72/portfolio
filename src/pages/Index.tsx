@@ -4,8 +4,11 @@ import { Star, TrendingUp, Users, Play } from 'lucide-react';
 import Hero from '@/components/Hero';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import TiltCard from '@/components/TiltCard';
+import AnimatedCounter from '@/components/AnimatedCounter';
 
 const VideoShowreel = lazy(() => import('@/components/VideoShowreel'));
+const FloatingParticles = lazy(() => import('@/components/FloatingParticles'));
 const clientNecrovia = new URL('@/assets/client-necrovia.png', import.meta.url).href;
 const clientIfYouKnow = new URL('@/assets/client-ifyouknow.png', import.meta.url).href;
 
@@ -87,8 +90,15 @@ const Index = () => {
       </Suspense>
       
       {/* Achievements Section */}
-      <section className="py-16 md:py-20 card-gradient backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 md:py-20 card-gradient backdrop-blur-sm relative overflow-hidden">
+        {/* Background particles */}
+        <Suspense fallback={null}>
+          <div className="absolute inset-0 opacity-30">
+            <FloatingParticles count={30} color="#8b5cf6" className="w-full h-full" />
+          </div>
+        </Suspense>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -116,10 +126,7 @@ const Index = () => {
                 key={index}
                 variants={itemVariants}
               >
-                <motion.div
-                  whileHover={{ y: -8 }}
-                  transition={{ duration: 0.3, ease: smoothEase }}
-                >
+                <TiltCard>
                   <Card className="text-center bg-background/50 backdrop-blur-sm border-primary/20 overflow-hidden">
                     <CardContent className="pt-6 pb-6">
                       <motion.div
@@ -130,20 +137,14 @@ const Index = () => {
                       >
                         <achievement.icon className="h-10 w-10 md:h-12 md:w-12 text-primary mx-auto mb-4" />
                       </motion.div>
-                      <motion.h3 
-                        className="text-3xl md:text-4xl font-bold text-primary mb-2"
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.1 + 0.3, duration: 0.6, ease: smoothEase }}
-                      >
-                        {achievement.value}
-                      </motion.h3>
+                      <h3 className="text-3xl md:text-4xl font-bold text-primary mb-2">
+                        <AnimatedCounter value={achievement.value} />
+                      </h3>
                       <p className="text-base md:text-lg font-semibold mb-2">{achievement.label}</p>
                       <p className="text-sm text-muted-foreground">{achievement.description}</p>
                     </CardContent>
                   </Card>
-                </motion.div>
+                </TiltCard>
               </motion.div>
             ))}
           </motion.div>
@@ -185,18 +186,20 @@ const Index = () => {
                 whileHover={{ y: -8 }}
                 className="group"
               >
-                <motion.div 
-                  className="card-gradient rounded-full p-4 backdrop-blur-sm border border-primary/20 shadow-glow"
-                  whileHover={{ boxShadow: "0 0 40px hsl(var(--primary-glow) / 0.4)" }}
-                  transition={{ duration: 0.4, ease: smoothEase }}
-                >
-                  <img 
-                    src={client.logo} 
-                    alt={`${client.name} - YouTube channel logo`}
-                    className="h-20 w-20 md:h-24 md:w-24 object-contain transition-transform duration-300 group-hover:scale-110"
-                    loading="lazy"
-                  />
-                </motion.div>
+                <TiltCard>
+                  <motion.div 
+                    className="card-gradient rounded-full p-4 backdrop-blur-sm border border-primary/20 shadow-glow"
+                    whileHover={{ boxShadow: "0 0 40px hsl(var(--primary-glow) / 0.4)" }}
+                    transition={{ duration: 0.4, ease: smoothEase }}
+                  >
+                    <img 
+                      src={client.logo} 
+                      alt={`${client.name} - YouTube channel logo`}
+                      className="h-20 w-20 md:h-24 md:w-24 object-contain transition-transform duration-300 group-hover:scale-110"
+                      loading="lazy"
+                    />
+                  </motion.div>
+                </TiltCard>
                 <p className="text-center mt-3 font-medium text-muted-foreground group-hover:text-primary transition-colors duration-300">
                   {client.name}
                 </p>
@@ -236,10 +239,7 @@ const Index = () => {
                 key={index}
                 variants={itemVariants}
               >
-                <motion.div
-                  whileHover={{ y: -8 }}
-                  transition={{ duration: 0.3, ease: smoothEase }}
-                >
+                <TiltCard>
                   <Card className="h-full bg-background/50 backdrop-blur-sm border-primary/20 overflow-hidden">
                     <CardHeader className="pb-3">
                       <div className="flex items-center justify-between mb-3">
@@ -264,7 +264,7 @@ const Index = () => {
                       <p className="text-sm md:text-base text-muted-foreground leading-relaxed italic">"{testimonial.text}"</p>
                     </CardContent>
                   </Card>
-                </motion.div>
+                </TiltCard>
               </motion.div>
             ))}
           </motion.div>
@@ -272,8 +272,15 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 md:py-20 relative overflow-hidden">
+        {/* Background particles */}
+        <Suspense fallback={null}>
+          <div className="absolute inset-0 opacity-20">
+            <FloatingParticles count={20} color="#06b6d4" className="w-full h-full" />
+          </div>
+        </Suspense>
+
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
