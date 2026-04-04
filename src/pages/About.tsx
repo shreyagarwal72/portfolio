@@ -11,7 +11,7 @@ const About = () => {
     // Add meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Learn about Vanshu Agarwal, a creative video editor, passionate gamer, and musician. Discover the journey of a Class 11 student balancing academics with creative content creation.');
+      metaDescription.setAttribute('content', 'Learn about Vanshu Agarwal, a creative video editor, passionate gamer, and musician. Discover the journey of a Class 12 student balancing academics with creative content creation.');
     }
     
     // Add structured data
