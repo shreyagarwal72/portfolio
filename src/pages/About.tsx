@@ -59,14 +59,19 @@ const About = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Hero Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-5xl lg:text-7xl font-bold text-foreground mb-6 animate-fade-in">
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
+        >
+          <h1 className="text-5xl lg:text-7xl font-bold text-foreground mb-6">
             ABOUT <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">ME</span>
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-fade-in delay-200">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Video Editor, Gamer, and Musician passionate about storytelling through visual media and creative content.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Content Section */}
