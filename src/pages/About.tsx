@@ -128,7 +128,7 @@ const About = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/5 rounded-2xl blur-xl scale-105" aria-hidden="true"></div>
               
               {/* Main card */}
-              <figure className="relative card-gradient rounded-2xl p-8 transition-smooth hover:scale-105 hover:shadow-2xl">
+              <TiltCard className="relative card-gradient rounded-2xl p-8 transition-smooth hover:shadow-2xl">
                 <div className="aspect-[3/4] bg-muted rounded-xl overflow-hidden shadow-inner flex items-center justify-center">
                   <img 
                     src={vanshuProfile}
