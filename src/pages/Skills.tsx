@@ -11,6 +11,7 @@ import {
   GraduationCap,
   Briefcase,
   MapPin
+} from 'lucide-react';
 import TiltCard from '@/components/TiltCard';
 
 const FloatingParticles = lazy(() => import('@/components/FloatingParticles'));
