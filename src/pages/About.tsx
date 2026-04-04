@@ -1,7 +1,11 @@
 import { MapPin, Mail } from 'lucide-react';
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
+import { motion } from 'framer-motion';
 import vanshuProfile from '@/assets/vanshu-profile-new.jpg';
 import SocialMediaCards from '@/components/SocialMediaCards';
+import TiltCard from '@/components/TiltCard';
+
+const FloatingParticles = lazy(() => import('@/components/FloatingParticles'));
 
 const About = () => {
   useEffect(() => {
