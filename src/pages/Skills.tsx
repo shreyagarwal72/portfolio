@@ -133,7 +133,7 @@ const Skills = () => {
           <div className="space-y-8">
             
             {/* Software Skills */}
-            <div className="card-gradient rounded-2xl p-6 animate-fade-in hover-lift transition-smooth">
+            <TiltCard className="card-gradient rounded-2xl p-6 animate-fade-in hover-lift transition-smooth">
               <h3 className="text-xl font-bold text-foreground mb-6">SOFTWARE SKILLS</h3>
               <div className="space-y-4">
                 {softwareSkills.map((skill, index) => (
