@@ -162,13 +162,15 @@ const Hero = () => {
               aria-label="Main navigation actions"
             >
               <motion.div
-                className="btn-candy rounded-full bg-background/80 p-0.5 backdrop-blur-sm"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2 }}
               >
                 <CreepyButton to="/cv">Open CV</CreepyButton>
               </motion.div>
               <motion.div
-                className="btn-candy rounded-full bg-background/80 p-0.5 backdrop-blur-sm"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.2 }}
               >
                 <ElectricButton to="/portfolio" text="View Portfolio" />
