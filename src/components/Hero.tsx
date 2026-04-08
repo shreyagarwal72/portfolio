@@ -163,16 +163,12 @@ const Hero = () => {
             >
               <motion.div
                 className="btn-candy rounded-full bg-background/80 p-0.5 backdrop-blur-sm"
-                whileHover={{ x: -2, y: -2 }}
-                whileTap={{ x: 2, y: 2 }}
                 transition={{ duration: 0.2 }}
               >
                 <CreepyButton to="/cv">Open CV</CreepyButton>
               </motion.div>
               <motion.div
                 className="btn-candy rounded-full bg-background/80 p-0.5 backdrop-blur-sm"
-                whileHover={{ x: -2, y: -2 }}
-                whileTap={{ x: 2, y: 2 }}
                 transition={{ duration: 0.2 }}
               >
                 <ElectricButton to="/portfolio" text="View Portfolio" />
