@@ -6,76 +6,93 @@
 
 @layer base {
   :root {
-    /* Light theme base colors */
-    --background: 0 0% 100%;
-    --foreground: 210 11% 15%;
+    /* ===== Playful Geometric Light Theme ===== */
+    --background: 45 100% 98%;
+    --foreground: 215 28% 17%;
 
-    /* Card system for light theme */
-    --card: 0 0% 98%;
-    --card-foreground: 210 11% 15%;
-    --card-hover: 210 11% 96%;
+    /* Card system */
+    --card: 0 0% 100%;
+    --card-foreground: 215 28% 17%;
+    --card-hover: 210 40% 96%;
 
-    /* Popover colors */
+    /* Popover */
     --popover: 0 0% 100%;
-    --popover-foreground: 210 11% 15%;
+    --popover-foreground: 215 28% 17%;
 
-    /* Blue accent system */
-    --primary: 217 91% 55%;
+    /* Primary = Vivid Violet */
+    --primary: 263 84% 66%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 220 100% 60%;
-    --primary-dark: 215 85% 45%;
+    --primary-glow: 263 90% 72%;
+    --primary-dark: 263 78% 56%;
 
-    /* Secondary greys */
-    --secondary: 210 11% 93%;
-    --secondary-foreground: 210 11% 25%;
+    /* Secondary = Hot Pink */
+    --secondary: 330 86% 70%;
+    --secondary-foreground: 0 0% 100%;
 
-    /* Muted elements */
-    --muted: 210 11% 95%;
-    --muted-foreground: 210 11% 45%;
+    /* Muted */
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
 
-    /* Accent variations */
-    --accent: 210 11% 94%;
-    --accent-foreground: 210 11% 15%;
+    /* Accent = Violet (same as primary for shadcn compat) */
+    --accent: 263 84% 66%;
+    --accent-foreground: 0 0% 100%;
 
-    /* Status colors */
+    /* Tertiary & Quaternary (Playful Geometric extras) */
+    --tertiary: 45 96% 56%;
+    --tertiary-foreground: 215 28% 17%;
+    --quaternary: 160 64% 52%;
+    --quaternary-foreground: 0 0% 100%;
+
+    /* Status */
     --destructive: 0 84% 55%;
     --destructive-foreground: 0 0% 100%;
 
     /* Borders and inputs */
-    --border: 210 11% 88%;
-    --input: 210 11% 93%;
-    --ring: 213 89% 55%;
+    --border: 214 32% 91%;
+    --input: 0 0% 100%;
+    --ring: 263 84% 66%;
 
-    /* Design system additions - Light theme gradients */
-    --hero-gradient: linear-gradient(135deg, hsl(0 0% 98%) 0%, hsl(217 20% 96%) 50%, hsl(210 15% 98%) 100%);
-    --text-gradient: linear-gradient(135deg, hsl(217 91% 55%) 0%, hsl(220 100% 60%) 50%, hsl(230 100% 65%) 100%);
-    --card-gradient: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(210 15% 97%) 100%);
-    --accent-gradient: linear-gradient(120deg, hsl(217 91% 55%) 0%, hsl(220 100% 60%) 50%, hsl(230 100% 65%) 100%);
-    --glow-gradient: radial-gradient(circle at 50% 50%, hsl(217 91% 55% / 0.15) 0%, transparent 70%);
-    
-    /* Shadows - Light theme */
-    --shadow-card: 0 10px 40px hsl(210 11% 70% / 0.2), 0 0 0 1px hsl(217 91% 55% / 0.05);
-    --shadow-glow: 0 0 50px hsl(217 91% 55% / 0.2), 0 0 100px hsl(220 100% 60% / 0.1);
-    --shadow-subtle: 0 4px 20px hsl(210 11% 70% / 0.15);
-    --shadow-intense: 0 20px 60px hsl(217 91% 55% / 0.15), 0 0 120px hsl(220 100% 60% / 0.08);
+    /* Gradients */
+    --hero-gradient: linear-gradient(135deg, hsl(45 100% 98%) 0%, hsl(263 30% 96%) 50%, hsl(330 30% 97%) 100%);
+    --text-gradient: linear-gradient(135deg, hsl(263 84% 66%) 0%, hsl(330 86% 70%) 50%, hsl(45 96% 56%) 100%);
+    --card-gradient: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(45 60% 98%) 100%);
+    --accent-gradient: linear-gradient(120deg, hsl(263 84% 66%) 0%, hsl(330 86% 70%) 50%, hsl(263 84% 66%) 100%);
+    --glow-gradient: radial-gradient(circle at 50% 50%, hsl(263 84% 66% / 0.12) 0%, transparent 70%);
 
-    /* Transitions - iOS-inspired */
+    /* Hard Shadows — Playful Geometric */
+    --shadow-card: 4px 4px 0px 0px hsl(214 32% 91%);
+    --shadow-card-featured: 6px 6px 0px 0px hsl(330 86% 70%);
+    --shadow-glow: 4px 4px 0px 0px hsl(263 84% 66%);
+    --shadow-subtle: 2px 2px 0px 0px hsl(214 32% 91%);
+    --shadow-intense: 8px 8px 0px 0px hsl(214 32% 91%);
+    --shadow-pop: 4px 4px 0px 0px hsl(215 28% 17%);
+    --shadow-pop-hover: 6px 6px 0px 0px hsl(215 28% 17%);
+    --shadow-pop-active: 2px 2px 0px 0px hsl(215 28% 17%);
+
+    /* Transitions — Bouncy, Elastic */
     --transition-smooth: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    --transition-bounce: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --transition-bounce: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     --transition-premium: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-ios: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     --transition-spring: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Typography */
+    --font-heading: 'Outfit', system-ui, sans-serif;
+    --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+    /* Chunky border */
+    --border-width: 2px;
+
+    --sidebar-background: 45 100% 98%;
+    --sidebar-foreground: 215 28% 17%;
+    --sidebar-primary: 263 84% 66%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 263 30% 95%;
+    --sidebar-accent-foreground: 215 28% 17%;
+    --sidebar-border: 214 32% 91%;
+    --sidebar-ring: 263 84% 66%;
   }
 
   /* Dark mode */
@@ -141,7 +158,8 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -149,6 +167,18 @@
     -webkit-touch-callout: none;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  .dark body, .dark {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+
+  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+    font-family: inherit;
   }
 
   /* GPU acceleration for animated elements */
