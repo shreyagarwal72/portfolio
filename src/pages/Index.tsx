@@ -315,17 +315,17 @@ const Index = () => {
             >
               <motion.a
                 href="/contact"
-                className="inline-flex items-center justify-center px-6 md:px-8 py-3 md:py-4 bg-primary hover:bg-primary/90 text-primary-foreground font-medium rounded-xl transition-all duration-300 shadow-glow"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="btn-candy inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 font-medium text-primary-foreground transition-all duration-300 hover:bg-primary/90 md:px-8 md:py-4"
+                whileHover={{ scale: 1.03, x: -2, y: -2 }}
+                whileTap={{ scale: 0.96, x: 2, y: 2 }}
               >
                 Get in Touch
               </motion.a>
               <motion.a
                 href="/portfolio"
-                className="inline-flex items-center justify-center px-6 md:px-8 py-3 md:py-4 bg-background/50 hover:bg-background/70 text-foreground font-medium rounded-xl transition-all duration-300 border border-border"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="btn-candy inline-flex items-center justify-center rounded-full bg-background/80 px-6 py-3 font-medium text-foreground transition-all duration-300 hover:bg-background md:px-8 md:py-4"
+                whileHover={{ scale: 1.03, x: -2, y: -2 }}
+                whileTap={{ scale: 0.96, x: 2, y: 2 }}
               >
                 View Portfolio
               </motion.a>

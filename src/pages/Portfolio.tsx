@@ -221,6 +221,7 @@ export default function Portfolio() {
           >
             {/* Green Hat Hacker Certificate */}
             <motion.div
+              className="card-sticker overflow-hidden rounded-2xl bg-card/60 backdrop-blur-sm"
               variants={{
                 hidden: { opacity: 0, y: 30, rotateX: 10 },
                 visible: { opacity: 1, y: 0, rotateX: 0 }
@@ -229,7 +230,7 @@ export default function Portfolio() {
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               style={{ transformStyle: 'preserve-3d' }}
             >
-              <Card className="overflow-hidden border-primary/30 bg-card/50 backdrop-blur-sm hover:shadow-glow transition-smooth">
+              <Card className="overflow-hidden border-0 bg-transparent shadow-none">
                 <CardContent className="p-0">
                   <div className="relative aspect-[4/3]">
                     <img
@@ -252,6 +253,7 @@ export default function Portfolio() {
 
             {/* Amar Ujala Certificate */}
             <motion.div
+              className="card-sticker overflow-hidden rounded-2xl bg-card/60 backdrop-blur-sm"
               variants={{
                 hidden: { opacity: 0, y: 30, rotateX: 10 },
                 visible: { opacity: 1, y: 0, rotateX: 0 }
@@ -260,7 +262,7 @@ export default function Portfolio() {
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               style={{ transformStyle: 'preserve-3d' }}
             >
-              <Card className="overflow-hidden border-primary/30 bg-card/50 backdrop-blur-sm hover:shadow-glow transition-smooth">
+              <Card className="overflow-hidden border-0 bg-transparent shadow-none">
                 <CardContent className="p-0">
                   <div className="relative aspect-[4/3]">
                     <img
@@ -332,7 +334,7 @@ export default function Portfolio() {
             {filteredProjects.map((project, index) => (
               <motion.article
                 key={project.id}
-                className="group relative overflow-hidden rounded-2xl perspective-1000"
+                className="card-sticker group relative overflow-hidden rounded-2xl bg-card/50 backdrop-blur-sm perspective-1000"
                 variants={{
                   hidden: { opacity: 0, y: 40, rotateX: 10 },
                   visible: { 
@@ -370,7 +372,7 @@ export default function Portfolio() {
                 
                 {/* Main Card */}
                 <motion.div 
-                  className="relative card-gradient rounded-2xl border border-border/50 backdrop-blur-sm overflow-hidden"
+                  className="relative h-full overflow-hidden rounded-2xl card-gradient"
                   whileHover={{ 
                     boxShadow: "0 25px 50px -12px hsl(var(--primary) / 0.35)",
                     borderColor: "hsl(var(--primary) / 0.5)"
@@ -465,10 +467,10 @@ export default function Portfolio() {
                           href={project.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center text-primary hover:text-foreground transition-colors duration-300 font-medium text-sm group/link"
+                          className="btn-candy group/link inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-2 text-sm font-semibold text-secondary-foreground transition-all duration-300"
                           aria-label={`View ${project.title} project`}
-                          whileHover={{ x: 4 }}
-                          whileTap={{ scale: 0.95 }}
+                          whileHover={{ x: -2, y: -2 }}
+                          whileTap={{ scale: 0.95, x: 2, y: 2 }}
                         >
                           View Project
                           <ExternalLink size={14} className="ml-1 transition-transform duration-300 group-hover/link:translate-x-1" aria-hidden="true" />
