@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import './ThemeToggle.css';
 
 const ThemeToggle = () => {
@@ -13,12 +13,51 @@ const ThemeToggle = () => {
     document.documentElement.classList.toggle('dark', initialIsDark);
   }, []);
 
-  const toggleTheme = () => {
+  const toggleTheme = useCallback(() => {
     const newIsDark = !isDark;
-    setIsDark(newIsDark);
-    localStorage.setItem('theme', newIsDark ? 'dark' : 'light');
-    document.documentElement.classList.toggle('dark', newIsDark);
-  };
+    
+    // Add transition class for smooth theme switch
+    document.documentElement.style.setProperty('--theme-transition', '1');
+    document.documentElement.classList.add('theme-transitioning');
+    
+    // Create a circular reveal animation from the toggle button
+    const overlay = document.createElement('div');
+    overlay.className = 'theme-transition-overlay';
+    overlay.style.cssText = `
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      background: ${newIsDark ? 'hsl(222 47% 6%)' : 'hsl(0 0% 98%)'};
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    `;
+    document.body.appendChild(overlay);
+    
+    // Trigger fade
+    requestAnimationFrame(() => {
+      overlay.style.opacity = '0.6';
+    });
+    
+    // Apply theme mid-transition
+    setTimeout(() => {
+      setIsDark(newIsDark);
+      localStorage.setItem('theme', newIsDark ? 'dark' : 'light');
+      document.documentElement.classList.toggle('dark', newIsDark);
+    }, 200);
+    
+    // Fade out overlay
+    setTimeout(() => {
+      overlay.style.opacity = '0';
+    }, 350);
+    
+    // Cleanup
+    setTimeout(() => {
+      overlay.remove();
+      document.documentElement.classList.remove('theme-transitioning');
+      document.documentElement.style.removeProperty('--theme-transition');
+    }, 750);
+  }, [isDark]);
 
   return (
     <label className="theme-switch">

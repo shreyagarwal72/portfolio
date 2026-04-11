@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, Mail } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import ThemeToggle from '@/components/ThemeToggle';
@@ -21,7 +21,6 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
     { label: 'Process', path: '/process' },
     { label: 'About', path: '/about' },
     { label: 'YouTube', path: '/youtube' },
-    { label: 'Contact', path: '/contact' },
     { label: 'Vanshu Bot', path: '/vanshu-bot' },
   ];
 
@@ -63,90 +62,87 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
-      {/* Desktop Navigation - Full width premium bar */}
-      <div className="hidden lg:block">
-        <div className="bg-background/70 backdrop-blur-2xl border-b border-border/30">
-          <div className="max-w-7xl mx-auto px-6 xl:px-8">
-            <div className="flex items-center justify-between h-16">
-              {/* Logo */}
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="relative select-none flex-shrink-0"
-              >
-                <Link 
-                  to="/" 
-                  className="relative flex items-center gap-3 text-xl font-bold touch-manipulation" 
-                  aria-label="Go to homepage"
-                  onClick={handleLogoClick}
-                  title="Click to replay intro"
-                  draggable={false}
-                >
-                  <span className="relative z-10 text-2xl bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent tracking-tight">
-                    VA
-                  </span>
-                  <span className="hidden xl:inline text-sm font-medium text-muted-foreground tracking-wide">
-                    Vanshu Agarwal
-                  </span>
-                </Link>
-              </motion.div>
+      {/* Desktop Navigation - Premium floating bar */}
+      <div className="hidden lg:flex justify-center pt-4 px-6">
+        <motion.div 
+          className="relative flex items-center gap-1 px-2 py-1.5 rounded-2xl bg-background/60 backdrop-blur-2xl border border-border/40 shadow-2xl shadow-primary/5"
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+        >
+          {/* Logo */}
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="select-none flex-shrink-0 mr-2"
+          >
+            <Link 
+              to="/" 
+              className="flex items-center gap-2 px-3 py-2 text-xl font-bold touch-manipulation" 
+              aria-label="Go to homepage"
+              onClick={handleLogoClick}
+              title="Click to replay intro"
+              draggable={false}
+            >
+              <span className="text-2xl bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent tracking-tight font-black">
+                VA
+              </span>
+            </Link>
+          </motion.div>
 
-              {/* Center Nav Links */}
-              <ul className="flex items-center gap-1">
-                {navItems.map((item, index) => (
-                  <motion.li 
-                    key={item.path}
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.04, duration: 0.3 }}
-                  >
-                    <Link
-                      to={item.path}
-                      className={cn(
-                        'relative px-3 py-2 text-[13px] font-medium rounded-lg transition-all duration-300',
-                        'hover:text-primary',
-                        isActive(item.path) 
-                          ? 'text-primary' 
-                          : 'text-muted-foreground'
-                      )}
-                      aria-current={isActive(item.path) ? 'page' : undefined}
-                    >
-                      <span className="relative z-10">{item.label}</span>
-                      {isActive(item.path) && (
-                        <motion.div
-                          layoutId="activeDesktopNav"
-                          className="absolute inset-0 rounded-lg bg-primary/10"
-                          transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                        />
-                      )}
-                    </Link>
-                  </motion.li>
-                ))}
-              </ul>
+          {/* Separator */}
+          <div className="w-px h-6 bg-border/50 mr-1" />
 
-              {/* Right controls */}
-              <motion.div 
-                className="flex items-center gap-3 flex-shrink-0" 
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3, duration: 0.5 }}
+          {/* Nav Links */}
+          {navItems.map((item, index) => (
+            <motion.div 
+              key={item.path}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 + index * 0.04, duration: 0.3 }}
+            >
+              <Link
+                to={item.path}
+                className={cn(
+                  'relative px-3 py-2 text-[13px] font-medium rounded-xl transition-all duration-300 whitespace-nowrap',
+                  'hover:text-primary',
+                  isActive(item.path) 
+                    ? 'text-primary' 
+                    : 'text-muted-foreground'
+                )}
+                aria-current={isActive(item.path) ? 'page' : undefined}
               >
-                <div className="p-1">
-                  <ThemeToggle />
-                </div>
-                <motion.a 
-                  href="tel:+919412104618"
-                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 transition-all duration-300 shadow-lg shadow-primary/20"
-                  whileHover={{ scale: 1.03, boxShadow: "0 8px 25px hsl(var(--primary) / 0.35)" }}
-                  whileTap={{ scale: 0.97 }}
-                >
-                  <Phone size={13} />
-                  <span>Let's Talk</span>
-                </motion.a>
-              </motion.div>
+                <span className="relative z-10">{item.label}</span>
+                {isActive(item.path) && (
+                  <motion.div
+                    layoutId="activeDesktopNav"
+                    className="absolute inset-0 rounded-xl bg-primary/10 border border-primary/20"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
+              </Link>
+            </motion.div>
+          ))}
+
+          {/* Separator */}
+          <div className="w-px h-6 bg-border/50 ml-1" />
+
+          {/* Right controls */}
+          <div className="flex items-center gap-2 ml-2">
+            <div className="p-0.5">
+              <ThemeToggle />
             </div>
+            <motion.a 
+              href="tel:+919412104618"
+              className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 transition-all duration-300 shadow-lg shadow-primary/20"
+              whileHover={{ scale: 1.03, boxShadow: "0 8px 25px hsl(var(--primary) / 0.35)" }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <Phone size={12} />
+              <span>Let's Talk</span>
+            </motion.a>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Mobile Navigation */}
@@ -155,27 +151,25 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
           <div className="relative bg-background/60 backdrop-blur-xl rounded-2xl border border-border/50 shadow-lg shadow-primary/5">
             <div className="relative px-4">
               <div className="flex items-center justify-between h-14">
-                {/* Logo */}
                 <motion.div
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  className="relative select-none flex-shrink-0"
+                  className="select-none flex-shrink-0"
                 >
                   <Link 
                     to="/" 
-                    className="relative flex items-center gap-2 text-xl font-bold touch-manipulation" 
+                    className="flex items-center gap-2 text-xl font-bold touch-manipulation" 
                     aria-label="Go to homepage"
                     onClick={handleLogoClick}
                     title="Click to replay intro"
                     draggable={false}
                   >
-                    <span className="relative z-10 bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent font-black">
                       VA
                     </span>
                   </Link>
                 </motion.div>
 
-                {/* Mobile controls */}
                 <div className="flex items-center gap-2">
                   <ThemeToggle />
                   <motion.button
@@ -216,7 +210,6 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
           </div>
         </div>
 
-        {/* Mobile menu dropdown */}
         <AnimatePresence>
           {isOpen && (
             <motion.div 
