@@ -1,9 +1,8 @@
 import { lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
-import { Star, TrendingUp, Users, Play } from 'lucide-react';
+import { TrendingUp, Users, Play, Instagram } from 'lucide-react';
 import Hero from '@/components/Hero';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import { Card, CardContent } from '@/components/ui/card';
 import TiltCard from '@/components/TiltCard';
 import AnimatedCounter from '@/components/AnimatedCounter';
 
@@ -39,21 +38,6 @@ const itemVariants = {
 };
 
 const Index = () => {
-  const testimonials = [
-    {
-      name: 'Pradeep Gupta',
-      rating: 5,
-      text: 'Exceptional video editing skills! Vanshu transformed our raw footage into engaging content that significantly boosted our channel engagement. Highly recommended!',
-      project: 'Gaming Montage Series'
-    },
-    {
-      name: 'Vishal Rathore',
-      rating: 5,
-      text: 'Professional, creative, and delivers on time. The attention to detail in color grading and transitions made our videos stand out. Will definitely work together again!',
-      project: 'YouTube Channel Content'
-    }
-  ];
-
   const achievements = [
     {
       icon: Users,
@@ -72,6 +56,12 @@ const Index = () => {
       value: '15+',
       label: 'Projects Completed',
       description: 'Successful client collaborations'
+    },
+    {
+      icon: Instagram,
+      value: '3000+',
+      label: 'Instagram Followers',
+      description: 'Active creative community'
     }
   ];
 
@@ -91,7 +81,6 @@ const Index = () => {
       
       {/* Achievements Section */}
       <section className="py-16 md:py-20 card-gradient backdrop-blur-sm relative overflow-hidden">
-        {/* Background particles */}
         <Suspense fallback={null}>
           <div className="absolute inset-0 opacity-30">
             <FloatingParticles count={30} color="#8b5cf6" className="w-full h-full" />
@@ -115,7 +104,7 @@ const Index = () => {
           </motion.div>
 
           <motion.div 
-            className="grid md:grid-cols-3 gap-6 md:gap-8"
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -135,13 +124,13 @@ const Index = () => {
                         viewport={{ once: true }}
                         transition={{ delay: index * 0.1 + 0.2, duration: 0.6, ease: smoothEase }}
                       >
-                        <achievement.icon className="h-10 w-10 md:h-12 md:w-12 text-primary mx-auto mb-4" />
+                        <achievement.icon className="h-8 w-8 md:h-10 md:w-10 text-primary mx-auto mb-3" />
                       </motion.div>
-                      <h3 className="text-3xl md:text-4xl font-bold text-primary mb-2">
+                      <h3 className="text-2xl md:text-3xl font-bold text-primary mb-1">
                         <AnimatedCounter value={achievement.value} />
                       </h3>
-                      <p className="text-base md:text-lg font-semibold mb-2">{achievement.label}</p>
-                      <p className="text-sm text-muted-foreground">{achievement.description}</p>
+                      <p className="text-sm md:text-base font-semibold mb-1">{achievement.label}</p>
+                      <p className="text-xs text-muted-foreground hidden md:block">{achievement.description}</p>
                     </CardContent>
                   </Card>
                 </TiltCard>
@@ -170,7 +159,7 @@ const Index = () => {
           </motion.div>
 
           <motion.div 
-            className="flex flex-wrap justify-center items-center gap-8 md:gap-12"
+            className="flex flex-col sm:flex-row justify-center items-center gap-8 md:gap-16"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -184,7 +173,7 @@ const Index = () => {
                 rel="noopener noreferrer"
                 variants={itemVariants}
                 whileHover={{ y: -8 }}
-                className="group"
+                className="group flex flex-col items-center"
               >
                 <TiltCard>
                   <motion.div 
@@ -200,7 +189,7 @@ const Index = () => {
                     />
                   </motion.div>
                 </TiltCard>
-                <p className="text-center mt-3 font-medium text-muted-foreground group-hover:text-primary transition-colors duration-300">
+                <p className="text-center mt-3 font-medium text-muted-foreground group-hover:text-primary transition-colors duration-300 text-sm md:text-base whitespace-nowrap">
                   {client.name}
                 </p>
               </motion.a>
@@ -209,71 +198,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-16 md:py-20 card-gradient backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: smoothEase }}
-            className="text-center mb-10 md:mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent">
-                Client Testimonials
-              </span>
-            </h2>
-            <p className="text-muted-foreground text-base md:text-lg">What clients say about working with me</p>
-          </motion.div>
-
-          <motion.div 
-            className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-              >
-                <TiltCard>
-                  <Card className="h-full bg-background/50 backdrop-blur-sm border-primary/20 overflow-hidden">
-                    <CardHeader className="pb-3">
-                      <div className="flex items-center justify-between mb-3">
-                        <CardTitle className="text-lg md:text-xl">{testimonial.name}</CardTitle>
-                        <div className="flex gap-1">
-                          {[...Array(testimonial.rating)].map((_, i) => (
-                            <motion.div
-                              key={i}
-                              initial={{ opacity: 0 }}
-                              whileInView={{ opacity: 1 }}
-                              viewport={{ once: true }}
-                              transition={{ delay: index * 0.1 + 0.2 + i * 0.05, duration: 0.4, ease: smoothEase }}
-                            >
-                              <Star className="h-4 w-4 md:h-5 md:w-5 fill-yellow-500 text-yellow-500" />
-                            </motion.div>
-                          ))}
-                        </div>
-                      </div>
-                      <Badge variant="secondary" className="w-fit">{testimonial.project}</Badge>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-sm md:text-base text-muted-foreground leading-relaxed italic">"{testimonial.text}"</p>
-                    </CardContent>
-                  </Card>
-                </TiltCard>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section className="py-16 md:py-20 relative overflow-hidden">
-        {/* Background particles */}
         <Suspense fallback={null}>
           <div className="absolute inset-0 opacity-20">
             <FloatingParticles count={20} color="#06b6d4" className="w-full h-full" />

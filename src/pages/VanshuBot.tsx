@@ -464,7 +464,7 @@ const VanshuBot = () => {
 
         {/* Info */}
         <div className="text-center text-xs text-muted-foreground mb-2">
-          <p>Powered by Lovable AI • Free Gemini models</p>
+          <p>Powered by Vanshu AI</p>
         </div>
       </div>
 

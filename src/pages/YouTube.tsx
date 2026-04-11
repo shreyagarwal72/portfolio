@@ -1,16 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
 import VideoPlayer from '@/components/VideoPlayer';
 
 const YouTube = () => {
-  const [subscriberCount, setSubscriberCount] = useState('Loading...');
-  const [totalViews, setTotalViews] = useState('Loading...');
+  const [subscriberCount, setSubscriberCount] = useState<string | null>(null);
+  const [totalViews, setTotalViews] = useState<string | null>(null);
 
   useEffect(() => {
-    // Set page title for SEO
     document.title = 'YouTube Highlights - Vanshu Agarwal | Music Videos & Creative Content';
     
-    // Add structured data
     const script = document.createElement('script');
     script.type = 'application/ld+json';
     script.text = JSON.stringify({
@@ -31,7 +30,6 @@ const YouTube = () => {
   }, []);
 
   useEffect(() => {
-    // Fetch YouTube Channel Stats
     const fetchChannelStats = async () => {
       try {
         const apiKey = "AIzaSyCM7WK3KYdLFh2xPOFL8amaFxgVCg3etU4";
@@ -57,6 +55,8 @@ const YouTube = () => {
     fetchChannelStats();
   }, []);
 
+  const isLoading = subscriberCount === null;
+
   return (
     <div className="min-h-screen pt-20 pb-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -73,14 +73,27 @@ const YouTube = () => {
 
         {/* Channel Stats */}
         <section className="mb-8 p-6 bg-card border border-border rounded-lg card-gradient animate-fade-in hover-lift transition-smooth">
-          <div className="space-y-2">
-            <p className="text-lg font-medium text-foreground">
-              Subscribers: <span className="text-primary font-bold">{subscriberCount}</span>
-            </p>
-            <p className="text-lg font-medium text-foreground">
-              Total Views: <span className="text-primary font-bold">{totalViews}</span>
-            </p>
-          </div>
+          {isLoading ? (
+            <div className="space-y-3">
+              <div className="flex items-center gap-3">
+                <Skeleton className="h-5 w-28" />
+                <Skeleton className="h-6 w-16 rounded-full" />
+              </div>
+              <div className="flex items-center gap-3">
+                <Skeleton className="h-5 w-24" />
+                <Skeleton className="h-6 w-20 rounded-full" />
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-2">
+              <p className="text-lg font-medium text-foreground">
+                Subscribers: <span className="text-primary font-bold">{subscriberCount}</span>
+              </p>
+              <p className="text-lg font-medium text-foreground">
+                Total Views: <span className="text-primary font-bold">{totalViews}</span>
+              </p>
+            </div>
+          )}
         </section>
 
         {/* Videos Grid */}
