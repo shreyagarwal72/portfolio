@@ -69,16 +69,16 @@ const projects = [
   },
   {
     id: 1,
-    title: "My Website",
-    category: "portfolio",
-    year: "2024",
-    client: "NextUp Studio",
+    title: "Zola Restaurant",
+    category: "web development",
+    year: "2025",
+    client: "Zola Restaurant",
     description:
-      "Official NextUp Studio website - A professional creative portfolio showcasing services, projects, and studio brand with modern design.",
-    thumbnail: previewWebsite,
+      "A modern restaurant website featuring elegant design, menu showcase, and seamless online experience for diners exploring Zola's culinary offerings.",
+    thumbnail: "https://api.microlink.io/?url=https%3A%2F%2Fzola-restaurant.vercel.app&screenshot=true&meta=false&embed=screenshot.url&waitFor=1500&viewport.width=1280&viewport.height=800",
     duration: "Live",
     views: "",
-    link: "https://nextup-studio.vercel.app/",
+    link: "https://zola-restaurant.vercel.app",
   },
   {
     id: 2,

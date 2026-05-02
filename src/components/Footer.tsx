@@ -11,7 +11,7 @@ const Footer = () => {
 
   const socialLinks = [
     { icon: Github, href: "https://github.com/shreyagarwal72", label: "GitHub", hoverColor: "hover:bg-primary/20 hover:text-primary" },
-    { icon: Instagram, href: "https://instagram.com/vanshu_ag_72", label: "Instagram", hoverColor: "hover:bg-pink-500/20 hover:text-pink-400" },
+    { icon: Instagram, href: "https://instagram.com/here_your_champion", label: "Instagram", hoverColor: "hover:bg-pink-500/20 hover:text-pink-400" },
     { icon: Youtube, href: "https://www.youtube.com/@nextupstudioyt", label: "YouTube", hoverColor: "hover:bg-red-500/20 hover:text-red-400" },
     { icon: Linkedin, href: "https://in.linkedin.com/in/vanshu-agarwal-954262330", label: "LinkedIn", hoverColor: "hover:bg-blue-500/20 hover:text-blue-400" },
   ];

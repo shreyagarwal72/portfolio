@@ -18,7 +18,7 @@ const socialCards: SocialCard[] = [
     stat: 'Followers',
     statValue: '1.2k',
     action: 'Follow me',
-    href: 'https://www.instagram.com/vanshu_bhai_1973/',
+    href: 'https://www.instagram.com/here_your_champion/',
     color: '348 80% 60%',
   },
   {

@@ -46,7 +46,7 @@ const Hero = () => {
         "url": "https://vanshubhai.vercel.app",
         "sameAs": [
           "https://github.com/shreyagarwal72",
-          "https://instagram.com/vanshu_ag_72",
+          "https://instagram.com/here_your_champion",
           "https://youtube.com/@nextupstudioyt"
         ],
         "knowsAbout": ["Video Editing", "Content Creation", "Music Production", "Gaming", "Web Development"]
