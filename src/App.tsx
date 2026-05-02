@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect, useState, lazy, Suspense } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import MagneticCursor from "./components/MagneticCursor";
@@ -70,32 +71,54 @@ const AppContent = () => {
     );
   }
 
+  const is404 = ![
+    '/', '/about', '/portfolio', '/skills', '/youtube', '/vanshu-bot',
+    '/contact', '/cv', '/terms', '/privacy-policy', '/articles', '/process', '/faq'
+  ].includes(location.pathname);
+
+  const pageVariants = {
+    initial: { opacity: 0, y: 12 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -8 },
+  };
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <Navigation onLogoClick={handleTriggerIntro} />
+      {!is404 && <Navigation onLogoClick={handleTriggerIntro} />}
       <main className="flex-grow">
         <Suspense fallback={<PageLoader />}>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/portfolio" element={<Portfolio />} />
-            <Route path="/skills" element={<Skills />} />
-            <Route path="/youtube" element={<YouTube />} />
-            <Route path="/vanshu-bot" element={<VanshuBot />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/cv" element={<CV />} />
-            <Route path="/terms" element={<TermsAndConditions />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/articles" element={<Articles />} />
-            <Route path="/process" element={<ProcessWorkflow />} />
-            <Route path="/faq" element={<FAQ />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={location.pathname}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              variants={pageVariants}
+              transition={{ duration: 0.35, ease: [0.25, 0.4, 0.25, 1] }}
+            >
+              <Routes location={location}>
+                <Route path="/" element={<Index />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/portfolio" element={<Portfolio />} />
+                <Route path="/skills" element={<Skills />} />
+                <Route path="/youtube" element={<YouTube />} />
+                <Route path="/vanshu-bot" element={<VanshuBot />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/cv" element={<CV />} />
+                <Route path="/terms" element={<TermsAndConditions />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/articles" element={<Articles />} />
+                <Route path="/process" element={<ProcessWorkflow />} />
+                <Route path="/faq" element={<FAQ />} />
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </motion.div>
+          </AnimatePresence>
         </Suspense>
       </main>
-      <Footer />
-      <BackToTop />
+      {!is404 && <Footer />}
+      {!is404 && <BackToTop />}
     </div>
   );
 };

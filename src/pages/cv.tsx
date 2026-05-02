@@ -325,7 +325,7 @@ const CV = () => {
                 </div>
               </a>
               
-              <a href="https://instagram.com/vanshu_ag_72" target="_blank" rel="noreferrer" className="group">
+              <a href="https://instagram.com/here_your_champion" target="_blank" rel="noreferrer" className="group">
                 <div className="flex items-center gap-3 px-6 py-4 bg-card/30 rounded-xl border border-border/30 backdrop-blur-sm hover:bg-card/50 transition-smooth hover:scale-105">
                   <Instagram size={24} className="text-muted-foreground group-hover:text-pink-400 transition-smooth" />
                   <div className="text-left">
