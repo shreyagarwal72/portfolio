@@ -1,601 +1,171 @@
-import { useEffect, useRef, useCallback, useState } from 'react';
-import { gsap } from 'gsap';
-import { Play, Bookmark, ChevronLeft, ChevronRight, Volume2, VolumeX } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+import { ChevronDown } from 'lucide-react';
 import './Intro.css';
-
-// Sound context for intro page (standalone since intro loads before main app)
-const SOUND_ENABLED_KEY = 'soundEnabled';
-// Import AI-generated slide images
-import introSlide1 from '@/assets/intro-slide-1.jpg';
-import introSlide2 from '@/assets/intro-slide-2.jpg';
-import introSlide3 from '@/assets/intro-slide-3.jpg';
-import introSlide4 from '@/assets/intro-slide-4.jpg';
-import introSlide5 from '@/assets/intro-slide-5.jpg';
-import introSlide6 from '@/assets/intro-slide-6.jpg';
 
 interface IntroProps {
   onEnter: () => void;
-  onSkip?: () => void; // Made optional since we're removing skip button
 }
 
-const data = [
-  {
-    place: 'Creative Professional',
-    title: 'VANSHU',
-    title2: 'AGARWAL',
-    description: 'A passionate video editor and content creator from India, specializing in cinematic edits, music production, and web development. Let me bring your vision to life with creativity and precision.',
-    image: introSlide1
-  },
-  {
-    place: 'Professional Services',
-    title: 'VIDEO',
-    title2: 'EDITING',
-    description: 'Transform your raw footage into stunning visual stories. From YouTube videos to cinematic shorts, I deliver professional edits with seamless transitions, color grading, and sound design.',
-    image: introSlide2
-  },
-  {
-    place: 'Creative Portfolio',
-    title: 'FEATURED',
-    title2: 'PROJECTS',
-    description: 'Explore my collection of work including gaming content, music videos, promotional material, and web development projects. Each project is crafted with attention to detail and creative excellence.',
-    image: introSlide3
-  },
-  {
-    place: 'Technical Expertise',
-    title: 'SKILLS &',
-    title2: 'TOOLS',
-    description: 'Proficient in Adobe Premiere Pro, After Effects, DaVinci Resolve, and modern web technologies like React and TypeScript. Always learning and adapting to new creative tools.',
-    image: introSlide4
-  },
-  {
-    place: 'Client Success',
-    title: 'TRUSTED',
-    title2: 'REVIEWS',
-    description: '"Exceptional quality and attention to detail. Vanshu transformed our content beyond expectations." - Working with amazing creators and businesses to deliver outstanding results.',
-    image: introSlide5
-  },
-  {
-    place: 'Get In Touch',
-    title: 'LETS',
-    title2: 'CONNECT',
-    description: 'Ready to start your next project? Whether you need video editing, content creation, or web development, I\'m here to help bring your ideas to reality. Let\'s create something amazing together.',
-    image: introSlide6
-  },
-];
+const TITLE_WORDS = ['Vanshu', 'Agarwal'];
+const SUBTITLE = 'Crafting Cinematic Stories — Video Editor • Creator • Developer';
 
 const Intro = ({ onEnter }: IntroProps) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const orderRef = useRef([0, 1, 2, 3, 4, 5]);
-  const detailsEvenRef = useRef(true);
-  const loopIntervalRef = useRef<NodeJS.Timeout | null>(null);
-  const isInitializedRef = useRef(false);
-  const mountedRef = useRef(true);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const transitionRef = useRef<HTMLDivElement>(null);
-  const touchStartRef = useRef<number>(0);
-  const [isLoading, setIsLoading] = useState(true);
-  const [soundEnabled, setSoundEnabled] = useState(() => {
-    const stored = localStorage.getItem(SOUND_ENABLED_KEY);
-    return stored !== 'false';
-  });
-  
-  // Sound effect URLs (royalty-free whoosh sounds)
-  const whooshSound = 'https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3';
-  const enterSound = 'https://assets.mixkit.co/active_storage/sfx/1111/1111-preview.mp3';
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [visibleWords, setVisibleWords] = useState(0);
+  const [subtitleVisible, setSubtitleVisible] = useState(false);
+  const [ctaVisible, setCtaVisible] = useState(false);
 
-  const toggleSound = () => {
-    setSoundEnabled(prev => {
-      const newValue = !prev;
-      localStorage.setItem(SOUND_ENABLED_KEY, String(newValue));
-      return newValue;
-    });
-  };
-  
-  const playWhoosh = useCallback(() => {
-    if (audioRef.current && soundEnabled) {
-      audioRef.current.currentTime = 0;
-      audioRef.current.volume = 0.3;
-      audioRef.current.play().catch(() => {});
-    }
-  }, [soundEnabled]);
-  
-  const handleEnterWithTransition = useCallback(() => {
-    // Play enter sound if enabled
-    if (soundEnabled) {
-      const enterAudio = new Audio(enterSound);
-      enterAudio.volume = 0.4;
-      enterAudio.play().catch(() => {});
-    }
-    
-    // Animate transition
-    if (transitionRef.current) {
-      gsap.to(transitionRef.current, {
-        opacity: 1,
-        duration: 0.5,
-        ease: 'power2.inOut',
-        onComplete: () => {
-          onEnter();
-        }
-      });
-    } else {
-      onEnter();
-    }
-  }, [onEnter, soundEnabled]);
-
-  const getCard = (index: number) => `#card${index}`;
-  const getCardContent = (index: number) => `#card-content-${index}`;
-  const getSliderItem = (index: number) => `#slide-item-${index}`;
-
-  const isMobile = useCallback(() => window.innerWidth < 768, []);
-
-  const step = useCallback(() => {
-    return new Promise<void>((resolve) => {
-      if (!mountedRef.current) { resolve(); return; }
-      const order = orderRef.current;
-      order.push(order.shift()!);
-      detailsEvenRef.current = !detailsEvenRef.current;
-      
-      playWhoosh();
-
-      const detailsActive = detailsEvenRef.current ? "#details-even" : "#details-odd";
-      const detailsInactive = detailsEvenRef.current ? "#details-odd" : "#details-even";
-
-      const { innerHeight: height, innerWidth: width } = window;
-      const mobile = isMobile();
-      const offsetTop = mobile ? 0 : height - 430;
-      const offsetLeft = mobile ? 0 : width - 830;
-      const cardWidth = mobile ? width : 200;
-      const cardHeight = mobile ? Math.round(height * 0.5) : 300;
-      const gap = mobile ? 0 : 40;
-      const numberSize = 50;
-      const ease = "sine.inOut";
-
-      const activeTextEl = document.querySelector(`${detailsActive} .place-box .text`);
-      const activeTitle1El = document.querySelector(`${detailsActive} .title-1`);
-      const activeTitle2El = document.querySelector(`${detailsActive} .title-2`);
-      const activeDescEl = document.querySelector(`${detailsActive} .desc`);
-
-      if (activeTextEl) activeTextEl.textContent = data[order[0]].place;
-      if (activeTitle1El) activeTitle1El.textContent = data[order[0]].title;
-      if (activeTitle2El) activeTitle2El.textContent = data[order[0]].title2;
-      if (activeDescEl) activeDescEl.textContent = data[order[0]].description;
-
-      gsap.set(detailsActive, { zIndex: 22 });
-      gsap.to(detailsActive, { opacity: 1, delay: 0.4, ease });
-      gsap.to(`${detailsActive} .text`, { y: 0, delay: 0.1, duration: 0.7, ease });
-      gsap.to(`${detailsActive} .title-1`, { y: 0, delay: 0.15, duration: 0.7, ease });
-      gsap.to(`${detailsActive} .title-2`, { y: 0, delay: 0.15, duration: 0.7, ease });
-      gsap.to(`${detailsActive} .desc`, { y: 0, delay: 0.3, duration: 0.4, ease });
-      gsap.to(`${detailsActive} .cta`, { y: 0, delay: 0.35, duration: 0.4, onComplete: resolve, ease });
-      gsap.set(detailsInactive, { zIndex: 12 });
-
-      const [active, ...rest] = order;
-      const prv = rest[rest.length - 1];
-
-      if (mobile) {
-        // Mobile: simple crossfade between full-width cards
-        gsap.set(getCard(active), { zIndex: 20 });
-        gsap.to(getCard(active), {
-          x: 0, y: 0, ease,
-          width: width,
-          height: cardHeight,
-          borderRadius: '0 0 24px 24px',
-          opacity: 1,
-        });
-        // Hide previous card
-        gsap.set(getCard(prv), { zIndex: 10, opacity: 0 });
-        rest.forEach((i) => {
-          if (i !== prv) {
-            gsap.set(getCard(i), { opacity: 0, zIndex: 1 });
-          }
-        });
-        gsap.to(".progress-sub-foreground", { width: 500 * (1 / order.length) * (active + 1), ease });
-      } else {
-        // Desktop: original card stack animation
-        gsap.set(getCard(prv), { zIndex: 10 });
-        gsap.set(getCard(active), { zIndex: 20 });
-        gsap.to(getCard(prv), { scale: 1.5, ease });
-
-        gsap.to(getCardContent(active), { y: offsetTop + cardHeight - 10, opacity: 0, duration: 0.3, ease });
-        gsap.to(getSliderItem(active), { x: 0, ease });
-        gsap.to(getSliderItem(prv), { x: -numberSize, ease });
-        gsap.to(".progress-sub-foreground", { width: 500 * (1 / order.length) * (active + 1), ease });
-
-        gsap.to(getCard(active), {
-          x: 0, y: 0, ease,
-          width: window.innerWidth,
-          height: window.innerHeight,
-          borderRadius: 0,
-          onComplete: () => {
-            const xNew = offsetLeft + (rest.length - 1) * (cardWidth + gap);
-            gsap.set(getCard(prv), {
-              x: xNew, y: offsetTop,
-              width: cardWidth, height: cardHeight,
-              zIndex: 30, borderRadius: 10, scale: 1,
-            });
-            gsap.set(getCardContent(prv), {
-              x: xNew, y: offsetTop + cardHeight - 100,
-              opacity: 1, zIndex: 40,
-            });
-            gsap.set(getSliderItem(prv), { x: rest.length * numberSize });
-
-            gsap.set(detailsInactive, { opacity: 0 });
-            gsap.set(`${detailsInactive} .text`, { y: 100 });
-            gsap.set(`${detailsInactive} .title-1`, { y: 100 });
-            gsap.set(`${detailsInactive} .title-2`, { y: 100 });
-            gsap.set(`${detailsInactive} .desc`, { y: 50 });
-            gsap.set(`${detailsInactive} .cta`, { y: 60 });
-          },
-        });
-
-        rest.forEach((i, index) => {
-          if (i !== prv) {
-            const xNew = offsetLeft + index * (cardWidth + gap);
-            gsap.set(getCard(i), { zIndex: 30 });
-            gsap.to(getCard(i), {
-              x: xNew, y: offsetTop,
-              width: cardWidth, height: cardHeight,
-              ease, delay: 0.1 * (index + 1),
-            });
-            gsap.to(getCardContent(i), {
-              x: xNew, y: offsetTop + cardHeight - 100,
-              opacity: 1, zIndex: 40, ease,
-              delay: 0.1 * (index + 1),
-            });
-            gsap.to(getSliderItem(i), { x: (index + 1) * numberSize, ease });
-          }
-        });
-      }
-
-      // Reset inactive details
-      if (mobile) {
-        gsap.set(detailsInactive, { opacity: 0 });
-        gsap.set(`${detailsInactive} .text`, { y: 100 });
-        gsap.set(`${detailsInactive} .title-1`, { y: 100 });
-        gsap.set(`${detailsInactive} .title-2`, { y: 100 });
-        gsap.set(`${detailsInactive} .desc`, { y: 50 });
-        gsap.set(`${detailsInactive} .cta`, { y: 60 });
-      }
-    });
-  }, [playWhoosh, isMobile]);
-
-  const loop = useCallback(async () => {
-    if (!mountedRef.current) return;
-    await gsap.to(".indicator", { x: 0, duration: 2 });
-    if (!mountedRef.current) return;
-    await gsap.to(".indicator", { x: window.innerWidth, duration: 0.8, delay: 0.3 });
-    if (!mountedRef.current) return;
-    gsap.set(".indicator", { x: -window.innerWidth });
-    await step();
-  }, [step]);
-
-  const init = useCallback(() => {
-    if (isInitializedRef.current || !mountedRef.current) return;
-    isInitializedRef.current = true;
-
-    const order = orderRef.current;
-    const [active, ...rest] = order;
-    const detailsActive = detailsEvenRef.current ? "#details-even" : "#details-odd";
-    const detailsInactive = detailsEvenRef.current ? "#details-odd" : "#details-even";
-    const { innerHeight: height, innerWidth: width } = window;
-    const mobile = isMobile();
-    const offsetTop = mobile ? 0 : height - 430;
-    const offsetLeft = mobile ? 0 : width - 830;
-    const cardWidth = mobile ? width : 200;
-    const cardHeight = mobile ? Math.round(height * 0.5) : 300;
-    const gap = mobile ? 0 : 40;
-    const numberSize = 50;
-    const ease = "sine.inOut";
-
-    if (!mobile) {
-      gsap.set("#pagination", {
-        top: offsetTop + 330,
-        left: offsetLeft,
-        y: 200,
-        opacity: 0,
-        zIndex: 60,
-      });
-    }
-    gsap.set(".intro-nav", { y: -200, opacity: 0 });
-    gsap.set(".intro-actions", { y: 100, opacity: 0 });
-
-    if (mobile) {
-      // Mobile: active card fills top half
-      gsap.set(getCard(active), {
-        x: 0, y: 0,
-        width: width,
-        height: cardHeight,
-        borderRadius: '0 0 24px 24px',
-        opacity: 1,
-        zIndex: 20,
-      });
-      // Hide all other cards
-      rest.forEach((i) => {
-        gsap.set(getCard(i), { x: 0, y: 0, width: width, height: cardHeight, opacity: 0, zIndex: 1 });
-        gsap.set(getCardContent(i), { opacity: 0 });
-      });
-    } else {
-      gsap.set(getCard(active), {
-        x: 0, y: 0,
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-      rest.forEach((i, index) => {
-        gsap.set(getCard(i), {
-          x: offsetLeft + 400 + index * (cardWidth + gap),
-          y: offsetTop,
-          width: cardWidth,
-          height: cardHeight,
-          zIndex: 30,
-          borderRadius: 10,
-        });
-        gsap.set(getCardContent(i), {
-          x: offsetLeft + 400 + index * (cardWidth + gap),
-          zIndex: 40,
-          y: offsetTop + cardHeight - 100,
-        });
-        gsap.set(getSliderItem(i), { x: (index + 1) * numberSize });
-      });
-    }
-
-    gsap.set(getCardContent(active), { x: 0, y: 0, opacity: 0 });
-    gsap.set(detailsActive, { opacity: 0, zIndex: 22, x: mobile ? 0 : -200 });
-    gsap.set(detailsInactive, { opacity: 0, zIndex: 12 });
-    gsap.set(`${detailsInactive} .text`, { y: 100 });
-    gsap.set(`${detailsInactive} .title-1`, { y: 100 });
-    gsap.set(`${detailsInactive} .title-2`, { y: 100 });
-    gsap.set(`${detailsInactive} .desc`, { y: 50 });
-    gsap.set(`${detailsInactive} .cta`, { y: 60 });
-
-    gsap.set(".progress-sub-foreground", {
-      width: 500 * (1 / order.length) * (active + 1),
-    });
-
-    gsap.set(".indicator", { x: -window.innerWidth });
-
-    const startDelay = 0.6;
-
-    gsap.to(".cover", {
-      x: width + 400,
-      delay: 0.5,
-      ease,
-      onComplete: () => {
-        setTimeout(() => {
-          const runLoop = async () => {
-            if (!mountedRef.current) return;
-            await loop();
-            if (mountedRef.current) runLoop();
-          };
-          runLoop();
-        }, 500);
-      },
-    });
-
-    if (!mobile) {
-      rest.forEach((i, index) => {
-        gsap.to(getCard(i), {
-          x: offsetLeft + index * (cardWidth + gap),
-          zIndex: 30,
-          ease,
-          delay: startDelay,
-        });
-        gsap.to(getCardContent(i), {
-          x: offsetLeft + index * (cardWidth + gap),
-          zIndex: 40,
-          ease,
-          delay: startDelay,
-        });
-      });
-      gsap.to("#pagination", { y: 0, opacity: 1, ease, delay: startDelay });
-    }
-
-    gsap.to(".intro-nav", { y: 0, opacity: 1, ease, delay: startDelay });
-    gsap.to(".intro-actions", { y: 0, opacity: 1, ease, delay: startDelay + 0.3 });
-    gsap.to(detailsActive, { opacity: 1, x: 0, ease, delay: startDelay });
-  }, [loop, isMobile]);
-
+  // Animated particle/grid scene on canvas (works everywhere)
   useEffect(() => {
-    // Create audio element for sound effects
-    audioRef.current = new Audio(whooshSound);
-    audioRef.current.preload = 'auto';
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
 
-    // Load images first, then initialize
-    const loadImages = async () => {
-      const promises = data.map(({ image }) => {
-        return new Promise<void>((resolve, reject) => {
-          const img = new Image();
-          img.onload = () => resolve();
-          img.onerror = reject;
-          img.src = image;
-        });
+    let raf = 0;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const resize = () => {
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+    };
+    resize();
+    window.addEventListener('resize', resize);
+
+    const particles = Array.from({ length: 90 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.6 + 0.4,
+      vx: (Math.random() - 0.5) * 0.25,
+      vy: (Math.random() - 0.5) * 0.25,
+      hue: Math.random() > 0.5 ? 270 : 320,
+    }));
+
+    const pointer = { x: canvas.width / 2, y: canvas.height / 2 };
+    const onMove = (e: PointerEvent) => {
+      pointer.x = e.clientX * dpr;
+      pointer.y = e.clientY * dpr;
+    };
+    window.addEventListener('pointermove', onMove);
+
+    let t = 0;
+    const render = () => {
+      t += 0.005;
+      ctx.fillStyle = 'rgba(8, 6, 18, 0.35)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Grid
+      ctx.strokeStyle = 'rgba(139, 92, 246, 0.07)';
+      ctx.lineWidth = 1;
+      const gap = 60 * dpr;
+      const offset = (t * 20) % gap;
+      for (let x = -offset; x < canvas.width; x += gap) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+      }
+      for (let y = -offset; y < canvas.height; y += gap) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+      }
+
+      // Scan line
+      const scanY = (Math.sin(t * 1.2) * 0.5 + 0.5) * canvas.height;
+      const grad = ctx.createLinearGradient(0, scanY - 80 * dpr, 0, scanY + 80 * dpr);
+      grad.addColorStop(0, 'rgba(139, 92, 246, 0)');
+      grad.addColorStop(0.5, 'rgba(244, 114, 182, 0.18)');
+      grad.addColorStop(1, 'rgba(139, 92, 246, 0)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, scanY - 80 * dpr, canvas.width, 160 * dpr);
+
+      // Particles
+      particles.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+        const dx = p.x - pointer.x, dy = p.y - pointer.y;
+        const dist = Math.hypot(dx, dy);
+        const glow = Math.max(0, 1 - dist / (200 * dpr));
+        ctx.beginPath();
+        ctx.fillStyle = `hsla(${p.hue}, 90%, ${60 + glow * 30}%, ${0.4 + glow * 0.6})`;
+        ctx.arc(p.x, p.y, p.r * (1 + glow * 2), 0, Math.PI * 2);
+        ctx.fill();
       });
-      
-      try {
-        await Promise.all(promises);
-        setIsLoading(false);
-        // Small delay to ensure DOM is ready
-        setTimeout(() => {
-          init();
-        }, 100);
-      } catch (error) {
-        console.error("One or more images failed to load", error);
-        setIsLoading(false);
-        init(); // Initialize anyway
-      }
-    };
 
-    // Touch support for mobile
-    const handleTouchStart = (e: TouchEvent) => {
-      touchStartRef.current = e.touches[0].clientX;
+      raf = requestAnimationFrame(render);
     };
-    
-    const handleTouchEnd = (e: TouchEvent) => {
-      const touchEnd = e.changedTouches[0].clientX;
-      const diff = touchStartRef.current - touchEnd;
-      
-      // Swipe left to go next
-      if (diff > 50) {
-        step();
-      }
-    };
-    
-    const container = containerRef.current;
-    if (container) {
-      container.addEventListener('touchstart', handleTouchStart, { passive: true });
-      container.addEventListener('touchend', handleTouchEnd, { passive: true });
-    }
-
-    loadImages();
+    render();
 
     return () => {
-      mountedRef.current = false;
-      if (loopIntervalRef.current) {
-        clearInterval(loopIntervalRef.current);
-      }
-      gsap.killTweensOf("*");
-      if (container) {
-        container.removeEventListener('touchstart', handleTouchStart);
-        container.removeEventListener('touchend', handleTouchEnd);
-      }
+      cancelAnimationFrame(raf);
+      window.removeEventListener('resize', resize);
+      window.removeEventListener('pointermove', onMove);
     };
-  }, [init, step]);
+  }, []);
+
+  // Sequence text reveals
+  useEffect(() => {
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    TITLE_WORDS.forEach((_, i) => {
+      timers.push(setTimeout(() => setVisibleWords(i + 1), 400 + i * 350));
+    });
+    timers.push(setTimeout(() => setSubtitleVisible(true), 400 + TITLE_WORDS.length * 350 + 200));
+    timers.push(setTimeout(() => setCtaVisible(true), 400 + TITLE_WORDS.length * 350 + 700));
+    return () => timers.forEach(clearTimeout);
+  }, []);
 
   return (
-    <div className="intro-page" ref={containerRef}>
-      {/* Loading Skeleton */}
-      {isLoading && (
-        <div className="loading-skeleton">
-          <div className="skeleton-logo"></div>
-          <div className="skeleton-text">
-            <div className="skeleton-line title"></div>
-            <div className="skeleton-line subtitle"></div>
-            <div className="skeleton-line desc"></div>
-            <div className="skeleton-line desc"></div>
-          </div>
-          <div className="skeleton-cards">
-            <div className="skeleton-card"></div>
-            <div className="skeleton-card"></div>
-            <div className="skeleton-card"></div>
-          </div>
-          <div className="skeleton-pulse"></div>
-        </div>
-      )}
-      
-      {/* Audio preload */}
-      <audio src={whooshSound} preload="auto" style={{ display: 'none' }} />
-      
-      {/* Progress Indicator */}
-      <div className="indicator"></div>
+    <div className="intro-futuristic">
+      <canvas ref={canvasRef} className="intro-canvas" />
 
-      {/* Navigation */}
-      <nav className="intro-nav">
-        <div>
-          <span className="logo-text">VA</span>
-        </div>
-        <div className="intro-nav-right">
-          <button 
-            className="sound-toggle"
-            onClick={toggleSound}
-            aria-label={soundEnabled ? "Mute sounds" : "Enable sounds"}
-          >
-            {soundEnabled ? <Volume2 size={18} /> : <VolumeX size={18} />}
-          </button>
-          <span style={{ opacity: 0.7 }}>Vanshu Agarwal</span>
-        </div>
+      <div className="intro-vignette" />
+
+      <nav className="intro-nav-mini">
+        <span className="intro-logo">VA</span>
+        <span className="intro-meta">PORTFOLIO • 2026</span>
       </nav>
 
-      {/* Cards Container */}
-      <div id="demo">
-        {data.map((item, index) => (
-          <div 
-            key={`card-${index}`}
-            className="card" 
-            id={`card${index}`} 
-            style={{ backgroundImage: `url(${item.image})` }}
-          ></div>
-        ))}
-        {data.map((item, index) => (
-          <div key={`content-${index}`} className="card-content" id={`card-content-${index}`}>
-            <div className="content-start"></div>
-            <div className="content-place">{item.place}</div>
-            <div className="content-title-1">{item.title}</div>
-            <div className="content-title-2">{item.title2}</div>
-          </div>
-        ))}
-      </div>
+      <div className="intro-content">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="intro-eyebrow"
+        >
+          <span className="dot" /> Welcome
+        </motion.div>
 
-      {/* Details Even */}
-      <div className="details" id="details-even">
-        <div className="place-box">
-          <div className="text">{data[0].place}</div>
-        </div>
-        <div className="title-box-1"><div className="title-1">{data[0].title}</div></div>
-        <div className="title-box-2"><div className="title-2">{data[0].title2}</div></div>
-        <div className="desc">{data[0].description}</div>
-        <div className="cta">
-          <button className="bookmark">
-            <Bookmark size={20} />
-          </button>
-          <button className="discover" onClick={handleEnterWithTransition}>Explore Portfolio</button>
-        </div>
-      </div>
-
-      {/* Details Odd */}
-      <div className="details" id="details-odd">
-        <div className="place-box">
-          <div className="text">{data[0].place}</div>
-        </div>
-        <div className="title-box-1"><div className="title-1">{data[0].title}</div></div>
-        <div className="title-box-2"><div className="title-2">{data[0].title2}</div></div>
-        <div className="desc">{data[0].description}</div>
-        <div className="cta">
-          <button className="bookmark">
-            <Bookmark size={20} />
-          </button>
-          <button className="discover" onClick={handleEnterWithTransition}>Explore Portfolio</button>
-        </div>
-      </div>
-
-      {/* Pagination */}
-      <div className="pagination" id="pagination">
-        <div className="arrow arrow-left">
-          <ChevronLeft />
-        </div>
-        <div className="arrow arrow-right" onClick={() => step()}>
-          <ChevronRight />
-        </div>
-        <div className="progress-sub-container">
-          <div className="progress-sub-background">
-            <div className="progress-sub-foreground"></div>
-          </div>
-        </div>
-        <div className="slide-numbers" id="slide-numbers">
-          {data.map((_, index) => (
-            <div key={index} className="item" id={`slide-item-${index}`}>{index + 1}</div>
+        <h1 className="intro-title">
+          {TITLE_WORDS.map((word, i) => (
+            <span
+              key={word}
+              className={`intro-word ${i < visibleWords ? 'in' : ''}`}
+              style={{ transitionDelay: `${i * 0.08}s` }}
+            >
+              {word}
+            </span>
           ))}
+        </h1>
+
+        <p className={`intro-subtitle ${subtitleVisible ? 'in' : ''}`}>{SUBTITLE}</p>
+
+        <div className={`intro-actions ${ctaVisible ? 'in' : ''}`}>
+          <button className="intro-cta" onClick={onEnter}>
+            <span>Enter Portfolio</span>
+            <span className="intro-cta-glow" />
+          </button>
+          <button className="intro-skip" onClick={onEnter}>Skip intro →</button>
         </div>
       </div>
 
-      {/* Enter Action - Skip button removed */}
-      <div className="intro-actions">
-        <button className="enter-btn" onClick={handleEnterWithTransition}>
-          <Play size={16} style={{ marginRight: 8, display: 'inline' }} />
-          Enter Website
-        </button>
-      </div>
+      <button className="intro-scroll-hint" onClick={onEnter} aria-label="Enter">
+        <span>Scroll to explore</span>
+        <ChevronDown size={18} />
+      </button>
 
-      {/* Mobile swipe hint */}
-      <div className="mobile-swipe-hint">
-        <ChevronLeft size={16} />
-        <span>Swipe to explore</span>
-        <ChevronRight size={16} />
-      </div>
-
-      {/* Cover */}
-      <div className="cover"></div>
-      
-      {/* Page Transition Overlay */}
-      <div className="page-transition-overlay" ref={transitionRef}></div>
+      <div className="intro-corner intro-corner-tl" />
+      <div className="intro-corner intro-corner-tr" />
+      <div className="intro-corner intro-corner-bl" />
+      <div className="intro-corner intro-corner-br" />
     </div>
   );
 };
