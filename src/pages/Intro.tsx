@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, ArrowRight } from 'lucide-react';
 import './Intro.css';
 
 interface IntroProps {
@@ -149,8 +149,9 @@ const Intro = ({ onEnter }: IntroProps) => {
         <p className={`intro-subtitle ${subtitleVisible ? 'in' : ''}`}>{SUBTITLE}</p>
 
         <div className={`intro-actions ${ctaVisible ? 'in' : ''}`}>
-          <button className="intro-cta" onClick={onEnter}>
-            <span>Enter Portfolio</span>
+          <button className="intro-cta" onClick={onEnter} aria-label="Enter Portfolio">
+            <span className="intro-cta-label">Enter Portfolio</span>
+            <ArrowRight size={18} className="intro-cta-arrow" />
             <span className="intro-cta-glow" />
           </button>
           <button className="intro-skip" onClick={onEnter}>Skip intro →</button>
