@@ -95,10 +95,9 @@ const Index = () => {
             transition={{ duration: 0.8, ease: smoothEase }}
             className="text-center mb-10 md:mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent">
-                Achievements & Milestones
-              </span>
+            <span className="eyebrow mb-4">Milestones</span>
+            <h2 className="display-lg mt-4 mb-4 text-foreground">
+              Achievements
             </h2>
             <p className="text-muted-foreground text-base md:text-lg">Celebrating growth and success</p>
           </motion.div>
@@ -150,10 +149,9 @@ const Index = () => {
             transition={{ duration: 0.8, ease: smoothEase }}
             className="text-center mb-10 md:mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent">
-                Trusted by Amazing Creators
-              </span>
+            <span className="eyebrow mb-4">Clients</span>
+            <h2 className="display-lg mt-4 mb-4 text-foreground">
+              Trusted by Amazing Creators
             </h2>
             <p className="text-muted-foreground text-base md:text-lg">YouTube channels I've had the pleasure to work with</p>
           </motion.div>
@@ -241,7 +239,7 @@ const Index = () => {
             >
               <motion.a
                 href="/contact"
-                className="inline-flex items-center justify-center px-6 md:px-8 py-3 md:py-4 bg-primary hover:bg-primary/90 text-primary-foreground font-medium rounded-xl transition-all duration-300 shadow-glow"
+                className="btn-pill-solid"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -249,7 +247,7 @@ const Index = () => {
               </motion.a>
               <motion.a
                 href="/portfolio"
-                className="inline-flex items-center justify-center px-6 md:px-8 py-3 md:py-4 bg-background/50 hover:bg-background/70 text-foreground font-medium rounded-xl transition-all duration-300 border border-border"
+                className="btn-pill"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

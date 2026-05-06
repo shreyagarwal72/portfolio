@@ -70,11 +70,9 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
                     key={item.path}
                     to={item.path}
                     className={cn(
-                      'relative px-3.5 py-2 text-sm font-medium rounded-lg transition-all duration-300 whitespace-nowrap',
+                      'relative px-3.5 py-2 text-[13px] font-medium uppercase tracking-[0.12em] transition-all duration-300 whitespace-nowrap',
                       'hover:text-primary',
-                      isActive(item.path)
-                        ? 'text-primary'
-                        : 'text-muted-foreground'
+                      isActive(item.path) ? 'text-primary' : 'text-muted-foreground'
                     )}
                     aria-current={isActive(item.path) ? 'page' : undefined}
                   >
@@ -82,7 +80,7 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
                     {isActive(item.path) && (
                       <motion.div
                         layoutId="activeDesktopNav"
-                        className="absolute inset-0 rounded-lg bg-primary/10 border border-primary/20"
+                        className="absolute left-3.5 right-3.5 -bottom-0.5 h-px bg-primary"
                         transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                       />
                     )}
@@ -95,8 +93,8 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
                 <ThemeToggle />
                 <motion.a 
                   href="tel:+919412104618"
-                  className="flex items-center gap-1.5 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-all duration-300 shadow-lg shadow-primary/20"
-                  whileHover={{ scale: 1.03, boxShadow: "0 8px 25px hsl(var(--primary) / 0.35)" }}
+                  className="btn-pill-solid"
+                  whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                 >
                   <Phone size={14} />
