@@ -93,8 +93,8 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
                 <ThemeToggle />
                 <motion.a 
                   href="tel:+919412104618"
-                  className="flex items-center gap-1.5 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-all duration-300 shadow-lg shadow-primary/20"
-                  whileHover={{ scale: 1.03, boxShadow: "0 8px 25px hsl(var(--primary) / 0.35)" }}
+                  className="btn-pill-solid"
+                  whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                 >
                   <Phone size={14} />
