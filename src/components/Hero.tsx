@@ -93,88 +93,76 @@ const Hero = () => {
           <div className="absolute inset-0 bg-background/85 dark:bg-background/80" />
         </motion.div>
 
+        {/* Vignette overlay */}
+        <div className="absolute inset-0 z-[1] bg-gradient-to-r from-background via-background/70 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 z-[1] bg-gradient-to-b from-background/60 via-transparent to-background pointer-events-none" />
+
         {/* Content */}
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="space-y-8">
-            <header className="space-y-4">
-              {/* Character-by-character VANSHU */}
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight">
-                <span className="block bg-gradient-to-r from-primary via-primary/80 to-primary-foreground bg-clip-text text-transparent gradient-text-animate">
-                  {nameChars.map((char, i) => (
-                    <motion.span
-                      key={`first-${i}`}
-                      className="inline-block"
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{
-                        duration: 0.6,
-                        delay: 0.3 + i * 0.05,
-                        ease: smoothEase,
-                      }}
-                    >
-                      {char}
-                    </motion.span>
-                  ))}
-                </span>
-                <span className="block text-foreground">
-                  {lastNameChars.map((char, i) => (
-                    <motion.span
-                      key={`last-${i}`}
-                      className="inline-block"
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{
-                        duration: 0.6,
-                        delay: 0.6 + i * 0.05,
-                        ease: smoothEase,
-                      }}
-                    >
-                      {char}
-                    </motion.span>
-                  ))}
-                </span>
-              </h1>
+        <div className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="max-w-3xl">
+            <motion.span
+              className="eyebrow mb-6"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.1, ease: smoothEase }}
+            >
+              Portfolio · 2026
+            </motion.span>
 
-              {/* Rotating subtitle */}
-              <div className="h-8 sm:h-10 md:h-12 relative overflow-hidden">
-                <AnimatePresence mode="wait">
-                  <motion.p
-                    key={roleIndex}
-                    className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-light tracking-wide absolute inset-x-0"
-                    initial={{ opacity: 0, y: 20 }}
+            <h1 className="display-xl mt-5 text-foreground">
+              <span className="block opacity-80 font-light tracking-tight" style={{ fontWeight: 300, fontSize: '0.45em' }}>
+                {nameChars.map((char, i) => (
+                  <motion.span
+                    key={`first-${i}`}
+                    className="inline-block"
+                    initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.5, ease: smoothEase }}
-                    role="doc-subtitle"
+                    transition={{ duration: 0.6, delay: 0.3 + i * 0.04, ease: smoothEase }}
                   >
-                    {roles[roleIndex]}
-                  </motion.p>
-                </AnimatePresence>
-              </div>
-            </header>
+                    {char}
+                  </motion.span>
+                ))}
+              </span>
+              <span className="block">
+                {lastNameChars.map((char, i) => (
+                  <motion.span
+                    key={`last-${i}`}
+                    className="inline-block"
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, delay: 0.55 + i * 0.04, ease: smoothEase }}
+                  >
+                    {char}
+                  </motion.span>
+                ))}
+              </span>
+            </h1>
 
-            {/* CTA Buttons */}
+            <div className="mt-6 h-8 sm:h-10 relative overflow-hidden">
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={roleIndex}
+                  className="text-base sm:text-lg md:text-xl text-muted-foreground font-light tracking-[0.15em] uppercase absolute inset-x-0"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5, ease: smoothEase }}
+                  role="doc-subtitle"
+                >
+                  {roles[roleIndex]}
+                </motion.p>
+              </AnimatePresence>
+            </div>
+
             <motion.nav
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4 sm:px-0"
+              className="mt-10 flex flex-wrap gap-4"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.2, ease: smoothEase }}
               aria-label="Main navigation actions"
             >
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.2 }}
-              >
-                <CreepyButton to="/cv">Open CV</CreepyButton>
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.2 }}
-              >
-                <ElectricButton to="/portfolio" text="View Portfolio" />
-              </motion.div>
+              <a href="/cv" className="btn-pill">Resume</a>
+              <a href="/portfolio" className="btn-pill-solid">Portfolio</a>
             </motion.nav>
           </div>
         </div>
