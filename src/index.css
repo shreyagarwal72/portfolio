@@ -6,36 +6,31 @@
 
 @layer base {
   :root {
-    /* Light theme base colors */
-    --background: 0 0% 100%;
-    --foreground: 210 11% 15%;
+    /* Cinematic Dark Portfolio — light variant (clean neutrals + electric blue) */
+    --background: 0 0% 98%;
+    --foreground: 220 13% 10%;
 
-    /* Card system for light theme */
-    --card: 0 0% 98%;
-    --card-foreground: 210 11% 15%;
-    --card-hover: 210 11% 96%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 13% 10%;
+    --card-hover: 220 14% 96%;
 
-    /* Popover colors */
     --popover: 0 0% 100%;
-    --popover-foreground: 210 11% 15%;
+    --popover-foreground: 220 13% 10%;
 
-    /* Blue accent system */
-    --primary: 217 91% 55%;
+    /* Electric blue accent */
+    --primary: 211 82% 52%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 220 100% 60%;
-    --primary-dark: 215 85% 45%;
+    --primary-glow: 211 82% 64%;
+    --primary-dark: 211 82% 42%;
 
-    /* Secondary greys */
-    --secondary: 210 11% 93%;
-    --secondary-foreground: 210 11% 25%;
+    --secondary: 220 14% 94%;
+    --secondary-foreground: 220 13% 20%;
 
-    /* Muted elements */
-    --muted: 210 11% 95%;
-    --muted-foreground: 210 11% 45%;
+    --muted: 220 14% 94%;
+    --muted-foreground: 220 9% 35%;
 
-    /* Accent variations */
-    --accent: 210 11% 94%;
-    --accent-foreground: 210 11% 15%;
+    --accent: 211 82% 52%;
+    --accent-foreground: 0 0% 100%;
 
     /* Status colors */
     --destructive: 0 84% 55%;
