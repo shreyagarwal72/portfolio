@@ -4,8 +4,6 @@ import heroWorkspaceLight from '@/assets/hero-workspace-light.jpg';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Floating3D = lazy(() => import('@/components/Floating3D').then(m => ({ default: m.Floating3D })));
-import ElectricButton from '@/components/ElectricButton';
-import CreepyButton from '@/components/CreepyButton';
 
 const smoothEase: [number, number, number, number] = [0.25, 0.4, 0.25, 1];
 
