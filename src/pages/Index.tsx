@@ -149,10 +149,9 @@ const Index = () => {
             transition={{ duration: 0.8, ease: smoothEase }}
             className="text-center mb-10 md:mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent">
-                Trusted by Amazing Creators
-              </span>
+            <span className="eyebrow mb-4">Clients</span>
+            <h2 className="display-lg mt-4 mb-4 text-foreground">
+              Trusted by Amazing Creators
             </h2>
             <p className="text-muted-foreground text-base md:text-lg">YouTube channels I've had the pleasure to work with</p>
           </motion.div>
