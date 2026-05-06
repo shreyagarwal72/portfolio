@@ -241,7 +241,7 @@ const Index = () => {
             >
               <motion.a
                 href="/contact"
-                className="inline-flex items-center justify-center px-6 md:px-8 py-3 md:py-4 bg-primary hover:bg-primary/90 text-primary-foreground font-medium rounded-xl transition-all duration-300 shadow-glow"
+                className="btn-pill-solid"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -249,7 +249,7 @@ const Index = () => {
               </motion.a>
               <motion.a
                 href="/portfolio"
-                className="inline-flex items-center justify-center px-6 md:px-8 py-3 md:py-4 bg-background/50 hover:bg-background/70 text-foreground font-medium rounded-xl transition-all duration-300 border border-border"
+                className="btn-pill"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
