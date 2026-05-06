@@ -21,7 +21,7 @@
 
 ---
 
-## 👨‍🎨 About Vanshu
+## 👨‍🎨 About Vanshu 
 
 **Video Editor | Gamer | Musician | Creative Mind**
 
