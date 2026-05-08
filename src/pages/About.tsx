@@ -6,6 +6,7 @@ import SocialMediaCards from '@/components/SocialMediaCards';
 import TiltCard from '@/components/TiltCard';
 
 const FloatingParticles = lazy(() => import('@/components/FloatingParticles'));
+const AccentShape3D = lazy(() => import('@/components/AccentShape3D'));
 
 const About = () => {
   useEffect(() => {
