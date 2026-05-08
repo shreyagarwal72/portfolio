@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, lazy, Suspense } from "react"
 import { motion } from "framer-motion"
 import { ExternalLink } from "lucide-react"
 
@@ -13,6 +13,9 @@ import previewOrbitalWorld from "@/assets/preview-orbital-world.jpg"
 import certificateGreenhat from "@/assets/certificate-greenhat.jpg"
 import certificateAmarujala from "@/assets/certificate-amarujala.jpg"
 import { Card, CardContent } from "@/components/ui/card"
+
+const AccentShape3D = lazy(() => import("@/components/AccentShape3D"))
+const FloatingParticles = lazy(() => import("@/components/FloatingParticles"))
 
 // SEO Hook
 const useSEO = () => {
@@ -168,11 +171,24 @@ export default function Portfolio() {
       : projects.filter((project) => project.category === selectedCategory)
 
   return (
-    <main className="min-h-screen pt-20 pb-16" role="main">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <main className="min-h-screen pt-20 pb-16 relative overflow-hidden" role="main">
+      {/* Background particles */}
+      <Suspense fallback={null}>
+        <div className="absolute inset-0 opacity-20 pointer-events-none">
+          <FloatingParticles count={30} color="#5B9FED" className="w-full h-full" />
+        </div>
+      </Suspense>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Hero Section */}
-        <header className="text-center mb-20">
+        <header className="text-center mb-20 relative">
+          {/* Floating 3D accent */}
+          <Suspense fallback={null}>
+            <div className="hidden md:block absolute top-0 right-0 w-56 h-56 opacity-70 pointer-events-none">
+              <AccentShape3D shape="knot" className="w-full h-full" />
+            </div>
+          </Suspense>
           <motion.h1
             className="text-5xl lg:text-7xl font-bold text-foreground mb-6 animate-fade-in"
             initial={{ opacity: 0, y: -30 }}

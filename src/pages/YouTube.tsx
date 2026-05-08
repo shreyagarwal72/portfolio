@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import VideoPlayer from '@/components/VideoPlayer';
+
+const FloatingParticles = lazy(() => import('@/components/FloatingParticles'));
 
 const YouTube = () => {
   const [subscriberCount, setSubscriberCount] = useState<string | null>(null);
@@ -58,7 +60,13 @@ const YouTube = () => {
   const isLoading = subscriberCount === null;
 
   return (
-    <div className="min-h-screen pt-20 pb-16">
+    <div className="min-h-screen pt-20 pb-16 relative overflow-hidden">
+      <Suspense fallback={null}>
+        <div className="absolute inset-0 opacity-25 pointer-events-none">
+          <FloatingParticles count={25} color="#ef4444" className="w-full h-full" />
+        </div>
+      </Suspense>
+      <div className="relative z-10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Hero Header */}
@@ -154,6 +162,7 @@ const YouTube = () => {
             </a>
           </Button>
         </div>
+      </div>
       </div>
     </div>
   );
