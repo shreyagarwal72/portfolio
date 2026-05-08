@@ -17,6 +17,8 @@ import { SplineScene } from '@/components/ui/splite';
 import { Spotlight } from '@/components/ui/spotlight';
 import ChatBotInput from '@/components/ChatBotInput';
 
+const FloatingParticles = lazy(() => import('@/components/FloatingParticles'));
+
 interface Message {
   role: 'user' | 'assistant';
   content: string;
