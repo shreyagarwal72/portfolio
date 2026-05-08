@@ -15,6 +15,7 @@ import {
 import TiltCard from '@/components/TiltCard';
 
 const FloatingParticles = lazy(() => import('@/components/FloatingParticles'));
+const SkillsCloud3D = lazy(() => import('@/components/SkillsCloud3D'));
 
 const Skills = () => {
   const [animationStarted, setAnimationStarted] = useState(false);
