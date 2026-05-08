@@ -69,9 +69,9 @@ const Hero = () => {
         {/* 3D Background */}
         <Suspense fallback={null}>
           <motion.div
-            className="absolute inset-0 lg:left-1/3 opacity-30 lg:opacity-50 pointer-events-none z-[2]"
+            className="absolute inset-0 opacity-20 pointer-events-none z-0"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={{ opacity: 0.2 }}
             transition={{ duration: 2, ease: smoothEase }}
           >
             <Floating3D className="w-full h-full" />

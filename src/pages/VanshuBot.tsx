@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, lazy, Suspense } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Sparkles, Trash2, Copy, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -16,8 +16,6 @@ import { Card } from '@/components/ui/card';
 import { SplineScene } from '@/components/ui/splite';
 import { Spotlight } from '@/components/ui/spotlight';
 import ChatBotInput from '@/components/ChatBotInput';
-
-const FloatingParticles = lazy(() => import('@/components/FloatingParticles'));
 
 interface Message {
   role: 'user' | 'assistant';
@@ -326,13 +324,8 @@ const VanshuBot = () => {
   };
 
   return (
-    <main className="min-h-screen pt-16 bg-background pb-32 relative overflow-hidden" role="main">
-      <Suspense fallback={null}>
-        <div className="absolute inset-0 opacity-25 pointer-events-none">
-          <FloatingParticles count={20} color="#a855f7" className="w-full h-full" />
-        </div>
-      </Suspense>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
+    <main className="min-h-screen pt-16 bg-background pb-32" role="main">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Hero Section with 3D Robot */}
         <Card className="w-full h-[300px] md:h-[400px] lg:h-[500px] bg-card/50 relative overflow-hidden mb-8 border-border">
           <Spotlight

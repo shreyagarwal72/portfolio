@@ -6,7 +6,6 @@ import SocialMediaCards from '@/components/SocialMediaCards';
 import TiltCard from '@/components/TiltCard';
 
 const FloatingParticles = lazy(() => import('@/components/FloatingParticles'));
-const AccentShape3D = lazy(() => import('@/components/AccentShape3D'));
 
 const About = () => {
   useEffect(() => {
@@ -124,12 +123,6 @@ const About = () => {
 
           {/* Profile Image Section */}
           <aside className="relative animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            {/* Floating 3D accent */}
-            <Suspense fallback={null}>
-              <div className="hidden md:block absolute -top-10 -right-10 w-48 h-48 opacity-70 pointer-events-none z-20">
-                <AccentShape3D shape="octa" className="w-full h-full" />
-              </div>
-            </Suspense>
             <div className="relative">
               {/* Glow effect background */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/5 rounded-2xl blur-xl scale-105" aria-hidden="true"></div>
