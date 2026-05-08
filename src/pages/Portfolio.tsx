@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, lazy, Suspense } from "react"
 import { motion } from "framer-motion"
 import { ExternalLink } from "lucide-react"
 
@@ -13,6 +13,9 @@ import previewOrbitalWorld from "@/assets/preview-orbital-world.jpg"
 import certificateGreenhat from "@/assets/certificate-greenhat.jpg"
 import certificateAmarujala from "@/assets/certificate-amarujala.jpg"
 import { Card, CardContent } from "@/components/ui/card"
+
+const AccentShape3D = lazy(() => import("@/components/AccentShape3D"))
+const FloatingParticles = lazy(() => import("@/components/FloatingParticles"))
 
 // SEO Hook
 const useSEO = () => {
