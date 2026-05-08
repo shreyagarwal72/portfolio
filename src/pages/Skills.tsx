@@ -120,7 +120,7 @@ const Skills = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Hero Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <h1 className="text-5xl lg:text-7xl font-bold text-foreground mb-6 animate-fade-in">
             MY <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">SKILLS</span>
           </h1>
@@ -128,6 +128,13 @@ const Skills = () => {
             A comprehensive overview of my technical expertise, creative abilities, and professional experience in content creation and digital media.
           </p>
         </div>
+
+        {/* Interactive 3D Skills Cloud */}
+        <Suspense fallback={null}>
+          <div className="mb-16 h-[320px] md:h-[420px] w-full animate-fade-in">
+            <SkillsCloud3D className="w-full h-full" />
+          </div>
+        </Suspense>
 
         <div className="grid lg:grid-cols-3 gap-8">
           
