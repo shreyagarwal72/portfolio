@@ -8,6 +8,8 @@ import { Mail, Phone, MapPin, Send, Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import emailjs from "emailjs-com";
 
+const FloatingParticles = lazy(() => import('@/components/FloatingParticles'));
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
