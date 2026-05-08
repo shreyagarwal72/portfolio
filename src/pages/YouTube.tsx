@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import VideoPlayer from '@/components/VideoPlayer';
+
+const FloatingParticles = lazy(() => import('@/components/FloatingParticles'));
 
 const YouTube = () => {
   const [subscriberCount, setSubscriberCount] = useState<string | null>(null);
