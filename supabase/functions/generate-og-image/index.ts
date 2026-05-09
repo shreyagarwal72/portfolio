@@ -12,9 +12,13 @@ serve(async (req) => {
 
   try {
     const url = new URL(req.url);
-    const title = url.searchParams.get("title") || "Vanshu Agarwal";
-    const subtitle = url.searchParams.get("subtitle") || "Video Editor & Creative Mind";
-    const page = url.searchParams.get("page") || "home";
+    const sanitize = (v: string | null, fallback: string, max = 100) =>
+      (v || fallback).slice(0, max).replace(/[^\w\s.,!?&'-]/g, "");
+    const ALLOWED_PAGES = new Set(["home", "about", "portfolio", "skills", "contact", "youtube", "articles", "faq", "cv"]);
+    const title = sanitize(url.searchParams.get("title"), "Vanshu Agarwal", 100);
+    const subtitle = sanitize(url.searchParams.get("subtitle"), "Video Editor & Creative Mind", 150);
+    const pageRaw = (url.searchParams.get("page") || "home").toLowerCase();
+    const page = ALLOWED_PAGES.has(pageRaw) ? pageRaw : "home";
 
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) {
