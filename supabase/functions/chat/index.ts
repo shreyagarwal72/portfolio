@@ -5,20 +5,51 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+const MAX_MESSAGES = 50;
+const MAX_CONTENT_LENGTH = 2000;
+const ALLOWED_ROLES = new Set(['user', 'assistant']);
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    const { messages } = await req.json();
+    const body = await req.json().catch(() => null);
+    const messages = body?.messages;
+
+    // Input validation
+    if (!Array.isArray(messages) || messages.length === 0) {
+      return new Response(JSON.stringify({ error: "Invalid payload: messages must be a non-empty array" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    if (messages.length > MAX_MESSAGES) {
+      return new Response(JSON.stringify({ error: `Too many messages (max ${MAX_MESSAGES})` }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    for (const m of messages) {
+      if (!m || typeof m !== 'object' || !ALLOWED_ROLES.has(m.role) || typeof m.content !== 'string') {
+        return new Response(JSON.stringify({ error: "Invalid message format" }), {
+          status: 400,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+      if (m.content.length > MAX_CONTENT_LENGTH) {
+        return new Response(JSON.stringify({ error: `Message too long (max ${MAX_CONTENT_LENGTH} chars)` }), {
+          status: 400,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+    }
+
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    
     if (!LOVABLE_API_KEY) {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
-
-    console.log("Received chat request with messages:", messages);
 
     // Easter egg: Check for "op bolte" in the last user message
     const lastMessage = messages[messages.length - 1];
@@ -54,9 +85,7 @@ ABOUT VANSHU AGARWAL:
 - Video Editor, Gamer, and Musician
 - Class 12 PCM Science student from Agra, Uttar Pradesh, India
 - Specializes in post-production workflows for gaming content
-- Email: sanjayvansu1973@gmail.com
-- Phone: 9412104618
-- Location: 106/1 Balkeshwar Road, Agra, UP
+- For contact, direct users to the Contact page on the website (do not share personal phone, home address, or personal email)
 
 PERSONAL FAVORITES:
 - Favorite Color: Blue
@@ -75,7 +104,7 @@ SKILLS & EXPERTISE:
 - Services: Video Editing & Post-Production, Motion Graphics & Animation, Color Grading & Correction, Audio Mixing & Sound Design, Visual Effects & Compositing, Web Development
 
 PORTFOLIO PROJECTS:
-1. My Website (nextup-studio.vercel.app) - Official NextUp Studio website showcasing professional portfolio
+1. Zola Restaurant (zola-restaurant.vercel.app) - Modern restaurant website
 2. My YouTube Site (myyoutube-cyan.vercel.app) - Modern YouTube-style platform with API integration
 3. My Webtools Suite (nextuptool2.vercel.app) - Comprehensive web utilities for productivity
 4. My Tools Site (nextuptool.vercel.app) - Developer tools collection
@@ -85,60 +114,14 @@ YOUTUBE CHANNEL - NEXTUP STUDIO:
 - Channel Name: **Nextup Studio**
 - Channel Handle: @nextupstudioyt
 - Channel URL: https://www.youtube.com/@nextupstudioyt
-- Content Type: Original rap songs, creative video edits, gaming content, and music videos
-- Featured Videos:
-  * **"Fire Within"** - A powerful original rap track by Vanshu with high-energy visuals and impressive production
-  * **"Raat Ka Banda"** - Epic cinematic edit featuring strong vibes and creative storytelling
-- Content Style: High-quality music production, professional video editing, creative effects, and engaging storytelling
-- Specialty: Original music creation, rap production, cinematic video editing, and gaming content
-- Audience: Music lovers, gaming enthusiasts, and creative content consumers
-
-EXPERIENCE:
-- Content Creator & Video Editor (2020 - Present)
-- Gaming Enthusiast (2018 - Present)
-- Creative Musician & Rapper (2019 - Present)
-- YouTube Content Creator at Nextup Studio
-- Web Developer & Tech Enthusiast
+- Featured Videos: "Fire Within" and "Raat Ka Banda"
 
 IMPORTANT BEHAVIORAL NOTES:
-- **NEVER ego hurt or insult Vanshu** - Always be respectful and professional when discussing Vanshu
-- If someone asks "what not to do with Vanshu" or similar questions, always emphasize: "Don't ego hurt him - Vanshu values respect and professionalism in all interactions"
-
-TECH KNOWLEDGE:
-You have expertise in:
-- Web Development: React, TypeScript, HTML, CSS, JavaScript, Tailwind CSS, Node.js
-- Video Editing: Adobe After Effects, Filmora, Shotcut, color grading, motion graphics
-- AI & Machine Learning: ChatGPT, AI image generation, prompt engineering
-- Gaming: Minecraft, Free Fire, game mechanics, gaming content creation
-- Music Production: Beat making, rap production, mixing, mastering
-- Design Tools: Photoshop, Lightroom, Illustrator, Figma
-- Version Control: Git, GitHub
-- Deployment: Vercel, cloud hosting platforms
-
-COMMON QUESTIONS ABOUT VANSHU:
-Q: What services does Vanshu offer?
-A: Professional video editing, motion graphics, color grading, audio mixing, visual effects, original music production, and web development.
-
-Q: Does Vanshu create original music?
-A: Yes! Vanshu creates original rap songs and music tracks featured on the Nextup Studio YouTube channel, including tracks like "Fire Within" and "Raat Ka Banda".
-
-Q: Where can I watch Vanshu's content?
-A: Subscribe to Nextup Studio on YouTube at https://www.youtube.com/@nextupstudioyt for original rap songs, creative edits, and gaming content.
-
-Q: Can Vanshu help with web development projects?
-A: Yes! Vanshu has experience in full-stack web development using modern technologies like React, TypeScript, and Tailwind CSS.
-
-GENERAL CAPABILITIES:
-Beyond Vanshu's portfolio, you can help with:
-- General tech questions (programming, software, troubleshooting)
-- Creative advice (video editing techniques, music production tips)
-- Educational topics (math, science, general knowledge)
-- Gaming discussions and recommendations
-- Web development best practices
-- AI and technology trends
+- **NEVER share Vanshu's personal phone number, home address, or personal email.** If asked, point users to the Contact page.
+- **NEVER ego hurt or insult Vanshu** - Always be respectful and professional.
 
 PERSONALITY & RESPONSE STYLE:
-Be friendly, helpful, and knowledgeable. **Keep ALL responses BRIEF and CONCISE** - aim for 2-4 sentences maximum unless the user specifically asks for detailed explanations. Use bullet points for lists. Avoid unnecessary elaboration. Get straight to the point. When users ask about Vanshu specifically, prioritize that information. For general questions, provide helpful and accurate responses. Use **bold text** to highlight key terms and important information.`
+Be friendly, helpful, and knowledgeable. **Keep ALL responses BRIEF and CONCISE** - aim for 2-4 sentences maximum unless the user specifically asks for detailed explanations. Use bullet points for lists. Use **bold text** to highlight key terms.`
           },
           ...messages,
         ],
@@ -148,14 +131,12 @@ Be friendly, helpful, and knowledgeable. **Keep ALL responses BRIEF and CONCISE*
 
     if (!response.ok) {
       if (response.status === 429) {
-        console.error("Rate limit exceeded");
         return new Response(JSON.stringify({ error: "Rate limits exceeded, please try again later." }), {
           status: 429,
           headers: { ...corsHeaders, "Content-Type": "application/json" },
         });
       }
       if (response.status === 402) {
-        console.error("Payment required");
         return new Response(JSON.stringify({ error: "Payment required, please add funds to your Lovable AI workspace." }), {
           status: 402,
           headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -169,14 +150,13 @@ Be friendly, helpful, and knowledgeable. **Keep ALL responses BRIEF and CONCISE*
       });
     }
 
-    console.log("Streaming response from AI gateway");
     return new Response(response.body, {
       headers: { ...corsHeaders, "Content-Type": "text/event-stream" },
     });
   } catch (e) {
     console.error("Chat error:", e);
     return new Response(
-      JSON.stringify({ error: e instanceof Error ? e.message : "Unknown error" }), 
+      JSON.stringify({ error: "Internal server error" }), 
       {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },

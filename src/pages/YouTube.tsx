@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import VideoPlayer from '@/components/VideoPlayer';
+import { supabase } from '@/integrations/supabase/client';
 
 const YouTube = () => {
   const [subscriberCount, setSubscriberCount] = useState<string | null>(null);
@@ -32,20 +33,14 @@ const YouTube = () => {
   useEffect(() => {
     const fetchChannelStats = async () => {
       try {
-        const apiKey = "AIzaSyCM7WK3KYdLFh2xPOFL8amaFxgVCg3etU4";
-        const channelId = "UCFEyuiIys7KoiZkczq4erJw";
-        
-        const res = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelId}&key=${apiKey}`);
-        const data = await res.json();
-        
-        if (data?.items?.length > 0) {
-          const stats = data.items[0].statistics;
-          setSubscriberCount(Number(stats.subscriberCount).toLocaleString());
-          setTotalViews(Number(stats.viewCount).toLocaleString());
-        } else {
-          setSubscriberCount("Not found");
-          setTotalViews("Not found");
+        const { data, error } = await supabase.functions.invoke('youtube-stats');
+        if (error || !data || data.error) {
+          setSubscriberCount("Unavailable");
+          setTotalViews("Unavailable");
+          return;
         }
+        setSubscriberCount(Number(data.subscriberCount).toLocaleString());
+        setTotalViews(Number(data.viewCount).toLocaleString());
       } catch {
         setSubscriberCount("Error");
         setTotalViews("Error");
