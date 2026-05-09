@@ -125,7 +125,7 @@ The image should look professional and stand out when shared on social media pla
     });
   } catch (error) {
     console.error("Error generating OG image:", error);
-    return new Response(JSON.stringify({ error: error instanceof Error ? error.message : "Unknown error" }), {
+    return new Response(JSON.stringify({ error: "Failed to generate image" }), {
       status: 500,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
