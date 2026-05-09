@@ -1,0 +1,1 @@
+DROP POLICY IF EXISTS "Users can view their own subscription" ON public.newsletter_subscribers;
