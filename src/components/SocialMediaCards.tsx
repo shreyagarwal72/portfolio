@@ -18,7 +18,7 @@ const socialCards: SocialCard[] = [
     stat: 'Followers',
     statValue: '1.2k',
     action: 'Follow me',
-    href: 'https://www.instagram.com/here_your_champion/',
+    href: 'https://instagram.com/hereyourchampion/',
     color: '348 80% 60%',
   },
   {
