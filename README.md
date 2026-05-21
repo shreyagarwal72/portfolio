@@ -21,7 +21,7 @@
 
 ---
 
-## 👨‍🎨 About Vanshu
+## 👨‍🎨 About Vanshu 
 
 **Video Editor | Gamer | Musician | Creative Mind**
 
@@ -35,10 +35,6 @@ Vanshu Agarwal is a passionate creator who blends visuals, rhythm, and storytell
 - 🧠 **Digital Storytelling** – Visual + Audio narrative design
 
 📘 *Currently a Class 11 PCM Science student balancing academics and creativity.*
-
-<a href="https://app.daily.dev/shreyagarwal">
-  <img src="./devcard.png" width="356" alt="Shrey Agarwal's Dev Card"/>
-</a>
 
 ---
 
