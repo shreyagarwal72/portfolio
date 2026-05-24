@@ -2,6 +2,8 @@ import { lazy, Suspense, useEffect, useState } from 'react';
 import heroWorkspace from '@/assets/hero-workspace.jpg';
 import heroWorkspaceLight from '@/assets/hero-workspace-light.jpg';
 import { motion, AnimatePresence } from 'framer-motion';
+import CreepyButton from '@/components/CreepyButton';
+import ElectricButton from '@/components/ElectricButton';
 
 const Floating3D = lazy(() => import('@/components/Floating3D').then(m => ({ default: m.Floating3D })));
 
@@ -153,14 +155,14 @@ const Hero = () => {
             </div>
 
             <motion.nav
-              className="mt-10 flex flex-wrap gap-4"
+              className="mt-10 flex flex-wrap items-center gap-6"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.2, ease: smoothEase }}
               aria-label="Main navigation actions"
             >
-              <a href="/cv" className="btn-pill">Resume</a>
-              <a href="/portfolio" className="btn-pill-solid">Portfolio</a>
+              <CreepyButton to="/cv">Open CV</CreepyButton>
+              <ElectricButton to="/portfolio" text="View Portfolio" />
             </motion.nav>
           </div>
         </div>
