@@ -2,6 +2,8 @@ import { lazy, Suspense, useEffect, useState } from 'react';
 import heroWorkspace from '@/assets/hero-workspace.jpg';
 import heroWorkspaceLight from '@/assets/hero-workspace-light.jpg';
 import { motion, AnimatePresence } from 'framer-motion';
+import CreepyButton from '@/components/CreepyButton';
+import ElectricButton from '@/components/ElectricButton';
 
 const Floating3D = lazy(() => import('@/components/Floating3D').then(m => ({ default: m.Floating3D })));
 
