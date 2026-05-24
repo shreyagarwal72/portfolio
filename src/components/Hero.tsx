@@ -155,14 +155,14 @@ const Hero = () => {
             </div>
 
             <motion.nav
-              className="mt-10 flex flex-wrap gap-4"
+              className="mt-10 flex flex-wrap items-center gap-6"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.2, ease: smoothEase }}
               aria-label="Main navigation actions"
             >
-              <a href="/cv" className="btn-pill">Resume</a>
-              <a href="/portfolio" className="btn-pill-solid">Portfolio</a>
+              <CreepyButton to="/cv">Open CV</CreepyButton>
+              <ElectricButton to="/portfolio" text="View Portfolio" />
             </motion.nav>
           </div>
         </div>
