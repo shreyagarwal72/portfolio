@@ -59,7 +59,7 @@ const Index = () => {
     },
     {
       icon: Instagram,
-      value: '3000+',
+      value: '1000+',
       label: 'Instagram Followers',
       description: 'Active creative community'
     }
