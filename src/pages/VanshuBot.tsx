@@ -424,29 +424,36 @@ const VanshuBot = () => {
         <section className="card-gradient rounded-xl border border-border overflow-hidden mb-4 animate-fade-in transition-smooth" aria-label="Chat conversation">
           <ScrollArea className="h-[calc(100vh-600px)] md:h-[calc(100vh-550px)] min-h-[300px] p-6" ref={scrollRef}>
             <div className="space-y-4" role="log" aria-live="polite" aria-atomic="false">
+              <AnimatePresence initial={false}>
                 {messages.map((message, index) => (
-                <div
-                  key={index}
-                  className={`flex ${
-                    message.role === 'user' ? 'justify-end' : 'justify-start'
-                  }`}
-                >
-                  <div
-                    className={`max-w-[85%] rounded-2xl px-4 py-3 relative group ${
-                      message.role === 'user'
-                        ? 'bg-primary text-primary-foreground'
-                        : 'bg-muted text-foreground'
+                  <motion.div
+                    key={index}
+                    layout
+                    initial={{ opacity: 0, y: 12, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.98 }}
+                    transition={{ duration: 0.35, ease: [0.25, 0.4, 0.25, 1] }}
+                    className={`flex ${
+                      message.role === 'user' ? 'justify-end' : 'justify-start'
                     }`}
                   >
-                    <p className="text-sm leading-relaxed whitespace-pre-wrap">
-                      {renderMessageContent(message.content)}
-                    </p>
-                    {message.role === 'assistant' && message.content && (
-                      <CopyButton text={message.content} />
-                    )}
-                  </div>
-                </div>
-              ))}
+                    <div
+                      className={`max-w-[85%] rounded-2xl px-4 py-3 relative group ${
+                        message.role === 'user'
+                          ? 'bg-primary text-primary-foreground'
+                          : 'bg-muted text-foreground'
+                      }`}
+                    >
+                      <p className="text-sm leading-relaxed whitespace-pre-wrap">
+                        {renderMessageContent(message.content)}
+                      </p>
+                      {message.role === 'assistant' && message.content && (
+                        <CopyButton text={message.content} />
+                      )}
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
               {isLoading && messages[messages.length - 1]?.role === 'user' && (
                 <div className="flex justify-start">
                   <div className="bg-muted rounded-2xl px-4 py-3">
