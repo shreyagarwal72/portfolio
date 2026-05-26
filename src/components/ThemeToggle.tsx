@@ -1,20 +1,25 @@
 import { useEffect, useState, useCallback } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Sun } from 'lucide-react';
 import './ThemeToggle.css';
 
 const ThemeToggle = () => {
   const [isDark, setIsDark] = useState(true);
+  const [isRedirecting, setIsRedirecting] = useState(false);
 
   useEffect(() => {
-    // Force dark theme as default always
     setIsDark(true);
     localStorage.setItem('theme', 'dark');
     document.documentElement.classList.add('dark');
   }, []);
 
   const toggleTheme = useCallback(() => {
-    // Light theme lives on a separate site — redirect there
-    window.location.href = 'https://vanshu-aggarwal.vercel.app/';
-  }, []);
+    if (isRedirecting) return;
+    setIsRedirecting(true);
+    setTimeout(() => {
+      window.location.href = 'https://vanshu-aggarwal.vercel.app/';
+    }, 900);
+  }, [isRedirecting]);
 
   return (
     <label className="theme-switch">
