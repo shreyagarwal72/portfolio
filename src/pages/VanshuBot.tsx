@@ -1,5 +1,6 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo, lazy, Suspense } from 'react';
 import { Sparkles, Trash2, Copy, Check } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useToast } from '@/hooks/use-toast';
@@ -13,9 +14,10 @@ import {
 } from '@/components/ui/dialog';
 import { Link } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
-import { SplineScene } from '@/components/ui/splite';
 import { Spotlight } from '@/components/ui/spotlight';
 import ChatBotInput from '@/components/ChatBotInput';
+
+const SplineScene = lazy(() => import('@/components/ui/splite').then(m => ({ default: m.SplineScene })));
 
 interface Message {
   role: 'user' | 'assistant';
@@ -58,39 +60,32 @@ const VanshuBot = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const renderMessageContent = (content: string) => {
+  const renderMessageContent = useCallback((content: string) => {
     const parts: (string | JSX.Element)[] = [];
     let lastIndex = 0;
-    
-    // Match **text** or *text* patterns
     const boldPattern = /(\*\*([^*]+)\*\*|\*([^*]+)\*)/g;
     let match;
     let key = 0;
-    
+
     while ((match = boldPattern.exec(content)) !== null) {
-      // Add text before the match
       if (match.index > lastIndex) {
         parts.push(content.slice(lastIndex, match.index));
       }
-      
-      // Add bold text with gradient styling
-      const boldText = match[2] || match[3]; // match[2] for **, match[3] for *
+      const boldText = match[2] || match[3];
       parts.push(
         <strong key={key++} className="gradient-text font-bold">
           {boldText}
         </strong>
       );
-      
       lastIndex = match.index + match[0].length;
     }
-    
-    // Add remaining text
+
     if (lastIndex < content.length) {
       parts.push(content.slice(lastIndex));
     }
-    
+
     return parts.length > 0 ? parts : content;
-  };
+  }, []);
 
   useEffect(() => {
     // Set page title and meta tags for SEO
@@ -143,14 +138,14 @@ const VanshuBot = () => {
     }
   }, [messages, isLoading]);
 
-  const suggestedQuestions = [
+  const suggestedQuestions = useMemo(() => [
     "What services does Vanshu offer?",
     "Tell me about Vanshu's portfolio projects",
     "What are Vanshu's video editing skills?",
     "How can I contact Vanshu?",
     "What software does Vanshu use?",
     "Tell me about Vanshu's experience"
-  ];
+  ], []);
 
   const streamChat = async (userMessage: Message) => {
     const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat`;
@@ -301,11 +296,11 @@ const VanshuBot = () => {
     setIsLoading(false);
   };
 
-  const handleSuggestionClick = (question: string) => {
+  const handleSuggestionClick = useCallback((question: string) => {
     setInput(question);
-  };
+  }, []);
 
-  const handleClearChat = () => {
+  const handleClearChat = useCallback(() => {
     setMessages([
       {
         role: 'assistant',
@@ -316,12 +311,12 @@ const VanshuBot = () => {
       title: 'Chat Cleared',
       description: 'Your chat history has been cleared.',
     });
-  };
+  }, [toast]);
 
-  const handleAcceptTerms = () => {
+  const handleAcceptTerms = useCallback(() => {
     localStorage.setItem('vanshubot_terms_accepted', 'true');
     setShowTermsDialog(false);
-  };
+  }, []);
 
   return (
     <main className="min-h-screen pt-16 bg-background pb-32" role="main">
@@ -355,10 +350,16 @@ const VanshuBot = () => {
 
             {/* Right content - 3D Robot */}
             <div className="flex-1 relative h-[150px] md:h-full">
-              <SplineScene 
-                scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-                className="w-full h-full"
-              />
+              <Suspense fallback={
+                <div className="w-full h-full flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-full border-2 border-primary/30 border-t-primary animate-spin" />
+                </div>
+              }>
+                <SplineScene 
+                  scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                  className="w-full h-full"
+                />
+              </Suspense>
             </div>
           </div>
         </Card>
@@ -423,29 +424,36 @@ const VanshuBot = () => {
         <section className="card-gradient rounded-xl border border-border overflow-hidden mb-4 animate-fade-in transition-smooth" aria-label="Chat conversation">
           <ScrollArea className="h-[calc(100vh-600px)] md:h-[calc(100vh-550px)] min-h-[300px] p-6" ref={scrollRef}>
             <div className="space-y-4" role="log" aria-live="polite" aria-atomic="false">
+              <AnimatePresence initial={false}>
                 {messages.map((message, index) => (
-                <div
-                  key={index}
-                  className={`flex ${
-                    message.role === 'user' ? 'justify-end' : 'justify-start'
-                  }`}
-                >
-                  <div
-                    className={`max-w-[85%] rounded-2xl px-4 py-3 relative group ${
-                      message.role === 'user'
-                        ? 'bg-primary text-primary-foreground'
-                        : 'bg-muted text-foreground'
+                  <motion.div
+                    key={index}
+                    layout
+                    initial={{ opacity: 0, y: 12, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.98 }}
+                    transition={{ duration: 0.35, ease: [0.25, 0.4, 0.25, 1] }}
+                    className={`flex ${
+                      message.role === 'user' ? 'justify-end' : 'justify-start'
                     }`}
                   >
-                    <p className="text-sm leading-relaxed whitespace-pre-wrap">
-                      {renderMessageContent(message.content)}
-                    </p>
-                    {message.role === 'assistant' && message.content && (
-                      <CopyButton text={message.content} />
-                    )}
-                  </div>
-                </div>
-              ))}
+                    <div
+                      className={`max-w-[85%] rounded-2xl px-4 py-3 relative group ${
+                        message.role === 'user'
+                          ? 'bg-primary text-primary-foreground'
+                          : 'bg-muted text-foreground'
+                      }`}
+                    >
+                      <p className="text-sm leading-relaxed whitespace-pre-wrap">
+                        {renderMessageContent(message.content)}
+                      </p>
+                      {message.role === 'assistant' && message.content && (
+                        <CopyButton text={message.content} />
+                      )}
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
               {isLoading && messages[messages.length - 1]?.role === 'user' && (
                 <div className="flex justify-start">
                   <div className="bg-muted rounded-2xl px-4 py-3">
