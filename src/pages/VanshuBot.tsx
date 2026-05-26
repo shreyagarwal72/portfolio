@@ -138,14 +138,14 @@ const VanshuBot = () => {
     }
   }, [messages, isLoading]);
 
-  const suggestedQuestions = [
+  const suggestedQuestions = useMemo(() => [
     "What services does Vanshu offer?",
     "Tell me about Vanshu's portfolio projects",
     "What are Vanshu's video editing skills?",
     "How can I contact Vanshu?",
     "What software does Vanshu use?",
     "Tell me about Vanshu's experience"
-  ];
+  ], []);
 
   const streamChat = async (userMessage: Message) => {
     const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/chat`;
