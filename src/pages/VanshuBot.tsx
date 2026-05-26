@@ -296,11 +296,11 @@ const VanshuBot = () => {
     setIsLoading(false);
   };
 
-  const handleSuggestionClick = (question: string) => {
+  const handleSuggestionClick = useCallback((question: string) => {
     setInput(question);
-  };
+  }, []);
 
-  const handleClearChat = () => {
+  const handleClearChat = useCallback(() => {
     setMessages([
       {
         role: 'assistant',
@@ -311,12 +311,12 @@ const VanshuBot = () => {
       title: 'Chat Cleared',
       description: 'Your chat history has been cleared.',
     });
-  };
+  }, [toast]);
 
-  const handleAcceptTerms = () => {
+  const handleAcceptTerms = useCallback(() => {
     localStorage.setItem('vanshubot_terms_accepted', 'true');
     setShowTermsDialog(false);
-  };
+  }, []);
 
   return (
     <main className="min-h-screen pt-16 bg-background pb-32" role="main">
