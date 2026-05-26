@@ -1,5 +1,6 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo, lazy, Suspense } from 'react';
 import { Sparkles, Trash2, Copy, Check } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useToast } from '@/hooks/use-toast';
@@ -13,9 +14,10 @@ import {
 } from '@/components/ui/dialog';
 import { Link } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
-import { SplineScene } from '@/components/ui/splite';
 import { Spotlight } from '@/components/ui/spotlight';
 import ChatBotInput from '@/components/ChatBotInput';
+
+const SplineScene = lazy(() => import('@/components/ui/splite').then(m => ({ default: m.SplineScene })));
 
 interface Message {
   role: 'user' | 'assistant';
