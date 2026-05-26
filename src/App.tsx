@@ -126,13 +126,9 @@ const AppContent = () => {
 const App = () => {
   useEffect(() => {
     // Set dark theme as default
-    const savedTheme = localStorage.getItem('theme');
-    if (!savedTheme) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else if (savedTheme === 'dark') {
-      document.documentElement.classList.add('dark');
-    }
+    // Always enforce dark theme as default
+    document.documentElement.classList.add('dark');
+    localStorage.setItem('theme', 'dark');
 
     // Prevent context menu on all images
     const handleContextMenu = (e: MouseEvent) => {
