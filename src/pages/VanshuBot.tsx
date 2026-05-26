@@ -350,10 +350,16 @@ const VanshuBot = () => {
 
             {/* Right content - 3D Robot */}
             <div className="flex-1 relative h-[150px] md:h-full">
-              <SplineScene 
-                scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-                className="w-full h-full"
-              />
+              <Suspense fallback={
+                <div className="w-full h-full flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-full border-2 border-primary/30 border-t-primary animate-spin" />
+                </div>
+              }>
+                <SplineScene 
+                  scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                  className="w-full h-full"
+                />
+              </Suspense>
             </div>
           </div>
         </Card>
