@@ -5,59 +5,16 @@ const ThemeToggle = () => {
   const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initialIsDark = savedTheme ? savedTheme === 'dark' : prefersDark;
-    
-    setIsDark(initialIsDark);
-    document.documentElement.classList.toggle('dark', initialIsDark);
+    // Force dark theme as default always
+    setIsDark(true);
+    localStorage.setItem('theme', 'dark');
+    document.documentElement.classList.add('dark');
   }, []);
 
   const toggleTheme = useCallback(() => {
-    const newIsDark = !isDark;
-    
-    // Add transition class for smooth theme switch
-    document.documentElement.style.setProperty('--theme-transition', '1');
-    document.documentElement.classList.add('theme-transitioning');
-    
-    // Create a circular reveal animation from the toggle button
-    const overlay = document.createElement('div');
-    overlay.className = 'theme-transition-overlay';
-    overlay.style.cssText = `
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      pointer-events: none;
-      background: ${newIsDark ? 'hsl(222 47% 6%)' : 'hsl(0 0% 98%)'};
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    `;
-    document.body.appendChild(overlay);
-    
-    // Trigger fade
-    requestAnimationFrame(() => {
-      overlay.style.opacity = '0.6';
-    });
-    
-    // Apply theme mid-transition
-    setTimeout(() => {
-      setIsDark(newIsDark);
-      localStorage.setItem('theme', newIsDark ? 'dark' : 'light');
-      document.documentElement.classList.toggle('dark', newIsDark);
-    }, 200);
-    
-    // Fade out overlay
-    setTimeout(() => {
-      overlay.style.opacity = '0';
-    }, 350);
-    
-    // Cleanup
-    setTimeout(() => {
-      overlay.remove();
-      document.documentElement.classList.remove('theme-transitioning');
-      document.documentElement.style.removeProperty('--theme-transition');
-    }, 750);
-  }, [isDark]);
+    // Light theme lives on a separate site — redirect there
+    window.location.href = 'https://vanshu-aggarwal.vercel.app/';
+  }, []);
 
   return (
     <label className="theme-switch">
