@@ -74,7 +74,7 @@ const AppContent = () => {
 
   const is404 = ![
     '/', '/about', '/portfolio', '/skills', '/youtube', '/vanshu-bot',
-    '/contact', '/cv', '/terms', '/privacy-policy', '/articles', '/process', '/faq'
+    '/contact', '/cv', '/terms', '/privacy-policy', '/articles', '/process', '/faq', '/test'
   ].includes(location.pathname);
 
   const pageVariants = {
