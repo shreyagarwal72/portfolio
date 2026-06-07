@@ -29,6 +29,7 @@ const Articles = lazy(() => import("./pages/Articles"));
 const ProcessWorkflow = lazy(() => import("./pages/ProcessWorkflow"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const Test = lazy(() => import("./pages/Test"));
 
 // Loading fallback
 const PageLoader = () => <SquidLoader />;
