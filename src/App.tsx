@@ -111,6 +111,7 @@ const AppContent = () => {
                 <Route path="/articles" element={<Articles />} />
                 <Route path="/process" element={<ProcessWorkflow />} />
                 <Route path="/faq" element={<FAQ />} />
+                <Route path="/test" element={<Test />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
