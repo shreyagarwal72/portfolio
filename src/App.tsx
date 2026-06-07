@@ -29,6 +29,7 @@ const Articles = lazy(() => import("./pages/Articles"));
 const ProcessWorkflow = lazy(() => import("./pages/ProcessWorkflow"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const Test = lazy(() => import("./pages/Test"));
 
 // Loading fallback
 const PageLoader = () => <SquidLoader />;
@@ -73,7 +74,7 @@ const AppContent = () => {
 
   const is404 = ![
     '/', '/about', '/portfolio', '/skills', '/youtube', '/vanshu-bot',
-    '/contact', '/cv', '/terms', '/privacy-policy', '/articles', '/process', '/faq'
+    '/contact', '/cv', '/terms', '/privacy-policy', '/articles', '/process', '/faq', '/test'
   ].includes(location.pathname);
 
   const pageVariants = {
@@ -110,6 +111,7 @@ const AppContent = () => {
                 <Route path="/articles" element={<Articles />} />
                 <Route path="/process" element={<ProcessWorkflow />} />
                 <Route path="/faq" element={<FAQ />} />
+                <Route path="/test" element={<Test />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
