@@ -89,7 +89,8 @@ const AppContent = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      {!is404 && <Navigation onLogoClick={handleTriggerIntro} />}
+      <KonamiEasterEgg />
+      {!is404 && !isFullscreenGame && <Navigation onLogoClick={handleTriggerIntro} />}
       <main className="flex-grow">
         <Suspense fallback={<PageLoader />}>
           <AnimatePresence mode="wait" initial={false}>
@@ -115,6 +116,7 @@ const AppContent = () => {
                 <Route path="/articles" element={<Articles />} />
                 <Route path="/process" element={<ProcessWorkflow />} />
                 <Route path="/faq" element={<FAQ />} />
+                <Route path="/play/subway-surfers" element={<SubwaySurfers />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
@@ -122,8 +124,8 @@ const AppContent = () => {
           </AnimatePresence>
         </Suspense>
       </main>
-      {!is404 && <Footer />}
-      {!is404 && <BackToTop />}
+      {!is404 && !isFullscreenGame && <Footer />}
+      {!is404 && !isFullscreenGame && <BackToTop />}
     </div>
   );
 };
