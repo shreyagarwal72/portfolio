@@ -4,6 +4,7 @@ import { Menu, X, Phone } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import ThemeToggle from '@/components/ThemeToggle';
+import { useLogoLongPress } from '@/hooks/useLogoLongPress';
 
 interface NavigationProps {
   onLogoClick?: () => void;
@@ -12,6 +13,7 @@ interface NavigationProps {
 const Navigation = ({ onLogoClick }: NavigationProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const longPress = useLogoLongPress();
 
   const navItems = [
     { label: 'Home', path: '/' },
@@ -51,15 +53,27 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="select-none flex-shrink-0">
                 <Link 
                   to="/" 
-                  className="flex items-center gap-2 text-xl font-bold touch-manipulation" 
+                  className="relative flex items-center gap-2 text-xl font-bold touch-manipulation" 
                   aria-label="Go to homepage"
                   onClick={handleLogoClick}
-                  title="Click to replay intro"
+                  title="Click to replay intro · hold 5s for a surprise"
                   draggable={false}
+                  {...longPress.bind}
                 >
-                  <span className="text-2xl bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent tracking-tight font-black">
+                  <span className="relative text-2xl bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent tracking-tight font-black">
                     VA
                   </span>
+                  {longPress.holding && (
+                    <span
+                      aria-hidden
+                      className="pointer-events-none absolute -inset-1.5 rounded-full border-2 border-primary/70"
+                      style={{
+                        background: `conic-gradient(hsl(var(--primary) / 0.35) ${longPress.progress * 360}deg, transparent 0deg)`,
+                        WebkitMask: 'radial-gradient(circle, transparent 55%, black 57%)',
+                        mask: 'radial-gradient(circle, transparent 55%, black 57%)',
+                      }}
+                    />
+                  )}
                 </Link>
               </motion.div>
 
@@ -115,15 +129,27 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
                 <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }} className="select-none flex-shrink-0">
                   <Link 
                     to="/" 
-                    className="flex items-center gap-2 text-xl font-bold touch-manipulation" 
+                    className="relative flex items-center gap-2 text-xl font-bold touch-manipulation" 
                     aria-label="Go to homepage"
                     onClick={handleLogoClick}
-                    title="Click to replay intro"
+                    title="Click to replay intro · hold 5s for a surprise"
                     draggable={false}
+                    {...longPress.bind}
                   >
-                    <span className="bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent font-black">
+                    <span className="relative bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent font-black">
                       VA
                     </span>
+                    {longPress.holding && (
+                      <span
+                        aria-hidden
+                        className="pointer-events-none absolute -inset-1.5 rounded-full border-2 border-primary/70"
+                        style={{
+                          background: `conic-gradient(hsl(var(--primary) / 0.35) ${longPress.progress * 360}deg, transparent 0deg)`,
+                          WebkitMask: 'radial-gradient(circle, transparent 55%, black 57%)',
+                          mask: 'radial-gradient(circle, transparent 55%, black 57%)',
+                        }}
+                      />
+                    )}
                   </Link>
                 </motion.div>
 
