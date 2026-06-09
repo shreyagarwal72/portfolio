@@ -13,6 +13,7 @@ import IntroWrapper from "./components/IntroWrapper";
 import { SoundProvider } from "./contexts/SoundContext";
 import SquidLoader from "./components/SquidLoader";
 import PWAInstallPrompt from "./components/PWAInstallPrompt";
+import KonamiEasterEgg from "./components/KonamiEasterEgg";
 
 // Lazy load pages for better performance
 const Index = lazy(() => import("./pages/Index"));
@@ -29,6 +30,7 @@ const Articles = lazy(() => import("./pages/Articles"));
 const ProcessWorkflow = lazy(() => import("./pages/ProcessWorkflow"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const SubwaySurfers = lazy(() => import("./pages/SubwaySurfers"));
 
 // Loading fallback
 const PageLoader = () => <SquidLoader />;
@@ -73,8 +75,11 @@ const AppContent = () => {
 
   const is404 = ![
     '/', '/about', '/portfolio', '/skills', '/youtube', '/vanshu-bot',
-    '/contact', '/cv', '/terms', '/privacy-policy', '/articles', '/process', '/faq'
+    '/contact', '/cv', '/terms', '/privacy-policy', '/articles', '/process', '/faq',
+    '/play/subway-surfers'
   ].includes(location.pathname);
+
+  const isFullscreenGame = location.pathname === '/play/subway-surfers';
 
   const pageVariants = {
     initial: { opacity: 0, y: 12 },
